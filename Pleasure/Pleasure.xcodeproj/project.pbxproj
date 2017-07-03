@@ -13,6 +13,7 @@
 		1960325B1F09E7AB00126AC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1960325A1F09E7AB00126AC7 /* Assets.xcassets */; };
 		1960325E1F09E7AB00126AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1960325C1F09E7AB00126AC7 /* LaunchScreen.storyboard */; };
 		196032611F09E7AB00126AC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 196032601F09E7AB00126AC7 /* main.m */; };
+		B3D621B69DF5654B3394EE3A /* libPods-Pleasure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 426EAAA1A6278F9D34392767 /* libPods-Pleasure.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,9 @@
 		1960325D1F09E7AB00126AC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1960325F1F09E7AB00126AC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		196032601F09E7AB00126AC7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		426EAAA1A6278F9D34392767 /* libPods-Pleasure.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pleasure.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D000A715B769F281A1FC21B /* Pods-Pleasure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pleasure.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pleasure/Pods-Pleasure.release.xcconfig"; sourceTree = "<group>"; };
+		A6880F4F462D6D5116F40DEA /* Pods-Pleasure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pleasure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pleasure/Pods-Pleasure.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D621B69DF5654B3394EE3A /* libPods-Pleasure.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				196032501F09E7AB00126AC7 /* Pleasure */,
 				1960324F1F09E7AB00126AC7 /* Products */,
+				94735CFAE9A4E009663AD33A /* Pods */,
+				E79A4222413A90F381CDC7C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +110,23 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		94735CFAE9A4E009663AD33A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A6880F4F462D6D5116F40DEA /* Pods-Pleasure.debug.xcconfig */,
+				8D000A715B769F281A1FC21B /* Pods-Pleasure.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E79A4222413A90F381CDC7C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				426EAAA1A6278F9D34392767 /* libPods-Pleasure.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -110,9 +134,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 196032641F09E7AB00126AC7 /* Build configuration list for PBXNativeTarget "Pleasure" */;
 			buildPhases = (
+				0886998C783881AA5D99A197 /* [CP] Check Pods Manifest.lock */,
 				1960324A1F09E7AB00126AC7 /* Sources */,
 				1960324B1F09E7AB00126AC7 /* Frameworks */,
 				1960324C1F09E7AB00126AC7 /* Resources */,
+				84B42B225946B298CA6462CA /* [CP] Embed Pods Frameworks */,
+				785CE64B60270627D1B41661 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +195,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0886998C783881AA5D99A197 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		785CE64B60270627D1B41661 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pleasure/Pods-Pleasure-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84B42B225946B298CA6462CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pleasure/Pods-Pleasure-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1960324A1F09E7AB00126AC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -221,6 +296,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -274,6 +351,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -303,9 +382,11 @@
 		};
 		196032651F09E7AB00126AC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6880F4F462D6D5116F40DEA /* Pods-Pleasure.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Pleasure/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.watermelon.Pleasure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -315,9 +396,11 @@
 		};
 		196032661F09E7AB00126AC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D000A715B769F281A1FC21B /* Pods-Pleasure.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Pleasure/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.watermelon.Pleasure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,6 +427,7 @@
 				196032661F09E7AB00126AC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
