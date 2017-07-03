@@ -58,6 +58,17 @@
 		196032501F09E7AB00126AC7 /* Pleasure */ = {
 			isa = PBXGroup;
 			children = (
+				1960326A1F09EBF500126AC7 /* Models */,
+				196032691F09EBEF00126AC7 /* Views */,
+				196032681F09EBE200126AC7 /* ViewControllers */,
+				196032671F09EB4100126AC7 /* Supporting Files */,
+			);
+			path = Pleasure;
+			sourceTree = "<group>";
+		};
+		196032671F09EB4100126AC7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				196032511F09E7AB00126AC7 /* AppDelegate.h */,
 				196032521F09E7AB00126AC7 /* AppDelegate.m */,
 				196032541F09E7AB00126AC7 /* ViewController.h */,
@@ -68,7 +79,28 @@
 				1960325F1F09E7AB00126AC7 /* Info.plist */,
 				196032601F09E7AB00126AC7 /* main.m */,
 			);
-			path = Pleasure;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		196032681F09EBE200126AC7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		196032691F09EBEF00126AC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1960326A1F09EBF500126AC7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,7 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Pleasure/Info.plist;
+				INFOPLIST_FILE = "Pleasure/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.watermelon.Pleasure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -285,7 +317,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Pleasure/Info.plist;
+				INFOPLIST_FILE = "Pleasure/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.watermelon.Pleasure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
