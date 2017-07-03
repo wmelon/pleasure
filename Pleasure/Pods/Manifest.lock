@@ -14,13 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AVOSCloud (5.0.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - AVOSCloud (~> 5.0.1)
+  - SDWebImage (~> 4.0.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AVOSCloud: 01745f438fb9ef4f2cde2b992783a869cc1291e6
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: 58f571733eff45c49e41313e37cd2d002f04ba99
+PODFILE CHECKSUM: f1e4505c08bbf4416e3ff8030b5799a8b7effc1a
 
 COCOAPODS: 1.2.1
