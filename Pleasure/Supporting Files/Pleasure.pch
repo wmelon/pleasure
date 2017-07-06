@@ -11,8 +11,19 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "ViewControllerHeader.h"
+#import "UIColor+AppColor.h"
+#import "UIImage+AppImage.h"
+#import "UIButton+AppButton.h"
+#import "SwitchViewController.h"
+#import "NotificationConfig.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 
 #endif /* Pleasure_pch */
+
+
+#define UIColorFromRGB(rgbValue)[UIColor colorWithRed:((float)((rgbValue&0xFF0000)>>16))/255.0 green:((float)((rgbValue&0xFF00)>>8))/255.0 blue:((float)(rgbValue&0xFF))/255.0 alpha:1.0]
+#define UIColorFromARGB(rgbValue,a)[UIColor colorWithRed:((float)((rgbValue&0xFF0000)>>16))/255.0 green:((float)((rgbValue&0xFF00)>>8))/255.0 blue:((float)(rgbValue&0xFF))/255.0 alpha:a]

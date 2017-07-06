@@ -12,5 +12,6 @@
 
 #import "HomeViewController.h"
 #import "MineViewController.h"
+#import "DemoViewController.h"
 
 #endif /* ViewControllerHeader_h */

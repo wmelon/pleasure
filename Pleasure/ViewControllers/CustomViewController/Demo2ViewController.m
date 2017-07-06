@@ -1,35 +1,39 @@
 //
-//  MineViewController.m
+//  Demo2ViewController.m
 //  Pleasure
 //
 //  Created by Sper on 2017/7/4.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "MineViewController.h"
+#import "Demo2ViewController.h"
+#import "DemoViewController.h"
 
-@interface MineViewController ()
+@interface Demo2ViewController ()
 
 @end
 
-@implementation MineViewController
+@implementation Demo2ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"第二页的 %@" , [_svc topNavigationController]);
+    
+    [self showCustomNavigationBar];
     
     
-    UIButton * nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    self.title = @"Demo2";
+    self.navigationItem.title = @"Demo2";
+    
+    
+    UIButton * nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     [nextBtn addTarget:self action:@selector(nextClick:) forControlEvents:UIControlEventTouchUpInside];
     nextBtn.backgroundColor = [UIColor redColor];
     [self.view addSubview:nextBtn];
 }
 - (void)nextClick:(UIButton *)button{
-    [self.navigationController pushViewController:[DemoViewController new] animated:YES];
-}
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationStringTabBarController object:@0];
+    DemoViewController * vc = [DemoViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -20,7 +20,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-    self.window.rootViewController = [SwitchViewController sharedSVC].rootNaviController;
+    self.window.rootViewController = [SwitchViewController sharedSVC].rootShowViewController;
     return YES;
 }
 
