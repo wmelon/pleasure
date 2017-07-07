@@ -24,7 +24,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationStringTabBarController object:@0];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationStringTabBarController object:@1];
 }
 
 - (void)didReceiveMemoryWarning {

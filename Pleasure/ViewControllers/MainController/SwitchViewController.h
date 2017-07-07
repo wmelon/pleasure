@@ -11,9 +11,7 @@
 #import "RootViewController.h"
 
 @interface SwitchViewController : NSObject
-//@property (nonatomic , strong , readonly)UINavigationController *rootShowViewController;
-//@property (nonatomic , strong , readonly)UINavigationController *topNavigationController;
-
+@property (nonatomic , strong , readonly)UINavigationController *topNavigationController;
 @property (nonatomic , strong , readonly)RootViewController *rootShowViewController;
 
 
@@ -28,8 +26,8 @@
 //
 //#pragma mark -- 销毁界面
 //- (void)dismissTopViewControllerCompletion:(void (^)(void))completion;
-//- (UIViewController*)wm_popViewControllerAnimated:(BOOL)animated;
+- (UIViewController*)wm_popViewControllerAnimated:(BOOL)animated;
 //- (void)popToViewController:(UIViewController *)vc;
-//- (void)wm_popToRootViewControllerAnimated:(BOOL)animated;
+- (void)wm_popToRootViewControllerAnimated:(BOOL)animated;
 
 @end

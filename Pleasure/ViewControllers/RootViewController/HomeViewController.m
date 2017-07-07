@@ -28,6 +28,11 @@
     view.backgroundColor = [UIColor orangeColor];
     return view;
 }
+
+- (BOOL)shouldShowBackItem{
+    return NO;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

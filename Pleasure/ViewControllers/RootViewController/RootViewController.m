@@ -33,6 +33,7 @@
     
     if (index < self.viewControllers.count){
         self.selectedIndex = index;
+        
 //        UIViewController * viewController = self.tabBarController.viewControllers[index];
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //            self.selectedIndex = index;
@@ -67,9 +68,9 @@
 }
 
 /// 当前选中的tabbar
-//- (UINavigationController *)currentSelectedNavigationController{
-//    return [self.tabBarController selectedViewController];
-//}
+- (UINavigationController *)currentSelectedNavigationController{
+    return [self.tabBarController selectedViewController];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -32,6 +32,10 @@
     [self.navigationController pushViewController:dddd animated:YES];
 }
 
+- (BOOL)shouldShowBackItem{
+    return NO;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

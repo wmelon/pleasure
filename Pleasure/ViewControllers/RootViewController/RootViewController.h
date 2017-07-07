@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface RootViewController : UITabBarController
-//- (UINavigationController *)currentSelectedNavigationController;
+- (UINavigationController *)currentSelectedNavigationController;
 @end
