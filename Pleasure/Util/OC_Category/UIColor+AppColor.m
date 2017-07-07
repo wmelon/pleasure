@@ -15,4 +15,7 @@
 + (UIColor *)pageBackgroundColor{
     return UIColorFromRGB(0xeeeeee);
 }
++ (UIColor *)tabBarColor{
+    return UIColorFromRGB(0x262626);
+}
 @end

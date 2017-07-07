@@ -18,18 +18,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor greenColor]];
-    [self.appNavigationBar setBackgroundImage:_storedBackgroundImage forBarMetrics:UIBarMetricsDefault];
-    
-
-
     UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     
     view.backgroundColor = [UIColor greenColor];
     [self.view addSubview:view];
 }
-
-
+- (UIView *)loadNavigationHeaderView{
+    UIView * view =[UIView new];
+    view.backgroundColor = [UIColor orangeColor];
+    return view;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

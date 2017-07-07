@@ -14,38 +14,17 @@
 
 @implementation DemoTableViewController
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    
-    
-    UIAlertView *a  = [UIAlertView alloc]initWithTitle:<#(nullable NSString *)#> message:<#(nullable NSString *)#> delegate:<#(nullable id)#> cancelButtonTitle:<#(nullable NSString *)#> otherButtonTitles:<#(nullable NSString *), ...#>, nil
-    
-    
-    [self testWithTitles:<#(nullable NSString *), ...#>];
-    
-    
-    UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor yellowColor]];
-    [self.navigationController.navigationBar setBackgroundImage:_storedBackgroundImage forBarMetrics:UIBarMetricsDefault];
-}
-
-
-- (void)testWithTitles:(nullable NSString *)otherButtonTitles, ...{
-    
-}
-//- (instancetype)initWithTitle:(nullable NSString *)title message:(nullable NSString *)message delegate:(nullable id)delegate cancelButtonTitle:(nullable NSString *)cancelButtonTitle otherButtonTitles:(nullable NSString *)otherButtonTitles, ... {
-//
-//}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.title = @"table";
-    
-    
-    
+
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationStringTabBarController object:@0];
 }
 
 - (void)didReceiveMemoryWarning {

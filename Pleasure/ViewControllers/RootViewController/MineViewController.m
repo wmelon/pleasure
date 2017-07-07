@@ -16,9 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSLog(@"第二页的 %@" , [_svc topNavigationController]);
+    // Do any additional setup after loading the view
     
+    
+//    self.fd_prefersNavigationBarHidden = YES;
     
     UIButton * nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [nextBtn addTarget:self action:@selector(nextClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -26,10 +27,9 @@
     [self.view addSubview:nextBtn];
 }
 - (void)nextClick:(UIButton *)button{
-    [self.navigationController pushViewController:[DemoViewController new] animated:YES];
-}
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:KNotificationStringTabBarController object:@0];
+    DemoViewController * dddd = [DemoViewController new];
+//    [dddd setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:dddd animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

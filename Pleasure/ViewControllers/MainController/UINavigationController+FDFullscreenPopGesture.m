@@ -256,13 +256,6 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
     objc_setAssociatedObject(self, key, @(MAX(0, distance)), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)wm_navigationBarBackItemHidden{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-- (void)setWm_navigationBarBackItemHidden:(BOOL)wm_navigationBarBackItemHidden{
-    objc_setAssociatedObject(self, @selector(wm_navigationBarBackItemHidden), @(wm_navigationBarBackItemHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 @end
 
 

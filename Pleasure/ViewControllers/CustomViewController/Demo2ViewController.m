@@ -19,18 +19,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self showCustomNavigationBar];
-    
-    
 //    self.title = @"Demo2";
     self.navigationItem.title = @"Demo2";
-    
     
     UIButton * nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     [nextBtn addTarget:self action:@selector(nextClick:) forControlEvents:UIControlEventTouchUpInside];
     nextBtn.backgroundColor = [UIColor redColor];
     [self.view addSubview:nextBtn];
 }
+
+- (UIView *)loadNavigationHeaderView{
+    UIView * headerView = [UIView new];
+    headerView.backgroundColor = [UIColor greenColor];
+    
+    return headerView;
+}
+
 - (void)nextClick:(UIButton *)button{
     DemoViewController * vc = [DemoViewController new];
     [self.navigationController pushViewController:vc animated:YES];

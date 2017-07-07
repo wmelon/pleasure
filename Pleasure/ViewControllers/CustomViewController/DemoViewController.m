@@ -15,17 +15,6 @@
 @end
 
 @implementation DemoViewController
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    
-}
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor grayColor]];
-    //    [[UINavigationBar appearance] setBackgroundImage:_storedBackgroundImage forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBackgroundImage:_storedBackgroundImage forBarMetrics:UIBarMetricsDefault];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +36,9 @@
 }
 
 - (void)tabClick:(UIButton *)button{
-    [_svc.topNavigationController pushViewController:[DemoTableViewController new] animated:YES];
+   DemoTableViewController * vc = [DemoTableViewController new];
+//    [_svc.topNavigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)nextClick:(UIButton *)button{

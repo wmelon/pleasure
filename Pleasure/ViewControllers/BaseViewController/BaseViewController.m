@@ -9,10 +9,15 @@
 #import "BaseViewController.h"
 
 @interface BaseViewController ()
+@property (nonatomic , strong)UIView * headerView;
+@property (nonatomic , assign)BOOL isHeaderViewLoaded;
 @end
 
 @implementation BaseViewController
 
+- (void)dealloc{
+    NSLog(@"界面销毁了 %@" ,self);
+}
 - (instancetype)init{
     if (self = [super init]){
         _svc = [SwitchViewController sharedSVC];
@@ -21,7 +26,21 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self showCustomNavigationBarTitle:self.navigationItem.title];
+    
+    if (self.fd_prefersNavigationBarHidden == NO){ /// 只有在没有隐藏导航栏的时候才添加视图
+        if (_isHeaderViewLoaded == NO){
+            if (_headerView.superview){
+                [_headerView removeFromSuperview];
+            }
+            _headerView = [self loadNavigationHeaderView];
+            if (_headerView){
+                //确保header视图层级，不然会盖住子类在viewDidLoad时添加到view的视图
+                [self.view addSubview:_headerView];
+                [self.view bringSubviewToFront:_headerView];
+            }
+            _isHeaderViewLoaded = YES;
+        }
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,46 +52,28 @@
     }
 }
 
-@synthesize appNavigationBar = _appNavigationBar;
-- (AppNavigationBar *)appNavigationBar{
-    self.fd_prefersNavigationBarHidden = YES;
-    if (_appNavigationBar == nil){
-        _appNavigationBar = [[AppNavigationBar alloc ] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 64)];
-        UINavigationItem * customNavigationItem = [[UINavigationItem alloc] init];
-        [_appNavigationBar setItems:@[customNavigationItem]];
-    }
-    return _appNavigationBar;
+/// 子类需要重写
+- (UIView *)loadNavigationHeaderView{
+    UIView * view = [UIView new];
+    view.backgroundColor = [UIColor tabBarColor];
+    return view;
 }
-
-- (AppNavigationBar *)showCustomNavigationBar{
-    AppNavigationBar *navBar = [self appNavigationBar];
-    [self.view addSubview:navBar];
-    [self.view bringSubviewToFront:navBar];
+- (void)setHeaderViewFrame{
+    if (!_headerView){
+        return;
+    }
+    if ([_headerView isKindOfClass:[UINavigationBar class]]){
+        _headerView.frame = CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, self.view.bounds.size.width, self.navigationController.navigationBar.bounds.size.height);
+    }else {
+        _headerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
+    }
     
-    return navBar;
 }
-- (void)showCustomNavigationBarTitle:(NSString *)title{
-    UINavigationItem * item = [self getCustomNaviItem];
-    item.title = title;
+//子类重写需要调用超类
+- (void)viewWillLayoutSubviews{
+    [self setHeaderViewFrame];
 }
 
-#pragma mark -- 重写方法
-/// 重写setTitle方法
-- (void)setTitle:(NSString *)title{
-    [super setTitle:title];
-    [self showCustomNavigationBarTitle:title];
-}
-/// 获取自定制的导航栏
-- (UINavigationItem *)getCustomNaviItem{
-    AppNavigationBar * appNaviBar = _appNavigationBar;
-    UINavigationItem * item;
-    if (appNaviBar && [appNaviBar superview]){
-        if (appNaviBar.items.count){
-            item = [appNaviBar.items firstObject];
-        }
-    }
-    return item;
-}
 - (void)showBackItem {
     UIImage * image = [UIImage imageNamed:@"icon_white_back"];
     UIButton* btn = [UIButton buttonWithImage:image title:@"返回" target:self action:@selector(backItemAction:)];
@@ -92,15 +93,18 @@
         self.navigationItem.rightBarButtonItems = @[space,item];
     }
 }
--(void)backItemAction:(UIButton*)button {
+
+- (void)backItemAction:(UIButton*)button {
     if (_svc.rootShowViewController) {
-        if (_svc.topNavigationController.viewControllers.count > 1) {
-//            [_svc popViewController];
+        if (self.navigationController.viewControllers.count > 1) {
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
 //            [_svc dismissTopViewControllerCompletion:NULL];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }
     } else {
 //        [_svc dismissTopViewControllerCompletion:NULL];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
