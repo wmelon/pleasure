@@ -18,11 +18,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    UIButton * view = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     
     view.backgroundColor = [UIColor greenColor];
+    
+    [view addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:view];
 }
+- (void)click:(UIButton *)button{
+    [_svc wm_pushViewController:[DemoViewController new]];
+}
+
 - (UIView *)loadNavigationHeaderView{
     UIView * view =[UIView new];
     view.backgroundColor = [UIColor orangeColor];

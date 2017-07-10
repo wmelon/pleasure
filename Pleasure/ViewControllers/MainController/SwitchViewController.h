@@ -18,6 +18,8 @@
 + (instancetype)sharedSVC;
 
 //#pragma mark -- 根据类名进行页面跳转
+- (void)wm_pushViewController:(UIViewController *)viewcontroller;
+
 //- (void)pushViewControllerClass:(Class)class_object;
 //- (void)pushViewControllerClass:(Class)class_object withObjects:(NSDictionary *)intentDic animated:(BOOL)animated;
 //- (void)pushViewControllerClass:(Class)class_object withObjects:(NSDictionary*)intentDic;

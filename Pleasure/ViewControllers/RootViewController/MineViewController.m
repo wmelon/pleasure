@@ -18,7 +18,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view
     
-    
 //    self.fd_prefersNavigationBarHidden = YES;
     
     UIButton * nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];

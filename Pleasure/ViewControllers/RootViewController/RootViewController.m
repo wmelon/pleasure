@@ -67,9 +67,23 @@
     return @[homeNavi , mineNavi];
 }
 
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(nonnull UIViewController *)viewController{
+    UIViewController *vc = tabBarController.selectedViewController;
+    if (vc == viewController){
+        
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
+
+
 /// 当前选中的tabbar
 - (UINavigationController *)currentSelectedNavigationController{
-    return [self.tabBarController selectedViewController];
+    return [self selectedViewController];
 }
 
 - (void)didReceiveMemoryWarning {

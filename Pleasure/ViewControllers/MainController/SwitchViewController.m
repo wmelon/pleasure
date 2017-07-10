@@ -39,6 +39,25 @@
     return navi;
 }
 
+
+
+
+
+
+
+- (void)wm_pushViewController:(UIViewController *)viewcontroller{
+    [self.topNavigationController pushViewController:viewcontroller animated:YES];
+}
+
+
+
+
+
+
+
+
+
+
 - (UIViewController*)wm_popViewControllerAnimated:(BOOL)animated{
     return [self.topNavigationController popViewControllerAnimated:animated];
 }
