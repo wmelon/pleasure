@@ -6,8 +6,8 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface HomeViewController : BaseViewController
+@interface HomeViewController : BaseTableViewController
 
 @end

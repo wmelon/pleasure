@@ -22,6 +22,8 @@
 - (instancetype)init{
     if (self = [super init]){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBarControllerSelectedIndex:) name:KNotificationStringTabBarController object:nil];
+        
+        self.delegate = self;
     }
     return self;
 }
@@ -72,7 +74,17 @@
     UIViewController *vc = tabBarController.selectedViewController;
     if (vc == viewController){
         
-        
+        if ([vc isKindOfClass:[UINavigationController class]]){
+            UINavigationController * navi = (UINavigationController *)vc;
+            if ([navi viewControllers].count){
+                UIViewController * firstVc = [navi.viewControllers firstObject];
+                
+                if ([firstVc isKindOfClass:[WMBaseTableCollectionControlController class]]){
+                    WMBaseTableCollectionControlController * scrollerVc = (WMBaseTableCollectionControlController *)firstVc;
+                    [scrollerVc beginRefresh];
+                }
+            }
+        }
         return NO;
     }
     

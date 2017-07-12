@@ -17,18 +17,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view
-    
-//    self.fd_prefersNavigationBarHidden = YES;
-    
-    UIButton * nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    [nextBtn addTarget:self action:@selector(nextClick:) forControlEvents:UIControlEventTouchUpInside];
-    nextBtn.backgroundColor = [UIColor redColor];
-    [self.view addSubview:nextBtn];
 }
+
+#pragma mark -- UICollectionViewDelegate and UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 20;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor yellowColor];
+    return cell;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(100, 100);
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self nextClick:nil];
+}
+
 - (void)nextClick:(UIButton *)button{
     DemoViewController * dddd = [DemoViewController new];
-//    [dddd setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:dddd animated:YES];
+}
+
+
+- (BOOL)shouldShowGetMore{
+    return NO;
 }
 
 - (BOOL)shouldShowBackItem{

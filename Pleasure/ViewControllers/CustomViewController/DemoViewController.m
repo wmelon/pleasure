@@ -9,9 +9,10 @@
 #import "DemoViewController.h"
 #import "Demo2ViewController.h"
 #import "DemoTableViewController.h"
+#import <UIScrollView+EmptyDataSet.h>
 
 @interface DemoViewController ()
-
+@property (nonatomic , strong)CAShapeLayer *elasticShaperLayer;
 @end
 
 @implementation DemoViewController
@@ -20,25 +21,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //self.title = @"Demo";
     self.navigationItem.title = @"这是demo一";
+}
+
+#pragma mark -- UITableViewDelegate and UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * cellId = @"CellId";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    cell.textLabel.text = @"Hi All";
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    UIButton * nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    [nextBtn addTarget:self action:@selector(nextClick:) forControlEvents:UIControlEventTouchUpInside];
-    nextBtn.backgroundColor = [UIColor redColor];
-    [self.view addSubview:nextBtn];
+    if (indexPath.row % 2 == 0){
+        [self nextClick:nil];
+    }else {
+        [self tabClick:nil];
+    }
     
-    
-    UIButton * tabBtn = [[UIButton alloc] initWithFrame:CGRectMake(150, 0, 100, 100)];
-    [tabBtn addTarget:self action:@selector(tabClick:) forControlEvents:UIControlEventTouchUpInside];
-    tabBtn.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:tabBtn];
 }
 
 - (void)tabClick:(UIButton *)button{
-   DemoTableViewController * vc = [DemoTableViewController new];
-//    [_svc.topNavigationController pushViewController:vc animated:YES];
-    [self.navigationController pushViewController:vc animated:YES];
+    DemoTableViewController * vc = [DemoTableViewController new];
+    [_svc.topNavigationController pushViewController:vc animated:YES];
 }
 
 - (void)nextClick:(UIButton *)button{

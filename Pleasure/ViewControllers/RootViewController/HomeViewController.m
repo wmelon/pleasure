@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "DemoViewController.h"
 
 @interface HomeViewController ()
 
@@ -17,18 +18,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    UIButton * view = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    
-    view.backgroundColor = [UIColor greenColor];
-    
-    [view addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:view];
 }
-- (void)click:(UIButton *)button{
+
+
+#pragma mark -- UITableViewDelegate and UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 20;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * cellId = @"CellId";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    cell.textLabel.text = @"Hi";
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
     [_svc wm_pushViewController:[DemoViewController new]];
 }
+
+
+#pragma mark -- overridable
 
 - (UIView *)loadNavigationHeaderView{
     UIView * view =[UIView new];

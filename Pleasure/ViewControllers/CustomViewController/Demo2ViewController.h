@@ -6,8 +6,8 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseCollectionViewController.h"
 
-@interface Demo2ViewController : BaseViewController
+@interface Demo2ViewController : BaseCollectionViewController
 
 @end

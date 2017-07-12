@@ -8,8 +8,8 @@
 
 #import "BaseCollectionViewController.h"
 
-@interface BaseCollectionViewController ()
-
+@interface BaseCollectionViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
+@property (nonatomic , strong)UICollectionView * collectionView;
 @end
 
 @implementation BaseCollectionViewController
@@ -17,6 +17,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view addSubview:self.collectionView];
+}
+
+
+#pragma mark -- UICollectionViewDelegate and UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 20;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor redColor];
+    return cell;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(100, 100);
+}
+
+
+- (UICollectionView *)collectionView{
+    if (!_collectionView){
+        UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellID"];
+        _collectionView.backgroundColor = [UIColor pageBackgroundColor];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        [self addRefreshHeadViewAndFootViewWithScrollerView:_collectionView];
+    }
+    return _collectionView;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -28,6 +28,8 @@
 		196E1F2A1F0B7FEB00C2D678 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F291F0B7FEB00C2D678 /* BaseTableViewController.m */; };
 		196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2C1F0B7FFF00C2D678 /* BaseCollectionViewController.m */; };
 		196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2F1F0B800F00C2D678 /* MineViewController.m */; };
+		199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */; };
+		19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */; };
 		19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */; };
 		19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4ABF1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.m */; };
 		B3D621B69DF5654B3394EE3A /* libPods-Pleasure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 426EAAA1A6278F9D34392767 /* libPods-Pleasure.a */; };
@@ -77,6 +79,10 @@
 		196E1F2E1F0B800F00C2D678 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		196E1F2F1F0B800F00C2D678 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		196E1F311F0B809E00C2D678 /* Pleasure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pleasure.pch; sourceTree = "<group>"; };
+		199DACDA1F14C7FB008B4E55 /* UIScrollView+AppScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+AppScrollView.h"; sourceTree = "<group>"; };
+		199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+AppScrollView.m"; sourceTree = "<group>"; };
+		19B9BB3C1F161AEB00BD0938 /* WMBaseTableCollectionControlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseTableCollectionControlController.h; sourceTree = "<group>"; };
+		19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseTableCollectionControlController.m; sourceTree = "<group>"; };
 		19DB4A8A1F0F867000FE3EAD /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		19DB4ABE1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
@@ -115,6 +121,8 @@
 				192C13331F0B94E000759221 /* UIColor+AppColor.m */,
 				196AB48F1F0CF0CF00D660A2 /* UIButton+AppButton.h */,
 				196AB4901F0CF0CF00D660A2 /* UIButton+AppButton.m */,
+				199DACDA1F14C7FB008B4E55 /* UIScrollView+AppScrollView.h */,
+				199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */,
 			);
 			path = OC_Category;
 			sourceTree = "<group>";
@@ -253,6 +261,8 @@
 				196E1F2C1F0B7FFF00C2D678 /* BaseCollectionViewController.m */,
 				19DB4A8A1F0F867000FE3EAD /* BaseNavigationController.h */,
 				19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */,
+				19B9BB3C1F161AEB00BD0938 /* WMBaseTableCollectionControlController.h */,
+				19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -404,11 +414,13 @@
 				1960328A1F0A558000126AC7 /* SwitchViewController.m in Sources */,
 				192C13481F0BBA8B00759221 /* Demo2ViewController.m in Sources */,
 				196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */,
+				19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */,
 				192C132E1F0B924600759221 /* AppNavigationBar.m in Sources */,
 				194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */,
 				192C13311F0B942400759221 /* UIImage+AppImage.m in Sources */,
 				196E1F2A1F0B7FEB00C2D678 /* BaseTableViewController.m in Sources */,
 				192C13341F0B94E000759221 /* UIColor+AppColor.m in Sources */,
+				199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */,
 				196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */,
 				196032961F0A564400126AC7 /* HomeViewController.m in Sources */,
 				192C132B1F0B923800759221 /* AppTabBar.m in Sources */,

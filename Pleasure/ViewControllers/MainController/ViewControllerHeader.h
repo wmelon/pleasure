@@ -9,7 +9,7 @@
 #ifndef ViewControllerHeader_h
 #define ViewControllerHeader_h
 
-
+#import "WMBaseTableCollectionControlController.h"
 #import "HomeViewController.h"
 #import "MineViewController.h"
 #import "DemoViewController.h"
