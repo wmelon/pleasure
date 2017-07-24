@@ -9,6 +9,5 @@
 #import "WMBaseTableCollectionControlController.h"
 
 @interface BaseTableViewController : WMBaseTableCollectionControlController
-
-
+@property (nonatomic , strong , readonly)UITableView * tableView;
 @end

@@ -10,6 +10,7 @@
 #define ViewControllerHeader_h
 
 #import "WMBaseTableCollectionControlController.h"
+#import "BaseNavigationController.h"
 #import "HomeViewController.h"
 #import "MineViewController.h"
 #import "DemoViewController.h"

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MJRefresh/MJRefreshGifHeader.h>
 
-typedef void(^WMRefreshBlock) ();
+typedef void(^WMRefreshBlock) (void);
 
 @class WM_RefreshGifHeader;
 
@@ -28,3 +28,8 @@ typedef void(^WMRefreshBlock) ();
 @interface WM_RefreshGifHeader : MJRefreshGifHeader
 
 @end
+
+
+
+
+

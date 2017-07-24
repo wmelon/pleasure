@@ -8,13 +8,21 @@
 
 #import "WMBaseTableCollectionControlController.h"
 #import "UIScrollView+AppScrollView.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface WMBaseTableCollectionControlController ()
+@interface WMBaseTableCollectionControlController ()<DZNEmptyDataSetSource , DZNEmptyDataSetDelegate>
 @property (nonatomic , strong)UIScrollView * scrollerView;
 @end
 
 @implementation WMBaseTableCollectionControlController
 
+- (instancetype)init{
+    if (self = [super init]){
+        _rows = [NSMutableArray array];
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -23,6 +31,9 @@
 // 添加下拉刷新 // 添加上拉加载更多
 - (void)addRefreshHeadViewAndFootViewWithScrollerView:(UIScrollView *)scrollerView {
     _scrollerView = scrollerView;
+    _scrollerView.emptyDataSetSource = self;
+    _scrollerView.emptyDataSetDelegate = self;
+    
     
     __weak typeof(self) weakself = self;
     if ([self shouldShowRefresh]) {
@@ -45,6 +56,20 @@
     [_scrollerView wm_endRefreshing];
 }
 
+#pragma mark -- DZNEmptyDataSetSource and DZNEmptyDataSetDelegate
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    NSAttributedString * title = [[NSAttributedString alloc] initWithString:@"数据为空"];
+    return title;
+}
+//- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView{
+//    return [UIColor yellowColor];
+//}
+- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
+    return YES;
+}
+
+
+
 #pragma mark - overridable
 -(void)requestRefresh{
     NSLog(@"%s 需要重写",__FUNCTION__);
@@ -57,11 +82,11 @@
 }
 
 -(BOOL)shouldShowRefresh{
-    return YES;
+    return NO;
 }
 
 -(BOOL)shouldShowGetMore{
-    return YES;
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

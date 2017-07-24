@@ -8,7 +8,6 @@
 
 #import "RootViewController.h"
 #import "AppTabBar.h"
-#import "AppNavigationBar.h"
 #import "BaseNavigationController.h"
 
 @interface RootViewController ()<UITabBarControllerDelegate>
@@ -55,7 +54,6 @@
     homeVc.tabBarItem.badgeValue = @"99";
     
     BaseNavigationController * homeNavi = [[BaseNavigationController alloc] initWithRootViewController:homeVc];
-    [homeNavi setValue:[AppNavigationBar new] forKey:@"navigationBar"];
     
     
     MineViewController * mineVc = [MineViewController new];
@@ -64,7 +62,6 @@
     mineVc.tabBarItem.badgeValue = @"1";
     
     BaseNavigationController * mineNavi = [[BaseNavigationController alloc] initWithRootViewController:mineVc];
-    [mineNavi setValue:[AppNavigationBar new] forKey:@"navigationBar"];
     
     return @[homeNavi , mineNavi];
 }

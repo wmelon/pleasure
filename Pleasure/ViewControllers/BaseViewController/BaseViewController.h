@@ -14,7 +14,7 @@
     SwitchViewController * _svc;
 }
 
-- (BOOL)shouldShowBackItem;
+//- (BOOL)shouldShowBackItem;
 
 - (UIView *)loadNavigationHeaderView;
 

@@ -10,7 +10,7 @@
 
 
 @interface BaseTableViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic , strong)UITableView * tableView;
+
 @end
 
 @implementation BaseTableViewController
@@ -28,7 +28,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return self.rows.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellId = @"CellId";
@@ -45,12 +45,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+@synthesize tableView = _tableView;
 - (UITableView *)tableView{
     if (!_tableView){
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor pageBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addRefreshHeadViewAndFootViewWithScrollerView:_tableView];
     }
     return _tableView;

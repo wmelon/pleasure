@@ -16,8 +16,9 @@
 @implementation BaseViewController
 
 - (void)dealloc{
-    NSLog(@"界面销毁了 %@" ,self);
+    NSLog(@"----------界面销毁了 %@" ,self);
 }
+
 - (instancetype)init{
     if (self = [super init]){
         _svc = [SwitchViewController sharedSVC];
@@ -38,18 +39,26 @@
                 [self.view addSubview:_headerView];
                 [self.view bringSubviewToFront:_headerView];
             }
+            
             _isHeaderViewLoaded = YES;
         }
     }
+}
+
+//子类重写需要调用超类
+- (void)viewWillLayoutSubviews{
+    [self setHeaderViewFrame];
+    /// 这里保证头部视图永远在最上层不被覆盖
+    [self.view bringSubviewToFront:_headerView];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor pageBackgroundColor];
     
-    if ([self shouldShowBackItem]) {
-        [self showBackItem];
-    }
+//    if ([self shouldShowBackItem]) {
+//        [self showBackItem];
+//    }
 }
 
 /// 子类需要重写
@@ -62,55 +71,64 @@
     if (!_headerView){
         return;
     }
-    if ([_headerView isKindOfClass:[UINavigationBar class]]){
-        _headerView.frame = CGRectMake(0, [UIApplication sharedApplication].statusBarFrame.size.height, self.view.bounds.size.width, self.navigationController.navigationBar.bounds.size.height);
-    }else {
-        _headerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
-    }
     
-}
-//子类重写需要调用超类
-- (void)viewWillLayoutSubviews{
-    [self setHeaderViewFrame];
-}
-
-- (void)showBackItem {
-    UIImage * image = [UIImage imageNamed:@"icon_white_back"];
-    UIButton* btn = [UIButton buttonWithImage:image title:@"返回" target:self action:@selector(backItemAction:)];
-    btn.frame = CGRectMake(btn.frame.origin.x, btn.frame.origin.y, 56, 28);
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    btn.adjustsImageWhenHighlighted = NO;
-    [self addItemForLeft:YES withItem:item spaceWidth:-8];
-}
--(void)addItemForLeft:(BOOL)left withItem:(UIBarButtonItem*)item spaceWidth:(CGFloat)width {
-    UIBarButtonItem *space = [[UIBarButtonItem alloc]
-                              initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                              target:nil action:nil];
-    space.width = width;
-    if (left) {
-        self.navigationItem.leftBarButtonItems = @[space,item];
-    } else {
-        self.navigationItem.rightBarButtonItems = @[space,item];
-    }
+    /// 防止子视图使用autolayout影响到手势返回头部视图消失，这边这个头部视图需要采用autolayout布局。
+    UIView *purpleView = _headerView;
+    // 禁止将 AutoresizingMask 转换为 Constraints
+    purpleView.translatesAutoresizingMaskIntoConstraints = NO;
+    // 添加 width 约束
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:self.view.frame.size.width];
+    [purpleView addConstraint:widthConstraint];
+    // 添加 height 约束
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:64];
+    [purpleView addConstraint:heightConstraint];
+    // 添加 left 约束
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    [self.view addConstraint:leftConstraint];
+    // 添加 top 约束
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    [self.view addConstraint:topConstraint];
 }
 
-- (void)backItemAction:(UIButton*)button {
-    if (_svc.rootShowViewController) {
-        if (self.navigationController.viewControllers.count > 1) {
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-//            [_svc dismissTopViewControllerCompletion:NULL];
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        }
-    } else {
-//        [_svc dismissTopViewControllerCompletion:NULL];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-    }
-}
 
-- (BOOL)shouldShowBackItem{
-    return YES;
-}
+
+//- (void)showBackItem {
+//    UIImage * image = [UIImage imageNamed:@"icon_white_back"];
+//    UIButton* btn = [UIButton buttonWithImage:image title:@"返回" target:self action:@selector(backItemAction:)];
+//    btn.frame = CGRectMake(btn.frame.origin.x, btn.frame.origin.y, 56, 28);
+//    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+//    btn.adjustsImageWhenHighlighted = NO;
+//    [self addItemForLeft:YES withItem:item spaceWidth:-8];
+//}
+//-(void)addItemForLeft:(BOOL)left withItem:(UIBarButtonItem*)item spaceWidth:(CGFloat)width {
+//    UIBarButtonItem *space = [[UIBarButtonItem alloc]
+//                              initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+//                              target:nil action:nil];
+//    space.width = width;
+//    if (left) {
+//        self.navigationItem.leftBarButtonItems = @[space,item];
+//    } else {
+//        self.navigationItem.rightBarButtonItems = @[space,item];
+//    }
+//}
+//
+//- (void)backItemAction:(UIButton*)button {
+//    if (_svc.rootShowViewController) {
+//        if (self.navigationController.viewControllers.count > 1) {
+//            [self.navigationController popViewControllerAnimated:YES];
+//        } else {
+////            [_svc dismissTopViewControllerCompletion:NULL];
+//            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//        }
+//    } else {
+////        [_svc dismissTopViewControllerCompletion:NULL];
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//    }
+//}
+//
+//- (BOOL)shouldShowBackItem{
+//    return YES;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

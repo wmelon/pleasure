@@ -18,6 +18,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+//    self.navigationController
+//    BaseNavigationController * navi = (BaseNavigationController *)self.navigationController;
+//    [navi navigationBarbackgroundColor:[UIColor orangeColor]];
+    
+    [self beginRefresh];
+}
+
+- (void)requestRefresh{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        /*
+        for (int i = 0 ; i < 20 ; i++){
+            [self.rows addObject:@""];
+        }*/
+        [self finishRequest];
+        [self.tableView reloadData];
+    });
 }
 
 
@@ -26,7 +43,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return self.rows.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellId = @"CellId";

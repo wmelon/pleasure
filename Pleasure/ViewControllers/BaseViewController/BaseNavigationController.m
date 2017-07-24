@@ -14,12 +14,6 @@
 
 @implementation BaseNavigationController
 
-- (instancetype)init{
-    if (self = [super init]){
-        
-    }
-    return self;
-}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -27,6 +21,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.delegate = self;
+    
+    UINavigationBar * newNavigationBar = [[AppNavigationBar alloc] initWithFrame:self.navigationBar.bounds];
+    
+    [self setValue:newNavigationBar forKey:@"navigationBar"];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
@@ -39,13 +37,6 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-//    NSLog(@"%@" , viewController);
-//    // 删除系统自带的tabBarButton
-//    for (UIView *tabBar in self.tabBarController.tabBar.subviews) {
-//        if ([tabBar isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
-//            [tabBar removeFromSuperview];
-//        }
-//    }
 }
 
 - (void)didReceiveMemoryWarning {
