@@ -14,8 +14,8 @@
     SwitchViewController * _svc;
 }
 
+@property (nonatomic , strong , readonly)UIView * navigationBarBackgroundView;
 //- (BOOL)shouldShowBackItem;
 
-- (UIView *)loadNavigationHeaderView;
 
 @end

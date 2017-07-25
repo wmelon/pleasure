@@ -11,5 +11,8 @@
 @interface UIColor (AppColor)
 + (UIColor *)lineColor;
 + (UIColor *)pageBackgroundColor;
-+ (UIColor *)tabBarColor;
++ (UIColor *)mainColor;
++ (UIColor *)textColor;
++ (UIColor *)detailTextColor;
+
 @end

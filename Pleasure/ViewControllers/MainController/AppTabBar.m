@@ -13,8 +13,7 @@
 - (nonnull instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
         self.translucent = NO;
-        self.backgroundImage = [UIImage buildImageWithColor:[UIColor orangeColor]];
-        self.tintColor = [UIColor redColor];
+        self.tintColor = [UIColor orangeColor];
     }
     return self;
 }

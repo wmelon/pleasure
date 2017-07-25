@@ -68,8 +68,6 @@
     return YES;
 }
 
-
-
 #pragma mark - overridable
 -(void)requestRefresh{
     NSLog(@"%s 需要重写",__FUNCTION__);
@@ -82,11 +80,11 @@
 }
 
 -(BOOL)shouldShowRefresh{
-    return NO;
+    return YES;
 }
 
 -(BOOL)shouldShowGetMore{
-    return NO;
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

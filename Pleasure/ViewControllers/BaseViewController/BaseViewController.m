@@ -9,11 +9,11 @@
 #import "BaseViewController.h"
 
 @interface BaseViewController ()
-@property (nonatomic , strong)UIView * headerView;
-@property (nonatomic , assign)BOOL isHeaderViewLoaded;
+
 @end
 
 @implementation BaseViewController
+
 
 - (void)dealloc{
     NSLog(@"----------界面销毁了 %@" ,self);
@@ -22,6 +22,9 @@
 - (instancetype)init{
     if (self = [super init]){
         _svc = [SwitchViewController sharedSVC];
+        _navigationBarBackgroundView = [[UIView alloc] init];
+        
+        _navigationBarBackgroundView.backgroundColor = [UIColor mainColor];
     }
     return self;
 }
@@ -29,18 +32,11 @@
     [super viewWillAppear:animated];
     
     if (self.fd_prefersNavigationBarHidden == NO){ /// 只有在没有隐藏导航栏的时候才添加视图
-        if (_isHeaderViewLoaded == NO){
-            if (_headerView.superview){
-                [_headerView removeFromSuperview];
-            }
-            _headerView = [self loadNavigationHeaderView];
-            if (_headerView){
-                //确保header视图层级，不然会盖住子类在viewDidLoad时添加到view的视图
-                [self.view addSubview:_headerView];
-                [self.view bringSubviewToFront:_headerView];
-            }
+        if (!_navigationBarBackgroundView.superview && _navigationBarBackgroundView){
             
-            _isHeaderViewLoaded = YES;
+            //确保header视图层级，不然会盖住子类在viewDidLoad时添加到view的视图
+            [self.view addSubview:_navigationBarBackgroundView];
+            [self.view bringSubviewToFront:_navigationBarBackgroundView];
         }
     }
 }
@@ -49,7 +45,7 @@
 - (void)viewWillLayoutSubviews{
     [self setHeaderViewFrame];
     /// 这里保证头部视图永远在最上层不被覆盖
-    [self.view bringSubviewToFront:_headerView];
+    [self.view bringSubviewToFront:_navigationBarBackgroundView];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,19 +57,14 @@
 //    }
 }
 
-/// 子类需要重写
-- (UIView *)loadNavigationHeaderView{
-    UIView * view = [UIView new];
-    view.backgroundColor = [UIColor tabBarColor];
-    return view;
-}
+
 - (void)setHeaderViewFrame{
-    if (!_headerView){
+    if (!_navigationBarBackgroundView){
         return;
     }
     
     /// 防止子视图使用autolayout影响到手势返回头部视图消失，这边这个头部视图需要采用autolayout布局。
-    UIView *purpleView = _headerView;
+    UIView *purpleView = _navigationBarBackgroundView;
     // 禁止将 AutoresizingMask 转换为 Constraints
     purpleView.translatesAutoresizingMaskIntoConstraints = NO;
     // 添加 width 约束

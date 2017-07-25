@@ -9,7 +9,17 @@
 #import "HomeViewController.h"
 #import "DemoViewController.h"
 
-@interface HomeViewController ()
+#define kCityButtonHeight 24
+#define kalpha 0.45
+#define kButtonHeight 26
+
+@interface HomeViewController (){
+    UIButton * leftButton;
+    UIButton * searchButton;
+    UIButton * rightButton;
+    UILabel * tipLabel;
+    UIImageView * searchImageView;
+}
 
 @end
 
@@ -19,19 +29,81 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    self.navigationController
-//    BaseNavigationController * navi = (BaseNavigationController *)self.navigationController;
-//    [navi navigationBarbackgroundColor:[UIColor orangeColor]];
+    [self configNavigationBar];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    UIImageView * headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
+    headerView.image = [UIImage imageNamed:@"01.jpeg"];
+    headerView.contentMode = UIViewContentModeScaleAspectFill;
+    headerView.clipsToBounds = YES;
+    self.tableView.tableHeaderView = headerView;
+    
+    self.navigationBarBackgroundView.backgroundColor = [UIColor orangeColor];
+    
     
     [self beginRefresh];
 }
 
+- (void)configNavigationBar{
+    leftButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 20 + (44 - kCityButtonHeight) / 2, 65, kCityButtonHeight)];
+    [leftButton setTitle:@"上海" forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(changeAddressAction:) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [leftButton setBackgroundColor:UIColorFromARGB(0x000000,kalpha)];
+    [leftButton setBackgroundImage:[UIImage buildImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+    leftButton.layer.cornerRadius = kCityButtonHeight / 2;
+    leftButton.layer.masksToBounds = YES;
+    
+    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = barButton;
+    
+#pragma mark -- 搜索按钮
+    searchButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20 + (44 - kCityButtonHeight) / 2 , kScreenWidth, kCityButtonHeight)];
+    [searchButton addTarget:self action:@selector(didClickSearchBar:) forControlEvents:UIControlEventTouchUpInside];
+    [searchButton setBackgroundColor:[UIColor whiteColor]];
+    searchButton.layer.cornerRadius = kButtonHeight / 2;
+    searchButton.layer.masksToBounds = YES;
+    [searchButton setBackgroundImage:[UIImage buildImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+    
+    searchImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 5, 15, 15)];
+    searchImageView.image = [UIImage imageNamed:@"navBar_search_grey"];
+    [searchButton addSubview:searchImageView];
+    
+    tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, searchButton.frame.size.width - CGRectGetMaxX(searchImageView.frame) - 10, kButtonHeight)];
+    tipLabel.text = @"请输入美发师姓名／门店名";
+    tipLabel.textColor = [UIColor textColor];
+    tipLabel.font = [UIFont systemFontOfSize:12];
+    tipLabel.textAlignment = NSTextAlignmentLeft;
+    [searchButton addSubview:tipLabel];
+    
+    self.navigationItem.titleView = searchButton;
+    
+    
+    
+    rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (44 - kCityButtonHeight) / 2, 80, kButtonHeight)];
+    [rightButton setBackgroundColor:UIColorFromARGB(0x000000,kalpha)];
+    rightButton.layer.cornerRadius = kButtonHeight / 2;
+    rightButton.layer.masksToBounds = YES;
+    [rightButton setBackgroundImage:[UIImage buildImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+    
+    UIBarButtonItem * rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
+    
+}
+- (void)changeAddressAction:(UIButton *)button{
+    
+}
+
+- (void)didClickSearchBar:(UIButton *)didClickSearchBar{
+    
+}
 - (void)requestRefresh{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        /*
-        for (int i = 0 ; i < 20 ; i++){
+        
+        for (int i = 0 ; i < 120 ; i++){
             [self.rows addObject:@""];
-        }*/
+        }
         [self finishRequest];
         [self.tableView reloadData];
     });
@@ -64,14 +136,18 @@
     [_svc wm_pushViewController:[DemoViewController new]];
 }
 
-
-#pragma mark -- overridable
-
-- (UIView *)loadNavigationHeaderView{
-    UIView * view =[UIView new];
-    view.backgroundColor = [UIColor orangeColor];
-    return view;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offset_Y = scrollView.contentOffset.y;
+    CGFloat alpha = (offset_Y)/100.0f;
+    self.navigationBarBackgroundView.alpha = alpha;
+    
+    if (offset_Y < 0){
+        self.navigationController.navigationBar.alpha = 1 + alpha * 5;
+    }else {
+        self.navigationController.navigationBar.alpha = 1.0;
+    }
 }
+
 
 - (BOOL)shouldShowBackItem{
     return NO;

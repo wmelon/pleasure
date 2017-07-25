@@ -21,8 +21,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.translucent = YES;
-        UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor tabBarColor]];
-        [self setBackgroundImage:_storedBackgroundImage forBarMetrics:UIBarMetricsDefault];
+//        UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor tabBarColor]];
+//        [self setBackgroundImage:_storedBackgroundImage forBarMetrics:UIBarMetricsDefault];
         
         NSShadow* shadow = [[NSShadow alloc] init];
         shadow.shadowColor = [UIColor clearColor];

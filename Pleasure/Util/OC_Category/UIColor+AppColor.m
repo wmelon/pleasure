@@ -15,7 +15,15 @@
 + (UIColor *)pageBackgroundColor{
     return UIColorFromRGB(0xeeeeee);
 }
-+ (UIColor *)tabBarColor{
-    return UIColorFromRGB(0x262626);
+
++ (UIColor *)mainColor{
+    return [UIColor colorWithRed:29 / 255 green:29 / 255 blue:29 / 255 alpha:0.8];
 }
++ (UIColor *)textColor{
+    return UIColorFromRGB(0x333333);
+}
++ (UIColor *)detailTextColor{
+    return UIColorFromRGB(0x9b9b9b);
+}
+
 @end

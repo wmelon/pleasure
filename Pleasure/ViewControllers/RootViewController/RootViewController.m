@@ -44,6 +44,10 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AppTabBar * tabBar = [[AppTabBar alloc] initWithFrame:self.tabBar.bounds];
+    [self setValue:tabBar forKey:@"tabBar"];
+    
     [self setViewControllers:[self rootViewControllers]];
 }
 
@@ -51,17 +55,17 @@
     HomeViewController * homeVc = [HomeViewController new];
     homeVc.title = @"首页";
     homeVc.tabBarItem.image = [UIImage imageNamed:@"train"];
-    homeVc.tabBarItem.badgeValue = @"99";
     
-    BaseNavigationController * homeNavi = [[BaseNavigationController alloc] initWithRootViewController:homeVc];
+    BaseNavigationController * homeNavi = [[BaseNavigationController alloc] init];
+    [homeNavi setViewControllers:@[homeVc]];
     
     
     MineViewController * mineVc = [MineViewController new];
     mineVc.title = @"我的";
     mineVc.tabBarItem.image = [UIImage imageNamed:@"personal"];
-    mineVc.tabBarItem.badgeValue = @"1";
     
-    BaseNavigationController * mineNavi = [[BaseNavigationController alloc] initWithRootViewController:mineVc];
+    BaseNavigationController * mineNavi = [[BaseNavigationController alloc] init];
+    [mineNavi setViewControllers:@[mineVc]];
     
     return @[homeNavi , mineNavi];
 }
