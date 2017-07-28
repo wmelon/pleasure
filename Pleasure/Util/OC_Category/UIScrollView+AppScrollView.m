@@ -8,12 +8,11 @@
 
 #import "UIScrollView+AppScrollView.h"
 #import <MJRefreshBackNormalFooter.h>
-
 #import <objc/runtime.h>
 
 @implementation UIScrollView (AppScrollView)
 - (void)wm_RefreshHeaderWithBlock:(WMRefreshBlock)refreshBlock{
-    self.refreshBlock = refreshBlock;
+    self.refreshHeaderBlock = refreshBlock;
     
     // 下拉刷新
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
@@ -33,8 +32,13 @@
 }
 
 - (void)requestRefresh{
-    if (self.refreshBlock){
-        self.refreshBlock();
+    if (self.refreshHeaderBlock){
+        self.refreshHeaderBlock();
+    }
+}
+- (void)requestMore{
+    if (self.refreshFooterBlock){
+        self.refreshFooterBlock();
     }
 }
 - (void)wm_beginRefreshing{
@@ -42,10 +46,12 @@
 }
 
 - (void)wm_RefreshFooterWithBlock:(WMRefreshBlock)refreshBlock{
+    self.refreshFooterBlock = refreshBlock;
+    
     __weak typeof(self) weakself = self;
     // 上拉刷新
     self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [weakself requestRefresh];
+        [weakself requestMore];
     }];
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     self.mj_footer.automaticallyChangeAlpha = YES;
@@ -55,13 +61,18 @@
     [self.mj_footer endRefreshing];
 }
 
-- (void)setRefreshBlock:(WMRefreshBlock)refreshBlock{
-    objc_setAssociatedObject(self, @selector(refreshBlock), refreshBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setRefreshHeaderBlock:(WMRefreshBlock)refreshHeaderBlock{
+    objc_setAssociatedObject(self, @selector(refreshHeaderBlock), refreshHeaderBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (WMRefreshBlock)refreshBlock{
+- (WMRefreshBlock)refreshHeaderBlock{
     return objc_getAssociatedObject(self, _cmd);
 }
-
+- (void)setRefreshFooterBlock:(WMRefreshBlock)refreshFooterBlock{
+    objc_setAssociatedObject(self, @selector(refreshFooterBlock), refreshFooterBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (WMRefreshBlock)refreshFooterBlock{
+    return objc_getAssociatedObject(self, _cmd);
+}
 @end
 
 

@@ -31,8 +31,17 @@
 		198605FE1F1773130034C713 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198605FD1F1773130034C713 /* TestViewController.m */; };
 		199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */; };
 		19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */; };
+		19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E61F271E9000D56386 /* WMRecordViewController.m */; };
+		19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E91F27216A00D56386 /* WMFoundViewController.m */; };
 		19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */; };
 		19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4ABF1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.m */; };
+		19F011921F2988C900F30BC9 /* WMManyGesturesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011911F2988C900F30BC9 /* WMManyGesturesTableView.m */; };
+		19F011951F2988ED00F30BC9 /* WMBaseContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011941F2988ED00F30BC9 /* WMBaseContentController.m */; };
+		19F011981F29890900F30BC9 /* WMPageContentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011971F29890900F30BC9 /* WMPageContentViewCell.m */; };
+		19F0119B1F298CED00F30BC9 /* HFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F0119A1F298CED00F30BC9 /* HFStretchableTableHeaderView.m */; };
+		19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F0119D1F298DA700F30BC9 /* WMUserHeaderView.m */; };
+		19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19F0119E1F298DA700F30BC9 /* WMUserHeaderView.xib */; };
+		19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */; };
 		B3D621B69DF5654B3394EE3A /* libPods-Pleasure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 426EAAA1A6278F9D34392767 /* libPods-Pleasure.a */; };
 /* End PBXBuildFile section */
 
@@ -86,10 +95,27 @@
 		199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+AppScrollView.m"; sourceTree = "<group>"; };
 		19B9BB3C1F161AEB00BD0938 /* WMBaseTableCollectionControlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseTableCollectionControlController.h; sourceTree = "<group>"; };
 		19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseTableCollectionControlController.m; sourceTree = "<group>"; };
+		19CEF9E51F271E9000D56386 /* WMRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRecordViewController.h; sourceTree = "<group>"; };
+		19CEF9E61F271E9000D56386 /* WMRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRecordViewController.m; sourceTree = "<group>"; };
+		19CEF9E81F27216A00D56386 /* WMFoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFoundViewController.h; sourceTree = "<group>"; };
+		19CEF9E91F27216A00D56386 /* WMFoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFoundViewController.m; sourceTree = "<group>"; };
 		19DB4A8A1F0F867000FE3EAD /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		19DB4ABE1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		19DB4ABF1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		19F011901F2988C900F30BC9 /* WMManyGesturesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMManyGesturesTableView.h; sourceTree = "<group>"; };
+		19F011911F2988C900F30BC9 /* WMManyGesturesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMManyGesturesTableView.m; sourceTree = "<group>"; };
+		19F011931F2988ED00F30BC9 /* WMBaseContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseContentController.h; sourceTree = "<group>"; };
+		19F011941F2988ED00F30BC9 /* WMBaseContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseContentController.m; sourceTree = "<group>"; };
+		19F011961F29890900F30BC9 /* WMPageContentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPageContentViewCell.h; sourceTree = "<group>"; };
+		19F011971F29890900F30BC9 /* WMPageContentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPageContentViewCell.m; sourceTree = "<group>"; };
+		19F011991F298CED00F30BC9 /* HFStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFStretchableTableHeaderView.h; sourceTree = "<group>"; };
+		19F0119A1F298CED00F30BC9 /* HFStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFStretchableTableHeaderView.m; sourceTree = "<group>"; };
+		19F0119C1F298DA700F30BC9 /* WMUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUserHeaderView.h; sourceTree = "<group>"; };
+		19F0119D1F298DA700F30BC9 /* WMUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserHeaderView.m; sourceTree = "<group>"; };
+		19F0119E1F298DA700F30BC9 /* WMUserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMUserHeaderView.xib; sourceTree = "<group>"; };
+		19F011A11F298FAE00F30BC9 /* WMProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMProductListViewController.h; sourceTree = "<group>"; };
+		19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMProductListViewController.m; sourceTree = "<group>"; };
 		426EAAA1A6278F9D34392767 /* libPods-Pleasure.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pleasure.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D000A715B769F281A1FC21B /* Pods-Pleasure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pleasure.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pleasure/Pods-Pleasure.release.xcconfig"; sourceTree = "<group>"; };
 		A6880F4F462D6D5116F40DEA /* Pods-Pleasure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pleasure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pleasure/Pods-Pleasure.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,6 +176,8 @@
 				194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */,
 				198605FC1F1773130034C713 /* TestViewController.h */,
 				198605FD1F1773130034C713 /* TestViewController.m */,
+				19F011A11F298FAE00F30BC9 /* WMProductListViewController.h */,
+				19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -213,6 +241,7 @@
 		196032691F09EBEF00126AC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				19F0118C1F2987AE00F30BC9 /* CustomView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,6 +280,10 @@
 				196032951F0A564400126AC7 /* HomeViewController.m */,
 				196E1F2E1F0B800F00C2D678 /* MineViewController.h */,
 				196E1F2F1F0B800F00C2D678 /* MineViewController.m */,
+				19CEF9E51F271E9000D56386 /* WMRecordViewController.h */,
+				19CEF9E61F271E9000D56386 /* WMRecordViewController.m */,
+				19CEF9E81F27216A00D56386 /* WMFoundViewController.h */,
+				19CEF9E91F27216A00D56386 /* WMFoundViewController.m */,
 			);
 			path = RootViewController;
 			sourceTree = "<group>";
@@ -270,6 +303,32 @@
 				19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				19F0118F1F29888700F30BC9 /* WMScrollWithHeader */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		19F0118F1F29888700F30BC9 /* WMScrollWithHeader */ = {
+			isa = PBXGroup;
+			children = (
+				19F0119C1F298DA700F30BC9 /* WMUserHeaderView.h */,
+				19F0119D1F298DA700F30BC9 /* WMUserHeaderView.m */,
+				19F0119E1F298DA700F30BC9 /* WMUserHeaderView.xib */,
+				19F011991F298CED00F30BC9 /* HFStretchableTableHeaderView.h */,
+				19F0119A1F298CED00F30BC9 /* HFStretchableTableHeaderView.m */,
+				19F011901F2988C900F30BC9 /* WMManyGesturesTableView.h */,
+				19F011911F2988C900F30BC9 /* WMManyGesturesTableView.m */,
+				19F011931F2988ED00F30BC9 /* WMBaseContentController.h */,
+				19F011941F2988ED00F30BC9 /* WMBaseContentController.m */,
+				19F011961F29890900F30BC9 /* WMPageContentViewCell.h */,
+				19F011971F29890900F30BC9 /* WMPageContentViewCell.m */,
+			);
+			path = WMScrollWithHeader;
 			sourceTree = "<group>";
 		};
 		94735CFAE9A4E009663AD33A /* Pods */ = {
@@ -349,6 +408,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */,
 				1960325E1F09E7AB00126AC7 /* LaunchScreen.storyboard in Resources */,
 				1960325B1F09E7AB00126AC7 /* Assets.xcassets in Resources */,
 			);
@@ -411,21 +471,29 @@
 			files = (
 				19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				192741511F0C841C00077E49 /* WMSwizzleMethod.m in Sources */,
+				19F011951F2988ED00F30BC9 /* WMBaseContentController.m in Sources */,
 				196032931F0A563500126AC7 /* BaseViewController.m in Sources */,
 				196032611F09E7AB00126AC7 /* main.m in Sources */,
 				192C13421F0BB8B000759221 /* DemoViewController.m in Sources */,
 				19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */,
 				198605FE1F1773130034C713 /* TestViewController.m in Sources */,
+				19F011981F29890900F30BC9 /* WMPageContentViewCell.m in Sources */,
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
+				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,
 				1960328A1F0A558000126AC7 /* SwitchViewController.m in Sources */,
 				192C13481F0BBA8B00759221 /* Demo2ViewController.m in Sources */,
+				19F011921F2988C900F30BC9 /* WMManyGesturesTableView.m in Sources */,
 				196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */,
 				19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */,
 				192C132E1F0B924600759221 /* AppNavigationBar.m in Sources */,
+				19F0119B1F298CED00F30BC9 /* HFStretchableTableHeaderView.m in Sources */,
+				19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */,
 				194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */,
 				192C13311F0B942400759221 /* UIImage+AppImage.m in Sources */,
 				196E1F2A1F0B7FEB00C2D678 /* BaseTableViewController.m in Sources */,
+				19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */,
 				192C13341F0B94E000759221 /* UIColor+AppColor.m in Sources */,
+				19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */,
 				199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */,
 				196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */,
 				196032961F0A564400126AC7 /* HomeViewController.m in Sources */,

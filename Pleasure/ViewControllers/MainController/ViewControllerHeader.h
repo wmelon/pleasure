@@ -13,6 +13,9 @@
 #import "BaseNavigationController.h"
 #import "HomeViewController.h"
 #import "MineViewController.h"
+#import "WMFoundViewController.h"
+#import "WMRecordViewController.h"
 #import "DemoViewController.h"
+#import "WMProductListViewController.h"
 
 #endif /* ViewControllerHeader_h */

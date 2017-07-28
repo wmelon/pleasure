@@ -17,7 +17,7 @@
 }
 
 + (UIColor *)mainColor{
-    return [UIColor colorWithRed:29 / 255 green:29 / 255 blue:29 / 255 alpha:0.8];
+    return UIColorFromRGB(0x3D3D3D);
 }
 + (UIColor *)textColor{
     return UIColorFromRGB(0x333333);

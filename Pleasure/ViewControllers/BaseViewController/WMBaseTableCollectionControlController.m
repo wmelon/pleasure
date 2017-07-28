@@ -9,7 +9,6 @@
 #import "WMBaseTableCollectionControlController.h"
 #import "UIScrollView+AppScrollView.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
-#import "UIScrollView+EmptyDataSet.h"
 
 @interface WMBaseTableCollectionControlController ()<DZNEmptyDataSetSource , DZNEmptyDataSetDelegate>
 @property (nonatomic , strong)UIScrollView * scrollerView;
@@ -31,9 +30,6 @@
 // 添加下拉刷新 // 添加上拉加载更多
 - (void)addRefreshHeadViewAndFootViewWithScrollerView:(UIScrollView *)scrollerView {
     _scrollerView = scrollerView;
-    _scrollerView.emptyDataSetSource = self;
-    _scrollerView.emptyDataSetDelegate = self;
-    
     
     __weak typeof(self) weakself = self;
     if ([self shouldShowRefresh]) {
@@ -56,16 +52,23 @@
     [_scrollerView wm_endRefreshing];
 }
 
+- (void)realodEmptyView{
+    _scrollerView.emptyDataSetSource = self;
+    _scrollerView.emptyDataSetDelegate = self;
+}
+
 #pragma mark -- DZNEmptyDataSetSource and DZNEmptyDataSetDelegate
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
     NSAttributedString * title = [[NSAttributedString alloc] initWithString:@"数据为空"];
     return title;
 }
-//- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView{
-//    return [UIColor yellowColor];
-//}
+
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
     return YES;
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
+    return 64; /// 偏移导航栏的高度
 }
 
 #pragma mark - overridable

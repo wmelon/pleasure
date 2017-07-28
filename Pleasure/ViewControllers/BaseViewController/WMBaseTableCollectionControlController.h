@@ -29,4 +29,6 @@
 /// 添加上下拉刷新控件
 - (void)addRefreshHeadViewAndFootViewWithScrollerView:(UIScrollView *)scrollerView;
 
+- (void)realodEmptyView;
+
 @end

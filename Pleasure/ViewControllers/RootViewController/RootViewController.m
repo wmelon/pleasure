@@ -55,19 +55,36 @@
     HomeViewController * homeVc = [HomeViewController new];
     homeVc.title = @"首页";
     homeVc.tabBarItem.image = [UIImage imageNamed:@"train"];
-    
     BaseNavigationController * homeNavi = [[BaseNavigationController alloc] init];
-    [homeNavi setViewControllers:@[homeVc]];
+//    [homeNavi setViewControllers:@[homeVc]];
+    [homeNavi pushViewController:homeVc animated:NO];
+    
+    
+    WMFoundViewController * foundVc = [WMFoundViewController new];
+    foundVc.title = @"发现";
+    foundVc.tabBarItem.image = [UIImage imageNamed:@"discovery"];
+    BaseNavigationController *foundNavi = [BaseNavigationController new];
+//    [foundNavi setViewControllers:@[foundVc]];
+    [foundNavi pushViewController:foundVc animated:NO];
+    
+    
+    WMRecordViewController * recordVc = [WMRecordViewController new];
+    recordVc.title = @"趣记录";
+    recordVc.tabBarItem.image = [UIImage imageNamed:@"trends"];
+    BaseNavigationController * recordNavi = [BaseNavigationController new];
+//    [recordNavi setViewControllers:@[recordVc]];
+    [recordNavi pushViewController:recordVc animated:NO];
     
     
     MineViewController * mineVc = [MineViewController new];
     mineVc.title = @"我的";
     mineVc.tabBarItem.image = [UIImage imageNamed:@"personal"];
-    
     BaseNavigationController * mineNavi = [[BaseNavigationController alloc] init];
-    [mineNavi setViewControllers:@[mineVc]];
+//    [mineNavi setViewControllers:@[mineVc]];
+    [mineNavi pushViewController:mineVc animated:NO];
     
-    return @[homeNavi , mineNavi];
+    
+    return @[homeNavi ,foundNavi , recordNavi , mineNavi];
 }
 
 

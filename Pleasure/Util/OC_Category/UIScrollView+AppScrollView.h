@@ -15,7 +15,8 @@ typedef void(^WMRefreshBlock) (void);
 
 @interface UIScrollView (AppScrollView)
 
-@property (nonatomic , copy , readonly)WMRefreshBlock refreshBlock;
+@property (nonatomic , copy , readonly)WMRefreshBlock refreshHeaderBlock;
+@property (nonatomic , copy , readonly)WMRefreshBlock refreshFooterBlock;
 
 - (void)wm_RefreshHeaderWithBlock:(WMRefreshBlock)refreshBlock;
 - (void)wm_RefreshFooterWithBlock:(WMRefreshBlock)refreshBlock;

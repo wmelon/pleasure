@@ -12,7 +12,7 @@
 
 - (nonnull instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
-        self.translucent = NO;
+        self.translucent = YES;
         self.tintColor = [UIColor orangeColor];
     }
     return self;

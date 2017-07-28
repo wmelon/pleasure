@@ -31,6 +31,7 @@
     
     [self configNavigationBar];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49);
     
     UIImageView * headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
     headerView.image = [UIImage imageNamed:@"01.jpeg"];
@@ -41,7 +42,7 @@
     self.navigationBarBackgroundView.backgroundColor = [UIColor orangeColor];
     
     
-    [self beginRefresh];
+    [self requestRefresh];
 }
 
 - (void)configNavigationBar{
@@ -83,6 +84,7 @@
     
     rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, (44 - kCityButtonHeight) / 2, 80, kButtonHeight)];
     [rightButton setBackgroundColor:UIColorFromARGB(0x000000,kalpha)];
+    [rightButton setTitle:@"扫一扫" forState:UIControlStateNormal];
     rightButton.layer.cornerRadius = kButtonHeight / 2;
     rightButton.layer.masksToBounds = YES;
     [rightButton setBackgroundImage:[UIImage buildImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
@@ -105,6 +107,7 @@
             [self.rows addObject:@""];
         }
         [self finishRequest];
+        [self realodEmptyView];
         [self.tableView reloadData];
     });
 }

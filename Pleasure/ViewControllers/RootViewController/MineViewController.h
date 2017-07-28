@@ -6,8 +6,8 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "BaseViewController.h"
 
-@interface MineViewController : BaseCollectionViewController
+@interface MineViewController : BaseViewController
 
 @end

@@ -8,5 +8,6 @@ target :Pleasure do
     #pod 'SSKeychain', '1.2.3'
     #pod 'IQKeyboardManager', '3.2.0.3'
     #pod 'FormatterKit', '1.8.1'
-    pod 'DZNEmptyDataSet', '1.5.2'
+    pod 'DZNEmptyDataSet', '1.8.1'
+    pod 'HMSegmentedControl'
 end

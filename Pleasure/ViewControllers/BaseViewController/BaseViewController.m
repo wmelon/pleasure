@@ -23,7 +23,6 @@
     if (self = [super init]){
         _svc = [SwitchViewController sharedSVC];
         _navigationBarBackgroundView = [[UIView alloc] init];
-        
         _navigationBarBackgroundView.backgroundColor = [UIColor mainColor];
     }
     return self;
@@ -43,10 +42,13 @@
 
 //子类重写需要调用超类
 - (void)viewWillLayoutSubviews{
-    [self setHeaderViewFrame];
-    /// 这里保证头部视图永远在最上层不被覆盖
-    [self.view bringSubviewToFront:_navigationBarBackgroundView];
+    if (self.fd_prefersNavigationBarHidden == NO){
+        [self setHeaderViewFrame];
+        /// 这里保证头部视图永远在最上层不被覆盖
+        [self.view bringSubviewToFront:_navigationBarBackgroundView];
+    }
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -59,7 +61,7 @@
 
 
 - (void)setHeaderViewFrame{
-    if (!_navigationBarBackgroundView){
+    if (!_navigationBarBackgroundView || !self.navigationBarBackgroundView.superview){
         return;
     }
     

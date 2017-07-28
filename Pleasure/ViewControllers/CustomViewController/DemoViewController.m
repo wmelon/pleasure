@@ -9,7 +9,6 @@
 #import "DemoViewController.h"
 #import "Demo2ViewController.h"
 #import "DemoTableViewController.h"
-#import "UIScrollView+AppScrollView.h"
 #import "TestViewController.h"
 
 @interface DemoViewController ()
@@ -23,6 +22,31 @@
     // Do any additional setup after loading the view.
     
     self.navigationItem.title = @"这是demo一";
+//    [self requestRefresh];
+    [self beginRefresh];
+}
+- (void)requestRefresh{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+//        for (int i = 0 ; i < 0 ; i++){
+//            [self.rows addObject:@""];
+//        }
+        [self.rows removeAllObjects];
+        [self finishRequest];
+        [self realodEmptyView];
+        [self.tableView reloadData];
+    });
+}
+- (void)requestGetMore{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+//        for (int i = 0 ; i < 20 ; i++){
+//            [self.rows addObject:@""];
+//        }
+        [self finishRequest];
+        [self realodEmptyView];
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark -- UITableViewDelegate and UITableViewDataSource
@@ -30,7 +54,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return self.rows.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellId = @"CellId";

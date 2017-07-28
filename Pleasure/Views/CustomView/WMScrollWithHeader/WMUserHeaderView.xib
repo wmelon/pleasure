@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="0wP-yH-Bid" customClass="WMUserHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="226"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallPaper5" translatesAutoresizingMaskIntoConstraints="NO" id="kTY-09-Q22">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="226"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="David" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKY-Qs-Htb">
+                    <rect key="frame" x="20" y="138.5" width="335" height="23"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow 469 | Follower 179" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7F7-pf-kqF">
+                    <rect key="frame" x="20" y="170" width="335" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About: Be nice and work hard!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t72-SB-kcs">
+                    <rect key="frame" x="20" y="195" width="335" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userAvatar-1" translatesAutoresizingMaskIntoConstraints="NO" id="4by-34-ZBy">
+                    <rect key="frame" x="147.5" y="50" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="djB-aO-eQw"/>
+                        <constraint firstAttribute="width" constant="80" id="uwk-bO-Bnu"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="t72-SB-kcs" firstAttribute="leading" secondItem="0wP-yH-Bid" secondAttribute="leading" constant="20" id="0c3-bM-mwG"/>
+                <constraint firstItem="sKY-Qs-Htb" firstAttribute="leading" secondItem="0wP-yH-Bid" secondAttribute="leading" constant="20" id="1AI-Dx-ZT1"/>
+                <constraint firstAttribute="bottom" secondItem="kTY-09-Q22" secondAttribute="bottom" id="8W2-ZL-zb4"/>
+                <constraint firstAttribute="trailing" secondItem="kTY-09-Q22" secondAttribute="trailing" id="8be-er-La0"/>
+                <constraint firstItem="7F7-pf-kqF" firstAttribute="leading" secondItem="0wP-yH-Bid" secondAttribute="leading" constant="20" id="9Mh-3p-CSf"/>
+                <constraint firstAttribute="trailing" secondItem="t72-SB-kcs" secondAttribute="trailing" constant="20" id="J7p-m7-7DW"/>
+                <constraint firstAttribute="bottom" secondItem="t72-SB-kcs" secondAttribute="bottom" constant="14" id="K9J-6s-BOu"/>
+                <constraint firstItem="4by-34-ZBy" firstAttribute="centerX" secondItem="0wP-yH-Bid" secondAttribute="centerX" id="Tma-nM-Nhz"/>
+                <constraint firstItem="kTY-09-Q22" firstAttribute="top" secondItem="0wP-yH-Bid" secondAttribute="top" id="X10-qA-A6B"/>
+                <constraint firstItem="sKY-Qs-Htb" firstAttribute="top" secondItem="4by-34-ZBy" secondAttribute="bottom" constant="8" id="eas-4b-byY"/>
+                <constraint firstAttribute="trailing" secondItem="sKY-Qs-Htb" secondAttribute="trailing" constant="20" id="oVU-E7-ANT"/>
+                <constraint firstItem="7F7-pf-kqF" firstAttribute="top" secondItem="sKY-Qs-Htb" secondAttribute="bottom" constant="8" id="qdd-E0-XKe"/>
+                <constraint firstAttribute="trailing" secondItem="7F7-pf-kqF" secondAttribute="trailing" constant="20" id="rcw-NN-ynm"/>
+                <constraint firstItem="t72-SB-kcs" firstAttribute="top" secondItem="7F7-pf-kqF" secondAttribute="bottom" constant="8" id="wRu-ld-LPl"/>
+                <constraint firstItem="kTY-09-Q22" firstAttribute="leading" secondItem="0wP-yH-Bid" secondAttribute="leading" id="yc1-Wd-Ubj"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="compayLabel" destination="7F7-pf-kqF" id="M6K-Nq-Pzy"/>
+                <outlet property="nameLabel" destination="sKY-Qs-Htb" id="zhL-ur-4Cc"/>
+                <outlet property="roleLabel" destination="t72-SB-kcs" id="wIe-7a-u2P"/>
+                <outlet property="userAvatarImageView" destination="4by-34-ZBy" id="aSy-oq-pMC"/>
+                <outlet property="userImageView" destination="kTY-09-Q22" id="pqx-ot-qG7"/>
+            </connections>
+            <point key="canvasLocation" x="-203" y="-225"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="userAvatar-1" width="150" height="100"/>
+        <image name="wallPaper5" width="600" height="415"/>
+    </resources>
+</document>
