@@ -30,7 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if (self.fd_prefersNavigationBarHidden == NO){ /// 只有在没有隐藏导航栏的时候才添加视图
+    if (self.fd_prefersNavigationBarHidden == NO && self.navigationController.navigationBar){ /// 只有在没有隐藏导航栏的时候才添加视图
         if (!_navigationBarBackgroundView.superview && _navigationBarBackgroundView){
             
             //确保header视图层级，不然会盖住子类在viewDidLoad时添加到view的视图

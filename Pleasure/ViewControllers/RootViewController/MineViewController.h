@@ -10,4 +10,6 @@
 
 @interface MineViewController : BaseViewController
 
+@property (nonatomic , assign) BOOL isTest;
+
 @end

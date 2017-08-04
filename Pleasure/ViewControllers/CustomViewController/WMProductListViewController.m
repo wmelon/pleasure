@@ -14,9 +14,18 @@
 
 @implementation WMProductListViewController
 
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+- (void)setTitleString:(NSString *)titleString{
+    _titleString = titleString;
 }
 #pragma mark -- UITableViewDelegate and UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -31,7 +40,7 @@
     if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld Hi" , indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@  %ld Hi" , _titleString , indexPath.row];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -39,6 +48,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if ([self.delegate respondsToSelector:@selector(productListViewController:didSelectRowAtIndexPath:)]){
+        [self.delegate productListViewController:self didSelectRowAtIndexPath:indexPath];
+    }
 }
 
 

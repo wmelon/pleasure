@@ -1,11 +1,13 @@
 //
-//  StretchableTableHeaderView.m
-//  StretchableTableHeaderView
+//  WMStretchableTableHeaderView.m
+//  AllDemo
+//
+//  Created by Sper on 2017/7/31.
+//  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "HFStretchableTableHeaderView.h"
-
-@interface HFStretchableTableHeaderView()
+#import "WMStretchableTableHeaderView.h"
+@interface WMStretchableTableHeaderView()
 {
     CGRect initialFrame;
     CGFloat defaultViewHeight;
@@ -15,8 +17,7 @@
 @end
 
 
-@implementation HFStretchableTableHeaderView
-
+@implementation WMStretchableTableHeaderView
 @synthesize tableView = _tableView;
 @synthesize view = _view;
 

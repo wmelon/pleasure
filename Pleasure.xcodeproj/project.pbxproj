@@ -16,6 +16,11 @@
 		192C13421F0BB8B000759221 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C13411F0BB8B000759221 /* DemoViewController.m */; };
 		192C13481F0BBA8B00759221 /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C13471F0BBA8B00759221 /* Demo2ViewController.m */; };
 		194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */; };
+		1953A2C91F342C890061B514 /* WMScrollBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C21F342C890061B514 /* WMScrollBarItem.m */; };
+		1953A2CA1F342C890061B514 /* WMScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C41F342C890061B514 /* WMScrollContentView.m */; };
+		1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C61F342C890061B514 /* WMScrollPageView.m */; };
+		1953A2CC1F342C890061B514 /* WMStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */; };
+		1953A2CF1F3450B50061B514 /* WMScrollBarItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */; };
 		196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196032521F09E7AB00126AC7 /* AppDelegate.m */; };
 		1960325B1F09E7AB00126AC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1960325A1F09E7AB00126AC7 /* Assets.xcassets */; };
 		1960325E1F09E7AB00126AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1960325C1F09E7AB00126AC7 /* LaunchScreen.storyboard */; };
@@ -35,10 +40,6 @@
 		19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E91F27216A00D56386 /* WMFoundViewController.m */; };
 		19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */; };
 		19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4ABF1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.m */; };
-		19F011921F2988C900F30BC9 /* WMManyGesturesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011911F2988C900F30BC9 /* WMManyGesturesTableView.m */; };
-		19F011951F2988ED00F30BC9 /* WMBaseContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011941F2988ED00F30BC9 /* WMBaseContentController.m */; };
-		19F011981F29890900F30BC9 /* WMPageContentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011971F29890900F30BC9 /* WMPageContentViewCell.m */; };
-		19F0119B1F298CED00F30BC9 /* HFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F0119A1F298CED00F30BC9 /* HFStretchableTableHeaderView.m */; };
 		19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F0119D1F298DA700F30BC9 /* WMUserHeaderView.m */; };
 		19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19F0119E1F298DA700F30BC9 /* WMUserHeaderView.xib */; };
 		19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */; };
@@ -64,6 +65,16 @@
 		192C13471F0BBA8B00759221 /* Demo2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo2ViewController.m; sourceTree = "<group>"; };
 		194C73501F0CD00D00B8DB67 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
 		194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
+		1953A2C11F342C890061B514 /* WMScrollBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItem.h; sourceTree = "<group>"; };
+		1953A2C21F342C890061B514 /* WMScrollBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollBarItem.m; sourceTree = "<group>"; };
+		1953A2C31F342C890061B514 /* WMScrollContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollContentView.h; sourceTree = "<group>"; };
+		1953A2C41F342C890061B514 /* WMScrollContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollContentView.m; sourceTree = "<group>"; };
+		1953A2C51F342C890061B514 /* WMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollPageView.h; sourceTree = "<group>"; };
+		1953A2C61F342C890061B514 /* WMScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollPageView.m; sourceTree = "<group>"; };
+		1953A2C71F342C890061B514 /* WMStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStretchableTableHeaderView.h; sourceTree = "<group>"; };
+		1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStretchableTableHeaderView.m; sourceTree = "<group>"; };
+		1953A2CD1F3450B50061B514 /* WMScrollBarItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItemStyle.h; sourceTree = "<group>"; };
+		1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollBarItemStyle.m; sourceTree = "<group>"; };
 		1960324E1F09E7AB00126AC7 /* Pleasure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pleasure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196032511F09E7AB00126AC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		196032521F09E7AB00126AC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -103,14 +114,6 @@
 		19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		19DB4ABE1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		19DB4ABF1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
-		19F011901F2988C900F30BC9 /* WMManyGesturesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMManyGesturesTableView.h; sourceTree = "<group>"; };
-		19F011911F2988C900F30BC9 /* WMManyGesturesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMManyGesturesTableView.m; sourceTree = "<group>"; };
-		19F011931F2988ED00F30BC9 /* WMBaseContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseContentController.h; sourceTree = "<group>"; };
-		19F011941F2988ED00F30BC9 /* WMBaseContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseContentController.m; sourceTree = "<group>"; };
-		19F011961F29890900F30BC9 /* WMPageContentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPageContentViewCell.h; sourceTree = "<group>"; };
-		19F011971F29890900F30BC9 /* WMPageContentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPageContentViewCell.m; sourceTree = "<group>"; };
-		19F011991F298CED00F30BC9 /* HFStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFStretchableTableHeaderView.h; sourceTree = "<group>"; };
-		19F0119A1F298CED00F30BC9 /* HFStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFStretchableTableHeaderView.m; sourceTree = "<group>"; };
 		19F0119C1F298DA700F30BC9 /* WMUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMUserHeaderView.h; sourceTree = "<group>"; };
 		19F0119D1F298DA700F30BC9 /* WMUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMUserHeaderView.m; sourceTree = "<group>"; };
 		19F0119E1F298DA700F30BC9 /* WMUserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMUserHeaderView.xib; sourceTree = "<group>"; };
@@ -180,6 +183,23 @@
 				19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */,
 			);
 			path = CustomViewController;
+			sourceTree = "<group>";
+		};
+		1953A2C01F342C890061B514 /* WMScrollPageView */ = {
+			isa = PBXGroup;
+			children = (
+				1953A2C11F342C890061B514 /* WMScrollBarItem.h */,
+				1953A2C21F342C890061B514 /* WMScrollBarItem.m */,
+				1953A2C31F342C890061B514 /* WMScrollContentView.h */,
+				1953A2C41F342C890061B514 /* WMScrollContentView.m */,
+				1953A2C51F342C890061B514 /* WMScrollPageView.h */,
+				1953A2C61F342C890061B514 /* WMScrollPageView.m */,
+				1953A2C71F342C890061B514 /* WMStretchableTableHeaderView.h */,
+				1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */,
+				1953A2CD1F3450B50061B514 /* WMScrollBarItemStyle.h */,
+				1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */,
+			);
+			path = WMScrollPageView;
 			sourceTree = "<group>";
 		};
 		196032451F09E7AB00126AC7 = {
@@ -308,6 +328,7 @@
 		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				1953A2C01F342C890061B514 /* WMScrollPageView */,
 				19F0118F1F29888700F30BC9 /* WMScrollWithHeader */,
 			);
 			path = CustomView;
@@ -319,14 +340,6 @@
 				19F0119C1F298DA700F30BC9 /* WMUserHeaderView.h */,
 				19F0119D1F298DA700F30BC9 /* WMUserHeaderView.m */,
 				19F0119E1F298DA700F30BC9 /* WMUserHeaderView.xib */,
-				19F011991F298CED00F30BC9 /* HFStretchableTableHeaderView.h */,
-				19F0119A1F298CED00F30BC9 /* HFStretchableTableHeaderView.m */,
-				19F011901F2988C900F30BC9 /* WMManyGesturesTableView.h */,
-				19F011911F2988C900F30BC9 /* WMManyGesturesTableView.m */,
-				19F011931F2988ED00F30BC9 /* WMBaseContentController.h */,
-				19F011941F2988ED00F30BC9 /* WMBaseContentController.m */,
-				19F011961F29890900F30BC9 /* WMPageContentViewCell.h */,
-				19F011971F29890900F30BC9 /* WMPageContentViewCell.m */,
 			);
 			path = WMScrollWithHeader;
 			sourceTree = "<group>";
@@ -471,22 +484,19 @@
 			files = (
 				19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				192741511F0C841C00077E49 /* WMSwizzleMethod.m in Sources */,
-				19F011951F2988ED00F30BC9 /* WMBaseContentController.m in Sources */,
+				1953A2CC1F342C890061B514 /* WMStretchableTableHeaderView.m in Sources */,
 				196032931F0A563500126AC7 /* BaseViewController.m in Sources */,
 				196032611F09E7AB00126AC7 /* main.m in Sources */,
 				192C13421F0BB8B000759221 /* DemoViewController.m in Sources */,
 				19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */,
 				198605FE1F1773130034C713 /* TestViewController.m in Sources */,
-				19F011981F29890900F30BC9 /* WMPageContentViewCell.m in Sources */,
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
 				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,
 				1960328A1F0A558000126AC7 /* SwitchViewController.m in Sources */,
 				192C13481F0BBA8B00759221 /* Demo2ViewController.m in Sources */,
-				19F011921F2988C900F30BC9 /* WMManyGesturesTableView.m in Sources */,
 				196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */,
 				19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */,
 				192C132E1F0B924600759221 /* AppNavigationBar.m in Sources */,
-				19F0119B1F298CED00F30BC9 /* HFStretchableTableHeaderView.m in Sources */,
 				19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */,
 				194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */,
 				192C13311F0B942400759221 /* UIImage+AppImage.m in Sources */,
@@ -494,13 +504,17 @@
 				19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */,
 				192C13341F0B94E000759221 /* UIColor+AppColor.m in Sources */,
 				19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */,
+				1953A2CA1F342C890061B514 /* WMScrollContentView.m in Sources */,
 				199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */,
 				196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */,
 				196032961F0A564400126AC7 /* HomeViewController.m in Sources */,
 				192C132B1F0B923800759221 /* AppTabBar.m in Sources */,
+				1953A2CF1F3450B50061B514 /* WMScrollBarItemStyle.m in Sources */,
+				1953A2C91F342C890061B514 /* WMScrollBarItem.m in Sources */,
 				196AB4911F0CF0CF00D660A2 /* UIButton+AppButton.m in Sources */,
 				1960328E1F0A55A000126AC7 /* RootViewController.m in Sources */,
 				196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */,
+				1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
