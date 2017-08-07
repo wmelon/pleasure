@@ -102,19 +102,16 @@
         self.tableViewHeaderViewHeight = CGRectGetHeight(headerView.frame);
         
         if (self.style.allowStretchableHeader){  /// 允许下拉放大
+            
             [self.stretchableTableHeaderView stretchHeaderForTableView:self.tableView withView:headerView];
             
-            /// 设置初始化数据
-            [self changeMainTableViewAllowScroll:YES];
-            
         }else {   /// 不允许下拉放大
-            
-            /// 设置初始化数据
-            [self changeMainTableViewAllowScroll:NO];
             
             self.tableView.tableHeaderView = headerView;
         }
         
+        /// 设置初始化数据
+        [self changeMainTableViewAllowScroll:YES];
     }else {
         self.tableView.scrollEnabled = NO;
         /// 设置初始化数据
@@ -167,27 +164,21 @@
     
     if (self.tableView.scrollEnabled == NO) return;  /// 父滚动视图允许滚动的情况下才执行滚动计算
     
-    
     //计算导航栏的透明度
     CGFloat minAlphaOffset = 0;
     CGFloat maxAlphaOffset = self.tableViewHeaderViewHeight - 64;
     CGFloat offset = scrollView.contentOffset.y;
     CGFloat alpha = (offset - minAlphaOffset) / (maxAlphaOffset - minAlphaOffset);
     
+    //子控制器和主控制器之间的滑动状态切换
+    CGFloat tabOffsetY = [_tableView rectForSection:0].origin.y - 64;
+    
+    
+    NSLog(@"------%f   %f   %f" , alpha , offset  , tabOffsetY);
+    
     if (self.style.allowStretchableHeader){
         //下拉放大 必须实现
         [self.stretchableTableHeaderView scrollViewDidScroll:scrollView];
-        
-        
-        if ([self.delegate respondsToSelector:@selector(scrollPageView:navigationBarAlpha:)]){
-            [self.delegate scrollPageView:self navigationBarAlpha:alpha];
-        }
-        
-        
-        //子控制器和主控制器之间的滑动状态切换
-        CGFloat tabOffsetY = [_tableView rectForSection:0].origin.y - 64;
-        
-        NSLog(@"------%f   %f   %f" , alpha , offset  , tabOffsetY);
         
         if (offset >= tabOffsetY) {
             if (_mainCanScroll) {
@@ -195,14 +186,42 @@
             }
         }
         
-        
         if (!_mainCanScroll){
             scrollView.contentOffset = CGPointMake(0, tabOffsetY);
         }
         
     } else {
-    
         
+        
+        
+        
+        
+        
+//        if (offset > 0){
+//            
+//            if (offset > tabOffsetY){
+//            
+//                [self changeMainTableViewAllowScroll:NO];
+//        
+//            }
+//
+//            if (_mainCanScroll == NO){
+//                scrollView.contentOffset = CGPointMake(0, tabOffsetY);
+//                
+//            }
+//            
+//        } else if (offset < 0){
+//        
+//            
+//            [self changeMainTableViewAllowScroll:NO];
+//            
+//            scrollView.contentOffset = CGPointZero;
+//            
+//        }
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(scrollPageView:navigationBarAlpha:)]){
+        [self.delegate scrollPageView:self navigationBarAlpha:alpha];
     }
     
 }
@@ -286,34 +305,106 @@
         
         if (offsetY < 0){
         
-            //子控制器到顶部了 主控制器可以滑动
-            [self changeMainTableViewAllowScroll:YES];
+            if (canScroll == YES){
+                //子控制器到顶部了 主控制器可以滑动
+                [self changeMainTableViewAllowScroll:YES];
+            }
+            
         }
         
         if (!canScroll && scrollView.contentOffset.y != 0) {
             [scrollView setContentOffset:CGPointZero];
         }
     
-    }
-    
-    
-    
-    else {
-    
-        if (self.tableView.contentOffset.y < self.tableViewHeaderViewHeight - 64){
+    } else {
+        
+        
+        ////   父tableView 是允许滚动的  YES    子tableView是不允许滚动的  NO
+        
+        if (offsetY > 0){   ////向上滑动
+         
+            //// 父允许滚动   子的不滚动
             
-            if (offsetY > 0){
+            if  (_tableView.contentOffset.y >= 186){
                 
-                [self changeMainTableViewAllowScroll:YES];
+                canScroll = YES;
+                
+                _mainCanScroll = NO;
                 
             }
-
-        }else {
-            self.tableView.contentOffset = CGPointMake(0, self.tableViewHeaderViewHeight - 64);
+        
+        } else if (offsetY < 0){  /// 向下滑动
+            
+            
+            
+            if (_tableView.contentOffset.y >= 186){
+            
+                canScroll = YES;
+                _mainCanScroll = NO;
+                
+                
+            }else {
+            
+                
+                canScroll = NO;
+                _mainCanScroll = YES;
+                
+                
+                
+                scrollView.contentOffset = CGPointZero;
+            
+            }
+            
         }
-    }
-
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//        if (offsetY < 0){
+//        
+//            if (canScroll == NO){
+//                
+//                [self changeMainTableViewAllowScroll:NO];
+//            }
+////            if (_tableView.contentOffset.y <= 186 && _tableView.contentOffset.y > 0){
+////            
+////                
+////                
+////            }
+//
+//        }
+////        else if (offsetY == 0){
+////            
+////
+////            if (canScroll == YES){
+////                
+////                [self changeMainTableViewAllowScroll:YES];
+////            }
+////            
+////        
+////        }
+        
+        
+//        if (!canScroll && scrollView.contentOffset.y != 0) {
+//            [scrollView setContentOffset:CGPointZero];
+//        }
+        
+        
+//        NSLog(@"这里是测试用的      %f" , offsetY);
+        
+    }
 }
 
 /// 处理pageView滚动进度
