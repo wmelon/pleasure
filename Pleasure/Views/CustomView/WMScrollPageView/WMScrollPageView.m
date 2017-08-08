@@ -276,23 +276,42 @@
     
     if (self.style.allowStretchableHeader){
         
-        if (offsetY < 0) {
-            if (canScroll == YES){
-                //子控制器到顶部了 主控制器可以滑动
-                [self changeMainTableViewAllowScroll:YES];
+        if(_tableView.bounces) {
+            if (offsetY < 0){
+                
+                if (canScroll == YES){
+                    //子控制器到顶部了 主控制器可以滑动
+                    [self changeMainTableViewAllowScroll:YES];
+                }
+                
             }
-           
+            
             if (!canScroll && scrollView.contentOffset.y != 0) {
-                if (_tableView.bounces) {
+                [scrollView setContentOffset:CGPointZero];
+            }
+        }else {
+            NSLog(@"offsetY == >%g",offsetY);
+            NSLog(@"tableView == >%g",_tableView.contentOffset.y);
+
+            if (offsetY < 0){
+                
+                if (canScroll == YES){
+                    //子控制器到顶部了 主控制器可以滑动
+                    [self changeMainTableViewAllowScroll:YES];
+                }
+               
+            }
+            
+            if (!canScroll && scrollView.contentOffset.y != 0) {
+                if (_tableView.contentOffset.y > 0 && _tableView.contentOffset.y < 212) {
                     [scrollView setContentOffset:CGPointZero];
-                }else {
-                    if (_tableView.contentOffset.y > 0 && _tableView.contentOffset.y < 212) {
-                        [scrollView setContentOffset:CGPointZero];
-                    }
                 }
             }
 
         }
+        
+    
+    } else {
     
     }
 }
