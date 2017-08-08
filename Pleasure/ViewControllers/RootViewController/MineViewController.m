@@ -84,7 +84,7 @@
     WMScrollBarItemStyle * style = [WMScrollBarItemStyle new];
     style.scrollContentViewTableViewHeight = kTableViewHeight;
     style.itemSizeStyle = wm_itemSizeStyle_equal_textSize;
-    style.allowStretchableHeader = YES;
+    style.allowStretchableHeader = NO;
     return _isTest ? nil : style;
 }
 

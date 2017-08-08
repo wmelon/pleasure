@@ -176,24 +176,20 @@
     
     NSLog(@"------%f   %f   %f" , alpha , offset  , tabOffsetY);
     
-    if (self.style.allowStretchableHeader){
-        //下拉放大 必须实现
-        [self.stretchableTableHeaderView scrollViewDidScroll:scrollView];
-        
-        if (offset >= tabOffsetY) {
-            if (_mainCanScroll) {
-                [self changeMainTableViewAllowScroll:NO];
-            }
+
+    //下拉放大 必须实现
+    [self.stretchableTableHeaderView scrollViewDidScroll:scrollView];
+    
+    if (offset >= tabOffsetY) {
+        if (_mainCanScroll) {
+            [self changeMainTableViewAllowScroll:NO];
         }
-        
-        if (!_mainCanScroll){
-            scrollView.contentOffset = CGPointMake(0, tabOffsetY);
-        }
-        
-    } else {
-        
     }
     
+    if (!_mainCanScroll){
+        scrollView.contentOffset = CGPointMake(0, tabOffsetY);
+    }
+        
     if ([self.delegate respondsToSelector:@selector(scrollPageView:navigationBarAlpha:)]){
         [self.delegate scrollPageView:self navigationBarAlpha:alpha];
     }
@@ -267,52 +263,36 @@
 - (void)scrollContentView:(WMScrollContentView *)scrollContentView controlScroll:(UIScrollView *)scrollView canScroll:(BOOL)canScroll{
     
     
-    //// 主滚动视图offY <= 0 的时候。这个时候下拉子的滚动视图是主的视图不能滚动 子视图滚动
-    
-    
     if (self.tableView.scrollEnabled == NO) return;  /// 父滚动视图允许滚动才执行两个滚动视图的滚动切换
+    
+    _tableView.bounces = self.style.allowStretchableHeader;
     
     CGFloat offsetY = scrollView.contentOffset.y;
     
-    if (self.style.allowStretchableHeader){
+    if (offsetY < 0){
         
-        if(_tableView.bounces) {
-            if (offsetY < 0){
-                
-                if (canScroll == YES){
-                    //子控制器到顶部了 主控制器可以滑动
-                    [self changeMainTableViewAllowScroll:YES];
-                }
-                
-            }
-            
-            if (!canScroll && scrollView.contentOffset.y != 0) {
-                [scrollView setContentOffset:CGPointZero];
-            }
-        }else {
-            NSLog(@"offsetY == >%g",offsetY);
-            NSLog(@"tableView == >%g",_tableView.contentOffset.y);
-
-            if (offsetY < 0){
-                
-                if (canScroll == YES){
-                    //子控制器到顶部了 主控制器可以滑动
-                    [self changeMainTableViewAllowScroll:YES];
-                }
-               
-            }
-            
-            if (!canScroll && scrollView.contentOffset.y != 0) {
-                if (_tableView.contentOffset.y > 0 && _tableView.contentOffset.y < 212) {
-                    [scrollView setContentOffset:CGPointZero];
-                }
-            }
-
+        if (canScroll == YES){
+            //子控制器到顶部了 主控制器可以滑动
+            [self changeMainTableViewAllowScroll:YES];
+        }
+        
+    }
+    
+    if (_tableView.bounces){  /// 允许下拉放大头部
+        
+        if (!canScroll && scrollView.contentOffset.y != 0) {
+            [scrollView setContentOffset:CGPointZero];
         }
         
     
     } else {
-    
+        
+        if (!canScroll && scrollView.contentOffset.y != 0) {
+            if (_tableView.contentOffset.y > 0) {
+                [scrollView setContentOffset:CGPointZero];
+            }
+        }
+        
     }
 }
 
@@ -399,7 +379,6 @@
         _tableView = [[WMManyGesturesTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _tableView.delegate= self;
         _tableView.dataSource= self;
-        _tableView.bounces = NO;
         [_tableView setShowsVerticalScrollIndicator:NO];
         [_tableView setShowsHorizontalScrollIndicator:NO];
     }
