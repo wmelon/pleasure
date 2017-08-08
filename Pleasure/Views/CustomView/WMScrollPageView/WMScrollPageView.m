@@ -192,32 +192,6 @@
         
     } else {
         
-        
-        
-        
-        
-        
-//        if (offset > 0){
-//            
-//            if (offset > tabOffsetY){
-//            
-//                [self changeMainTableViewAllowScroll:NO];
-//        
-//            }
-//
-//            if (_mainCanScroll == NO){
-//                scrollView.contentOffset = CGPointMake(0, tabOffsetY);
-//                
-//            }
-//            
-//        } else if (offset < 0){
-//        
-//            
-//            [self changeMainTableViewAllowScroll:NO];
-//            
-//            scrollView.contentOffset = CGPointZero;
-//            
-//        }
     }
     
     if ([self.delegate respondsToSelector:@selector(scrollPageView:navigationBarAlpha:)]){
@@ -225,7 +199,6 @@
     }
     
 }
-
 
 #pragma mark -- UITableViewDelegate and UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -303,107 +276,24 @@
     
     if (self.style.allowStretchableHeader){
         
-        if (offsetY < 0){
-        
+        if (offsetY < 0) {
             if (canScroll == YES){
                 //子控制器到顶部了 主控制器可以滑动
                 [self changeMainTableViewAllowScroll:YES];
             }
-            
-        }
-        
-        if (!canScroll && scrollView.contentOffset.y != 0) {
-            [scrollView setContentOffset:CGPointZero];
+           
+            if (!canScroll && scrollView.contentOffset.y != 0) {
+                if (_tableView.bounces) {
+                    [scrollView setContentOffset:CGPointZero];
+                }else {
+                    if (_tableView.contentOffset.y > 0 && _tableView.contentOffset.y < 212) {
+                        [scrollView setContentOffset:CGPointZero];
+                    }
+                }
+            }
+
         }
     
-    } else {
-        
-        
-        ////   父tableView 是允许滚动的  YES    子tableView是不允许滚动的  NO
-        
-        if (offsetY > 0){   ////向上滑动
-         
-            //// 父允许滚动   子的不滚动
-            
-            if  (_tableView.contentOffset.y >= 186){
-                
-                canScroll = YES;
-                
-                _mainCanScroll = NO;
-                
-            }
-        
-        } else if (offsetY < 0){  /// 向下滑动
-            
-            
-            
-            if (_tableView.contentOffset.y >= 186){
-            
-                canScroll = YES;
-                _mainCanScroll = NO;
-                
-                
-            }else {
-            
-                
-                canScroll = NO;
-                _mainCanScroll = YES;
-                
-                
-                
-                scrollView.contentOffset = CGPointZero;
-            
-            }
-            
-        }
-        
-        
-    
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        if (offsetY < 0){
-//        
-//            if (canScroll == NO){
-//                
-//                [self changeMainTableViewAllowScroll:NO];
-//            }
-////            if (_tableView.contentOffset.y <= 186 && _tableView.contentOffset.y > 0){
-////            
-////                
-////                
-////            }
-//
-//        }
-////        else if (offsetY == 0){
-////            
-////
-////            if (canScroll == YES){
-////                
-////                [self changeMainTableViewAllowScroll:YES];
-////            }
-////            
-////        
-////        }
-        
-        
-//        if (!canScroll && scrollView.contentOffset.y != 0) {
-//            [scrollView setContentOffset:CGPointZero];
-//        }
-        
-        
-//        NSLog(@"这里是测试用的      %f" , offsetY);
-        
     }
 }
 
@@ -490,6 +380,7 @@
         _tableView = [[WMManyGesturesTableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _tableView.delegate= self;
         _tableView.dataSource= self;
+        _tableView.bounces = NO;
         [_tableView setShowsVerticalScrollIndicator:NO];
         [_tableView setShowsHorizontalScrollIndicator:NO];
     }
