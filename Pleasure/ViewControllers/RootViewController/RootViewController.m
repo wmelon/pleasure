@@ -92,7 +92,7 @@
     UIViewController *vc = tabBarController.selectedViewController;
     if (vc == viewController){
         
-        if ([vc isKindOfClass:[UINavigationController class]]){
+        if ([vc isKindOfClass:[UINavigationController class]]){  /// 处理双击刷新数据
             UINavigationController * navi = (UINavigationController *)vc;
             if ([navi viewControllers].count){
                 UIViewController * firstVc = [navi.viewControllers firstObject];

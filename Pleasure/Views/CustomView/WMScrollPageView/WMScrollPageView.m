@@ -89,10 +89,7 @@
 }
 /// 配置头部视图
 - (void)wm_configTableViewHeaderView{
-    if (!self.tableView.superview){
-        [self addSubview:self.tableView];
-    }
-    
+
     UIView * headerView;
     if ([self.dataSource respondsToSelector:@selector(headerViewInScrollPageView:)]){
         headerView = [self.dataSource headerViewInScrollPageView:self];
@@ -381,6 +378,7 @@
         _tableView.dataSource= self;
         [_tableView setShowsVerticalScrollIndicator:NO];
         [_tableView setShowsHorizontalScrollIndicator:NO];
+        [self addSubview:_tableView];
     }
     
     return _tableView;

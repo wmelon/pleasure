@@ -103,9 +103,6 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         [columnButton setTitle:title forState:UIControlStateNormal];
     }
     self.scrollView.contentSize = CGSizeMake(totleWidth, 0);
-//    if (totleWidth >= self.frame.size.width){
-//        
-//    }
     [self wm_configUI];
     
 }

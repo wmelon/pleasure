@@ -9,5 +9,4 @@ target :Pleasure do
     #pod 'IQKeyboardManager', '3.2.0.3'
     #pod 'FormatterKit', '1.8.1'
     pod 'DZNEmptyDataSet', '1.8.1'
-    #pod 'HMSegmentedControl'
 end

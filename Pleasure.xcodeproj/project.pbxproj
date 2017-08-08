@@ -15,6 +15,10 @@
 		192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C13371F0B9B3200759221 /* NotificationConfig.m */; };
 		192C13421F0BB8B000759221 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C13411F0BB8B000759221 /* DemoViewController.m */; };
 		192C13481F0BBA8B00759221 /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C13471F0BBA8B00759221 /* Demo2ViewController.m */; };
+		19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19382EB31F396BA60029AAA3 /* WMInputInfoView.m */; };
+		19382EB71F39B3730029AAA3 /* UITextView+LLDebugOnly.m in Sources */ = {isa = PBXBuildFile; fileRef = 19382EB61F39B3730029AAA3 /* UITextView+LLDebugOnly.m */; };
+		19382EBB1F39B43F0029AAA3 /* addphoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EB91F39B43F0029AAA3 /* addphoto@2x.png */; };
+		19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EBA1F39B43F0029AAA3 /* addphoto@3x.png */; };
 		194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */; };
 		1953A2C91F342C890061B514 /* WMScrollBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C21F342C890061B514 /* WMScrollBarItem.m */; };
 		1953A2CA1F342C890061B514 /* WMScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C41F342C890061B514 /* WMScrollContentView.m */; };
@@ -63,6 +67,12 @@
 		192C13411F0BB8B000759221 /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		192C13461F0BBA8B00759221 /* Demo2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo2ViewController.h; sourceTree = "<group>"; };
 		192C13471F0BBA8B00759221 /* Demo2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo2ViewController.m; sourceTree = "<group>"; };
+		19382EB21F396BA60029AAA3 /* WMInputInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInputInfoView.h; sourceTree = "<group>"; };
+		19382EB31F396BA60029AAA3 /* WMInputInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInputInfoView.m; sourceTree = "<group>"; };
+		19382EB51F39B3730029AAA3 /* UITextView+LLDebugOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+LLDebugOnly.h"; sourceTree = "<group>"; };
+		19382EB61F39B3730029AAA3 /* UITextView+LLDebugOnly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+LLDebugOnly.m"; sourceTree = "<group>"; };
+		19382EB91F39B43F0029AAA3 /* addphoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addphoto@2x.png"; sourceTree = "<group>"; };
+		19382EBA1F39B43F0029AAA3 /* addphoto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addphoto@3x.png"; sourceTree = "<group>"; };
 		194C73501F0CD00D00B8DB67 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
 		194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
 		1953A2C11F342C890061B514 /* WMScrollBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItem.h; sourceTree = "<group>"; };
@@ -147,6 +157,8 @@
 		192C13261F0B8EF200759221 /* OC_Category */ = {
 			isa = PBXGroup;
 			children = (
+				19382EB51F39B3730029AAA3 /* UITextView+LLDebugOnly.h */,
+				19382EB61F39B3730029AAA3 /* UITextView+LLDebugOnly.m */,
 				192C132F1F0B942400759221 /* UIImage+AppImage.h */,
 				192C13301F0B942400759221 /* UIImage+AppImage.m */,
 				192C13321F0B94E000759221 /* UIColor+AppColor.h */,
@@ -183,6 +195,25 @@
 				19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */,
 			);
 			path = CustomViewController;
+			sourceTree = "<group>";
+		};
+		19382EB11F396B9A0029AAA3 /* WMInputInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				19382EB81F39B4290029AAA3 /* Resource */,
+				19382EB21F396BA60029AAA3 /* WMInputInfoView.h */,
+				19382EB31F396BA60029AAA3 /* WMInputInfoView.m */,
+			);
+			path = WMInputInfoView;
+			sourceTree = "<group>";
+		};
+		19382EB81F39B4290029AAA3 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				19382EB91F39B43F0029AAA3 /* addphoto@2x.png */,
+				19382EBA1F39B43F0029AAA3 /* addphoto@3x.png */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		1953A2C01F342C890061B514 /* WMScrollPageView */ = {
@@ -328,6 +359,7 @@
 		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				19382EB11F396B9A0029AAA3 /* WMInputInfoView */,
 				1953A2C01F342C890061B514 /* WMScrollPageView */,
 				19F0118F1F29888700F30BC9 /* WMScrollWithHeader */,
 			);
@@ -421,9 +453,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */,
 				19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */,
 				1960325E1F09E7AB00126AC7 /* LaunchScreen.storyboard in Resources */,
 				1960325B1F09E7AB00126AC7 /* Assets.xcassets in Resources */,
+				19382EBB1F39B43F0029AAA3 /* addphoto@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +522,9 @@
 				196032931F0A563500126AC7 /* BaseViewController.m in Sources */,
 				196032611F09E7AB00126AC7 /* main.m in Sources */,
 				192C13421F0BB8B000759221 /* DemoViewController.m in Sources */,
+				19382EB71F39B3730029AAA3 /* UITextView+LLDebugOnly.m in Sources */,
 				19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */,
+				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
 				198605FE1F1773130034C713 /* TestViewController.m in Sources */,
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
 				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,
