@@ -8,6 +8,8 @@
 
 #import "WMInputInfoView.h"
 #import <UIButton+WebCache.h>
+#import "WMImagePickerHandle.h"
+//#import <MWPhotoBrowser.h>
 
 @interface WMPhoto : NSObject
 
@@ -118,8 +120,8 @@
 /// 屏幕宽度
 #define k_wm_screen_width [UIScreen mainScreen].bounds.size.width
 
-@interface WMInputInfoView()<UITextViewDelegate , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , WMPhotoCellDelegate>
-
+@interface WMInputInfoView()<UITextViewDelegate , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , WMPhotoCellDelegate >
+//MWPhotoBrowserDelegate
 /// 文本编辑视图
 @property (nonatomic , strong) UITextView * textView;
 
@@ -134,6 +136,8 @@
 
 /// 展示图片数据源
 @property (nonatomic , strong) NSMutableArray<WMPhoto *> *showPhotos;
+
+@property (nonatomic , strong) WMImagePickerHandle *ImagePickerHandle;
 
 @end
 
@@ -167,8 +171,6 @@
         selectedPhotoCount = [self.dataSource selectedPhotoCountAtInputInfoView:self];
     }
     
-    [self.showPhotos removeAllObjects];
-    
     if (selectedPhotoCount >= maxCount){ /// 已经选择的图片个数不能大于最大图片个数
         selectedPhotoCount = maxCount;
         
@@ -196,31 +198,11 @@
         [array addObject:photo];
     }
     
-    if (selectedPhotoCount < maxCount){ /// 已经选择的图片个数不能大于最大图片个数
-        WMPhoto * photo = [WMPhoto new];
-        photo.isAddPhoto = YES;
-
-        UIImage * image;
-        if ([self.dataSource respondsToSelector:@selector(addIconAtAtInputInfoView:)]){
-            
-            image = [self.dataSource addIconAtAtInputInfoView:self];
-            
-        }else {
-            
-            /// 默认的添加图片icon
-            image = [UIImage imageNamed:@"addphoto"];
-        }
-        photo.photo = image;
-        
-        [array addObject:photo];
-    }
-    
-    /// 初始化图片显示视图
-    [self wm_configCollectionViewWithShowCount:array.count];
-    
+    [self.showPhotos removeAllObjects];
     [self.showPhotos addObjectsFromArray:array];
     
-    [self.collectionView reloadData];
+    /// 初始化图片显示视图
+    [self wm_configCollectionViewWithShowCount:self.showPhotos.count];
 }
 
 - (void)wm_configCollectionViewWithShowCount:(NSInteger)showCount{
@@ -232,6 +214,14 @@
         rowPhotoCount = [self.dataSource eachRowShowPhotoCountAtInputInfoView:self];
     }
     
+    if (showCount < self.maxPhotoCount){   /// 显示的图片数量小于最大图片数量 就需要添加一个添加图片的按钮
+        
+        showCount ++;
+    
+    }else {
+    
+        showCount = self.maxPhotoCount;
+    }
 
     UICollectionViewFlowLayout * layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     CGFloat topPadding = layout.sectionInset.top;
@@ -255,20 +245,22 @@
     
     /// 视图的高度
     _viewHeight = self.frame.size.height;
+    
+    [self.collectionView reloadData];
 }
 
 
-///** 获取当前View的控制器对象  如果当前控制器是作为一个自控制器存在的话就需要获取这个控制器的父控制器（用来作为界面跳转）*/
-//-(UIViewController *)getCurrentViewController{
-//    UIResponder *next = [self nextResponder];
-//    do {
-//        if ([next isKindOfClass:[UIViewController class]]) {
-//            return (UIViewController *)next;
-//        }
-//        next = [next nextResponder];
-//    } while (next != nil);
-//    return nil;
-//}
+/** 获取当前View的控制器对象  如果当前控制器是作为一个自控制器存在的话就需要获取这个控制器的父控制器（用来作为界面跳转）*/
+- (UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
+}
 
 
 #pragma mark -- UICollectionViewDelegate and UICollectionViewDataSource
@@ -277,16 +269,46 @@
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.showPhotos.count;
+    return self.showPhotos.count >= self.maxPhotoCount ? self.maxPhotoCount : (self.showPhotos.count + 1);
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WMPhotoCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([WMPhotoCell class]) forIndexPath:indexPath];
-    [cell setPhoto:self.showPhotos[indexPath.row]];
+    WMPhoto *photo;
+    if (indexPath.row < self.showPhotos.count){
+    
+        photo = self.showPhotos[indexPath.row];
+        
+    }else {
+    
+        photo = [self wm_getDefaultAddPhoto];
+        
+    }
+    [cell setPhoto:photo];
     cell.delegate = self;
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.photoShowWidth , self.photoShowWidth);
+}
+
+- (WMPhoto *)wm_getDefaultAddPhoto{
+
+    WMPhoto * photo = [WMPhoto new];
+    photo.isAddPhoto = YES;
+    
+    UIImage * image;
+    if ([self.dataSource respondsToSelector:@selector(addIconAtAtInputInfoView:)]){
+        
+        image = [self.dataSource addIconAtAtInputInfoView:self];
+        
+    }else {
+        
+        /// 默认的添加图片icon
+        image = [UIImage imageNamed:@"addphoto"];
+    }
+    photo.photo = image;
+    
+    return photo;
 }
 
 #pragma mark -- WMPhotoCellDelegate
@@ -295,6 +317,30 @@
 - (void)addPhotoClickAtPhotoCell:(WMPhotoCell *)photoCell{
 
     /// 打开相册列表选择图片
+    [self.ImagePickerHandle openPhotoAlbumWithMaxImagesCount:self.maxPhotoCount - self.showPhotos.count imageResultHandle:^(NSArray *images) {
+        
+        /// 处理返回的图片数组
+        for (UIImage *image in images) {
+            NSInteger index = self.showPhotos.count;
+            if (index < self.maxPhotoCount){
+                
+                WMPhoto *photo = [[WMPhoto alloc] initWithIndex:index];
+                photo.photo = image;
+                
+                [self.showPhotos addObject:photo];
+            }
+        }
+        
+        [self wm_configCollectionViewWithShowCount:self.showPhotos.count];
+        
+    }];
+    
+    
+//    /// 拍照
+//    [self.ImagePickerHandle openCameraWithImageResultHandle:^(NSArray *images) {
+//        
+//    }];
+
 }
 
 /// 展示图片
@@ -302,7 +348,36 @@
 
     /// 打开已经选择图片视图查看
     
+//    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+//    [browser setInitialPageIndex:index];
 }
+
+
+//#pragma mark -- MWPhotoBrowserDelegate
+//
+//- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
+//    return self.showPhotos.count;
+//}
+//
+//- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+//
+//    MWPhoto * photo;
+//    if (index < self.showPhotos.count){
+//    
+//        WMPhoto * wmPhoto = self.showPhotos[index];
+//        if (wmPhoto.photo){
+//        
+//            photo = [MWPhoto photoWithImage:wmPhoto.photo];
+//        }else if (wmPhoto.photoUrl){
+//        
+//            photo = [MWPhoto photoWithURL:[NSURL URLWithString:wmPhoto.photoUrl]];
+//        }
+//    }
+//
+//    return photo;
+//}
+
+
 
 - (void)reloadView{
     [self setDataSource:_dataSource];
@@ -351,6 +426,14 @@
     return _showPhotos;
 }
 
+- (WMImagePickerHandle *)ImagePickerHandle{
+
+    if (_ImagePickerHandle == nil){
+    
+        _ImagePickerHandle = [[WMImagePickerHandle alloc] initWithController:[self getCurrentViewController]];
+    }
+    return _ImagePickerHandle;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

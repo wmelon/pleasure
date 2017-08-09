@@ -39,6 +39,7 @@
 		196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2F1F0B800F00C2D678 /* MineViewController.m */; };
 		198605FE1F1773130034C713 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198605FD1F1773130034C713 /* TestViewController.m */; };
 		199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */; };
+		19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */; };
 		19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */; };
 		19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E61F271E9000D56386 /* WMRecordViewController.m */; };
 		19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E91F27216A00D56386 /* WMFoundViewController.m */; };
@@ -114,6 +115,8 @@
 		198605FD1F1773130034C713 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		199DACDA1F14C7FB008B4E55 /* UIScrollView+AppScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+AppScrollView.h"; sourceTree = "<group>"; };
 		199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+AppScrollView.m"; sourceTree = "<group>"; };
+		19B5D57F1F3ABE8D0049D745 /* WMImagePickerHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMImagePickerHandle.h; sourceTree = "<group>"; };
+		19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMImagePickerHandle.m; sourceTree = "<group>"; };
 		19B9BB3C1F161AEB00BD0938 /* WMBaseTableCollectionControlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseTableCollectionControlController.h; sourceTree = "<group>"; };
 		19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseTableCollectionControlController.m; sourceTree = "<group>"; };
 		19CEF9E51F271E9000D56386 /* WMRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRecordViewController.h; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				19382EB81F39B4290029AAA3 /* Resource */,
 				19382EB21F396BA60029AAA3 /* WMInputInfoView.h */,
 				19382EB31F396BA60029AAA3 /* WMInputInfoView.m */,
+				19B5D57F1F3ABE8D0049D745 /* WMImagePickerHandle.h */,
+				19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */,
 			);
 			path = WMInputInfoView;
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 				19382EB71F39B3730029AAA3 /* UITextView+LLDebugOnly.m in Sources */,
 				19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */,
 				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
+				19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */,
 				198605FE1F1773130034C713 /* TestViewController.m in Sources */,
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
 				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,

@@ -9,4 +9,6 @@ target :Pleasure do
     #pod 'IQKeyboardManager', '3.2.0.3'
     #pod 'FormatterKit', '1.8.1'
     pod 'DZNEmptyDataSet', '1.8.1'
+    pod 'TZImagePickerController' , '1.8.1'   # 图片选择器
+    #pod 'MWPhotoBrowser' , '0.0.1'   # 图片浏览器
 end
