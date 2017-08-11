@@ -9,32 +9,6 @@
 #import "WMInputInfoView.h"
 #import <UIButton+WebCache.h>
 #import "WMImagePickerHandle.h"
-//#import <MWPhotoBrowser.h>
-
-@interface WMPhoto : NSObject
-
-@property (nonatomic , copy) NSString * photoUrl;
-@property (nonatomic , strong) UIImage * photo;
-
-/// 是否是添加视图 默认是 NO
-@property (nonatomic , assign) BOOL isAddPhoto;
-/// 为显示图片分配一个顺序
-@property (nonatomic , assign) NSInteger index;
-@end
-
-@implementation WMPhoto
-
-- (instancetype)initWithIndex:(NSInteger)index{
-    if (self = [super init]){
-    
-        _index = index;
-        
-    }
-    return self;
-
-}
-@end
-
 
 @class WMPhotoCell;
 
@@ -49,9 +23,11 @@
 @interface WMPhotoCell : UICollectionViewCell
 
 @property (nonatomic , strong) UIButton *photoButton;
-@property (nonatomic , strong) WMPhoto *photo;
+@property (nonatomic , strong , readonly) WMPhoto *photo;
+@property (nonatomic , assign , readonly) NSInteger index;
 @property (nonatomic , weak) id<WMPhotoCellDelegate> delegate;
 
+- (void)setPhoto:(WMPhoto *)photo index:(NSInteger)index;
 @end
 
 @implementation WMPhotoCell
@@ -87,14 +63,13 @@
     
         if ([self.delegate respondsToSelector:@selector(photoCell:showPhotoClickAtIndex:)]){
         
-            [self.delegate photoCell:self showPhotoClickAtIndex:_photo.index];
+            [self.delegate photoCell:self showPhotoClickAtIndex:_index];
         }
     }
 }
-
-- (void)setPhoto:(WMPhoto *)photo{
-
+- (void)setPhoto:(WMPhoto *)photo index:(NSInteger)index{
     _photo = photo;
+    _index = index;
     
     if (photo.photo){
         
@@ -107,8 +82,8 @@
             }
         }];
     }
-    
 }
+
 - (void)layoutSubviews{
 
     [super layoutSubviews];
@@ -120,8 +95,8 @@
 /// 屏幕宽度
 #define k_wm_screen_width [UIScreen mainScreen].bounds.size.width
 
-@interface WMInputInfoView()<UITextViewDelegate , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , WMPhotoCellDelegate >
-//MWPhotoBrowserDelegate
+@interface WMInputInfoView()<UITextViewDelegate , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , WMPhotoCellDelegate>
+
 /// 文本编辑视图
 @property (nonatomic , strong) UITextView * textView;
 
@@ -178,7 +153,7 @@
     
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:selectedPhotoCount];
     for (int i = 0 ; i < selectedPhotoCount ; i ++){
-        WMPhoto * photo = [[WMPhoto alloc] initWithIndex:i];
+        WMPhoto * photo = [[WMPhoto alloc] init];
         
         NSString * photoUrl;
         if ([self.dataSource respondsToSelector:@selector(inputInfoView:selectedPhotoUrlAtIndex:)]){
@@ -283,7 +258,7 @@
         photo = [self wm_getDefaultAddPhoto];
         
     }
-    [cell setPhoto:photo];
+    [cell setPhoto:photo index:indexPath.row];
     cell.delegate = self;
     return cell;
 }
@@ -324,7 +299,7 @@
             NSInteger index = self.showPhotos.count;
             if (index < self.maxPhotoCount){
                 
-                WMPhoto *photo = [[WMPhoto alloc] initWithIndex:index];
+                WMPhoto *photo = [[WMPhoto alloc] init];
                 photo.photo = image;
                 
                 [self.showPhotos addObject:photo];
@@ -346,37 +321,14 @@
 /// 展示图片
 - (void)photoCell:(WMPhotoCell *)photoCell showPhotoClickAtIndex:(NSInteger)index{
 
+    __weak typeof(self) weakself = self;
     /// 打开已经选择图片视图查看
+    [self.ImagePickerHandle photoBrowserWithCurrentIndex:index photosArray:self.showPhotos deleteHandle:^(NSInteger deleteIndex) {
+        [weakself.showPhotos removeObjectAtIndex:deleteIndex];
+        [weakself wm_configCollectionViewWithShowCount:weakself.showPhotos.count];
+    }];
     
-//    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-//    [browser setInitialPageIndex:index];
 }
-
-
-//#pragma mark -- MWPhotoBrowserDelegate
-//
-//- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
-//    return self.showPhotos.count;
-//}
-//
-//- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
-//
-//    MWPhoto * photo;
-//    if (index < self.showPhotos.count){
-//    
-//        WMPhoto * wmPhoto = self.showPhotos[index];
-//        if (wmPhoto.photo){
-//        
-//            photo = [MWPhoto photoWithImage:wmPhoto.photo];
-//        }else if (wmPhoto.photoUrl){
-//        
-//            photo = [MWPhoto photoWithURL:[NSURL URLWithString:wmPhoto.photoUrl]];
-//        }
-//    }
-//
-//    return photo;
-//}
-
 
 
 - (void)reloadView{

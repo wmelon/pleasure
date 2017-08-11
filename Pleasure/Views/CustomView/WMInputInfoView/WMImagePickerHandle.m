@@ -9,11 +9,21 @@
 #import "WMImagePickerHandle.h"
 #import <TZImagePickerController.h>
 #import <AVFoundation/AVFoundation.h>
+#import "WMPhotoBrowser.h"
 
-@interface WMImagePickerHandle()<TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface WMImagePickerHandle()<TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate , WMPhotoBrowserDelegate>
 
-@property (nonatomic , copy) WMImageResultHandle imageResultHandle;
+/// 当前控制器
 @property (nonatomic , weak) UIViewController *viewController;
+
+/// 需要打开浏览的图片集合
+@property (nonatomic , strong) NSArray<WMPhoto *> * showPhotos;
+
+/// 选择图片回调
+@property (nonatomic , copy) WMImageResultHandle imageResultHandle;
+
+/// 删除图片回调
+@property (nonatomic , copy) WMPhotoDeleteHandle deleteHandle;
 
 @end
 
@@ -33,6 +43,10 @@
     _imageResultHandle = imageResultHandle;
     
     /// 需要验证是否允许使用拍照 和 照相机是否可以使用
+    if ([self takePhotoFromViewController:self.viewController]){
+        
+    
+    }
 }
 
 /// 打开相册选择图片
@@ -40,10 +54,53 @@
 
     _imageResultHandle = imageResultHandle;
     
-    
     /// 需要先允许访问用户相册
     [self wm_createSelectPhotosWithMaxCount:maxImagesCount viewController:self.viewController];
 }
+
+/// 浏览图片
+- (void)photoBrowserWithCurrentIndex:(NSInteger)currentIndex photosArray:(NSArray<WMPhoto *> *)photos deleteHandle:(WMPhotoDeleteHandle)deleteHandle{
+    _showPhotos = photos;
+    _deleteHandle = deleteHandle;
+    
+    WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
+    [browser setCurrentPhotoIndex:currentIndex];
+    [browser showRightItem:nil image:[UIImage imageNamed:@"navBar_search_grey"]];
+    [self.viewController.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark -- WMPhotoBrowserDelegate
+
+- (void)photoBrowser:(WMPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    if (self.deleteHandle){
+        self.deleteHandle(index);
+    }
+}
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(WMPhotoBrowser *)photoBrowser{
+    return self.showPhotos.count;
+}
+
+- (WMPhotoModel *)photoBrowser:(WMPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+    
+    WMPhotoModel * photo;
+    if (index < self.showPhotos.count){
+        
+        WMPhoto * wmPhoto = self.showPhotos[index];
+        
+        if (wmPhoto.photo){
+            
+            photo = [WMPhotoModel photoWithImage:wmPhoto.photo];
+        }else if (wmPhoto.photoUrl){
+        
+            photo = [WMPhotoModel photoWithURL:[NSURL URLWithString:wmPhoto.photoUrl]];
+        }
+//        photo = [WMPhotoModel photoWithURL:[NSURL URLWithString:@"http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1212/27/c1/16933645_1356590157539.jpg"]];
+    }
+    
+    return photo;
+}
+
+
 
 - (void)wm_createSelectPhotosWithMaxCount:(NSInteger)maxCount viewController:(UIViewController *)viewController{
     
@@ -250,27 +307,25 @@
     return YES;
 }
 
-
-
-//- (BOOL)takePhotoFromViewController:(UIViewController*)controller
-//{
-//    if ([[AVCaptureDevice class] respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
-//        AVAuthorizationStatus authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-//        if (authorizationStatus == AVAuthorizationStatusRestricted
-//            || authorizationStatus == AVAuthorizationStatusDenied) {
-//            
-//            // 没有权限
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-//                                                                message:@"请授予拍照权限在设置隐私选项中"
-//                                                               delegate:nil
-//                                                      cancelButtonTitle:@"OK"
-//                                                      otherButtonTitles:nil];
-//            [alertView show];
-//            return NO;
-//        }
-//    }
-//    return YES;
-//}
+- (BOOL)takePhotoFromViewController:(UIViewController*)controller
+{
+    if ([[AVCaptureDevice class] respondsToSelector:@selector(authorizationStatusForMediaType:)]) {
+        AVAuthorizationStatus authorizationStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+        if (authorizationStatus == AVAuthorizationStatusRestricted
+            || authorizationStatus == AVAuthorizationStatusDenied) {
+            
+            // 没有权限
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"请授予拍照权限在设置隐私选项中"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+            return NO;
+        }
+    }
+    return YES;
+}
 
 
 @end

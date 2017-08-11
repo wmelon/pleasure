@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */; };
+		1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1920F1091F3D619900087326 /* WMTapDetectingImageView.m */; };
 		192741511F0C841C00077E49 /* WMSwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927414F1F0C840000077E49 /* WMSwizzleMethod.m */; };
 		192C132B1F0B923800759221 /* AppTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C132A1F0B923800759221 /* AppTabBar.m */; };
 		192C132E1F0B924600759221 /* AppNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C132D1F0B924600759221 /* AppNavigationBar.m */; };
@@ -38,6 +40,10 @@
 		196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2C1F0B7FFF00C2D678 /* BaseCollectionViewController.m */; };
 		196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2F1F0B800F00C2D678 /* MineViewController.m */; };
 		198605FE1F1773130034C713 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198605FD1F1773130034C713 /* TestViewController.m */; };
+		1995F8011F3C3B9C0036CFBA /* WMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8001F3C3B9C0036CFBA /* WMPhotoBrowser.m */; };
+		1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8031F3C3BE80036CFBA /* WMPhotoModel.m */; };
+		1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8061F3C3CF60036CFBA /* WMCaptionView.m */; };
+		1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */; };
 		199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */; };
 		19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */; };
 		19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */; };
@@ -52,6 +58,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190ECA0A1F3BFCDE00E4128C /* WMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhoto.h; sourceTree = "<group>"; };
+		190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhoto.m; sourceTree = "<group>"; };
+		1920F1081F3D619900087326 /* WMTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTapDetectingImageView.h; sourceTree = "<group>"; };
+		1920F1091F3D619900087326 /* WMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTapDetectingImageView.m; sourceTree = "<group>"; };
 		1927414F1F0C840000077E49 /* WMSwizzleMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMSwizzleMethod.m; sourceTree = "<group>"; };
 		192741501F0C840000077E49 /* WMSwizzleMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMSwizzleMethod.h; sourceTree = "<group>"; };
 		192C13291F0B923800759221 /* AppTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppTabBar.h; sourceTree = "<group>"; };
@@ -113,6 +123,14 @@
 		196E1F311F0B809E00C2D678 /* Pleasure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pleasure.pch; sourceTree = "<group>"; };
 		198605FC1F1773130034C713 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		198605FD1F1773130034C713 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		1995F7FF1F3C3B9C0036CFBA /* WMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoBrowser.h; sourceTree = "<group>"; };
+		1995F8001F3C3B9C0036CFBA /* WMPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoBrowser.m; sourceTree = "<group>"; };
+		1995F8021F3C3BE80036CFBA /* WMPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoModel.h; sourceTree = "<group>"; };
+		1995F8031F3C3BE80036CFBA /* WMPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoModel.m; sourceTree = "<group>"; };
+		1995F8051F3C3CF60036CFBA /* WMCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCaptionView.h; sourceTree = "<group>"; };
+		1995F8061F3C3CF60036CFBA /* WMCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCaptionView.m; sourceTree = "<group>"; };
+		1995F80A1F3C57F60036CFBA /* WMZoomingScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMZoomingScrollCell.h; sourceTree = "<group>"; };
+		1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMZoomingScrollCell.m; sourceTree = "<group>"; };
 		199DACDA1F14C7FB008B4E55 /* UIScrollView+AppScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+AppScrollView.h"; sourceTree = "<group>"; };
 		199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+AppScrollView.m"; sourceTree = "<group>"; };
 		19B5D57F1F3ABE8D0049D745 /* WMImagePickerHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMImagePickerHandle.h; sourceTree = "<group>"; };
@@ -208,6 +226,8 @@
 				19382EB31F396BA60029AAA3 /* WMInputInfoView.m */,
 				19B5D57F1F3ABE8D0049D745 /* WMImagePickerHandle.h */,
 				19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */,
+				190ECA0A1F3BFCDE00E4128C /* WMPhoto.h */,
+				190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */,
 			);
 			path = WMInputInfoView;
 			sourceTree = "<group>";
@@ -361,9 +381,27 @@
 			path = BaseViewController;
 			sourceTree = "<group>";
 		};
+		1995F7FE1F3C3B3D0036CFBA /* WMPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				1995F7FF1F3C3B9C0036CFBA /* WMPhotoBrowser.h */,
+				1995F8001F3C3B9C0036CFBA /* WMPhotoBrowser.m */,
+				1995F8021F3C3BE80036CFBA /* WMPhotoModel.h */,
+				1995F8031F3C3BE80036CFBA /* WMPhotoModel.m */,
+				1995F8051F3C3CF60036CFBA /* WMCaptionView.h */,
+				1995F8061F3C3CF60036CFBA /* WMCaptionView.m */,
+				1995F80A1F3C57F60036CFBA /* WMZoomingScrollCell.h */,
+				1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */,
+				1920F1081F3D619900087326 /* WMTapDetectingImageView.h */,
+				1920F1091F3D619900087326 /* WMTapDetectingImageView.m */,
+			);
+			path = WMPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				1995F7FE1F3C3B3D0036CFBA /* WMPhotoBrowser */,
 				19382EB11F396B9A0029AAA3 /* WMInputInfoView */,
 				1953A2C01F342C890061B514 /* WMScrollPageView */,
 				19F0118F1F29888700F30BC9 /* WMScrollWithHeader */,
@@ -529,6 +567,8 @@
 				192C13421F0BB8B000759221 /* DemoViewController.m in Sources */,
 				19382EB71F39B3730029AAA3 /* UITextView+LLDebugOnly.m in Sources */,
 				19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */,
+				1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */,
+				190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */,
 				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
 				19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */,
 				198605FE1F1773130034C713 /* TestViewController.m in Sources */,
@@ -551,12 +591,16 @@
 				196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */,
 				196032961F0A564400126AC7 /* HomeViewController.m in Sources */,
 				192C132B1F0B923800759221 /* AppTabBar.m in Sources */,
+				1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */,
 				1953A2CF1F3450B50061B514 /* WMScrollBarItemStyle.m in Sources */,
 				1953A2C91F342C890061B514 /* WMScrollBarItem.m in Sources */,
+				1995F8011F3C3B9C0036CFBA /* WMPhotoBrowser.m in Sources */,
 				196AB4911F0CF0CF00D660A2 /* UIButton+AppButton.m in Sources */,
 				1960328E1F0A55A000126AC7 /* RootViewController.m in Sources */,
 				196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */,
 				1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */,
+				1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */,
+				1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

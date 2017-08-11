@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WMPhoto.h"
 
-
+/// 选择图片和拍照之后回调
 typedef void(^WMImageResultHandle) (NSArray *images);
+
+/// 删除图片的回调
+typedef void(^WMPhotoDeleteHandle) (NSInteger deleteIndex);
 
 @interface WMImagePickerHandle : NSObject
 
@@ -20,5 +24,8 @@ typedef void(^WMImageResultHandle) (NSArray *images);
 
 /// 打开相册选择图片
 - (void)openPhotoAlbumWithMaxImagesCount:(NSInteger)maxImagesCount imageResultHandle:(WMImageResultHandle)imageResultHandle;
+
+/// 浏览图片
+- (void)photoBrowserWithCurrentIndex:(NSInteger)currentIndex photosArray:(NSArray<WMPhoto *> *)photos deleteHandle:(WMPhotoDeleteHandle)deleteHandle;
 
 @end
