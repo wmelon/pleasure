@@ -10,7 +10,7 @@
 #import "UIScrollView+AppScrollView.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface WMBaseTableCollectionControlController ()<DZNEmptyDataSetSource , DZNEmptyDataSetDelegate>
+@interface WMBaseTableCollectionControlController ()<DZNEmptyDataSetSource , DZNEmptyDataSetDelegate , UIScrollViewDelegate>
 @property (nonatomic , strong)UIScrollView * scrollerView;
 @end
 
@@ -30,7 +30,7 @@
 // 添加下拉刷新 // 添加上拉加载更多
 - (void)addRefreshHeadViewAndFootViewWithScrollerView:(UIScrollView *)scrollerView {
     _scrollerView = scrollerView;
-    
+    _scrollerView.delegate = self;
     __weak typeof(self) weakself = self;
     if ([self shouldShowRefresh]) {
         [scrollerView wm_RefreshHeaderWithBlock:^{
@@ -69,6 +69,10 @@
 
 - (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
     return 64; /// 偏移导航栏的高度
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
 }
 
 #pragma mark - overridable

@@ -11,12 +11,8 @@
 
 @class WMInputInfoView;
 
+
 @protocol WMInputInfoViewDelegate <NSObject>
-
-@end
-
-
-@protocol WMInputInfoViewDataSource <NSObject>
 
 @optional
 
@@ -46,9 +42,6 @@
 
 
 @property (nonatomic , weak) id<WMInputInfoViewDelegate> delegate;
-
-@property (nonatomic , weak) id<WMInputInfoViewDataSource> dataSource;
-
 
 @property (nonatomic , assign , readonly)CGFloat viewHeight;
 

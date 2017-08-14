@@ -18,4 +18,7 @@
 //- (BOOL)shouldShowBackItem;
 
 
+- (UIButton *)showRightItem:(NSString *)title image:(UIImage *)image;
+- (void)rightAction:(UIButton *)button;
+
 @end

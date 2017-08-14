@@ -123,6 +123,37 @@
 //    return YES;
 //}
 
+
+#pragma mark - Navigation
+
+- (UIButton *)showRightItem:(NSString *)title image:(UIImage *)image{
+    UIButton *button = [UIButton buttonWithImage:image title:title target:self action:@selector(rightAction:)];
+    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
+    button.contentEdgeInsets = UIEdgeInsetsZero;
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self addItemForLeft:NO withItem:item spaceWidth:0];
+    return button;
+}
+-(void)addItemForLeft:(BOOL)left withItem:(UIBarButtonItem*)item spaceWidth:(CGFloat)width {
+    UIBarButtonItem *space = [[UIBarButtonItem alloc]
+                              initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                              target:nil action:nil];
+    space.width = width;
+    
+    if (left) {
+        self.navigationItem.leftBarButtonItems = @[space,item];
+    } else {
+        self.navigationItem.rightBarButtonItems = @[space,item];
+    }
+}
+
+- (void)rightAction:(UIButton *)button{
+    NSLog(@"%@ 子类需要重写" , self);
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

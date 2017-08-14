@@ -9,6 +9,7 @@
 #import "WMInputInfoView.h"
 #import <UIButton+WebCache.h>
 #import "WMImagePickerHandle.h"
+#import "WMTextView.h"
 
 @class WMPhotoCell;
 
@@ -98,7 +99,7 @@
 @interface WMInputInfoView()<UITextViewDelegate , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout , WMPhotoCellDelegate>
 
 /// 文本编辑视图
-@property (nonatomic , strong) UITextView * textView;
+@property (nonatomic , strong) WMTextView * textView;
 
 /// 视图显示视图
 @property (nonatomic , strong) UICollectionView *collectionView;
@@ -120,15 +121,15 @@
 @implementation WMInputInfoView
 
 
-- (void)setDataSource:(id<WMInputInfoViewDataSource>)dataSource{
+- (void)setDataSource:(id<WMInputInfoViewDelegate>)dataSource{
     
-    _dataSource = dataSource;
+    _delegate = dataSource;
     
     /// 默认最多是3张图片
     NSInteger photoCount = 3;
-    if ([self.dataSource respondsToSelector:@selector(maxPhotoCountAtInputInfoView:)]){
+    if ([self.delegate respondsToSelector:@selector(maxPhotoCountAtInputInfoView:)]){
     
-        photoCount = [self.dataSource maxPhotoCountAtInputInfoView:self];
+        photoCount = [self.delegate maxPhotoCountAtInputInfoView:self];
     }
     self.maxPhotoCount = photoCount;
     
@@ -141,9 +142,9 @@
 - (void)wm_loadAndShowSelectedPhotosWithMaxCount:(NSInteger)maxCount{
 
     NSInteger selectedPhotoCount = 0;
-    if ([self.dataSource respondsToSelector:@selector(selectedPhotoCountAtInputInfoView:)]){
+    if ([self.delegate respondsToSelector:@selector(selectedPhotoCountAtInputInfoView:)]){
         
-        selectedPhotoCount = [self.dataSource selectedPhotoCountAtInputInfoView:self];
+        selectedPhotoCount = [self.delegate selectedPhotoCountAtInputInfoView:self];
     }
     
     if (selectedPhotoCount >= maxCount){ /// 已经选择的图片个数不能大于最大图片个数
@@ -156,15 +157,15 @@
         WMPhoto * photo = [[WMPhoto alloc] init];
         
         NSString * photoUrl;
-        if ([self.dataSource respondsToSelector:@selector(inputInfoView:selectedPhotoUrlAtIndex:)]){
+        if ([self.delegate respondsToSelector:@selector(inputInfoView:selectedPhotoUrlAtIndex:)]){
         
-            photoUrl = [self.dataSource inputInfoView:self selectedPhotoUrlAtIndex:i];
+            photoUrl = [self.delegate inputInfoView:self selectedPhotoUrlAtIndex:i];
         }
         photo.photoUrl = photoUrl;
         
         UIImage * image;
-        if ([self.dataSource respondsToSelector:@selector(inputInfoView:selectedPhotoAtIndex:)]){
-            image = [self.dataSource inputInfoView:self selectedPhotoAtIndex:i];
+        if ([self.delegate respondsToSelector:@selector(inputInfoView:selectedPhotoAtIndex:)]){
+            image = [self.delegate inputInfoView:self selectedPhotoAtIndex:i];
             
         }
         photo.photo = image;
@@ -184,9 +185,9 @@
 
     /// 每一行显示的图片
     NSInteger rowPhotoCount = 3;
-    if ([self.dataSource respondsToSelector:@selector(eachRowShowPhotoCountAtInputInfoView:)]){
+    if ([self.delegate respondsToSelector:@selector(eachRowShowPhotoCountAtInputInfoView:)]){
     
-        rowPhotoCount = [self.dataSource eachRowShowPhotoCountAtInputInfoView:self];
+        rowPhotoCount = [self.delegate eachRowShowPhotoCountAtInputInfoView:self];
     }
     
     if (showCount < self.maxPhotoCount){   /// 显示的图片数量小于最大图片数量 就需要添加一个添加图片的按钮
@@ -272,9 +273,9 @@
     photo.isAddPhoto = YES;
     
     UIImage * image;
-    if ([self.dataSource respondsToSelector:@selector(addIconAtAtInputInfoView:)]){
+    if ([self.delegate respondsToSelector:@selector(addIconAtAtInputInfoView:)]){
         
-        image = [self.dataSource addIconAtAtInputInfoView:self];
+        image = [self.delegate addIconAtAtInputInfoView:self];
         
     }else {
         
@@ -332,7 +333,7 @@
 
 
 - (void)reloadView{
-    [self setDataSource:_dataSource];
+    [self setDataSource:_delegate];
 }
 
 
@@ -360,8 +361,10 @@
     
     if (_textView == nil){
     
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, k_wm_screen_width, 100)];
+        _textView = [[WMTextView alloc] initWithFrame:CGRectMake(0, 0, k_wm_screen_width, 100)];
         _textView.delegate = self;
+        [_textView setFont:[UIFont systemFontOfSize:15]];
+        _textView.myPlaceHolder = @"这一刻的想法...";
         [self addSubview:_textView];
 
     }

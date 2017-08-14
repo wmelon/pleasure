@@ -242,10 +242,20 @@
 /// 滚动到默认起始位置
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
+    [self wm_photoScrollToShow];
+}
+
+/// 滚动到显示指定图片
+- (void)wm_photoScrollToShow{
     if (_currentIndex < self.photos.count){
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0] atScrollPosition:(UICollectionViewScrollPositionCenteredHorizontally) animated:NO];
-        
+        [self updateNavigation];
     }
+}
+
+/// 返回上一页
+- (void)wm_backToPrevious{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -- UICollectionViewDelegate and UICollectionViewDataSource
@@ -318,11 +328,16 @@
     if ([self.delegate respondsToSelector:@selector(photoBrowser:actionButtonPressedForPhotoAtIndex:)]){
         [self.delegate photoBrowser:self actionButtonPressedForPhotoAtIndex:_currentIndex];
         [self.photos removeObjectAtIndex:_currentIndex];
+        if (_currentIndex > 0){
+            _currentIndex--;
+        }
         [self.collectionView reloadData];
+        [self wm_photoScrollToShow];
+        if (self.photos.count == 0){
+            [self wm_backToPrevious];
+        }
     }
 }
-
-
 
 #pragma mark -- getter
 
