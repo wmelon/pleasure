@@ -8,6 +8,9 @@
 
 #import "WMRecordViewController.h"
 #import "WMInputInfoView.h"
+#import <AVUser.h>
+#import <AVFile.h>
+#import <AVQuery.h>
 
 @interface WMRecordViewController ()<WMInputInfoViewDelegate>
 @property (nonatomic , strong) WMInputInfoView *inputInfoView;
@@ -32,7 +35,13 @@
 
 - (void)rightAction:(UIButton *)button{
     /// 发布消息
+    [_svc wm_pushViewController:[WMAIListViewController new]];
+//    AVUser * user = [AVUser currentUser];
+//    if (!user){
+////        [_svc pr];
+//    }
 }
+
 
 #pragma mark -- WMInputInfoViewDataSource and WMInputInfoViewDelegate
 

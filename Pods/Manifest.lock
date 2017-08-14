@@ -18,6 +18,7 @@ PODS:
   - DACircularProgress (2.3.1)
   - DZNEmptyDataSet (1.8.1)
   - MJRefresh (3.1.12)
+  - pop (1.0.10)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -29,8 +30,18 @@ DEPENDENCIES:
   - DACircularProgress
   - DZNEmptyDataSet (= 1.8.1)
   - MJRefresh (~> 3.1.0)
+  - pop (from `https://github.com/facebook/pop.git`)
   - SDWebImage (~> 3.8.2)
   - TZImagePickerController (= 1.8.1)
+
+EXTERNAL SOURCES:
+  pop:
+    :git: https://github.com/facebook/pop.git
+
+CHECKOUT OPTIONS:
+  pop:
+    :commit: e645e895687a29f0093b92e1026656f50e8308be
+    :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -38,9 +49,10 @@ SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TZImagePickerController: 086034156913375cb19c8e4103562f15322c3b36
 
-PODFILE CHECKSUM: bd51a5d9f16d8749fa1baee1d007010ed4563622
+PODFILE CHECKSUM: 7872a5ad5ed37455440acc27e5409e0c55718602
 
 COCOAPODS: 1.2.1

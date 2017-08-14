@@ -48,6 +48,18 @@
 		19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */; };
 		19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */; };
 		19BF990D1F41460500B2BB35 /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF990C1F41460500B2BB35 /* WMTextView.m */; };
+		19BF99101F415A1200B2BB35 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF990F1F415A1200B2BB35 /* WMLoginViewController.m */; };
+		19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99121F41A0FF00B2BB35 /* WMAIListViewController.m */; };
+		19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99151F41A13200B2BB35 /* WMBaseModel.m */; };
+		19BF99191F41A14200B2BB35 /* WMAIListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99181F41A14200B2BB35 /* WMAIListModel.m */; };
+		19BF991E1F41A3A500B2BB35 /* WMAIListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF991D1F41A3A500B2BB35 /* WMAIListCell.m */; };
+		19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99231F41A63E00B2BB35 /* StringAttribute.m */; };
+		19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99271F41A63E00B2BB35 /* FontAttribute.m */; };
+		19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99291F41A63E00B2BB35 /* ForegroundColorAttribute.m */; };
+		19BF99331F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF992C1F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m */; };
+		19BF99341F41A63E00B2BB35 /* NSString+StringAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF992E1F41A63E00B2BB35 /* NSString+StringAttribute.m */; };
+		19BF99371F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99361F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m */; };
+		19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99391F41B15600B2BB35 /* WMAIHerbDetailViewController.m */; };
 		19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E61F271E9000D56386 /* WMRecordViewController.m */; };
 		19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E91F27216A00D56386 /* WMFoundViewController.m */; };
 		19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */; };
@@ -140,6 +152,32 @@
 		19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseTableCollectionControlController.m; sourceTree = "<group>"; };
 		19BF990B1F41460500B2BB35 /* WMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextView.h; sourceTree = "<group>"; };
 		19BF990C1F41460500B2BB35 /* WMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextView.m; sourceTree = "<group>"; };
+		19BF990E1F415A1200B2BB35 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
+		19BF990F1F415A1200B2BB35 /* WMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLoginViewController.m; sourceTree = "<group>"; };
+		19BF99111F41A0FF00B2BB35 /* WMAIListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAIListViewController.h; sourceTree = "<group>"; };
+		19BF99121F41A0FF00B2BB35 /* WMAIListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAIListViewController.m; sourceTree = "<group>"; };
+		19BF99141F41A13200B2BB35 /* WMBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseModel.h; sourceTree = "<group>"; };
+		19BF99151F41A13200B2BB35 /* WMBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseModel.m; sourceTree = "<group>"; };
+		19BF99171F41A14200B2BB35 /* WMAIListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAIListModel.h; sourceTree = "<group>"; };
+		19BF99181F41A14200B2BB35 /* WMAIListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAIListModel.m; sourceTree = "<group>"; };
+		19BF991C1F41A3A500B2BB35 /* WMAIListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAIListCell.h; sourceTree = "<group>"; };
+		19BF991D1F41A3A500B2BB35 /* WMAIListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAIListCell.m; sourceTree = "<group>"; };
+		19BF99221F41A63E00B2BB35 /* StringAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringAttribute.h; sourceTree = "<group>"; };
+		19BF99231F41A63E00B2BB35 /* StringAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringAttribute.m; sourceTree = "<group>"; };
+		19BF99241F41A63E00B2BB35 /* StringAttributeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringAttributeProtocol.h; sourceTree = "<group>"; };
+		19BF99261F41A63E00B2BB35 /* FontAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontAttribute.h; sourceTree = "<group>"; };
+		19BF99271F41A63E00B2BB35 /* FontAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontAttribute.m; sourceTree = "<group>"; };
+		19BF99281F41A63E00B2BB35 /* ForegroundColorAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForegroundColorAttribute.h; sourceTree = "<group>"; };
+		19BF99291F41A63E00B2BB35 /* ForegroundColorAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForegroundColorAttribute.m; sourceTree = "<group>"; };
+		19BF992B1F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+StringAttribute.h"; sourceTree = "<group>"; };
+		19BF992C1F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+StringAttribute.m"; sourceTree = "<group>"; };
+		19BF992D1F41A63E00B2BB35 /* NSString+StringAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringAttribute.h"; sourceTree = "<group>"; };
+		19BF992E1F41A63E00B2BB35 /* NSString+StringAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringAttribute.m"; sourceTree = "<group>"; };
+		19BF992F1F41A63E00B2BB35 /* StringAttributeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringAttributeHelper.h; sourceTree = "<group>"; };
+		19BF99351F41ABD200B2BB35 /* WMAIBeginnerCookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAIBeginnerCookViewController.h; sourceTree = "<group>"; };
+		19BF99361F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAIBeginnerCookViewController.m; sourceTree = "<group>"; };
+		19BF99381F41B15600B2BB35 /* WMAIHerbDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMAIHerbDetailViewController.h; sourceTree = "<group>"; };
+		19BF99391F41B15600B2BB35 /* WMAIHerbDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMAIHerbDetailViewController.m; sourceTree = "<group>"; };
 		19CEF9E51F271E9000D56386 /* WMRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMRecordViewController.h; sourceTree = "<group>"; };
 		19CEF9E61F271E9000D56386 /* WMRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRecordViewController.m; sourceTree = "<group>"; };
 		19CEF9E81F27216A00D56386 /* WMFoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFoundViewController.h; sourceTree = "<group>"; };
@@ -217,6 +255,14 @@
 				198605FD1F1773130034C713 /* TestViewController.m */,
 				19F011A11F298FAE00F30BC9 /* WMProductListViewController.h */,
 				19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */,
+				19BF990E1F415A1200B2BB35 /* WMLoginViewController.h */,
+				19BF990F1F415A1200B2BB35 /* WMLoginViewController.m */,
+				19BF99111F41A0FF00B2BB35 /* WMAIListViewController.h */,
+				19BF99121F41A0FF00B2BB35 /* WMAIListViewController.m */,
+				19BF99351F41ABD200B2BB35 /* WMAIBeginnerCookViewController.h */,
+				19BF99361F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m */,
+				19BF99381F41B15600B2BB35 /* WMAIHerbDetailViewController.h */,
+				19BF99391F41B15600B2BB35 /* WMAIHerbDetailViewController.m */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -284,6 +330,7 @@
 		196032501F09E7AB00126AC7 /* Pleasure */ = {
 			isa = PBXGroup;
 			children = (
+				19BF991F1F41A63700B2BB35 /* ThirdPart */,
 				192C13351F0B9B2100759221 /* Config */,
 				192C13251F0B8EDE00759221 /* Util */,
 				1960326A1F09EBF500126AC7 /* Models */,
@@ -322,6 +369,7 @@
 		196032691F09EBEF00126AC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				19BF991A1F41A37200B2BB35 /* Cells */,
 				19F0118C1F2987AE00F30BC9 /* CustomView */,
 			);
 			path = Views;
@@ -330,6 +378,10 @@
 		1960326A1F09EBF500126AC7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				19BF99141F41A13200B2BB35 /* WMBaseModel.h */,
+				19BF99151F41A13200B2BB35 /* WMBaseModel.m */,
+				19BF99171F41A14200B2BB35 /* WMAIListModel.h */,
+				19BF99181F41A14200B2BB35 /* WMAIListModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -401,6 +453,74 @@
 				1920F1091F3D619900087326 /* WMTapDetectingImageView.m */,
 			);
 			path = WMPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		19BF991A1F41A37200B2BB35 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				19BF991B1F41A39200B2BB35 /* WMAIListCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		19BF991B1F41A39200B2BB35 /* WMAIListCell */ = {
+			isa = PBXGroup;
+			children = (
+				19BF991C1F41A3A500B2BB35 /* WMAIListCell.h */,
+				19BF991D1F41A3A500B2BB35 /* WMAIListCell.m */,
+			);
+			path = WMAIListCell;
+			sourceTree = "<group>";
+		};
+		19BF991F1F41A63700B2BB35 /* ThirdPart */ = {
+			isa = PBXGroup;
+			children = (
+				19BF99201F41A63E00B2BB35 /* StringAttribute */,
+			);
+			path = ThirdPart;
+			sourceTree = "<group>";
+		};
+		19BF99201F41A63E00B2BB35 /* StringAttribute */ = {
+			isa = PBXGroup;
+			children = (
+				19BF99211F41A63E00B2BB35 /* AbstractAttribute */,
+				19BF99251F41A63E00B2BB35 /* ConcreteAttribute */,
+				19BF992A1F41A63E00B2BB35 /* StringAttribute+Category */,
+				19BF992F1F41A63E00B2BB35 /* StringAttributeHelper.h */,
+			);
+			path = StringAttribute;
+			sourceTree = "<group>";
+		};
+		19BF99211F41A63E00B2BB35 /* AbstractAttribute */ = {
+			isa = PBXGroup;
+			children = (
+				19BF99221F41A63E00B2BB35 /* StringAttribute.h */,
+				19BF99231F41A63E00B2BB35 /* StringAttribute.m */,
+				19BF99241F41A63E00B2BB35 /* StringAttributeProtocol.h */,
+			);
+			path = AbstractAttribute;
+			sourceTree = "<group>";
+		};
+		19BF99251F41A63E00B2BB35 /* ConcreteAttribute */ = {
+			isa = PBXGroup;
+			children = (
+				19BF99261F41A63E00B2BB35 /* FontAttribute.h */,
+				19BF99271F41A63E00B2BB35 /* FontAttribute.m */,
+				19BF99281F41A63E00B2BB35 /* ForegroundColorAttribute.h */,
+				19BF99291F41A63E00B2BB35 /* ForegroundColorAttribute.m */,
+			);
+			path = ConcreteAttribute;
+			sourceTree = "<group>";
+		};
+		19BF992A1F41A63E00B2BB35 /* StringAttribute+Category */ = {
+			isa = PBXGroup;
+			children = (
+				19BF992B1F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.h */,
+				19BF992C1F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m */,
+				19BF992D1F41A63E00B2BB35 /* NSString+StringAttribute.h */,
+				19BF992E1F41A63E00B2BB35 /* NSString+StringAttribute.m */,
+			);
+			path = "StringAttribute+Category";
 			sourceTree = "<group>";
 		};
 		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
@@ -565,13 +685,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
+				19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */,
 				192741511F0C841C00077E49 /* WMSwizzleMethod.m in Sources */,
+				19BF99101F415A1200B2BB35 /* WMLoginViewController.m in Sources */,
+				19BF991E1F41A3A500B2BB35 /* WMAIListCell.m in Sources */,
 				1953A2CC1F342C890061B514 /* WMStretchableTableHeaderView.m in Sources */,
 				196032931F0A563500126AC7 /* BaseViewController.m in Sources */,
+				19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */,
+				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
+				19BF99191F41A14200B2BB35 /* WMAIListModel.m in Sources */,
 				196032611F09E7AB00126AC7 /* main.m in Sources */,
 				192C13421F0BB8B000759221 /* DemoViewController.m in Sources */,
 				19382EB71F39B3730029AAA3 /* UITextView+LLDebugOnly.m in Sources */,
 				19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */,
+				19BF99371F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m in Sources */,
+				19BF99331F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m in Sources */,
 				1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */,
 				190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */,
 				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
@@ -586,10 +715,13 @@
 				192C132E1F0B924600759221 /* AppNavigationBar.m in Sources */,
 				19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */,
 				194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */,
+				19BF99341F41A63E00B2BB35 /* NSString+StringAttribute.m in Sources */,
 				192C13311F0B942400759221 /* UIImage+AppImage.m in Sources */,
 				196E1F2A1F0B7FEB00C2D678 /* BaseTableViewController.m in Sources */,
 				19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */,
 				192C13341F0B94E000759221 /* UIColor+AppColor.m in Sources */,
+				19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */,
+				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,
 				19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */,
 				1953A2CA1F342C890061B514 /* WMScrollContentView.m in Sources */,
 				199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */,

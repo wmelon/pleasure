@@ -17,5 +17,6 @@
 #import "WMRecordViewController.h"
 #import "DemoViewController.h"
 #import "WMProductListViewController.h"
+#import "WMAIListViewController.h"
 
 #endif /* ViewControllerHeader_h */

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SwitchViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface AppDelegate ()
 
@@ -23,6 +24,7 @@
     self.window.rootViewController = [SwitchViewController sharedSVC].rootShowViewController;
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [AVOSCloud setApplicationId:@"277O51p30kOOJ5SUy9C7x2bs-gzGzoHsz" clientKey:@"FhxSVmiqkN9CjIPdA9xppdlk"];
     return YES;
 }
 
