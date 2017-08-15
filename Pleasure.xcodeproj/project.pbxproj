@@ -62,6 +62,8 @@
 		19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99391F41B15600B2BB35 /* WMAIHerbDetailViewController.m */; };
 		19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E61F271E9000D56386 /* WMRecordViewController.m */; };
 		19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CEF9E91F27216A00D56386 /* WMFoundViewController.m */; };
+		19D1D2411F42D397001DFC0D /* WMDownloadButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D1D2401F42D397001DFC0D /* WMDownloadButton.m */; };
+		19D1D2441F42D3CC001DFC0D /* WMDownloadListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D1D2431F42D3CC001DFC0D /* WMDownloadListViewController.m */; };
 		19DB4A8C1F0F867000FE3EAD /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */; };
 		19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB4ABF1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.m */; };
 		19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F0119D1F298DA700F30BC9 /* WMUserHeaderView.m */; };
@@ -182,6 +184,10 @@
 		19CEF9E61F271E9000D56386 /* WMRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMRecordViewController.m; sourceTree = "<group>"; };
 		19CEF9E81F27216A00D56386 /* WMFoundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMFoundViewController.h; sourceTree = "<group>"; };
 		19CEF9E91F27216A00D56386 /* WMFoundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMFoundViewController.m; sourceTree = "<group>"; };
+		19D1D23F1F42D397001DFC0D /* WMDownloadButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDownloadButton.h; sourceTree = "<group>"; };
+		19D1D2401F42D397001DFC0D /* WMDownloadButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDownloadButton.m; sourceTree = "<group>"; };
+		19D1D2421F42D3CC001DFC0D /* WMDownloadListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDownloadListViewController.h; sourceTree = "<group>"; };
+		19D1D2431F42D3CC001DFC0D /* WMDownloadListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDownloadListViewController.m; sourceTree = "<group>"; };
 		19DB4A8A1F0F867000FE3EAD /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		19DB4A8B1F0F867000FE3EAD /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		19DB4ABE1F0F8FF700FE3EAD /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
@@ -263,6 +269,8 @@
 				19BF99361F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m */,
 				19BF99381F41B15600B2BB35 /* WMAIHerbDetailViewController.h */,
 				19BF99391F41B15600B2BB35 /* WMAIHerbDetailViewController.m */,
+				19D1D2421F42D3CC001DFC0D /* WMDownloadListViewController.h */,
+				19D1D2431F42D3CC001DFC0D /* WMDownloadListViewController.m */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -523,9 +531,19 @@
 			path = "StringAttribute+Category";
 			sourceTree = "<group>";
 		};
+		19D1D23B1F42D370001DFC0D /* WMCustomView */ = {
+			isa = PBXGroup;
+			children = (
+				19D1D23F1F42D397001DFC0D /* WMDownloadButton.h */,
+				19D1D2401F42D397001DFC0D /* WMDownloadButton.m */,
+			);
+			path = WMCustomView;
+			sourceTree = "<group>";
+		};
 		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				19D1D23B1F42D370001DFC0D /* WMCustomView */,
 				1995F7FE1F3C3B3D0036CFBA /* WMPhotoBrowser */,
 				19382EB11F396B9A0029AAA3 /* WMInputInfoView */,
 				1953A2C01F342C890061B514 /* WMScrollPageView */,
@@ -716,6 +734,7 @@
 				19CEF9EA1F27216A00D56386 /* WMFoundViewController.m in Sources */,
 				194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */,
 				19BF99341F41A63E00B2BB35 /* NSString+StringAttribute.m in Sources */,
+				19D1D2441F42D3CC001DFC0D /* WMDownloadListViewController.m in Sources */,
 				192C13311F0B942400759221 /* UIImage+AppImage.m in Sources */,
 				196E1F2A1F0B7FEB00C2D678 /* BaseTableViewController.m in Sources */,
 				19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */,
@@ -737,6 +756,7 @@
 				1960328E1F0A55A000126AC7 /* RootViewController.m in Sources */,
 				196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */,
 				1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */,
+				19D1D2411F42D397001DFC0D /* WMDownloadButton.m in Sources */,
 				1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */,
 				1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */,
 			);

@@ -20,6 +20,7 @@
 #import "SwitchViewController.h"
 #import "NotificationConfig.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
+#import <Masonry.h>
 
 
 #endif /* Pleasure_pch */

@@ -10,6 +10,7 @@
 #import "WMAIListModel.h"
 #import "WMAIListCell.h"
 #import "WMAIBeginnerCookViewController.h"
+#import "WMDownloadListViewController.h"
 
 @interface WMAIListViewController ()
 
@@ -53,7 +54,7 @@
                        [WMAIListModel initWithTitle:@"本地闹钟" andTargetVC:[UIViewController class]],
                        [WMAIListModel initWithTitle:@"Twitter开场动画" andTargetVC:[UIViewController class]],
                        [WMAIListModel initWithTitle:@"画板" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"下载按钮" andTargetVC:[UIViewController class]],
+                       [WMAIListModel initWithTitle:@"下载按钮" andTargetVC:[WMDownloadListViewController class]],
                        [WMAIListModel initWithTitle:@"officebuddy" andTargetVC:[UIViewController class]],
                        [WMAIListModel initWithTitle:@"折叠" andTargetVC:[UIViewController class]],
                        [WMAIListModel initWithTitle:@"类似Safari效果" andTargetVC:[UIViewController class]],

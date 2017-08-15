@@ -13,4 +13,5 @@ target :Pleasure do
     pod 'DZNEmptyDataSet', '1.8.1'
     pod 'TZImagePickerController' , '1.8.1'   # 图片选择器
     pod 'DACircularProgress'  # 进度条
+    pod 'Masonry'                 #自动适配
 end
