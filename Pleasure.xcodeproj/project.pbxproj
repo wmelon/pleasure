@@ -39,6 +39,7 @@
 		196E1F2A1F0B7FEB00C2D678 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F291F0B7FEB00C2D678 /* BaseTableViewController.m */; };
 		196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2C1F0B7FFF00C2D678 /* BaseCollectionViewController.m */; };
 		196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2F1F0B800F00C2D678 /* MineViewController.m */; };
+		197204E31F46F06300001A83 /* WMDownloadWaveLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 197204E21F46F06200001A83 /* WMDownloadWaveLayer.m */; };
 		198605FE1F1773130034C713 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198605FD1F1773130034C713 /* TestViewController.m */; };
 		1995F8011F3C3B9C0036CFBA /* WMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8001F3C3B9C0036CFBA /* WMPhotoBrowser.m */; };
 		1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8031F3C3BE80036CFBA /* WMPhotoModel.m */; };
@@ -136,6 +137,8 @@
 		196E1F2E1F0B800F00C2D678 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		196E1F2F1F0B800F00C2D678 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		196E1F311F0B809E00C2D678 /* Pleasure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pleasure.pch; sourceTree = "<group>"; };
+		197204E11F46F06200001A83 /* WMDownloadWaveLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDownloadWaveLayer.h; sourceTree = "<group>"; };
+		197204E21F46F06200001A83 /* WMDownloadWaveLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDownloadWaveLayer.m; sourceTree = "<group>"; };
 		198605FC1F1773130034C713 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		198605FD1F1773130034C713 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		1995F7FF1F3C3B9C0036CFBA /* WMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoBrowser.h; sourceTree = "<group>"; };
@@ -536,6 +539,8 @@
 			children = (
 				19D1D23F1F42D397001DFC0D /* WMDownloadButton.h */,
 				19D1D2401F42D397001DFC0D /* WMDownloadButton.m */,
+				197204E11F46F06200001A83 /* WMDownloadWaveLayer.h */,
+				197204E21F46F06200001A83 /* WMDownloadWaveLayer.m */,
 			);
 			path = WMCustomView;
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				197204E31F46F06300001A83 /* WMDownloadWaveLayer.m in Sources */,
 				19DB4AC01F0F933B00FE3EAD /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
 				19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */,

@@ -9,5 +9,5 @@
 #import "WMBaseTableCollectionControlController.h"
 
 @interface BaseCollectionViewController : WMBaseTableCollectionControlController
-
+@property (nonatomic , strong , readonly)UICollectionView * collectionView;
 @end

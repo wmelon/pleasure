@@ -8,6 +8,7 @@
 
 #import "WMDownloadButton.h"
 #import <POP.h>
+#import "WMDownloadWaveLayer.h"
 
 @interface WMDownloadButton()<CAAnimationDelegate>
 /// 背景圆
@@ -20,6 +21,8 @@
 @property (nonatomic , strong) CAShapeLayer *progressShapeLayer;
 /// 文件下载大小显示
 @property (nonatomic , strong) UILabel *progressLabel;
+/// 波浪动画
+@property (nonatomic , strong) WMDownloadWaveLayer *waveLayer;
 @end
 
 @implementation WMDownloadButton
@@ -233,6 +236,18 @@
     });
 }
 
+/**
+ 结束
+ */
+- (void)end {
+    self.state                           = WMDownloadButtonEnd;
+    self.waveLayer.stop = YES;
+    [self scaleAnimationWithLayer:self.progressLabel.layer fromValue:1. toValue:.1];
+    
+    [self opacityAnimationWithLayer:self.progressLabel.layer fromValue:1. toValue:0.];
+}
+
+
 #pragma mark -CAAnimationDelegate
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     NSString *name = [anim valueForKey:@"name"];
@@ -248,12 +263,12 @@
         [self opacityAnimationWithLayer:self.arrowShapeLayer fromValue:1. toValue:0.];
         self.progressShapeLayer.lineWidth       = 6.;
         
-//        self.waveLayer                          = [[AIDownloadWaveLayer alloc]init];
-//        self.waveLayer.onView                   = self;
-//        self.waveLayer.lineWidth                = 3.;
-//        self.waveLayer.waveColor                = [UIColor flatWhiteColor];
-//        [self.layer addSublayer:self.waveLayer];
-//        [self.waveLayer waveAnimate];
+        self.waveLayer                          = [[WMDownloadWaveLayer alloc] init];
+        self.waveLayer.onView                   = self;
+        self.waveLayer.lineWidth                = 3.;
+        self.waveLayer.strokeColor              = [self flatWhiteColorDark].CGColor;
+        [self.layer addSublayer:self.waveLayer];
+        [self.waveLayer waveAnimate];
         //文件大小
         
         [self scaleAnimationWithLayer:self.progressLabel.layer fromValue:.1 toValue:1.];
@@ -296,10 +311,9 @@
 
 - (void)setProgress:(CGFloat)progress{
     _progress = progress;
-    self.progressShapeLayer.strokeStart   = 1-progress;
-    NSLog(@"++++++++++++++++++%f" , progress);
+    self.progressShapeLayer.strokeStart = 1 - progress;
     if (progress >= 1) {
-//        [self end];
+        [self end];
     }
 }
 - (void)setText:(NSString *)text{

@@ -9,10 +9,12 @@
 #import "BaseCollectionViewController.h"
 
 @interface BaseCollectionViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
-@property (nonatomic , strong)UICollectionView * collectionView;
+
 @end
 
 @implementation BaseCollectionViewController
+
+@synthesize collectionView = _collectionView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
