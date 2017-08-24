@@ -13,6 +13,7 @@
 
 @interface DemoViewController ()
 @property (nonatomic , strong)CAShapeLayer *elasticShaperLayer;
+@property (nonatomic , strong)UIImageView *imageView;
 @end
 
 @implementation DemoViewController
@@ -23,8 +24,29 @@
     
     self.navigationItem.title = @"这是demo一";
 //    [self requestRefresh];
-    [self beginRefresh];
+//    [self beginRefresh];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    UIImage *image = [UIImage imageNamed:@"pc_bg"];
+    imageView.userInteractionEnabled = YES;
+    imageView.image =image;
+//    CGFloat width = kScreenWidth;
+//    CGFloat height = kScreenWidth * image.size.height / image.size.width;
+//    imageView.frame = CGRectMake(0, 0, width, height);
+    [self.view addSubview:imageView];
+    
+    self.imageView = imageView;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(present)];
+    [imageView addGestureRecognizer:tap];
 }
+
+- (void)present{
+    Demo2ViewController * vc = [Demo2ViewController new];
+    vc.srcImageView = self.imageView;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+
 - (void)requestRefresh{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         

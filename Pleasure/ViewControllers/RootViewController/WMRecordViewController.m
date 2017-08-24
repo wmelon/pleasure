@@ -36,10 +36,6 @@
 - (void)rightAction:(UIButton *)button{
     /// 发布消息
     [_svc wm_pushViewController:[WMAIListViewController new]];
-//    AVUser * user = [AVUser currentUser];
-//    if (!user){
-////        [_svc pr];
-//    }
 }
 
 

@@ -9,10 +9,12 @@
 #import "WMPhotoBrowser.h"
 #import "SDImageCache.h"
 #import "WMZoomingScrollCell.h"
+#import "WMInteractiveTransition.h"
+#import "WMBaseTransitionAnimator.h"
 
 #define PADDING                  10
 
-@interface WMPhotoBrowser () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout ,UIGestureRecognizerDelegate>{
+@interface WMPhotoBrowser () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout ,UIGestureRecognizerDelegate , UIViewControllerTransitioningDelegate>{
     // Present
     UIView *_senderViewForAnimation;
     
@@ -30,8 +32,12 @@
 
 @property (nonatomic , strong) WMZoomingScrollCell *zoomingScrollCell;
 
-@property (nonatomic, assign) CGPoint panGestureBeginPoint;
+@property (nonatomic , assign) CGPoint panGestureBeginPoint;
 
+/// 手势过度管理器
+@property (nonatomic , strong) WMInteractiveTransition *interactiveTransition;
+
+@property (nonatomic , strong) UIImageView *MyImageView;
 @end
 
 @implementation WMPhotoBrowser
@@ -61,8 +67,27 @@
 
 - (void)wm_initialisation{
     _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
+    
+    self.transitioningDelegate = self;
+    self.modalPresentationStyle = UIModalPresentationCustom;
+    self.interactiveTransition = [WMInteractiveTransition interactiveTransitionWithTransitionType:(WMInteractiveTransitionTypeDismiss) gestureDirection:(WMInteractiveTransitionGestureDirectionDown)];
+    __weak typeof(self) weakself = self;
+    [self.interactiveTransition addPanGestureForViewController:self gestureConifg:^{
+        [weakself wm_dismiss];
+    }];
+    
+    _MyImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    UIImage *image = [UIImage imageNamed:@"pc_bg"];
+    _MyImageView.userInteractionEnabled = YES;
+    _MyImageView.image =image;
+    CGFloat width = kScreenWidth;
+    CGFloat height = kScreenWidth * image.size.height / image.size.width;
+    _MyImageView.frame = CGRectMake(0, 0, width, height);
+    [self.view addSubview:_MyImageView];
 }
-
+- (void)wm_dismiss{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -71,135 +96,51 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor blackColor];
     self.view.clipsToBounds = YES;
-    [self.view addSubview:self.collectionView];
+//    [self.view addSubview:self.collectionView];
     
-//    UILongPressGestureRecognizer *press = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
-//    press.delegate = self;
-//    [self.view addGestureRecognizer:press];
-//    
-//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
-//    [self.view addGestureRecognizer:pan];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wm_dismiss)];
+    [self.view addGestureRecognizer:tap];
     
     [self updateNavigation];
 }
 
+#pragma mark -- UIViewControllerTransitioningDelegate
 
-- (void)longPressGestureRecognized:(UIGestureRecognizer *)g{
-//    if (!_isPresented) return;
-//    
-//    YYPhotoGroupCell *tile = [self cellForPage:self.currentPage];
-//    if (!tile.imageView.image) return;
-//    
-//    // try to save original image data if the image contains multi-frame (such as GIF/APNG)
-//    id imageItem = [tile.imageView.image yy_imageDataRepresentation];
-//    YYImageType type = YYImageDetectType((__bridge CFDataRef)(imageItem));
-//    if (type != YYImageTypePNG &&
-//        type != YYImageTypeJPEG &&
-//        type != YYImageTypeGIF) {
-//        imageItem = tile.imageView.image;
-//    }
-//    
-//    UIActivityViewController *activityViewController =
-//    [[UIActivityViewController alloc] initWithActivityItems:@[imageItem] applicationActivities:nil];
-//    if ([activityViewController respondsToSelector:@selector(popoverPresentationController)]) {
-//        activityViewController.popoverPresentationController.sourceView = self;
-//    }
-//    
-//    UIViewController *toVC = self.toContainerView.viewController;
-//    if (!toVC) toVC = self.viewController;
-//    [toVC presentViewController:activityViewController animated:YES completion:nil];
+- (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+    WMBaseTransitionAnimator *animator = [WMBaseTransitionAnimator transitionAnimatorWithTransitionType:(WMTransitionAnimatorTypePresent)];
+    [animator setSrcView:self.srcImageView];
+//    [animator setDestFrame:[self wm_getCurrentImageFrame]];
+    [animator setDestView:self.MyImageView];
+    return animator;
 }
 
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)sender {
-//    // Initial Setup
-//    UIScrollView *scrollView = self.zoomingScrollCell.zoomScrollView;
-//    //IDMTapDetectingImageView *scrollView.photoImageView = scrollView.photoImageView;
-//    
-//    static float firstX, firstY;
-//    
-//    float viewHeight = scrollView.frame.size.height;
-//    float viewHalfHeight = viewHeight/2;
-//    
-//    CGPoint translatedPoint = [(UIPanGestureRecognizer*)sender translationInView:self.view];
-//    
-//    // Gesture Began
-//    if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateBegan) {
-////        [self setControlsHidden:YES animated:YES permanent:YES];
-//        
-//        firstX = [scrollView center].x;
-//        firstY = [scrollView center].y;
-//        
-//        _senderViewForAnimation.hidden = YES;
-//        
-//        _isdraggingPhoto = YES;
-//        [self setNeedsStatusBarAppearanceUpdate];
-//    }
-//    
-//    translatedPoint = CGPointMake(firstX, firstY+translatedPoint.y);
-//    [scrollView setCenter:translatedPoint];
-//    
-//    float newY = scrollView.center.y - viewHalfHeight;
-//    float newAlpha = 1 - fabsf(newY)/viewHeight; //abs(newY)/viewHeight * 1.8;
-//    
-//    self.view.opaque = YES;
-//    
-//    self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:newAlpha];
-//    
-//    // Gesture Ended
-//    if ([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateEnded) {
-//        if(scrollView.center.y > viewHalfHeight+40 || scrollView.center.y < viewHalfHeight-40) // Automatic Dismiss View
-//        {
-//            if (_senderViewForAnimation) {
-//                [self performCloseAnimationWithScrollView:scrollView];
-//                return;
-//            }
-//            
-//            CGFloat finalX = firstX, finalY;
-//            
-//            CGFloat windowsHeigt = [_applicationWindow frame].size.height;
-//            
-//            if(scrollView.center.y > viewHalfHeight+30) // swipe down
-//                finalY = windowsHeigt*2;
-//            else // swipe up
-//                finalY = -viewHalfHeight;
-//            
-//            CGFloat animationDuration = 0.35;
-//            
-//            [UIView beginAnimations:nil context:NULL];
-//            [UIView setAnimationDuration:animationDuration];
-//            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-//            [UIView setAnimationDelegate:self];
-//            [scrollView setCenter:CGPointMake(finalX, finalY)];
-//            self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
-//            [UIView commitAnimations];
-//            
-////            [self performSelector:@selector(doneButtonPressed:) withObject:self afterDelay:animationDuration];
-//        }
-//        else // Continue Showing View
-//        {
-//            _isdraggingPhoto = NO;
-//            [self setNeedsStatusBarAppearanceUpdate];
-//            
-//            self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
-//            
-//            CGFloat velocityY = (.35*[(UIPanGestureRecognizer*)sender velocityInView:self.view].y);
-//            
-//            CGFloat finalX = firstX;
-//            CGFloat finalY = viewHalfHeight;
-//            
-//            CGFloat animationDuration = (ABS(velocityY)*.0002)+.2;
-//            
-//            [UIView beginAnimations:nil context:NULL];
-//            [UIView setAnimationDuration:animationDuration];
-//            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-//            [UIView setAnimationDelegate:self];
-//            [scrollView setCenter:CGPointMake(finalX, finalY)];
-//            [UIView commitAnimations];
-//        }
-//    }
+- (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    WMBaseTransitionAnimator *animator = [WMBaseTransitionAnimator transitionAnimatorWithTransitionType:(WMTransitionAnimatorTypeDismiss)];
+    [animator setSrcView:self.srcImageView];
+//    [animator setDestView:[self wm_getDestImageView]];
+//    [animator setDestFrame:[self wm_getCurrentImageFrame]];
+    [animator setDestView:self.MyImageView];
+    return animator;
 }
 
+- (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator{
+    return self.interactiveTransition.interation ? self.interactiveTransition : nil;
+}
 
+- (CGRect)wm_getCurrentImageFrame{
+    WMPhotoModel *photo = self.photos[_currentIndex];
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = width * photo.image.size.height / photo.image.size.width;
+    CGRect frame = CGRectMake(0, (self.view.frame.size.height - height) / 2, width, height);
+    return frame;
+}
+- (UIImageView *)wm_getDestImageView{
+    
+    WMZoomingScrollCell *cell = (WMZoomingScrollCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+    UIImageView * imageView = cell.imageShowView;
+    
+    return imageView;
+}
 
 #pragma mark -- public method
 

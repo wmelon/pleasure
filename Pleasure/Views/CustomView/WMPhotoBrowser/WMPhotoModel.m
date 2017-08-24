@@ -17,9 +17,6 @@
     id <SDWebImageOperation> _webImageOperation;
 }
 
-/// 加载成功存储图片
-@property (nonatomic, strong) UIImage *image;
-
 /// 图片地址
 @property (nonatomic, strong) NSURL *photoURL;
 
@@ -51,7 +48,7 @@
 - (id)initWithImage:(UIImage *)image {
     if ((self = [super init])) {
         self.emptyImage = YES;
-        self.image = image;
+        _image = image;
     }
     return self;
 }
@@ -120,12 +117,12 @@
                                    ALAssetRepresentation *rep = [asset defaultRepresentation];
                                    CGImageRef iref = [rep fullScreenImage];
                                    if (iref) {
-                                       self.image = [UIImage imageWithCGImage:iref];
+                                       _image = [UIImage imageWithCGImage:iref];
                                    }
                                    [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
                                }
                               failureBlock:^(NSError *error) {
-                                  self.image = nil;
+                                  _image = nil;
                                   NSLog(@"Photo from asset library error: %@",error);
                                   [self performSelectorOnMainThread:@selector(imageLoadingComplete) withObject:nil waitUntilDone:NO];
                               }];
@@ -142,7 +139,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         @autoreleasepool {
             @try {
-                self.image = [UIImage imageWithContentsOfFile:url.path];
+                _image = [UIImage imageWithContentsOfFile:url.path];
                 if (!_image) {
                     NSLog(@"Error loading photo from path: %@", url.path);
                 }
@@ -162,7 +159,7 @@
                                                   progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                                                       if (expectedSize > 0) {
                                                           float progress = receivedSize / (float)expectedSize;
-                                                          self.image = nil;
+                                                          _image = nil;
                                                           self.progress = progress;
                                                           
                                                           dispatch_async(dispatch_get_main_queue(), ^{
@@ -175,7 +172,7 @@
                                                          NSLog(@"SDWebImage failed to download image: %@", error);
                                                      }
                                                      _webImageOperation = nil;
-                                                     self.image = image;
+                                                     _image = image;
                                                      dispatch_async(dispatch_get_main_queue(), ^{
                                                          [self imageLoadingComplete];
                                                      });

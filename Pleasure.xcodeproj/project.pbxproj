@@ -27,6 +27,8 @@
 		1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C61F342C890061B514 /* WMScrollPageView.m */; };
 		1953A2CC1F342C890061B514 /* WMStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */; };
 		1953A2CF1F3450B50061B514 /* WMScrollBarItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */; };
+		195F620B1F4D79C000BB6CA6 /* WMInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 195F620A1F4D79C000BB6CA6 /* WMInteractiveTransition.m */; };
+		195F620E1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 195F620D1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m */; };
 		196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196032521F09E7AB00126AC7 /* AppDelegate.m */; };
 		1960325B1F09E7AB00126AC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1960325A1F09E7AB00126AC7 /* Assets.xcassets */; };
 		1960325E1F09E7AB00126AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1960325C1F09E7AB00126AC7 /* LaunchScreen.storyboard */; };
@@ -112,6 +114,10 @@
 		1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStretchableTableHeaderView.m; sourceTree = "<group>"; };
 		1953A2CD1F3450B50061B514 /* WMScrollBarItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItemStyle.h; sourceTree = "<group>"; };
 		1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollBarItemStyle.m; sourceTree = "<group>"; };
+		195F62091F4D79C000BB6CA6 /* WMInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInteractiveTransition.h; sourceTree = "<group>"; };
+		195F620A1F4D79C000BB6CA6 /* WMInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInteractiveTransition.m; sourceTree = "<group>"; };
+		195F620C1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseTransitionAnimator.h; sourceTree = "<group>"; };
+		195F620D1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseTransitionAnimator.m; sourceTree = "<group>"; };
 		1960324E1F09E7AB00126AC7 /* Pleasure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pleasure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196032511F09E7AB00126AC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		196032521F09E7AB00126AC7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -462,6 +468,10 @@
 				1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */,
 				1920F1081F3D619900087326 /* WMTapDetectingImageView.h */,
 				1920F1091F3D619900087326 /* WMTapDetectingImageView.m */,
+				195F62091F4D79C000BB6CA6 /* WMInteractiveTransition.h */,
+				195F620A1F4D79C000BB6CA6 /* WMInteractiveTransition.m */,
+				195F620C1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.h */,
+				195F620D1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m */,
 			);
 			path = WMPhotoBrowser;
 			sourceTree = "<group>";
@@ -744,6 +754,7 @@
 				192C13311F0B942400759221 /* UIImage+AppImage.m in Sources */,
 				196E1F2A1F0B7FEB00C2D678 /* BaseTableViewController.m in Sources */,
 				19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */,
+				195F620B1F4D79C000BB6CA6 /* WMInteractiveTransition.m in Sources */,
 				192C13341F0B94E000759221 /* UIColor+AppColor.m in Sources */,
 				19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */,
 				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,
@@ -760,6 +771,7 @@
 				1995F8011F3C3B9C0036CFBA /* WMPhotoBrowser.m in Sources */,
 				196AB4911F0CF0CF00D660A2 /* UIButton+AppButton.m in Sources */,
 				1960328E1F0A55A000126AC7 /* RootViewController.m in Sources */,
+				195F620E1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m in Sources */,
 				196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */,
 				1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */,
 				19D1D2411F42D397001DFC0D /* WMDownloadButton.m in Sources */,

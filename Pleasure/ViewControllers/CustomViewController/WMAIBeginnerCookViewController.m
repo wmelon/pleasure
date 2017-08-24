@@ -193,7 +193,7 @@
     [self presentViewController:herbDetailVC animated:YES completion:nil];
 }
 
-#pragma mark -UIViewControllerTransitioningDelegat
+#pragma mark -UIViewControllerTransitioningDelegate
 
 -(id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     //坐标转换
@@ -212,7 +212,7 @@
     self.listView.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - 220, self.view.frame.size.width, 220);
     [self positionListItem];
 }
--(NSMutableArray *)herbs {
+- (NSMutableArray *)herbs {
     if (!_herbs) {
         _herbs   = [NSMutableArray arrayWithArray:[WMAIHerbModel all]];
     }

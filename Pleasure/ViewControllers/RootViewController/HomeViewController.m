@@ -101,15 +101,16 @@
     
 }
 - (void)requestRefresh{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        for (int i = 0 ; i < 120 ; i++){
-            [self.rows addObject:@""];
-        }
-        [self finishRequest];
-        [self realodEmptyView];
-        [self.tableView reloadData];
-    });
+    for (int i = 0 ; i < 120 ; i++){
+        [self.rows addObject:@""];
+    }
+    [self finishRequest];
+    [self realodEmptyView];
+    [self.tableView reloadData];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        
+//    });
 }
 
 

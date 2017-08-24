@@ -7,9 +7,10 @@
 //
 
 #import "WMFoundViewController.h"
+#import "Demo2ViewController.h"
 
 @interface WMFoundViewController ()
-
+@property (nonatomic , strong)UIImageView *imageView;
 @end
 
 @implementation WMFoundViewController
@@ -17,6 +18,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    UIImage *image = [UIImage imageNamed:@"pc_bg"];
+    imageView.userInteractionEnabled = YES;
+    imageView.image =image;
+    [self.view addSubview:imageView];
+    
+    self.imageView = imageView;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(present)];
+    [imageView addGestureRecognizer:tap];
+}
+- (void)present{
+    Demo2ViewController * vc = [Demo2ViewController new];
+    vc.srcImageView = self.imageView;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

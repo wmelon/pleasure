@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WMPhotoModel.h"
+#import "WMTapDetectingImageView.h"
 
 @interface WMZoomingScrollCell : UICollectionViewCell
 
+/// 展示图片的视图
+@property (nonatomic , strong , readonly) WMTapDetectingImageView *imageShowView;
 /// 缩放的视图
 @property (nonatomic , strong , readonly) UIScrollView *zoomScrollView;
 

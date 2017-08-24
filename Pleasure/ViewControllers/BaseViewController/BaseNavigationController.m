@@ -35,9 +35,9 @@
     [super pushViewController:viewController animated:animated];
 }
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-}
+//- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+//{
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

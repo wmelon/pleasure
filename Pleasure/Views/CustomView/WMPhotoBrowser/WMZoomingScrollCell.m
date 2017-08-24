@@ -7,13 +7,9 @@
 //
 
 #import "WMZoomingScrollCell.h"
-#import "WMTapDetectingImageView.h"
 #import <DACircularProgressView.h>
 
 @interface WMZoomingScrollCell() <UIScrollViewDelegate , WMTapDetectingImageViewDelegate>
-
-/// 展示图片的视图
-@property (nonatomic , strong) WMTapDetectingImageView *imageShowView;
 
 /// 接收手势的视图
 @property (nonatomic , strong) WMTapDetectingBgView *tapBgView;
@@ -62,7 +58,7 @@
     imageView.clipsToBounds = YES;
     imageView.tapDelegate = self;
     [scrollView addSubview:imageView];
-    self.imageShowView = imageView;
+    _imageShowView = imageView;
     
     
     

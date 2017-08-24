@@ -9,5 +9,5 @@
 #import "BaseCollectionViewController.h"
 
 @interface Demo2ViewController : BaseCollectionViewController
-
+@property (nonatomic , strong) UIImageView *srcImageView;
 @end
