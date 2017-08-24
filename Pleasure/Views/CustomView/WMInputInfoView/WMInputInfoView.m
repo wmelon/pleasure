@@ -324,7 +324,7 @@
 
     __weak typeof(self) weakself = self;
     /// 打开已经选择图片视图查看
-    [self.ImagePickerHandle photoBrowserWithCurrentIndex:index imageView:photoCell.photoButton.imageView photosArray:self.showPhotos deleteHandle:^(NSInteger deleteIndex) {
+    [self.ImagePickerHandle photoBrowserWithCurrentIndex:index photosArray:self.showPhotos deleteHandle:^(NSInteger deleteIndex) {
         [weakself.showPhotos removeObjectAtIndex:deleteIndex];
         [weakself wm_configCollectionViewWithShowCount:weakself.showPhotos.count];
     }];

@@ -8,6 +8,11 @@
 
 #import "WMBaseTransitionAnimator.h"
 
+@interface WMBaseTransitionAnimator()
+@property (nonatomic , strong) UIImageView *srcImageView;
+@property (nonatomic , strong) UIImageView *destImageView;
+
+@end
 @implementation WMBaseTransitionAnimator
 
 + (instancetype)transitionAnimatorWithTransitionType:(WMTransitionAnimatorType)type{
@@ -50,31 +55,67 @@
 
 }
 
+//拿到当前点击的cell的imageView
+- (UIImageView *)getSrcImageView{
+    if (_srcImageView) return _srcImageView;
+    
+    if ([self.delegate respondsToSelector:@selector(srcImageViewForTransitionAnimator:)]){
+        _srcImageView = [self.delegate srcImageViewForTransitionAnimator:self];
+    }
+    return _srcImageView;
+}
+- (UIImageView *)getDestImageView{
+    if (_destImageView) return _destImageView;
+    
+    if ([self.delegate respondsToSelector:@selector(destImageViewForTransitionAnimator:)]){
+        _destImageView = [self.delegate destImageViewForTransitionAnimator:self];
+    }
+    return _destImageView;
+}
+
+- (CGRect)getDestImageViewFrameWithMainView:(UIView *)view{
+    UIImage *image = [self getSrcImageView].image;
+    CGRect frame = CGRectZero;
+    if (image && image.size.width > 0){
+        CGFloat width = view.frame.size.width;
+        CGFloat height = width * image.size.height / image.size.width;
+        frame = CGRectMake(0, (view.frame.size.height - height) / 2, width, height);
+    }
+    return frame;
+}
+
 #pragma mark -- 子类重写方法
 
 - (void)wm_presentAnimation:(id <UIViewControllerContextTransitioning>)transitionContext{
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    //拿到当前点击的cell的imageView
     
     UIView *containerView = [transitionContext containerView];
-    //snapshotViewAfterScreenUpdates 对cell的imageView截图保存成另一个视图用于过渡，并将视图转换到当前控制器的坐标
-    UIView *tempView = [_srcView snapshotViewAfterScreenUpdates:NO];
-    tempView.frame = [_srcView convertRect:_srcView.bounds toView: containerView];
+    /// 创建一个视图作为动画过度视图
+    UIImageView *tempView = [UIImageView new];
+    tempView.image = [self getSrcImageView].image;
+    tempView.contentMode = [self getSrcImageView].contentMode;
+    tempView.clipsToBounds = [self getSrcImageView].clipsToBounds;
+    tempView.frame = [[self getSrcImageView] convertRect:[self getSrcImageView].bounds toView: containerView];
+    
     //设置动画前的各个控件的状态
-    _srcView.hidden = YES;
+    [self getSrcImageView].hidden = YES;
     toVC.view.alpha = 0;
-    _destView.hidden = YES;
+    [self getDestImageView].hidden = YES;
     //tempView 添加到containerView中，要保证在最前方，所以后添加
     [containerView addSubview:toVC.view];
     [containerView addSubview:tempView];
     //开始做动画
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0 usingSpringWithDamping:0.55 initialSpringVelocity:1 / 0.55 options:0 animations:^{
-        tempView.frame = [_destView convertRect:_destView.bounds toView:containerView];
-//        tempView.frame = _destFrame;
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+        tempView.frame = [self getDestImageViewFrameWithMainView:containerView];
         toVC.view.alpha = 1;
     } completion:^(BOOL finished) {
-        tempView.hidden = YES;
-        _destView.hidden = NO;
+        if ([self.delegate respondsToSelector:@selector(animationFinishedAtTransitionAnimator:)]){
+            [self.delegate animationFinishedAtTransitionAnimator:self];
+        }
+        tempView.hidden = YES;   /// 这里不能移除tempview 因为在dismiss的时候需要这个视图显示过渡效果
+        [self getDestImageView].hidden = NO;
+        [self getSrcImageView].hidden = NO;
+        [tempView removeFromSuperview];
         //如果动画过渡取消了就标记不完成，否则才完成，这里可以直接写YES，如果有手势过渡才需要判断，必须标记，否则系统不会中动画完成的部署，会出现无法交互之类的bug
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
@@ -86,28 +127,52 @@
     
     UIView *containerView = [transitionContext containerView];
     //这里的lastView就是push时候初始化的那个tempView
-    UIView *tempView = containerView.subviews.lastObject;
+//    UIView *tempView = containerView.subviews.lastObject;
+    UIImageView *tempView = [UIImageView new];
+    tempView.image = [self getDestImageView].image;
+    tempView.contentMode = [self getDestImageView].contentMode;
+    tempView.clipsToBounds = [self getDestImageView].clipsToBounds;
+    tempView.frame = [[self getDestImageView] convertRect:[self getDestImageView].bounds toView: containerView];
+    
     //设置初始状态
-    _srcView.hidden = YES;
-    _destView.hidden = YES;
+    [self getSrcImageView].hidden = YES;
+    [self getDestImageView].hidden = YES;
     tempView.hidden = NO;
     [containerView insertSubview:toVC.view atIndex:0];
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0 usingSpringWithDamping:0.55 initialSpringVelocity:1 / 0.55 options:0 animations:^{
-        tempView.frame = [_srcView convertRect:_srcView.bounds toView:containerView];
+    [containerView addSubview:tempView];
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+        tempView.frame = [[self getSrcImageView] convertRect:[self getSrcImageView].bounds toView:containerView];
         fromVC.view.alpha = 0;
     } completion:^(BOOL finished) {
         //由于加入了手势必须判断
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
         if ([transitionContext transitionWasCancelled]) {//手势取消了，原来隐藏的imageView要显示出来
             //失败了隐藏tempView，显示fromVC.imageView
-            tempView.hidden = YES;
-            _destView.hidden = NO;
+            [self getDestImageView].hidden = NO;
+            [self getSrcImageView].hidden = NO;
         }else{//手势成功，cell的imageView也要显示出来
             //成功了移除tempView，下一次pop的时候又要创建，然后显示cell的imageView
-            _srcView.hidden = NO;
-            [tempView removeFromSuperview];
+            [self getSrcImageView].hidden = NO;
         }
+        [tempView removeFromSuperview];
     }];
+    
+//    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0 usingSpringWithDamping:0.55 initialSpringVelocity:1 / 0.55 options:0 animations:^{
+//        tempView.frame = [_srcView convertRect:_srcView.bounds toView:containerView];
+//        fromVC.view.alpha = 0;
+//    } completion:^(BOOL finished) {
+//        //由于加入了手势必须判断
+//        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+//        if ([transitionContext transitionWasCancelled]) {//手势取消了，原来隐藏的imageView要显示出来
+//            //失败了隐藏tempView，显示fromVC.imageView
+//            tempView.hidden = YES;
+//            _destView.hidden = NO;
+//        }else{//手势成功，cell的imageView也要显示出来
+//            //成功了移除tempView，下一次pop的时候又要创建，然后显示cell的imageView
+//            _srcView.hidden = NO;
+//            [tempView removeFromSuperview];
+//        }
+//    }];
 }
 
 //实现push动画逻辑代码

@@ -14,12 +14,7 @@
 
 #define PADDING                  10
 
-@interface WMPhotoBrowser () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout ,UIGestureRecognizerDelegate , UIViewControllerTransitioningDelegate>{
-    // Present
-    UIView *_senderViewForAnimation;
-    
-    /// 是否正在拉动图片
-    BOOL _isdraggingPhoto;
+@interface WMPhotoBrowser () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout ,UIGestureRecognizerDelegate , UIViewControllerTransitioningDelegate , WMBaseTransitionAnimatorDelegate , WMZoomingScrollCellDelegate>{
     
     UIWindow *_applicationWindow;
 }
@@ -28,16 +23,11 @@
 
 @property (nonatomic , strong) NSMutableArray<WMPhotoModel *> *photos;
 
-@property (nonatomic , assign) BOOL isPresented;
-
-@property (nonatomic , strong) WMZoomingScrollCell *zoomingScrollCell;
-
-@property (nonatomic , assign) CGPoint panGestureBeginPoint;
+/// 是否正在转场动画 默认是 NO
+@property (nonatomic , assign) BOOL isPresenting;
 
 /// 手势过度管理器
 @property (nonatomic , strong) WMInteractiveTransition *interactiveTransition;
-
-@property (nonatomic , strong) UIImageView *MyImageView;
 @end
 
 @implementation WMPhotoBrowser
@@ -69,21 +59,11 @@
     _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
     
     self.transitioningDelegate = self;
-    self.modalPresentationStyle = UIModalPresentationCustom;
     self.interactiveTransition = [WMInteractiveTransition interactiveTransitionWithTransitionType:(WMInteractiveTransitionTypeDismiss) gestureDirection:(WMInteractiveTransitionGestureDirectionDown)];
     __weak typeof(self) weakself = self;
     [self.interactiveTransition addPanGestureForViewController:self gestureConifg:^{
         [weakself wm_dismiss];
     }];
-    
-    _MyImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    UIImage *image = [UIImage imageNamed:@"pc_bg"];
-    _MyImageView.userInteractionEnabled = YES;
-    _MyImageView.image =image;
-    CGFloat width = kScreenWidth;
-    CGFloat height = kScreenWidth * image.size.height / image.size.width;
-    _MyImageView.frame = CGRectMake(0, 0, width, height);
-    [self.view addSubview:_MyImageView];
 }
 - (void)wm_dismiss{
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -96,10 +76,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor blackColor];
     self.view.clipsToBounds = YES;
-//    [self.view addSubview:self.collectionView];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(wm_dismiss)];
-    [self.view addGestureRecognizer:tap];
+    [self.view addSubview:self.collectionView];
     
     [self updateNavigation];
 }
@@ -108,18 +85,14 @@
 
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
     WMBaseTransitionAnimator *animator = [WMBaseTransitionAnimator transitionAnimatorWithTransitionType:(WMTransitionAnimatorTypePresent)];
-    [animator setSrcView:self.srcImageView];
-//    [animator setDestFrame:[self wm_getCurrentImageFrame]];
-    [animator setDestView:self.MyImageView];
+    animator.delegate = self;
+    _isPresenting = YES;
     return animator;
 }
 
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
     WMBaseTransitionAnimator *animator = [WMBaseTransitionAnimator transitionAnimatorWithTransitionType:(WMTransitionAnimatorTypeDismiss)];
-    [animator setSrcView:self.srcImageView];
-//    [animator setDestView:[self wm_getDestImageView]];
-//    [animator setDestFrame:[self wm_getCurrentImageFrame]];
-    [animator setDestView:self.MyImageView];
+    animator.delegate = self;
     return animator;
 }
 
@@ -127,16 +100,34 @@
     return self.interactiveTransition.interation ? self.interactiveTransition : nil;
 }
 
-- (CGRect)wm_getCurrentImageFrame{
-    WMPhotoModel *photo = self.photos[_currentIndex];
-    CGFloat width = self.view.frame.size.width;
-    CGFloat height = width * photo.image.size.height / photo.image.size.width;
-    CGRect frame = CGRectMake(0, (self.view.frame.size.height - height) / 2, width, height);
-    return frame;
+#pragma mark -- WMZoomingScrollCellDelegate
+- (void)tapHiddenPhotoBrowserAtZoomingScrollCell:(WMZoomingScrollCell *)zoomingScrollCell{
+    if (_srcImageView){
+        [self wm_dismiss];
+    }
 }
-- (UIImageView *)wm_getDestImageView{
-    
+
+#pragma mark -- WMBaseTransitionAnimatorDelegate 
+
+- (UIImageView *)srcImageViewForTransitionAnimator:(WMBaseTransitionAnimator *)transitionAnimator{
+    return self.srcImageView;
+}
+
+- (UIImageView *)destImageViewForTransitionAnimator:(WMBaseTransitionAnimator *)transitionAnimator{
+    return [self wm_getDestImageView];
+}
+
+- (void)animationFinishedAtTransitionAnimator:(WMBaseTransitionAnimator *)transitionAnimator{
+    _isPresenting = NO;
+    /// 当前正在显示的cell视图
     WMZoomingScrollCell *cell = (WMZoomingScrollCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+    [cell wm_displayImageWithIsPresenting:_isPresenting tempImage:self.srcImageView.image];
+}
+
+- (UIImageView *)wm_getDestImageView{
+    if (self.collectionView == nil) return nil;
+    WMZoomingScrollCell *cell = (WMZoomingScrollCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+    cell.delegate = self;
     UIImageView * imageView = cell.imageShowView;
     
     return imageView;
@@ -211,8 +202,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WMZoomingScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([WMZoomingScrollCell class]) forIndexPath:indexPath];
-    _zoomingScrollCell = cell;
+    cell.delegate = self;
     [cell setPhotoModel:self.photos[indexPath.row]];
+    [cell wm_displayImageWithIsPresenting:_isPresenting tempImage:self.srcImageView.image];
     return cell;
 }
 
@@ -223,6 +215,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offSetX = scrollView.contentOffset.x;
     _currentIndex = (offSetX  + 0.5 * self.collectionView.frame.size.width) / self.collectionView.frame.size.width;
+    
+    if ([self.delegate respondsToSelector:@selector(photoBrowser:imageViewAtIndex:)]){  /// 滚动页面重新为源视图赋值
+        self.srcImageView = [self.delegate photoBrowser:self imageViewAtIndex:_currentIndex];
+    }
     [self updateNavigation];
 }
 

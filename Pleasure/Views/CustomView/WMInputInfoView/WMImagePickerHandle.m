@@ -59,16 +59,14 @@
 }
 
 /// 浏览图片
-- (void)photoBrowserWithCurrentIndex:(NSInteger)currentIndex imageView:(UIImageView *)imageView photosArray:(NSArray<WMPhoto *> *)photos deleteHandle:(WMPhotoDeleteHandle)deleteHandle{
+- (void)photoBrowserWithCurrentIndex:(NSInteger)currentIndex photosArray:(NSArray<WMPhoto *> *)photos deleteHandle:(WMPhotoDeleteHandle)deleteHandle{
     _showPhotos = photos;
     _deleteHandle = deleteHandle;
     
     WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
     [browser setCurrentPhotoIndex:currentIndex];
     [browser showRightItem:nil image:[UIImage imageNamed:@"navBar_search_grey"]];
-    [browser setSrcImageView:imageView];
-    [self.viewController presentViewController:browser animated:YES completion:nil];
-//    [self.viewController.navigationController pushViewController:browser animated:YES];
+    [self.viewController.navigationController pushViewController:browser animated:YES];
 }
 
 #pragma mark -- WMPhotoBrowserDelegate

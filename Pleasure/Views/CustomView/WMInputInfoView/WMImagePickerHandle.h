@@ -26,6 +26,6 @@ typedef void(^WMPhotoDeleteHandle) (NSInteger deleteIndex);
 - (void)openPhotoAlbumWithMaxImagesCount:(NSInteger)maxImagesCount imageResultHandle:(WMImageResultHandle)imageResultHandle;
 
 /// 浏览图片
-- (void)photoBrowserWithCurrentIndex:(NSInteger)currentIndex imageView:(UIImageView *)imageView photosArray:(NSArray<WMPhoto *> *)photos deleteHandle:(WMPhotoDeleteHandle)deleteHandle;
+- (void)photoBrowserWithCurrentIndex:(NSInteger)currentIndex photosArray:(NSArray<WMPhoto *> *)photos deleteHandle:(WMPhotoDeleteHandle)deleteHandle;
 
 @end

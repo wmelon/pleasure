@@ -29,6 +29,9 @@
 /// 右边按钮点击了
 - (void)photoBrowser:(WMPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index;
 
+/// 返回上一页面在当前下标下的图片视图
+- (UIImageView *)photoBrowser:(WMPhotoBrowser *)photoBrowser imageViewAtIndex:(NSInteger)index;
+
 @end
 
 @interface WMPhotoBrowser : UIViewController <UIScrollViewDelegate>

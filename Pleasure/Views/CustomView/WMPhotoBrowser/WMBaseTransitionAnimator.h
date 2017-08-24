@@ -16,13 +16,21 @@ typedef NS_ENUM(NSUInteger, WMTransitionAnimatorType) {
 };
 
 
+@class WMBaseTransitionAnimator;
+
+@protocol WMBaseTransitionAnimatorDelegate <NSObject>
+
+- (UIImageView *)srcImageViewForTransitionAnimator:(WMBaseTransitionAnimator *)transitionAnimator;
+- (UIImageView *)destImageViewForTransitionAnimator:(WMBaseTransitionAnimator *)transitionAnimator;
+
+/// 转场动画执行完成之后回调
+- (void)animationFinishedAtTransitionAnimator:(WMBaseTransitionAnimator *)transitionAnimator;
+
+@end
+
 @interface WMBaseTransitionAnimator : NSObject<UIViewControllerAnimatedTransitioning>
 
-@property (nonatomic , strong) UIView *srcView;
-@property (nonatomic , strong) UIView *destView;
-//@property (nonatomic , assign) CGRect srcFrame;
-@property (nonatomic , assign) CGRect destFrame;
-
+@property (nonatomic , weak) id<WMBaseTransitionAnimatorDelegate> delegate;
 
 /// 动画执行时间
 @property (nonatomic , assign) CGFloat duration;

@@ -65,8 +65,11 @@
     // Loading indicator
     _loadingIndicator = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
     _loadingIndicator.userInteractionEnabled = NO;
-    _loadingIndicator.thicknessRatio = 0.1;
+    _loadingIndicator.thicknessRatio = 0.25;
     _loadingIndicator.roundedCorners = NO;
+    _loadingIndicator.hidden = YES;
+    _loadingIndicator.trackTintColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6];
+    _loadingIndicator.progressTintColor = [UIColor whiteColor];
     _loadingIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin |
     UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
     [self.zoomScrollView addSubview:_loadingIndicator];
@@ -83,37 +86,51 @@
         }
     }
      _photoModel = photoModel;
-    
-    
-    [self wm_displayImage];
 }
 
+- (void)wm_displayImageWithIsPresenting:(BOOL)isPresenting tempImage:(UIImage *)tempImage{
+    
+    if (isPresenting == NO){  /// 只有在转场动画结束之后才处理加载图片
+        // Setup photo frame
+        if (tempImage && tempImage.size.width > 0){
+            CGFloat width = self.frame.size.width;
+            CGFloat height = width * tempImage.size.height / tempImage.size.width;
+            CGRect photoImageViewFrame = CGRectMake(0, (self.frame.size.height - height) / 2, width, height);
+            self.imageShowView.frame = photoImageViewFrame;
+            self.imageShowView.image = tempImage;
+        }
+        [self wm_displayImage];
+    }
+}
 /// 显示图片
 - (void)wm_displayImage{
-    [_photoModel loadUnderlyingImageAndNotify:^(CGFloat progress) {
-        
-        /// 显示进度条
-        [self showLoadingIndicator];
-        _loadingIndicator.progress = MAX(MIN(1, progress), 0);
-
-    } complete:^(UIImage *image) {
-        
-        self.imageShowView.hidden = !image;
-        /// 隐藏进度条
-        [self hideLoadingIndicator];
-        
-        if (image){
+    if (_photoModel.image){
+        [self wm_displayImageSuccessWithImage:_photoModel.image];
+    }else {
+        [_photoModel loadUnderlyingImageAndNotify:^(CGFloat progress) {
             
-            [self wm_displayImageSuccessWithImage:image];
+            /// 显示进度条
+            [self showLoadingIndicator];
+            _loadingIndicator.progress = MAX(MIN(1, progress), 0);
             
-        } else {
+        } complete:^(UIImage *image) {
             
-            [self wm_displayImageFailure];
-        }
-        [self setNeedsLayout];
-
-    }];
-    
+            self.imageShowView.hidden = !image;
+            /// 隐藏进度条
+            [self hideLoadingIndicator];
+            
+            if (image){
+                
+                [self wm_displayImageSuccessWithImage:image];
+                
+            } else {
+                
+                [self wm_displayImageFailure];
+            }
+            [self setNeedsLayout];
+            
+        }];
+    }
 }
 
 - (void)showLoadingIndicator {
@@ -187,8 +204,7 @@
     
     
     // Position indicators (centre does not seem to work!)
-    if (!_loadingIndicator.hidden)
-        _loadingIndicator.frame = CGRectMake(floorf((self.bounds.size.width - _loadingIndicator.frame.size.width) / 2.),
+    _loadingIndicator.frame = CGRectMake(floorf((self.bounds.size.width - _loadingIndicator.frame.size.width) / 2.),
                                              floorf((self.bounds.size.height - _loadingIndicator.frame.size.height) / 2),
                                              _loadingIndicator.frame.size.width,
                                              _loadingIndicator.frame.size.height);
@@ -318,11 +334,13 @@
 
 #pragma mark - Tap Detection
 
+/// 处理单击手势
 - (void)handleSingleTap:(CGPoint)touchPoint {
-//    //	[_photoBrowser performSelector:@selector(toggleControls) withObject:nil afterDelay:0.2];
-//    [self.imageShowView performSelector:@selector(handleSingleTap) withObject:nil afterDelay:0.2];
+    if ([self.delegate respondsToSelector:@selector(tapHiddenPhotoBrowserAtZoomingScrollCell:)]){
+        [self.delegate tapHiddenPhotoBrowserAtZoomingScrollCell:self];
+    }
 }
-//
+/// 处理双击手势
 - (void)handleDoubleTap:(CGPoint)touchPoint {
 
     // Cancel any single tap handling
@@ -343,22 +361,14 @@
         [self.zoomScrollView zoomToRect:CGRectMake(targetPoint.x, targetPoint.y, targetSize.width, targetSize.height) animated:YES];
         
     }
-    
-    // Delay controls
-//    [self.imageShowView hideControlsAfterDelay];
 }
 
 
 #pragma mark -- WMTapDetectingImageViewDelegate
-
-// Image View
-- (void)imageView:(UIImageView *)imageView singleTapDetected:(UITouch *)touch {
-    
-    CGPoint point = [touch locationInView:imageView];
+- (void)imageView:(UIImageView *)imageView singleTapDetected:(CGPoint)point{
     [self handleSingleTap:point];
 }
-- (void)imageView:(UIImageView *)imageView doubleTapDetected:(UITouch *)touch {
-    CGPoint point = [touch locationInView:imageView];
+- (void)imageView:(UIImageView *)imageView doubleTapDetected:(CGPoint)point{
     [self handleDoubleTap:point];
 }
 

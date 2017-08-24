@@ -54,16 +54,16 @@
 
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
     WMBaseTransitionAnimator *animator = [WMBaseTransitionAnimator transitionAnimatorWithTransitionType:(WMTransitionAnimatorTypePresent)];
-    [animator setSrcView:self.srcImageView];
-    [animator setDestView:self.MyImageView];
+//    [animator setSrcView:self.srcImageView];
+//    [animator setDestView:self.MyImageView];
 //    [animator setDestFrame:self.MyImageView.frame];
     return animator;
 }
 
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
     WMBaseTransitionAnimator *animator = [WMBaseTransitionAnimator transitionAnimatorWithTransitionType:(WMTransitionAnimatorTypeDismiss)];
-    [animator setSrcView:self.srcImageView];
-    [animator setDestView:self.MyImageView];
+//    [animator setSrcView:self.srcImageView];
+//    [animator setDestView:self.MyImageView];
     return animator;
 }
 
