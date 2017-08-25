@@ -11,6 +11,7 @@
 		1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1920F1091F3D619900087326 /* WMTapDetectingImageView.m */; };
 		1922AE241F50173500E66E46 /* icon_delete_image_wm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922AE221F50173500E66E46 /* icon_delete_image_wm@2x.png */; };
 		1922AE251F50173500E66E46 /* icon_delete_image_wm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922AE231F50173500E66E46 /* icon_delete_image_wm@3x.png */; };
+		1922AE281F501D5800E66E46 /* WMSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1922AE271F501D5800E66E46 /* WMSettingViewController.m */; };
 		192741511F0C841C00077E49 /* WMSwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927414F1F0C840000077E49 /* WMSwizzleMethod.m */; };
 		192C132B1F0B923800759221 /* AppTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C132A1F0B923800759221 /* AppTabBar.m */; };
 		192C132E1F0B924600759221 /* AppNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C132D1F0B924600759221 /* AppNavigationBar.m */; };
@@ -44,7 +45,6 @@
 		196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2C1F0B7FFF00C2D678 /* BaseCollectionViewController.m */; };
 		196E1F301F0B800F00C2D678 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E1F2F1F0B800F00C2D678 /* MineViewController.m */; };
 		197204E31F46F06300001A83 /* WMDownloadWaveLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 197204E21F46F06200001A83 /* WMDownloadWaveLayer.m */; };
-		198605FE1F1773130034C713 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198605FD1F1773130034C713 /* TestViewController.m */; };
 		1995F8011F3C3B9C0036CFBA /* WMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8001F3C3B9C0036CFBA /* WMPhotoBrowser.m */; };
 		1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8031F3C3BE80036CFBA /* WMPhotoModel.m */; };
 		1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8061F3C3CF60036CFBA /* WMCaptionView.m */; };
@@ -84,6 +84,8 @@
 		1920F1091F3D619900087326 /* WMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTapDetectingImageView.m; sourceTree = "<group>"; };
 		1922AE221F50173500E66E46 /* icon_delete_image_wm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_delete_image_wm@2x.png"; sourceTree = "<group>"; };
 		1922AE231F50173500E66E46 /* icon_delete_image_wm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_delete_image_wm@3x.png"; sourceTree = "<group>"; };
+		1922AE261F501D5800E66E46 /* WMSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMSettingViewController.h; sourceTree = "<group>"; };
+		1922AE271F501D5800E66E46 /* WMSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSettingViewController.m; sourceTree = "<group>"; };
 		1927414F1F0C840000077E49 /* WMSwizzleMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMSwizzleMethod.m; sourceTree = "<group>"; };
 		192741501F0C840000077E49 /* WMSwizzleMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMSwizzleMethod.h; sourceTree = "<group>"; };
 		192C13291F0B923800759221 /* AppTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppTabBar.h; sourceTree = "<group>"; };
@@ -149,8 +151,6 @@
 		196E1F311F0B809E00C2D678 /* Pleasure.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pleasure.pch; sourceTree = "<group>"; };
 		197204E11F46F06200001A83 /* WMDownloadWaveLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDownloadWaveLayer.h; sourceTree = "<group>"; };
 		197204E21F46F06200001A83 /* WMDownloadWaveLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDownloadWaveLayer.m; sourceTree = "<group>"; };
-		198605FC1F1773130034C713 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		198605FD1F1773130034C713 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		1995F7FF1F3C3B9C0036CFBA /* WMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoBrowser.h; sourceTree = "<group>"; };
 		1995F8001F3C3B9C0036CFBA /* WMPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoBrowser.m; sourceTree = "<group>"; };
 		1995F8021F3C3BE80036CFBA /* WMPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoModel.h; sourceTree = "<group>"; };
@@ -279,8 +279,6 @@
 				192C13471F0BBA8B00759221 /* Demo2ViewController.m */,
 				194C73501F0CD00D00B8DB67 /* DemoTableViewController.h */,
 				194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */,
-				198605FC1F1773130034C713 /* TestViewController.h */,
-				198605FD1F1773130034C713 /* TestViewController.m */,
 				19F011A11F298FAE00F30BC9 /* WMProductListViewController.h */,
 				19F011A21F298FAE00F30BC9 /* WMProductListViewController.m */,
 				19BF990E1F415A1200B2BB35 /* WMLoginViewController.h */,
@@ -293,6 +291,8 @@
 				19BF99391F41B15600B2BB35 /* WMAIHerbDetailViewController.m */,
 				19D1D2421F42D3CC001DFC0D /* WMDownloadListViewController.h */,
 				19D1D2431F42D3CC001DFC0D /* WMDownloadListViewController.m */,
+				1922AE261F501D5800E66E46 /* WMSettingViewController.h */,
+				1922AE271F501D5800E66E46 /* WMSettingViewController.m */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -742,6 +742,7 @@
 				19BF991E1F41A3A500B2BB35 /* WMAIListCell.m in Sources */,
 				1953A2CC1F342C890061B514 /* WMStretchableTableHeaderView.m in Sources */,
 				196032931F0A563500126AC7 /* BaseViewController.m in Sources */,
+				1922AE281F501D5800E66E46 /* WMSettingViewController.m in Sources */,
 				19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */,
 				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
 				19BF99191F41A14200B2BB35 /* WMAIListModel.m in Sources */,
@@ -755,7 +756,6 @@
 				190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */,
 				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
 				19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */,
-				198605FE1F1773130034C713 /* TestViewController.m in Sources */,
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
 				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,
 				1960328A1F0A558000126AC7 /* SwitchViewController.m in Sources */,

@@ -169,9 +169,30 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     CGFloat pageWidth = self.frame.size.width;
-    CGFloat offSetX = scrollView.contentOffset.x;
+//    CGFloat offSetX = scrollView.contentOffset.x;
     //偏移量  -1 ~> 1
-    CGFloat offPercent = (offSetX - pageWidth)/ pageWidth;
+//    CGFloat offPercent = (offSetX - pageWidth)/ pageWidth;
+    
+    
+
+    CGFloat offPercent = 0.0;
+    for (UIViewController * vc in self.showViewControllers) {
+        
+        CGPoint p = [vc.view convertPoint:CGPointZero toView:_pageViewController.view];
+        
+        if (p.x > 0.0 && p.x < pageWidth){
+            NSInteger index = [self.showViewControllers indexOfObject:vc];
+            CGFloat stimateOffSetX = index * pageWidth - (p.x);
+            
+//            offPercent = (pageWidth - p.x) / pageWidth;
+            offPercent = stimateOffSetX / pageWidth;
+            _selectIndex = (stimateOffSetX + pageWidth / 2) / pageWidth;
+            
+            if (stimateOffSetX <= 0) return;
+            NSLog(@"index  %ld    offPercent   ====   %f    contentOffX    %f" , _selectIndex  , offPercent , stimateOffSetX);
+        }
+    }
+    
     
     if ([self.delegate respondsToSelector:@selector(scrollContentView:adjustUIWithProgress:currentIndex:)]){
         
@@ -274,12 +295,11 @@
     
     NSUInteger index = [self.showViewControllers indexOfObject:self.pageViewController.viewControllers.firstObject];
     
-    /// 这里动画执行完成之后必须手动调用滚动视图
-    if ([self.delegate respondsToSelector:@selector(scrollContentView:scrollToIndex:currentIndex:)]){
-        [self.delegate scrollContentView:self scrollToIndex:index currentIndex:_selectIndex];
-    }
-    
-    _selectIndex = index;
+//    /// 这里动画执行完成之后必须手动调用滚动视图
+//    if ([self.delegate respondsToSelector:@selector(scrollContentView:scrollToIndex:currentIndex:)]){
+//        [self.delegate scrollContentView:self scrollToIndex:index currentIndex:_selectIndex];
+//    }
+//    _selectIndex = index;
     
     /// 获取控制器的滚动视图
     [self wm_getScrollViewWithIndex:index];

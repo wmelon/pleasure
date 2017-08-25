@@ -182,15 +182,15 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         return;
     }
     
-    if (progress >= 1){
-        progress = 1;
-    }else if(progress <= -1){
-        progress = -1;
-    }
+//    if (progress >= 1){
+//        progress = 1;
+//    }else if(progress <= -1){
+//        progress = -1;
+//    }
     
     [self changeTitleColorWithProgress:progress];
     
-    [self changeMoveLineWithProgress:progress];
+//    [self changeMoveLineWithProgress:progress];
     
 }
 
@@ -201,106 +201,105 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     
     UIButton * currentButton = self.itemsButtonArray[currentIndex];
     
-    [currentButton setTitleColor:[self gradientHighLightToNormal:progress] forState:UIControlStateNormal];
-    
-    if (progress < 0) {  //调整当前和左侧文字颜色
+    if (progress - (int)progress <= 0.5){ 
+        
+        [currentButton setTitleColor:[self gradientHighLightToNormal:progress - (int)progress] forState:UIControlStateNormal];
+        
+        if (currentIndex < self.itemsButtonArray.count - 1){
+            
+            UIButton *afterButton = self.itemsButtonArray[currentIndex + 1];
+            [afterButton setTitleColor:[self gradientHighLightToNormal:1 - (progress - (int)progress)] forState:UIControlStateNormal];
+            
+        }
+        
+    }else {
+        
+        [currentButton setTitleColor:[self gradientHighLightToNormal:1 - (progress - (int)progress)] forState:UIControlStateNormal];
         
         if (currentIndex > 0){
             
             UIButton * frontButton = self.itemsButtonArray[currentIndex - 1];
             
-            [frontButton setTitleColor:[self gradientHighLightToNormal:1.0 + progress] forState:UIControlStateNormal];
-            
-            
-        }
-        
-    }else  {  // 调整当前和右侧文字颜色
-        
-        if (currentIndex < self.itemsButtonArray.count - 1){
-            
-            UIButton *afterButton = self.itemsButtonArray[currentIndex + 1];
-            
-            [afterButton setTitleColor:[self gradientHighLightToNormal:1.0 - progress] forState:UIControlStateNormal];
-            
+            [frontButton setTitleColor:[self gradientHighLightToNormal:progress - (int)progress] forState:UIControlStateNormal];
             
         }
     }
 }
 
-/// 改变底部线条的移动位置和宽度
-- (void)changeMoveLineWithProgress:(CGFloat)progress{
-    CGFloat startDistance = 0;
-    CGFloat endDistance = 0;
-    
-    CGFloat lineWidth = self.barItemStyle.scrollLineWidth;
-    
-    NSInteger currentIndex = self.selectedSegmentIndex;
-    
-    UIButton *currentButton = self.itemsButtonArray[currentIndex];
-    
-    CGFloat x = 0.0;
-    CGFloat y = self.moveLine.frame.origin.y;
-    CGFloat width = 0.0;
-    CGFloat height = self.moveLine.frame.size.height;
-    
-    if (progress > 0){  /// 向右滑动
-        if (currentIndex >= self.distances.count){
-            return;
-        }
-        //快速滑行长度 0.5的偏移量滑完
-        CGFloat fastDistace = self.distances[currentIndex].floatValue - lineWidth / 2.0;
-        //慢速滑行长度 0.5的偏移量滑完
-        CGFloat slowDistace = lineWidth / 2.0;
-        
-        if (progress < fastPercent) {
-            //右滑半屏以前
-            //起始端
-            startDistance = (progress) / fastPercent*fastDistace;
-            //终止端
-            endDistance = progress / (1-fastPercent)*slowDistace;
-        }
-        else{
-            //右滑半屏以后
-            startDistance = fastDistace + (progress-fastPercent)/(1-fastPercent)*slowDistace;
-            endDistance = slowDistace + (progress-(1-fastPercent))/fastPercent*fastDistace;
-        }
-        
-        
-        x = currentButton.center.x - lineWidth / 2.0 + endDistance;
-        width = currentButton.center.x + lineWidth / 2.0  + startDistance - x;
-        
-
-    }else {   /// 向左滑动
-        if (currentIndex < 1){
-            return;
-        }
-        //快速滑行长度 0.8的偏移量滑完
-        CGFloat fastDistace = self.distances[currentIndex - 1].floatValue - lineWidth / 2.0;
-        //慢速滑行长度 0.2的偏移量滑完
-        CGFloat slowDistace = lineWidth / 2.0;
-        if (progress > -fastPercent) {
-            //左滑半屏以前
-            startDistance = (progress)/fastPercent*fastDistace;
-            endDistance = progress/(1-fastPercent)*slowDistace;
-        }
-        else{
-            //左滑半屏以后
-            startDistance = -fastDistace + (progress+fastPercent)/(1-fastPercent)*slowDistace;
-            endDistance = -slowDistace + (progress+(1-fastPercent))/fastPercent*fastDistace;
-        }
-        
-        
-        x = currentButton.center.x - lineWidth / 2.0 + startDistance;
-        width = currentButton.center.x + lineWidth / 2.0 + endDistance - x;
-    }
-    
-    self.moveLine.frame = CGRectMake(x, y, width, height);
-    
-    /// 更新滚动视图位置
-    [self wm_adjustTitleOffSet:self.selectedSegmentIndex];
-    
-//    NSLog(@"startDistance  ====   %f  endDistance  ====   %f \n",  startDistance , endDistance );
-}
+///// 改变底部线条的移动位置和宽度
+//- (void)changeMoveLineWithProgress:(CGFloat)progress{
+//    CGFloat startDistance = 0;
+//    CGFloat endDistance = 0;
+//    
+//    CGFloat lineWidth = self.barItemStyle.scrollLineWidth;
+//    
+//    NSInteger currentIndex = self.selectedSegmentIndex;
+//    
+//    UIButton *currentButton = self.itemsButtonArray[currentIndex];
+//    
+//    CGFloat x = 0.0;
+//    CGFloat y = self.moveLine.frame.origin.y;
+//    CGFloat width = 0.0;
+//    CGFloat height = self.moveLine.frame.size.height;
+//    
+//    if (progress > 0){  /// 向右滑动
+//        if (currentIndex >= self.distances.count){
+//            return;
+//        }
+//        //快速滑行长度 0.5的偏移量滑完
+//        CGFloat fastDistace = self.distances[currentIndex].floatValue - lineWidth / 2.0;
+//        //慢速滑行长度 0.5的偏移量滑完
+//        CGFloat slowDistace = lineWidth / 2.0;
+//        
+//        if (progress < fastPercent) {
+//            //右滑半屏以前
+//            //起始端
+//            startDistance = (progress) / fastPercent*fastDistace;
+//            //终止端
+//            endDistance = progress / (1-fastPercent)*slowDistace;
+//        }
+//        else{
+//            //右滑半屏以后
+//            startDistance = fastDistace + (progress-fastPercent)/(1-fastPercent)*slowDistace;
+//            endDistance = slowDistace + (progress-(1-fastPercent))/fastPercent*fastDistace;
+//        }
+//        
+//        
+//        x = currentButton.center.x - lineWidth / 2.0 + endDistance;
+//        width = currentButton.center.x + lineWidth / 2.0  + startDistance - x;
+//        
+//
+//    }else {   /// 向左滑动
+//        if (currentIndex < 1){
+//            return;
+//        }
+//        //快速滑行长度 0.8的偏移量滑完
+//        CGFloat fastDistace = self.distances[currentIndex - 1].floatValue - lineWidth / 2.0;
+//        //慢速滑行长度 0.2的偏移量滑完
+//        CGFloat slowDistace = lineWidth / 2.0;
+//        if (progress > -fastPercent) {
+//            //左滑半屏以前
+//            startDistance = (progress)/fastPercent*fastDistace;
+//            endDistance = progress/(1-fastPercent)*slowDistace;
+//        }
+//        else{
+//            //左滑半屏以后
+//            startDistance = -fastDistace + (progress+fastPercent)/(1-fastPercent)*slowDistace;
+//            endDistance = -slowDistace + (progress+(1-fastPercent))/fastPercent*fastDistace;
+//        }
+//        
+//        
+//        x = currentButton.center.x - lineWidth / 2.0 + startDistance;
+//        width = currentButton.center.x + lineWidth / 2.0 + endDistance - x;
+//    }
+//    
+//    self.moveLine.frame = CGRectMake(x, y, width, height);
+//    
+//    /// 更新滚动视图位置
+//    [self wm_adjustTitleOffSet:self.selectedSegmentIndex];
+//    
+////    NSLog(@"startDistance  ====   %f  endDistance  ====   %f \n",  startDistance , endDistance );
+//}
 - (void)wm_adjustTitleOffSet:(NSInteger)toIndex{
     if (toIndex < self.itemsButtonArray.count){
      
@@ -364,15 +363,15 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         } completion:^(BOOL finished) {
             
             [self wm_adjustTitleOffSet:toIndex];
-            [currentButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_normal] forState:UIControlStateNormal];
-            [toButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_HighLight] forState:UIControlStateNormal];
+//            [currentButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_normal] forState:UIControlStateNormal];
+//            [toButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_HighLight] forState:UIControlStateNormal];
         }];
     }else {
 
         [self wm_adjustTitleOffSet:toIndex];
         weakself.moveLine.frame = CGRectMake(toButton.center.x -  width / 2, CGRectGetMaxY(weakself.scrollView.frame) - height, width , height);
-        [currentButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_normal] forState:UIControlStateNormal];
-        [toButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_HighLight] forState:UIControlStateNormal];
+//        [currentButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_normal] forState:UIControlStateNormal];
+//        [toButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_HighLight] forState:UIControlStateNormal];
     }
     
 }

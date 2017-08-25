@@ -36,10 +36,16 @@
 
 - (void)configView{
     self.title = @"我的";
-    self.navigationBarBackgroundView.alpha = _isTest;
-    /// 初始化滚动数据
-    self.automaticallyAdjustsScrollViewInsets = _isTest;
+    self.navigationBarBackgroundView.alpha = 0.0;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.scrollPageView];
+    
+    [self showRightItem:@"设置" image:nil];
+}
+
+- (void)rightAction:(UIButton *)button{
+    WMSettingViewController * vc = [WMSettingViewController new];
+    [_svc wm_pushViewController:vc];
 }
 
 #pragma mark -- WMScrollBarControlDataSource
@@ -60,11 +66,7 @@
 }
 
 - (UIView *)headerViewInScrollPageView:(WMScrollPageView *)scrollPageView{
-    return _isTest ? nil : self.userHeaderView;
-}
-
-- (NSInteger)defaultSelectedIndexAtScrollPageView:(WMScrollPageView *)scrollPageView{
-    return 1;
+    return self.userHeaderView;
 }
 
 - (void)scrollPageView:(WMScrollPageView *)scrollPageView navigationBarAlpha:(CGFloat)alpha{
@@ -73,19 +75,15 @@
 
 
 - (void)productListViewController:(WMProductListViewController *)productListViewController didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MineViewController * vc = [MineViewController new];
-    [vc setIsTest:YES];
-    [_svc wm_pushViewController:vc];
+    
 }
 
 - (WMScrollBarItemStyle *)scrollBarItemStyleInScrollPageView:(WMScrollPageView *)scrollPageView{
-
-    
     WMScrollBarItemStyle * style = [WMScrollBarItemStyle new];
     style.scrollContentViewTableViewHeight = kTableViewHeight;
     style.itemSizeStyle = wm_itemSizeStyle_equal_textSize;
     style.allowStretchableHeader = NO;
-    return _isTest ? nil : style;
+    return style;
 }
 
 - (WMUserHeaderView *)userHeaderView{
@@ -100,11 +98,7 @@
 - (NSMutableArray *)segmentArray{
     if (_segmentArray == nil){
         NSArray * array;
-        if (_isTest){
-            array = @[@"我的作品",@"阅读历史",@"我的收藏"];
-        }else {
-            array = @[@"我的作品",@"阅读历史",@"我的收藏",@"1111111111111111111",@"222" , @"3333333" , @"444444" , @"55" , @"666666666"];
-        }
+        array = @[@"我的作品",@"阅读历史",@"我的收藏",@"1111111111111111111",@"222" , @"3333333" , @"444444" , @"55" , @"666666666"];
         _segmentArray = [NSMutableArray arrayWithArray:array];
     }
     return _segmentArray;
@@ -114,7 +108,7 @@
 
     if (_scrollPageView == nil){
     
-        _scrollPageView = [[WMScrollPageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, _isTest ? kScreenHeight :kTableViewHeight)];
+        _scrollPageView = [[WMScrollPageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kTableViewHeight)];
         _scrollPageView.dataSource = self;
         _scrollPageView.delegate = self;
         
@@ -122,14 +116,6 @@
     
     return _scrollPageView;
 }
-
-
-- (void)setIsTest:(BOOL)isTest{
-    _isTest = isTest;
-    
-}
-
-
 
 - (BOOL)shouldShowGetMore{
     return NO;

@@ -1,30 +1,24 @@
 //
-//  TestViewController.m
+//  WMSettingViewController.m
 //  Pleasure
 //
-//  Created by Sper on 2017/7/13.
+//  Created by Sper on 2017/8/25.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "TestViewController.h"
+#import "WMSettingViewController.h"
 
-@interface TestViewController ()
+@interface WMSettingViewController ()
 
 @end
 
-@implementation TestViewController
-
+@implementation WMSettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-    self.title = @"testView";
-    
-    self.navigationBarBackgroundView.backgroundColor = [UIColor orangeColor];
+    self.title = @"设置";
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

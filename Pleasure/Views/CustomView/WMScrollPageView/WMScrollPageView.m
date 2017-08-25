@@ -185,6 +185,7 @@
     
     if (!_mainCanScroll){
         scrollView.contentOffset = CGPointMake(0, tabOffsetY);
+        alpha = 1.0;  /// 防止不可以滚动的时候会出现透明度问题
     }
         
     if ([self.delegate respondsToSelector:@selector(scrollPageView:navigationBarAlpha:)]){
@@ -238,16 +239,13 @@
 /// 分页控制器手势滑动控制当前滚动视图实付可以滚动
 - (void)scrollContentView:(WMScrollContentView *)scrollContentView pageControlScroll:(UIScrollView *)scrollView{
     
-    
     if (scrollView.panGestureRecognizer.state == UIGestureRecognizerStateChanged) {  /// 当滑动下面的PageView时，当前要禁止滑动
-        NSLog(@"bottomSView 滑动了");
 
         if (self.tableViewHeaderViewHeight > 0){
             self.tableView.scrollEnabled = NO;
         }
 
     } else if (scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {  /// bottomView停止滑动了  当前页可以滑动
-        NSLog(@"结束拖拽");
         
         if (self.tableViewHeaderViewHeight > 0){
             self.tableView.scrollEnabled = YES;

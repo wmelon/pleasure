@@ -9,7 +9,6 @@
 #import "DemoViewController.h"
 #import "Demo2ViewController.h"
 #import "DemoTableViewController.h"
-#import "TestViewController.h"
 
 @interface DemoViewController ()
 @property (nonatomic , strong)CAShapeLayer *elasticShaperLayer;
@@ -107,8 +106,7 @@
 }
 
 - (void)nextClick:(UIButton *)button{
-    TestViewController * vc = [TestViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
