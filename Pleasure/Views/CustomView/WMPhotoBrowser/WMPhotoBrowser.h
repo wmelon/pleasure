@@ -40,9 +40,6 @@
 
 @property (nonatomic, readonly) NSUInteger currentIndex;
 
-/// 原显示图片的视图
-@property (nonatomic , strong) UIImageView *srcImageView;
-
 // Init
 - (instancetype)initWithPhotos:(NSArray<WMPhotoModel *> *)photosArray;
 

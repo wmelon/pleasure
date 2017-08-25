@@ -108,7 +108,6 @@ typedef void(^ClickHandle)(UIImageView *imageView);
     
     WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
     [browser setCurrentPhotoIndex:index];
-    browser.srcImageView = imageView;
     [self presentViewController:browser animated:YES completion:nil];
 }
 

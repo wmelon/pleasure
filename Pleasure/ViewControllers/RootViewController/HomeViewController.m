@@ -52,7 +52,7 @@
     [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [leftButton setBackgroundColor:UIColorFromARGB(0x000000,kalpha)];
-    [leftButton setBackgroundImage:[UIImage buildImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+    [leftButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
     leftButton.layer.cornerRadius = kCityButtonHeight / 2;
     leftButton.layer.masksToBounds = YES;
     
@@ -65,7 +65,7 @@
     [searchButton setBackgroundColor:[UIColor whiteColor]];
     searchButton.layer.cornerRadius = kButtonHeight / 2;
     searchButton.layer.masksToBounds = YES;
-    [searchButton setBackgroundImage:[UIImage buildImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+    [searchButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
     
     searchImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 5, 15, 15)];
     searchImageView.image = [UIImage imageNamed:@"navBar_search_grey"];
@@ -87,7 +87,7 @@
     [rightButton setTitle:@"扫一扫" forState:UIControlStateNormal];
     rightButton.layer.cornerRadius = kButtonHeight / 2;
     rightButton.layer.masksToBounds = YES;
-    [rightButton setBackgroundImage:[UIImage buildImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+    [rightButton setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
     
     UIBarButtonItem * rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = rightBarButton;

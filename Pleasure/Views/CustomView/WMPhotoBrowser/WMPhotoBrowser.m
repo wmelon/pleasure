@@ -18,9 +18,13 @@
     
     UIWindow *_applicationWindow;
 }
+/// 原显示图片的视图
+@property (nonatomic , strong) UIImageView *srcImageView;
 
+/// 图片显示的视图
 @property (nonatomic , strong) UICollectionView *collectionView;
 
+/// 图片数据源
 @property (nonatomic , strong) NSMutableArray<WMPhotoModel *> *photos;
 
 /// 是否正在转场动画 默认是 NO
@@ -65,9 +69,7 @@
         [weakself wm_dismiss];
     }];
 }
-- (void)wm_dismiss{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -137,6 +139,7 @@
 
 - (void)setCurrentPhotoIndex:(NSUInteger)index{
     _currentIndex = index;
+    [self wm_updateSrcImageView];
     [self updateNavigation];
 }
 
@@ -190,6 +193,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+/// 模态弹出视图返回
+- (void)wm_dismiss{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark -- UICollectionViewDelegate and UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -216,10 +224,14 @@
     CGFloat offSetX = scrollView.contentOffset.x;
     _currentIndex = (offSetX  + 0.5 * self.collectionView.frame.size.width) / self.collectionView.frame.size.width;
     
+    [self wm_updateSrcImageView];
+    [self updateNavigation];
+}
+
+- (void)wm_updateSrcImageView{
     if ([self.delegate respondsToSelector:@selector(photoBrowser:imageViewAtIndex:)]){  /// 滚动页面重新为源视图赋值
         self.srcImageView = [self.delegate photoBrowser:self imageViewAtIndex:_currentIndex];
     }
-    [self updateNavigation];
 }
 
 #pragma mark - Navigation

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (AppImage)
-+ (UIImage *) buildImageWithColor: (UIColor *) color;
++ (nullable UIImage *)imageWithColor:(UIColor *)color;
 @end

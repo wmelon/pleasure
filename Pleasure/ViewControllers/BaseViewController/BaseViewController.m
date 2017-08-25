@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-
 @interface BaseViewController ()
 
 @end
@@ -22,7 +21,7 @@
 - (instancetype)init{
     if (self = [super init]){
         _svc = [SwitchViewController sharedSVC];
-        _navigationBarBackgroundView = [[UIView alloc] init];
+        _navigationBarBackgroundView = [[UIImageView alloc] init];
         _navigationBarBackgroundView.backgroundColor = [UIColor mainColor];
     }
     return self;

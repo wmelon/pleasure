@@ -9,7 +9,7 @@
 #import "AppNavigationBar.h"
 
 @interface AppNavigationBar()
-@property (nonatomic , strong)UIView *barBackgroundView;
+//@property (nonatomic , strong)UIView *barBackgroundView;
 @end
 
 @implementation AppNavigationBar
@@ -20,7 +20,9 @@
     if (self) {
         self.translucent = YES;
 //        UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor mainColor]];
-//        [self setBackgroundImage:_storedBackgroundImage forBarMetrics:UIBarMetricsDefault];
+        
+        /// 设置系统的导航栏背景为空，为的是显示自己定义的背景视图
+        [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         
         NSShadow* shadow = [[NSShadow alloc] init];
         shadow.shadowColor = [UIColor clearColor];
@@ -37,26 +39,26 @@
     return self;
 }
 
-- (UIView *)barBackgroundView{
-    if (_barBackgroundView == nil){
-        //    //拦截背景视图
-        for (UIView * view in self.subviews){
-            NSString * className = NSStringFromClass([view class]);
-            if ([className isEqualToString:@"_UINavigationBarBackground"] || [className isEqualToString:@"_UIBarBackground"]){
-                _barBackgroundView = view;
-            }
-        }
-    }
-    return _barBackgroundView;
-}
-
-////MARK: 隐藏背景的NavigationBar
-- (void)willMoveToSuperview:(UIView *)newSuperview{
-    if (newSuperview != nil){
-        //隐藏navigationBar背景视图
-        self.barBackgroundView.hidden = YES;
-    }
-}
+//- (UIView *)barBackgroundView{
+//    if (_barBackgroundView == nil){
+//        //    //拦截背景视图
+//        for (UIView * view in self.subviews){
+//            NSString * className = NSStringFromClass([view class]);
+//            if ([className isEqualToString:@"_UINavigationBarBackground"] || [className isEqualToString:@"_UIBarBackground"]){
+//                _barBackgroundView = view;
+//            }
+//        }
+//    }
+//    return _barBackgroundView;
+//}
+//
+//////MARK: 隐藏背景的NavigationBar
+//- (void)willMoveToSuperview:(UIView *)newSuperview{
+//    if (newSuperview != nil){
+//        //隐藏navigationBar背景视图
+//        self.barBackgroundView.hidden = YES;
+//    }
+//}
 
 
 

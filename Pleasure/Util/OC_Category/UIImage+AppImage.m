@@ -9,7 +9,7 @@
 #import "UIImage+AppImage.h"
 
 @implementation UIImage (AppImage)
-+ (UIImage *) buildImageWithColor: (UIColor *) color
++ (nullable UIImage *)imageWithColor:(UIColor *)color;
 {
     CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
