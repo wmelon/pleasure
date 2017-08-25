@@ -121,23 +121,20 @@
 
 @implementation WMInputInfoView
 
-
-- (void)setDataSource:(id<WMInputInfoViewDelegate>)dataSource{
-    
-    _delegate = dataSource;
+- (void)setDelegate:(id<WMInputInfoViewDelegate>)delegate{
+    _delegate = delegate;
     
     /// 默认最多是3张图片
     NSInteger photoCount = 3;
     if ([self.delegate respondsToSelector:@selector(maxPhotoCountAtInputInfoView:)]){
-    
+        
         photoCount = [self.delegate maxPhotoCountAtInputInfoView:self];
     }
     self.maxPhotoCount = photoCount;
     
-
+    
     /// 加载和显示已经选择的图片
     [self wm_loadAndShowSelectedPhotosWithMaxCount:self.maxPhotoCount];
- 
 }
 
 - (void)wm_loadAndShowSelectedPhotosWithMaxCount:(NSInteger)maxCount{
@@ -357,7 +354,7 @@
 
 
 - (void)reloadView{
-    [self setDataSource:_delegate];
+    [self setDelegate:_delegate];
 }
 
 

@@ -23,7 +23,7 @@
 /// 每一行显示图片个数 默认是 3张
 - (NSInteger)eachRowShowPhotoCountAtInputInfoView:(WMInputInfoView *)inputInfoView;
 
-/// 已经选择的图片数 默认是 0张
+/// 已经选择的图片数 默认是 0张 (用于编辑图片的)
 - (NSInteger)selectedPhotoCountAtInputInfoView:(WMInputInfoView *)inputInfoView;
 
 /// 已经选择图片网络地址
