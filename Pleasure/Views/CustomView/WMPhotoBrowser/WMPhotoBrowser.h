@@ -40,6 +40,9 @@
 
 @property (nonatomic, readonly) NSUInteger currentIndex;
 
+/// 默认是可以显示的
+@property (nonatomic , assign) BOOL shouldShowRightItem;
+
 // Init
 - (instancetype)initWithPhotos:(NSArray<WMPhotoModel *> *)photosArray;
 

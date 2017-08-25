@@ -61,7 +61,7 @@
 
 - (void)wm_initialisation{
     _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
-    
+    [self setShouldShowRightItem:YES];
     self.transitioningDelegate = self;
     self.interactiveTransition = [WMInteractiveTransition interactiveTransitionWithTransitionType:(WMInteractiveTransitionTypeDismiss) gestureDirection:(WMInteractiveTransitionGestureDirectionDown)];
     __weak typeof(self) weakself = self;
@@ -136,6 +136,13 @@
 }
 
 #pragma mark -- public method
+
+- (void)setShouldShowRightItem:(BOOL)shouldShowRightItem{
+    _shouldShowRightItem = shouldShowRightItem;
+    if (_shouldShowRightItem){
+        [self showRightItem:nil image:[UIImage imageNamed:@"icon_delete_image_wm"]];
+    }
+}
 
 - (void)setCurrentPhotoIndex:(NSUInteger)index{
     _currentIndex = index;
@@ -247,7 +254,6 @@
     }
     
 }
-
 
 - (UIButton *)showRightItem:(NSString *)title image:(UIImage *)image{
     UIButton *button = [UIButton buttonWithImage:image title:title target:self action:@selector(rightAction:)];

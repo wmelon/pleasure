@@ -17,6 +17,8 @@ PODS:
   - AVOSCloud (5.0.2)
   - DACircularProgress (2.3.1)
   - DZNEmptyDataSet (1.8.1)
+  - LCActionSheet (3.2.4):
+    - Masonry (~> 1.0.2)
   - Masonry (1.0.2)
   - MJRefresh (3.1.12)
   - pop (1.0.10)
@@ -30,6 +32,7 @@ DEPENDENCIES:
   - AVOSCloud (~> 5.0.1)
   - DACircularProgress
   - DZNEmptyDataSet (= 1.8.1)
+  - LCActionSheet
   - Masonry
   - MJRefresh (~> 3.1.0)
   - pop (from `https://github.com/facebook/pop.git`)
@@ -50,12 +53,13 @@ SPEC CHECKSUMS:
   AVOSCloud: 01745f438fb9ef4f2cde2b992783a869cc1291e6
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  LCActionSheet: 4ff1ddcb7b9f071c74d29ec2302975c38905496f
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TZImagePickerController: 086034156913375cb19c8e4103562f15322c3b36
 
-PODFILE CHECKSUM: baa9f61243a02872d3a1d6c223c8f0cf6f59fb38
+PODFILE CHECKSUM: 167f9ada987f1892891464e3e9c1ad29ac782028
 
 COCOAPODS: 1.2.1

@@ -43,18 +43,27 @@
     _imageResultHandle = imageResultHandle;
     
     /// 需要验证是否允许使用拍照 和 照相机是否可以使用
-    if ([self takePhotoFromViewController:self.viewController]){
-        
-    
+    if (![self takePhotoFromViewController:self.viewController]){
+        return;
     }
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerController.editing = YES;
+    imagePickerController.allowsEditing = YES;
+    [self.viewController presentViewController:imagePickerController animated:YES completion:^{
+        imagePickerController.delegate = self;
+    }];
 }
 
 /// 打开相册选择图片
 - (void)openPhotoAlbumWithMaxImagesCount:(NSInteger)maxImagesCount imageResultHandle:(WMImageResultHandle)imageResultHandle{
-
     _imageResultHandle = imageResultHandle;
     
     /// 需要先允许访问用户相册
+    if(![self takePhotoFromViewController:self.viewController]){
+        return;
+    }
     [self wm_createSelectPhotosWithMaxCount:maxImagesCount viewController:self.viewController];
 }
 
@@ -65,7 +74,6 @@
     
     WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
     [browser setCurrentPhotoIndex:currentIndex];
-    [browser showRightItem:nil image:[UIImage imageNamed:@"navBar_search_grey"]];
     [self.viewController.navigationController pushViewController:browser animated:YES];
 }
 
@@ -179,6 +187,18 @@
 }
 
 
+#pragma mark -- UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+        if (_imageResultHandle){
+            _imageResultHandle(@[image]);
+        }
+    }];
+}
 
 #pragma mark - TZImagePickerControllerDelegate
 

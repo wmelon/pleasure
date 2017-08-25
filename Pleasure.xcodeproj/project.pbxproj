@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */; };
 		1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1920F1091F3D619900087326 /* WMTapDetectingImageView.m */; };
+		1922AE241F50173500E66E46 /* icon_delete_image_wm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922AE221F50173500E66E46 /* icon_delete_image_wm@2x.png */; };
+		1922AE251F50173500E66E46 /* icon_delete_image_wm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1922AE231F50173500E66E46 /* icon_delete_image_wm@3x.png */; };
 		192741511F0C841C00077E49 /* WMSwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927414F1F0C840000077E49 /* WMSwizzleMethod.m */; };
 		192C132B1F0B923800759221 /* AppTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C132A1F0B923800759221 /* AppTabBar.m */; };
 		192C132E1F0B924600759221 /* AppNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C132D1F0B924600759221 /* AppNavigationBar.m */; };
@@ -80,6 +82,8 @@
 		190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhoto.m; sourceTree = "<group>"; };
 		1920F1081F3D619900087326 /* WMTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTapDetectingImageView.h; sourceTree = "<group>"; };
 		1920F1091F3D619900087326 /* WMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTapDetectingImageView.m; sourceTree = "<group>"; };
+		1922AE221F50173500E66E46 /* icon_delete_image_wm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_delete_image_wm@2x.png"; sourceTree = "<group>"; };
+		1922AE231F50173500E66E46 /* icon_delete_image_wm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_delete_image_wm@3x.png"; sourceTree = "<group>"; };
 		1927414F1F0C840000077E49 /* WMSwizzleMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMSwizzleMethod.m; sourceTree = "<group>"; };
 		192741501F0C840000077E49 /* WMSwizzleMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMSwizzleMethod.h; sourceTree = "<group>"; };
 		192C13291F0B923800759221 /* AppTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppTabBar.h; sourceTree = "<group>"; };
@@ -223,6 +227,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1922AE211F5016FE00E66E46 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				1922AE221F50173500E66E46 /* icon_delete_image_wm@2x.png */,
+				1922AE231F50173500E66E46 /* icon_delete_image_wm@3x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		192C13251F0B8EDE00759221 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +471,7 @@
 		1995F7FE1F3C3B3D0036CFBA /* WMPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				1922AE211F5016FE00E66E46 /* Resource */,
 				1995F7FF1F3C3B9C0036CFBA /* WMPhotoBrowser.h */,
 				1995F8001F3C3B9C0036CFBA /* WMPhotoBrowser.m */,
 				1995F8021F3C3BE80036CFBA /* WMPhotoModel.h */,
@@ -654,8 +668,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1922AE241F50173500E66E46 /* icon_delete_image_wm@2x.png in Resources */,
 				19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */,
 				19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */,
+				1922AE251F50173500E66E46 /* icon_delete_image_wm@3x.png in Resources */,
 				1960325E1F09E7AB00126AC7 /* LaunchScreen.storyboard in Resources */,
 				1960325B1F09E7AB00126AC7 /* Assets.xcassets in Resources */,
 				19382EBB1F39B43F0029AAA3 /* addphoto@2x.png in Resources */,

@@ -10,6 +10,7 @@
 #import <UIButton+WebCache.h>
 #import "WMImagePickerHandle.h"
 #import "WMTextView.h"
+#import <LCActionSheet.h>
 
 @class WMPhotoCell;
 
@@ -292,32 +293,55 @@
 /// 添加图片
 - (void)addPhotoClickAtPhotoCell:(WMPhotoCell *)photoCell{
 
+    LCActionSheet *as = [[LCActionSheet alloc] initWithTitle:@"选择图片" cancelButtonTitle:@"取消" clicked:^(LCActionSheet * _Nonnull actionSheet, NSInteger buttonIndex) {
+        
+        if (buttonIndex == 1){
+            [self wm_takePhoto];
+        }else if (buttonIndex == 2){
+            [self wm_selectPhoto];
+        }
+        
+    } otherButtonTitles:@"拍照" ,@"图库", nil];
+    [as show];
+}
+
+/// 拍照
+- (void)wm_takePhoto{
+    /// 拍照
+    __weak typeof(self) weakself = self;
+    [self.ImagePickerHandle openCameraWithImageResultHandle:^(NSArray *images) {
+        /// 处理返回的图片数组
+        [weakself wm_dealWithPhotos:images];
+    }];
+}
+
+/// 选择图片
+- (void)wm_selectPhoto{
     /// 打开相册列表选择图片
+    __weak typeof(self) weakself = self;
     [self.ImagePickerHandle openPhotoAlbumWithMaxImagesCount:self.maxPhotoCount - self.showPhotos.count imageResultHandle:^(NSArray *images) {
         
         /// 处理返回的图片数组
-        for (UIImage *image in images) {
-            NSInteger index = self.showPhotos.count;
-            if (index < self.maxPhotoCount){
-                
-                WMPhoto *photo = [[WMPhoto alloc] init];
-                photo.photo = image;
-                
-                [self.showPhotos addObject:photo];
-            }
-        }
-        
-        [self wm_configCollectionViewWithShowCount:self.showPhotos.count];
-        
+        [weakself wm_dealWithPhotos:images];
     }];
-    
-    
-//    /// 拍照
-//    [self.ImagePickerHandle openCameraWithImageResultHandle:^(NSArray *images) {
-//        
-//    }];
-
 }
+
+- (void)wm_dealWithPhotos:(NSArray *)images{
+    /// 处理返回的图片数组
+    for (UIImage *image in images) {
+        NSInteger index = self.showPhotos.count;
+        if (index < self.maxPhotoCount){
+            
+            WMPhoto *photo = [[WMPhoto alloc] init];
+            photo.photo = image;
+            
+            [self.showPhotos addObject:photo];
+        }
+    }
+    
+    [self wm_configCollectionViewWithShowCount:self.showPhotos.count];
+}
+
 
 /// 展示图片
 - (void)photoCell:(WMPhotoCell *)photoCell showPhotoClickAtIndex:(NSInteger)index{

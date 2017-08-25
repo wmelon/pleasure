@@ -14,4 +14,5 @@ target :Pleasure do
     pod 'TZImagePickerController' , '1.8.1'   # 图片选择器
     pod 'DACircularProgress'  # 进度条
     pod 'Masonry'                 #自动适配
+    pod 'LCActionSheet' , '~>3.2.4'  #底部选择弹框
 end
