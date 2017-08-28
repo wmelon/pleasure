@@ -15,8 +15,10 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 };
 
 @interface WMScrollBarItemStyle : NSObject
-/** 是否显示遮盖 默认为NO */
-@property (assign, nonatomic, getter=isShowCover) BOOL showCover;
+
+
+#pragma mark -- 显示标题的样式
+
 /** 是否显示滚动条 默认为NO*/
 @property (assign, nonatomic, getter=isShowLine) BOOL showLine;
 /** 是否缩放标题 默认为NO*/
@@ -27,22 +29,13 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 @property (assign, nonatomic, getter=isGradualChangeTitleColor) BOOL gradualChangeTitleColor;
 /** 是否显示附加的按钮 默认为NO*/
 @property (assign, nonatomic, getter=isShowExtraButton) BOOL showExtraButton;
-/** 设置附加按钮的背景图片 默认为nil*/
-@property (strong, nonatomic) NSString *extraBtnBackgroundImageName;
 /** 滚动条的高度 默认为2 */
 @property (assign, nonatomic) CGFloat scrollLineHeight;
-
-/// 滚动条的宽度 默认是 20
+/// 滚动条的宽度 默认是 和文字宽度一样
 @property (assign, nonatomic) CGFloat scrollLineWidth;
 /** 滚动条的颜色 */
 @property (strong, nonatomic) UIColor *scrollLineColor;
-/** 遮盖的颜色 */
-@property (strong, nonatomic) UIColor *coverBackgroundColor;
-/** 遮盖的圆角 默认为14*/
-@property (assign, nonatomic) CGFloat coverCornerRadius;
-/** 遮盖的高度 默认为28*/
-@property (assign, nonatomic) CGFloat coverHeight;
-/** 标题之间的间隙 默认为15.0 */
+/** 标题之间的间隙 默认为10.0 */
 @property (assign, nonatomic) CGFloat titleMargin;
 /** 标题的字体 默认为14 */
 @property (strong, nonatomic) UIFont *titleFont;
@@ -54,19 +47,18 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 @property (strong, nonatomic) UIColor *selectedTitleColor;
 /** segmentVIew的高度, 这个属性只在使用ZJScrollPageVIew的时候设置生效 */
 @property (assign, nonatomic) CGFloat segmentHeight;
-
 /// 底部分割线高度 默认是0.5
 @property (assign, nonatomic) CGFloat bottomLineHeight;
+/// 底部分割线颜色 默认是灰色
 @property (strong, nonatomic) UIColor *bottomLineColor;
 /// 默认是 yes
 @property (assign, nonatomic) BOOL allowShowBottomLine;
-
-/// 主tableView的内部cell的高度 默认是屏幕的高度
-@property (assign, nonatomic) CGFloat scrollContentViewTableViewHeight;
-
-/// 选择项宽度样式
+/// 选择项宽度样式 默认是屏幕宽度平分
 @property (assign, nonatomic) wm_itemSizeStyle itemSizeStyle;
 
+#pragma mark -- 显示内容的样式
+/// 主tableView的内部cell的高度 默认是屏幕的高度
+@property (assign, nonatomic) CGFloat scrollContentViewTableViewHeight;
 /// 头部是否可以下拉放大 默认是 YES
 @property (assign, nonatomic) BOOL allowStretchableHeader;
 

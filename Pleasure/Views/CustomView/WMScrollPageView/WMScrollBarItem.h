@@ -36,8 +36,6 @@
 /// 设置选中
 - (void)scrollToIndex:(NSInteger)toIndex currentIndex:(NSInteger)currentIndex animated:(BOOL)animated;
 
-
-
 @end
 
 

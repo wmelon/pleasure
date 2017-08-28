@@ -37,6 +37,8 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 
 /// 存储两个相邻标签的距离
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *distances;
+// 缓存计算出来的每个标题下面线条的宽度
+@property (nonatomic, strong) NSMutableArray *scrollLineWidths;
 
 @end
 
@@ -76,7 +78,17 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
             width = self.frame.size.width / count;
             
         }else {
-            width = [self getSizeOfContent:title width:MAXFLOAT font:self.barItemStyle.titleFont].width + 20;
+            width = [self getSizeOfContent:title width:MAXFLOAT font:self.barItemStyle.titleFont].width + self.barItemStyle.titleMargin * 2;
+            
+        }
+        if (self.barItemStyle.scrollLineWidth > 0){
+            [self.scrollLineWidths addObject:@(self.barItemStyle.scrollLineWidth)];
+        }else {
+            if (self.barItemStyle.isScaleTitle){ /// 如果文案是可以放大的话就必须设置线条的宽度为文字放大后的宽度
+                [self.scrollLineWidths addObject:@((width - self.barItemStyle.titleMargin * 2) * self.barItemStyle.titleBigScale)];
+            }else {
+                [self.scrollLineWidths addObject:@(width - self.barItemStyle.titleMargin * 2)];
+            }
             
         }
         UIButton * columnButton = [[UIButton alloc] initWithFrame:CGRectMake(totleWidth, 0, width, height)];
@@ -116,8 +128,8 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     UIButton * button = self.itemsButtonArray[_selectedSegmentIndex];
 
 
-    CGFloat width = self.barItemStyle.scrollLineWidth;
-    CGFloat height = self.barItemStyle.scrollLineHeight;
+    CGFloat width = [self wm_getScrollLineWidthWithIndex:_selectedSegmentIndex];
+    CGFloat height = [self wm_getScrollLineHeight];
     
     self.moveLine.backgroundColor = self.barItemStyle.scrollLineColor;
     self.moveLine.frame = CGRectMake(button.center.x -  width / 2 , CGRectGetMaxY(self.scrollView.frame) - height, width , height);
@@ -173,14 +185,54 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     
     self.scrollAnimating = YES;
     
-    [self changeTitleColorWithProgress:progress];
-    
-    [self changeMoveLineWithProgress:progress];
-    
+    [self wm_barItemStyleSettingWithProgress:progress];
     /// 更新滚动视图位置
-    [self wm_adjustTitleOffSet:self.selectedSegmentIndex];
+    [self wm_adjustTitleOffSet:currentIndex];
 }
 
+- (void)wm_barItemStyleSettingWithProgress:(CGFloat)progress{
+    [self wm_changeTitleBigSmallWithProgress:progress];
+    [self changeTitleColorWithProgress:progress];
+    [self changeMoveLineWithProgress:progress];
+}
+
+/// 改变文字的大小
+- (void)wm_changeTitleBigSmallWithProgress:(CGFloat)progress{
+    // 缩放, 设置初始的label的transform
+    if (self.barItemStyle.isScaleTitle) {
+        NSInteger currentIndex = self.selectedSegmentIndex;
+        
+        UIButton * currentButton = self.itemsButtonArray[currentIndex];
+        CGFloat tempProgress = progress - (int)progress;
+
+        CGFloat scale = tempProgress * (self.barItemStyle.titleBigScale - 1.0);
+        
+        if (tempProgress < fastPercent){  //半屏以前
+            
+            currentButton.transform = CGAffineTransformMakeScale(self.barItemStyle.titleBigScale - scale, self.barItemStyle.titleBigScale - scale);
+            
+            if (currentIndex < self.itemsButtonArray.count - 1){
+                
+                UIButton *afterButton = self.itemsButtonArray[currentIndex + 1];
+                
+                afterButton.transform = CGAffineTransformMakeScale(1.0 + scale, 1.0 + scale);
+                
+            }
+            
+        }else {   /// 半屏以后
+            
+            currentButton.transform = CGAffineTransformMakeScale(1.0 + scale, 1.0 + scale);
+            
+            if (currentIndex > 0){
+                
+                UIButton * frontButton = self.itemsButtonArray[currentIndex - 1];
+                
+                frontButton.transform = CGAffineTransformMakeScale(self.barItemStyle.titleBigScale - scale, self.barItemStyle.titleBigScale - scale);
+                
+            }
+        }
+    }
+}
 /// 改变标题的颜色渐变
 - (void)changeTitleColorWithProgress:(CGFloat)progress{
     
@@ -218,9 +270,8 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     CGFloat startDistance = 0;
     CGFloat endDistance = 0;
     
-    CGFloat lineWidth = self.barItemStyle.scrollLineWidth;
     NSInteger currentIndex = self.selectedSegmentIndex;
-    
+    CGFloat lineWidth = [self wm_getScrollLineWidthWithIndex:currentIndex];
     UIButton *currentButton = self.itemsButtonArray[currentIndex];
     
     CGFloat x = 0.0;
@@ -323,8 +374,8 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         toButton = self.itemsButtonArray[toIndex];
     }
     
-    CGFloat width = self.barItemStyle.scrollLineWidth;
-    CGFloat height = self.barItemStyle.scrollLineHeight;
+    CGFloat width = [self wm_getScrollLineWidthWithIndex:toIndex];
+    CGFloat height = [self wm_getScrollLineHeight];
     
     if (animated){
         [UIView animateWithDuration:0.20 animations:^{
@@ -333,22 +384,53 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
             
             [self layoutIfNeeded];
         } completion:^(BOOL finished) {
-            
             [self wm_adjustTitleOffSet:toIndex];
             [currentButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_normal] forState:UIControlStateNormal];
             [toButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_HighLight] forState:UIControlStateNormal];
+            if (self.barItemStyle.isScaleTitle){
+                [UIView animateWithDuration:0.20 animations:^{
+                    currentButton.transform =  CGAffineTransformMakeScale(1.0, 1.0);
+                    toButton.transform = CGAffineTransformMakeScale(self.barItemStyle.titleBigScale, self.barItemStyle.titleBigScale);
+                }];
+            }
+            
         }];
     }else {
-
         [self wm_adjustTitleOffSet:toIndex];
         weakself.moveLine.frame = CGRectMake(toButton.center.x -  width / 2, CGRectGetMaxY(weakself.scrollView.frame) - height, width , height);
         [currentButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_normal] forState:UIControlStateNormal];
         [toButton setTitleColor:[self gradientHighLightToNormal:wm_titleColorType_HighLight] forState:UIControlStateNormal];
+        if (self.barItemStyle.isScaleTitle){
+            [UIView animateWithDuration:0.20 animations:^{
+                currentButton.transform =  CGAffineTransformMakeScale(1.0, 1.0);
+                toButton.transform = CGAffineTransformMakeScale(self.barItemStyle.titleBigScale, self.barItemStyle.titleBigScale);
+            }];
+        }
     }
     
 }
 
 #pragma mark -- getter and setter 
+
+- (CGFloat)wm_getScrollLineWidthWithIndex:(NSInteger)index{
+    if (self.barItemStyle.scrollLineWidth > 0){
+        return self.barItemStyle.scrollLineWidth;
+    }else {
+        if (index < self.scrollLineWidths.count){
+            return [self.scrollLineWidths[index] floatValue];
+        }
+        return 20;
+    }
+}
+- (CGFloat)wm_getScrollLineHeight{
+    return self.barItemStyle.scrollLineHeight;
+}
+- (NSMutableArray *)scrollLineWidths{
+    if (_scrollLineWidths == nil){
+        _scrollLineWidths = [NSMutableArray array];
+    }
+    return _scrollLineWidths;
+}
 - (NSMutableArray *)distances{
     if (!_distances) {
         __weak typeof(self) weakself = self;
