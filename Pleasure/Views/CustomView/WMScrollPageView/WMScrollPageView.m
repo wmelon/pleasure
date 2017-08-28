@@ -169,10 +169,6 @@
     
     //子控制器和主控制器之间的滑动状态切换
     CGFloat tabOffsetY = [_tableView rectForSection:0].origin.y - 64;
-    
-    
-    NSLog(@"------%f   %f   %f" , alpha , offset  , tabOffsetY);
-    
 
     //下拉放大 必须实现
     [self.stretchableTableHeaderView scrollViewDidScroll:scrollView];
@@ -297,12 +293,6 @@
     /// 处理barItem切换
     [self.barItem adjustUIWithProgress:progress currentIndex:currentIndex];
     
-}
-
-/// 从当前页滚动到指定页
-- (void)scrollContentView:(WMScrollContentView *)scrollContentView scrollToIndex:(NSInteger)toIndex currentIndex:(NSInteger)current{
-    
-    [self.barItem scrollToIndex:toIndex currentIndex:current animated:NO];
 }
 
 - (void)scrollContentView:(WMScrollContentView *)scrollContentView scrollAnimating:(BOOL)scrollAnimating{

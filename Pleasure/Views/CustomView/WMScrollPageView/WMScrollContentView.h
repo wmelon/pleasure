@@ -22,9 +22,6 @@
 /// 分页控制器滚动进度监听
 - (void)scrollContentView:(WMScrollContentView *)scrollContentView adjustUIWithProgress:(CGFloat)progress currentIndex:(NSInteger)currentIndex;
 
-/// 从当前页滚动到指定页
-- (void)scrollContentView:(WMScrollContentView *)scrollContentView scrollToIndex:(NSInteger)toIndex currentIndex:(NSInteger)current;
-
 /// 停止滚动
 - (void)scrollContentView:(WMScrollContentView *)scrollContentView scrollAnimating:(BOOL)scrollAnimating;
 

@@ -21,7 +21,7 @@
 #import "NotificationConfig.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import <Masonry.h>
-
+#import "UIViewExt.h"
 
 #endif /* Pleasure_pch */
 
