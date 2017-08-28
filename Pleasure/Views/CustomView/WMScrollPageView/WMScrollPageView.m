@@ -297,7 +297,7 @@
 
 - (void)scrollContentView:(WMScrollContentView *)scrollContentView scrollAnimating:(BOOL)scrollAnimating{
     
-    [self.barItem setScrollAnimating:NO];
+    [self.barItem wm_scrollViewDidEndDecelerating];
     
 }
 

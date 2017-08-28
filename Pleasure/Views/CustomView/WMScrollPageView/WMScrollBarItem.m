@@ -40,6 +40,9 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 // 缓存计算出来的每个标题下面线条的宽度
 @property (nonatomic, strong) NSMutableArray *scrollLineWidths;
 
+/// 正在手势滚动 不允许点击
+@property (nonatomic, assign) BOOL scrollAnimating;
+
 @end
 
 @implementation WMScrollBarItem
@@ -179,6 +182,11 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     return array;
 }
 
+- (void)wm_scrollViewDidEndDecelerating{
+    self.scrollAnimating = NO;
+    /// 更新滚动视图位置
+    [self wm_adjustTitleOffSet:_selectedSegmentIndex];
+}
 - (void)adjustUIWithProgress:(CGFloat)progress currentIndex:(NSInteger)currentIndex{
     
     _selectedSegmentIndex = currentIndex;
@@ -186,8 +194,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     self.scrollAnimating = YES;
     
     [self wm_barItemStyleSettingWithProgress:progress];
-    /// 更新滚动视图位置
-    [self wm_adjustTitleOffSet:currentIndex];
+    
 }
 
 - (void)wm_barItemStyleSettingWithProgress:(CGFloat)progress{

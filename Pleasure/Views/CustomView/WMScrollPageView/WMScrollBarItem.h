@@ -25,13 +25,14 @@
 
 @property (nonatomic , weak) id<WMScrollBarItemDelegate> delegate;
 
-/// 正在手势滚动 不允许点击
-@property (nonatomic, assign) BOOL scrollAnimating;
-
 - (void)wm_configBarItemsWithCount:(NSInteger)count barItemStyle:(WMScrollBarItemStyle *)barItemStyle;
 
 
+/// scrollDidScroll 调用方法
 - (void)adjustUIWithProgress:(CGFloat)progress currentIndex:(NSInteger)currentIndex;
+
+/// 滚动视图停止滚动调用
+- (void)wm_scrollViewDidEndDecelerating;
 
 /// 设置选中
 - (void)scrollToIndex:(NSInteger)toIndex currentIndex:(NSInteger)currentIndex animated:(BOOL)animated;

@@ -16,7 +16,6 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 
 @interface WMScrollBarItemStyle : NSObject
 
-
 #pragma mark -- 显示标题的样式
 
 /** 是否显示滚动条 默认为NO*/

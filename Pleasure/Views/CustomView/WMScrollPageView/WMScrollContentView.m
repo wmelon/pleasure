@@ -194,14 +194,17 @@
 }
 
 /// 滚动完成之后更新数据
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if ([self.delegate respondsToSelector:@selector(scrollContentView:scrollAnimating:)]){
         [self.delegate scrollContentView:self scrollAnimating:NO];
     }
-    
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if ([self.delegate respondsToSelector:@selector(scrollContentView:scrollAnimating:)]){
+        [self.delegate scrollContentView:self scrollAnimating:NO];
+    }
+}
 
 #pragma mark -- public method
 
