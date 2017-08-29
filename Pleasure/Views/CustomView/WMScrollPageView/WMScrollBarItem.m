@@ -17,16 +17,23 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 
 @interface WMScrollBarItem()<UIScrollViewDelegate>
 
+/// 滚动的标题视图
 @property (nonatomic , strong) UIScrollView * scrollView;
 
+/// 所有显示的样式
 @property (nonatomic , strong) WMScrollBarItemStyle *barItemStyle;
 
+/// 存储所有标题按钮
 @property (nonatomic , strong) NSMutableArray<UIButton *> *itemsButtonArray;
 
 /// 线条视图
 @property (nonatomic , strong) UIView * moveLine;
 
+/// 底部分割线条
 @property (nonatomic , strong) UILabel *bottomLine;
+
+/// 右边加号按钮
+@property (nonatomic, strong) UIButton *plusButton;
 
 /// 当前选中的item
 @property (nonatomic , assign) NSInteger selectedSegmentIndex;
@@ -47,17 +54,16 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 
 @implementation WMScrollBarItem
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    self.scrollView.frame = self.bounds;
-}
-
-- (void)wm_configBarItemsWithCount:(NSInteger)count barItemStyle:(WMScrollBarItemStyle *)barItemStyle{
+- (void)wm_configBarItemsWithCount:(NSInteger)count currentIndex:(NSInteger)currentIndex barItemStyle:(WMScrollBarItemStyle *)barItemStyle{
     NSAssert(barItemStyle, @"不可以为空");
     
     _barItemStyle = barItemStyle;
     
     NSAssert(count >= 0, @"创建的 batItem 的个数不能是负数");
+    
+    NSAssert(currentIndex < count, @"当前选中的不能大于总个数");
+    
+    _selectedSegmentIndex = currentIndex;
     
     [self.itemsButtonArray enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.superview){
@@ -94,6 +100,10 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
             }
             
         }
+        if (i == 0){  /// 第一个按钮的前面留出空白
+            totleWidth += self.barItemStyle.titleMargin;
+        }
+        
         UIButton * columnButton = [[UIButton alloc] initWithFrame:CGRectMake(totleWidth, 0, width, height)];
         
         totleWidth += width;
@@ -102,7 +112,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         [columnButton setTitleColor:self.barItemStyle.normalTitleColor forState:UIControlStateNormal];
         
         columnButton.tag = i;
-        [columnButton addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [columnButton addTarget:self action:@selector(titleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
         columnButton.titleLabel.font = self.barItemStyle.titleFont;
         [self.itemsButtonArray addObject:columnButton];
@@ -117,34 +127,47 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         /// 这一句必须放到最后。因为需要回调返回数据去更改标题颜色
         [columnButton setTitle:title forState:UIControlStateNormal];
     }
-    self.scrollView.contentSize = CGSizeMake(totleWidth, 0);
+    CGFloat maxContentWidth = totleWidth + self.barItemStyle.titleMargin;
+    if (self.barItemStyle.isShowExtraButton){
+        maxContentWidth += self.frame.size.height;
+    }
+    if (maxContentWidth <= self.frame.size.width){
+        maxContentWidth = self.frame.size.width;
+    }
+    self.scrollView.contentSize = CGSizeMake(maxContentWidth, 0);
     [self wm_configUI];
     
 }
 
 - (void)wm_configUI{
-    
+    /// 添加标题滚动视图
     [self addSubview:self.scrollView];
-    //添加滚动条
-    [self.scrollView addSubview:self.moveLine];
+    self.scrollView.frame = self.bounds;
     
     UIButton * button = self.itemsButtonArray[_selectedSegmentIndex];
-
-
     CGFloat width = [self wm_getScrollLineWidthWithIndex:_selectedSegmentIndex];
     CGFloat height = [self wm_getScrollLineHeight];
     
-    self.moveLine.backgroundColor = self.barItemStyle.scrollLineColor;
-    self.moveLine.frame = CGRectMake(button.center.x -  width / 2 , CGRectGetMaxY(self.scrollView.frame) - height, width , height);
+    /// 显示底部滚动线条
+    if (self.barItemStyle.isShowLine){
+        //添加滚动条
+        [self.scrollView addSubview:self.moveLine];
+        self.moveLine.backgroundColor = self.barItemStyle.scrollLineColor;
+        self.moveLine.frame = CGRectMake(button.center.x -  width / 2 , CGRectGetMaxY(self.scrollView.frame) - height, width , height);
+    }
     
-    if (self.barItemStyle.allowShowBottomLine){
-    
+    /// 显示底部分割线条
+    if (self.barItemStyle.isAllowShowBottomLine){
         self.bottomLine.backgroundColor = self.barItemStyle.bottomLineColor;
-        self.bottomLine.frame = CGRectMake(0, self.barItemStyle.segmentHeight - self.barItemStyle.bottomLineHeight, self.frame.size.width, self.barItemStyle.bottomLineHeight);
-        
+        self.bottomLine.frame = CGRectMake(0, self.frame.size.height - self.barItemStyle.bottomLineHeight, self.frame.size.width, self.barItemStyle.bottomLineHeight);
         [self addSubview:self.bottomLine];
     }
     
+    /// 是否显示右边添加按钮
+    if (self.barItemStyle.isShowExtraButton){
+        self.plusButton.frame = CGRectMake(self.frame.size.width - self.frame.size.height, 0, self.frame.size.height, self.frame.size.height);
+        [self addSubview:self.plusButton];
+    }
 }
 
 /// 根据文本获取宽度
@@ -200,7 +223,9 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 - (void)wm_barItemStyleSettingWithProgress:(CGFloat)progress{
     [self wm_changeTitleBigSmallWithProgress:progress];
     [self changeTitleColorWithProgress:progress];
-    [self changeMoveLineWithProgress:progress];
+    if (self.barItemStyle.isShowLine){
+        [self changeMoveLineWithProgress:progress];
+    }
 }
 
 /// 改变文字的大小
@@ -328,12 +353,12 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     if (toIndex < self.itemsButtonArray.count){
      
         UIButton *toButton = self.itemsButtonArray[toIndex];
-        CGFloat offX = CGRectGetMidX(toButton.frame) - self.frame.size.width/2.0;
+        CGFloat offX = CGRectGetMidX(toButton.frame) - self.scrollView.size.width/2.0;
         if (offX <= 0){
             offX = 0;
         }
-        if (offX >= self.scrollView.contentSize.width - self.frame.size.width){
-            offX = self.scrollView.contentSize.width - self.frame.size.width;
+        if (offX >= self.scrollView.contentSize.width - self.scrollView.frame.size.width){
+            offX = self.scrollView.contentSize.width - self.scrollView.frame.size.width;
         }
         [self.scrollView setContentOffset:CGPointMake(offX, 0) animated:YES];
     }
@@ -357,7 +382,8 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     return title;
 }
 
-- (void)btnClick:(UIButton *)button{
+/// 标题按钮点击事件
+- (void)titleButtonClick:(UIButton *)button{
     if (!self.scrollAnimating){  /// 正在滚动pageViewScrollView不允许点击
         
         [self scrollToIndex:button.tag currentIndex:_selectedSegmentIndex animated:YES];
@@ -365,6 +391,12 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         if ([self.delegate respondsToSelector:@selector(barItem:didSelectIndex:)]){
             [self.delegate barItem:self didSelectIndex:button.tag];
         }
+    }
+}
+/// 右边加号按钮点击
+- (void)plusButtonAction:(UIButton *)button{
+    if ([self.delegate respondsToSelector:@selector(plusButtonClickAtBarItem:)]){
+        [self.delegate plusButtonClickAtBarItem:self];
     }
 }
 
@@ -468,11 +500,26 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     }
     return _bottomLine;
 }
+- (UIButton *)plusButton {
+    if (!_plusButton) {
+        _plusButton = [[UIButton alloc] init];
+        [_plusButton setImage:[UIImage imageNamed:@"add_channel_titlbar_thin_new_16x16_"] forState:UIControlStateNormal];
+        _plusButton.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
+        _plusButton.layer.shadowColor = [UIColor grayColor].CGColor;
+        _plusButton.layer.shadowOffset = CGSizeMake(-1, 0);
+        _plusButton.layer.shadowRadius = 1;
+        _plusButton.layer.shadowOpacity = 0.1;
+        _plusButton.layer.shouldRasterize = YES;
+        _plusButton.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        [_plusButton addTarget:self action:@selector(plusButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _plusButton;
+}
 
 - (UIScrollView *)scrollView{
     if (_scrollView == nil){
         
-        _scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+        _scrollView = [[UIScrollView alloc] init];
         _scrollView.delegate = self;
         [_scrollView setShowsVerticalScrollIndicator:NO];
         [_scrollView setShowsHorizontalScrollIndicator:NO];

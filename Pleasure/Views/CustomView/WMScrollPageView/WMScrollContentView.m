@@ -51,19 +51,17 @@
     WMScrollContentView * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WMScrollContentView class])];
     if (cell == nil){
         cell = [[WMScrollContentView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([WMScrollContentView class])];
-        cell.showViewControllers = showViewControllers;
-        
-        
-        /// 初始化存储滚动视图的数组
-        NSMutableArray<UIScrollView *> * array = [NSMutableArray array];
-        
-        for (int i = 0 ; i < showViewControllers.count ; i++){
-            
-            [array addObject:[UIScrollView new]];
-        }
-
-        cell.controlScrollViewArray = array;
     }
+    cell.showViewControllers = showViewControllers;
+    /// 初始化存储滚动视图的数组
+    NSMutableArray<UIScrollView *> * array = [NSMutableArray array];
+    
+    for (int i = 0 ; i < showViewControllers.count ; i++){
+        
+        [array addObject:[UIScrollView new]];
+    }
+    
+    cell.controlScrollViewArray = array;
     return cell;
 }
 

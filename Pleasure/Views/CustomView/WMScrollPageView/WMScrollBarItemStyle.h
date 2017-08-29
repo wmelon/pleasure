@@ -28,6 +28,8 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 @property (assign, nonatomic, getter=isGradualChangeTitleColor) BOOL gradualChangeTitleColor;
 /** 是否显示附加的按钮 默认为NO*/
 @property (assign, nonatomic, getter=isShowExtraButton) BOOL showExtraButton;
+/// 默认是 yes
+@property (assign, nonatomic, getter=isAllowShowBottomLine) BOOL allowShowBottomLine;
 /** 滚动条的高度 默认为2 */
 @property (assign, nonatomic) CGFloat scrollLineHeight;
 /// 滚动条的宽度 默认是 和文字宽度一样
@@ -36,9 +38,9 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 @property (strong, nonatomic) UIColor *scrollLineColor;
 /** 标题之间的间隙 默认为10.0 */
 @property (assign, nonatomic) CGFloat titleMargin;
-/** 标题的字体 默认为14 */
+/** 标题的字体 默认为17 */
 @property (strong, nonatomic) UIFont *titleFont;
-/** 标题缩放倍数, 默认1.3 */
+/** 标题缩放倍数, 默认1.2 */
 @property (assign, nonatomic) CGFloat titleBigScale;
 /** 标题一般状态的颜色 */
 @property (strong, nonatomic) UIColor *normalTitleColor;
@@ -50,8 +52,6 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 @property (assign, nonatomic) CGFloat bottomLineHeight;
 /// 底部分割线颜色 默认是灰色
 @property (strong, nonatomic) UIColor *bottomLineColor;
-/// 默认是 yes
-@property (assign, nonatomic) BOOL allowShowBottomLine;
 /// 选择项宽度样式 默认是屏幕宽度平分
 @property (assign, nonatomic) wm_itemSizeStyle itemSizeStyle;
 

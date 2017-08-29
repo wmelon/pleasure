@@ -45,21 +45,21 @@
 /// 滚动视图滚动的导航栏的透明度
 - (void)scrollPageView:(WMScrollPageView *)scrollPageView navigationBarAlpha:(CGFloat)alpha;
 
+/// 右边添加按钮点击事件
+- (void)plusButtonClickAtScrollPageView:(WMScrollPageView *)scrollPageView;
+
 @end
-
-
 
 @interface WMScrollPageView : UIView
 
+/// 当前选中标签
+@property (nonatomic , assign , readonly) NSInteger currentSelectedIndex;
 
 @property (nonatomic , weak) id<WMScrollPageViewDelegate> delegate;
 
-
 @property (nonatomic , weak) id<WMScrollPageViewDataSource> dataSource;
 
-
-- (void)reloadScrollBar;
-
-
+/// 刷新数据
+- (void)reloadScrollPageView;
 
 @end

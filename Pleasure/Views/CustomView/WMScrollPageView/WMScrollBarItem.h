@@ -13,10 +13,15 @@
 
 @protocol WMScrollBarItemDelegate <NSObject>
 
+/// 标题按钮显示的文案
 - (NSString *)barItem:(WMScrollBarItem *)barItem titleForItemAtIndex:(NSInteger)index;
 
+/// 标题按钮点击事件
 - (void)barItem:(WMScrollBarItem *)barItem didSelectIndex:(NSInteger)index;
 
+@optional
+/// 右边添加按钮点击事件
+- (void)plusButtonClickAtBarItem:(WMScrollBarItem *)barItem;
 
 @end
 
@@ -25,7 +30,7 @@
 
 @property (nonatomic , weak) id<WMScrollBarItemDelegate> delegate;
 
-- (void)wm_configBarItemsWithCount:(NSInteger)count barItemStyle:(WMScrollBarItemStyle *)barItemStyle;
+- (void)wm_configBarItemsWithCount:(NSInteger)count currentIndex:(NSInteger)currentIndex barItemStyle:(WMScrollBarItemStyle *)barItemStyle;
 
 
 /// scrollDidScroll 调用方法

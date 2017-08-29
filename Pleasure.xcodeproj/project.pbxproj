@@ -26,11 +26,6 @@
 		19382EBB1F39B43F0029AAA3 /* addphoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EB91F39B43F0029AAA3 /* addphoto@2x.png */; };
 		19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EBA1F39B43F0029AAA3 /* addphoto@3x.png */; };
 		194C73521F0CD00D00B8DB67 /* DemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */; };
-		1953A2C91F342C890061B514 /* WMScrollBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C21F342C890061B514 /* WMScrollBarItem.m */; };
-		1953A2CA1F342C890061B514 /* WMScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C41F342C890061B514 /* WMScrollContentView.m */; };
-		1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C61F342C890061B514 /* WMScrollPageView.m */; };
-		1953A2CC1F342C890061B514 /* WMStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */; };
-		1953A2CF1F3450B50061B514 /* WMScrollBarItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */; };
 		195F620B1F4D79C000BB6CA6 /* WMInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 195F620A1F4D79C000BB6CA6 /* WMInteractiveTransition.m */; };
 		195F620E1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 195F620D1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m */; };
 		196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196032521F09E7AB00126AC7 /* AppDelegate.m */; };
@@ -51,6 +46,13 @@
 		1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8061F3C3CF60036CFBA /* WMCaptionView.m */; };
 		1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */; };
 		199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */; };
+		19A9D1791F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A9D16D1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@2x.png */; };
+		19A9D17A1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A9D16E1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@3x.png */; };
+		19A9D17B1F557EA3006882F7 /* WMScrollBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A9D1701F557EA3006882F7 /* WMScrollBarItem.m */; };
+		19A9D17C1F557EA3006882F7 /* WMScrollBarItemStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A9D1721F557EA3006882F7 /* WMScrollBarItemStyle.m */; };
+		19A9D17D1F557EA3006882F7 /* WMScrollContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A9D1741F557EA3006882F7 /* WMScrollContentView.m */; };
+		19A9D17E1F557EA3006882F7 /* WMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A9D1761F557EA3006882F7 /* WMScrollPageView.m */; };
+		19A9D17F1F557EA3006882F7 /* WMStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A9D1781F557EA3006882F7 /* WMStretchableTableHeaderView.m */; };
 		19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */; };
 		19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */; };
 		19BF990D1F41460500B2BB35 /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF990C1F41460500B2BB35 /* WMTextView.m */; };
@@ -113,16 +115,6 @@
 		19382EBA1F39B43F0029AAA3 /* addphoto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addphoto@3x.png"; sourceTree = "<group>"; };
 		194C73501F0CD00D00B8DB67 /* DemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableViewController.h; sourceTree = "<group>"; };
 		194C73511F0CD00D00B8DB67 /* DemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableViewController.m; sourceTree = "<group>"; };
-		1953A2C11F342C890061B514 /* WMScrollBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItem.h; sourceTree = "<group>"; };
-		1953A2C21F342C890061B514 /* WMScrollBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollBarItem.m; sourceTree = "<group>"; };
-		1953A2C31F342C890061B514 /* WMScrollContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollContentView.h; sourceTree = "<group>"; };
-		1953A2C41F342C890061B514 /* WMScrollContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollContentView.m; sourceTree = "<group>"; };
-		1953A2C51F342C890061B514 /* WMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollPageView.h; sourceTree = "<group>"; };
-		1953A2C61F342C890061B514 /* WMScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollPageView.m; sourceTree = "<group>"; };
-		1953A2C71F342C890061B514 /* WMStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStretchableTableHeaderView.h; sourceTree = "<group>"; };
-		1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStretchableTableHeaderView.m; sourceTree = "<group>"; };
-		1953A2CD1F3450B50061B514 /* WMScrollBarItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItemStyle.h; sourceTree = "<group>"; };
-		1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollBarItemStyle.m; sourceTree = "<group>"; };
 		195F62091F4D79C000BB6CA6 /* WMInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInteractiveTransition.h; sourceTree = "<group>"; };
 		195F620A1F4D79C000BB6CA6 /* WMInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInteractiveTransition.m; sourceTree = "<group>"; };
 		195F620C1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseTransitionAnimator.h; sourceTree = "<group>"; };
@@ -164,6 +156,18 @@
 		1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMZoomingScrollCell.m; sourceTree = "<group>"; };
 		199DACDA1F14C7FB008B4E55 /* UIScrollView+AppScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+AppScrollView.h"; sourceTree = "<group>"; };
 		199DACDB1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+AppScrollView.m"; sourceTree = "<group>"; };
+		19A9D16D1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_channel_titlbar_thin_new_16x16_@2x.png"; sourceTree = "<group>"; };
+		19A9D16E1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_channel_titlbar_thin_new_16x16_@3x.png"; sourceTree = "<group>"; };
+		19A9D16F1F557EA3006882F7 /* WMScrollBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItem.h; sourceTree = "<group>"; };
+		19A9D1701F557EA3006882F7 /* WMScrollBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollBarItem.m; sourceTree = "<group>"; };
+		19A9D1711F557EA3006882F7 /* WMScrollBarItemStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollBarItemStyle.h; sourceTree = "<group>"; };
+		19A9D1721F557EA3006882F7 /* WMScrollBarItemStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollBarItemStyle.m; sourceTree = "<group>"; };
+		19A9D1731F557EA3006882F7 /* WMScrollContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollContentView.h; sourceTree = "<group>"; };
+		19A9D1741F557EA3006882F7 /* WMScrollContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollContentView.m; sourceTree = "<group>"; };
+		19A9D1751F557EA3006882F7 /* WMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollPageView.h; sourceTree = "<group>"; };
+		19A9D1761F557EA3006882F7 /* WMScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollPageView.m; sourceTree = "<group>"; };
+		19A9D1771F557EA3006882F7 /* WMStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStretchableTableHeaderView.h; sourceTree = "<group>"; };
+		19A9D1781F557EA3006882F7 /* WMStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStretchableTableHeaderView.m; sourceTree = "<group>"; };
 		19B5D57F1F3ABE8D0049D745 /* WMImagePickerHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMImagePickerHandle.h; sourceTree = "<group>"; };
 		19B5D5801F3ABE8D0049D745 /* WMImagePickerHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMImagePickerHandle.m; sourceTree = "<group>"; };
 		19B9BB3C1F161AEB00BD0938 /* WMBaseTableCollectionControlController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseTableCollectionControlController.h; sourceTree = "<group>"; };
@@ -334,23 +338,6 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		1953A2C01F342C890061B514 /* WMScrollPageView */ = {
-			isa = PBXGroup;
-			children = (
-				1953A2C11F342C890061B514 /* WMScrollBarItem.h */,
-				1953A2C21F342C890061B514 /* WMScrollBarItem.m */,
-				1953A2C31F342C890061B514 /* WMScrollContentView.h */,
-				1953A2C41F342C890061B514 /* WMScrollContentView.m */,
-				1953A2C51F342C890061B514 /* WMScrollPageView.h */,
-				1953A2C61F342C890061B514 /* WMScrollPageView.m */,
-				1953A2C71F342C890061B514 /* WMStretchableTableHeaderView.h */,
-				1953A2C81F342C890061B514 /* WMStretchableTableHeaderView.m */,
-				1953A2CD1F3450B50061B514 /* WMScrollBarItemStyle.h */,
-				1953A2CE1F3450B50061B514 /* WMScrollBarItemStyle.m */,
-			);
-			path = WMScrollPageView;
-			sourceTree = "<group>";
-		};
 		196032451F09E7AB00126AC7 = {
 			isa = PBXGroup;
 			children = (
@@ -502,6 +489,33 @@
 			path = WMPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		19A9D16B1F557EA3006882F7 /* WMScrollPageView */ = {
+			isa = PBXGroup;
+			children = (
+				19A9D16C1F557EA3006882F7 /* Resource */,
+				19A9D16F1F557EA3006882F7 /* WMScrollBarItem.h */,
+				19A9D1701F557EA3006882F7 /* WMScrollBarItem.m */,
+				19A9D1711F557EA3006882F7 /* WMScrollBarItemStyle.h */,
+				19A9D1721F557EA3006882F7 /* WMScrollBarItemStyle.m */,
+				19A9D1731F557EA3006882F7 /* WMScrollContentView.h */,
+				19A9D1741F557EA3006882F7 /* WMScrollContentView.m */,
+				19A9D1751F557EA3006882F7 /* WMScrollPageView.h */,
+				19A9D1761F557EA3006882F7 /* WMScrollPageView.m */,
+				19A9D1771F557EA3006882F7 /* WMStretchableTableHeaderView.h */,
+				19A9D1781F557EA3006882F7 /* WMStretchableTableHeaderView.m */,
+			);
+			path = WMScrollPageView;
+			sourceTree = "<group>";
+		};
+		19A9D16C1F557EA3006882F7 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				19A9D16D1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@2x.png */,
+				19A9D16E1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@3x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		19BF991A1F41A37200B2BB35 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,10 +599,10 @@
 		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				19A9D16B1F557EA3006882F7 /* WMScrollPageView */,
 				19D1D23B1F42D370001DFC0D /* WMCustomView */,
 				1995F7FE1F3C3B3D0036CFBA /* WMPhotoBrowser */,
 				19382EB11F396B9A0029AAA3 /* WMInputInfoView */,
-				1953A2C01F342C890061B514 /* WMScrollPageView */,
 				19F0118F1F29888700F30BC9 /* WMScrollWithHeader */,
 			);
 			path = CustomView;
@@ -681,7 +695,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19A9D1791F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@2x.png in Resources */,
 				1922AE241F50173500E66E46 /* icon_delete_image_wm@2x.png in Resources */,
+				19A9D17A1F557EA3006882F7 /* add_channel_titlbar_thin_new_16x16_@3x.png in Resources */,
 				19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */,
 				19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */,
 				1922AE251F50173500E66E46 /* icon_delete_image_wm@3x.png in Resources */,
@@ -753,12 +769,12 @@
 				192741511F0C841C00077E49 /* WMSwizzleMethod.m in Sources */,
 				19BF99101F415A1200B2BB35 /* WMLoginViewController.m in Sources */,
 				19BF991E1F41A3A500B2BB35 /* WMAIListCell.m in Sources */,
-				1953A2CC1F342C890061B514 /* WMStretchableTableHeaderView.m in Sources */,
 				196032931F0A563500126AC7 /* BaseViewController.m in Sources */,
 				1922AE281F501D5800E66E46 /* WMSettingViewController.m in Sources */,
 				19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */,
 				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
 				19BF99191F41A14200B2BB35 /* WMAIListModel.m in Sources */,
+				19A9D17D1F557EA3006882F7 /* WMScrollContentView.m in Sources */,
 				196032611F09E7AB00126AC7 /* main.m in Sources */,
 				192C13421F0BB8B000759221 /* DemoViewController.m in Sources */,
 				19382EB71F39B3730029AAA3 /* UITextView+LLDebugOnly.m in Sources */,
@@ -766,7 +782,9 @@
 				19BF99371F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m in Sources */,
 				19BF99331F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m in Sources */,
 				1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */,
+				19A9D17C1F557EA3006882F7 /* WMScrollBarItemStyle.m in Sources */,
 				190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */,
+				19A9D17B1F557EA3006882F7 /* WMScrollBarItem.m in Sources */,
 				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
 				19B5D5811F3ABE8D0049D745 /* WMImagePickerHandle.m in Sources */,
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
@@ -788,25 +806,23 @@
 				19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */,
 				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,
 				19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */,
-				1953A2CA1F342C890061B514 /* WMScrollContentView.m in Sources */,
+				19A9D17E1F557EA3006882F7 /* WMScrollPageView.m in Sources */,
 				199DACDC1F14C7FB008B4E55 /* UIScrollView+AppScrollView.m in Sources */,
 				19BF990D1F41460500B2BB35 /* WMTextView.m in Sources */,
 				196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */,
 				196032961F0A564400126AC7 /* HomeViewController.m in Sources */,
 				192C132B1F0B923800759221 /* AppTabBar.m in Sources */,
 				1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */,
-				1953A2CF1F3450B50061B514 /* WMScrollBarItemStyle.m in Sources */,
-				1953A2C91F342C890061B514 /* WMScrollBarItem.m in Sources */,
 				19218E461F53EAD400FEF66A /* UIViewExt.m in Sources */,
 				1995F8011F3C3B9C0036CFBA /* WMPhotoBrowser.m in Sources */,
 				196AB4911F0CF0CF00D660A2 /* UIButton+AppButton.m in Sources */,
 				1960328E1F0A55A000126AC7 /* RootViewController.m in Sources */,
 				195F620E1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m in Sources */,
 				196E1F2D1F0B7FFF00C2D678 /* BaseCollectionViewController.m in Sources */,
-				1953A2CB1F342C890061B514 /* WMScrollPageView.m in Sources */,
 				19D1D2411F42D397001DFC0D /* WMDownloadButton.m in Sources */,
 				1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */,
 				1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */,
+				19A9D17F1F557EA3006882F7 /* WMStretchableTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

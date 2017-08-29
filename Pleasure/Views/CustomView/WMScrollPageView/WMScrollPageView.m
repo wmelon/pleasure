@@ -48,10 +48,6 @@
 /// 头部视图的高度
 @property (nonatomic , assign) CGFloat tableViewHeaderViewHeight;
 
-/// 默认选中标签
-@property (nonatomic , assign) NSInteger defaultSelectedIndex;
-
-
 /// 所有视图的样式
 @property (nonatomic , strong) WMScrollBarItemStyle * style;
 
@@ -68,22 +64,27 @@
         barItemCount = [self.dataSource numberOfCountInScrollPageView:self];
     }
     
-    [self wm_configDefaultSelected];
+    /// 设置默认选中
+    [self wm_configDefaultSelectedWithBarItemCount:barItemCount];
     
+    /// 创建显示视图
     [self wm_creatShowControllersWithCount:barItemCount];
     
-    if (!self.style){
-        [self wm_createScrollBarWithCount:barItemCount];
-    }
+    /// 创建标题视图
+    [self wm_createScrollBarWithCount:barItemCount];
     
+    /// 创建标题视图头部视图
     [self wm_configTableViewHeaderView];
 }
 
-/// 配置默认选中
-- (void)wm_configDefaultSelected{
-    self.defaultSelectedIndex = 0;
+/// 配置默认选中 /// 初始化当前选中
+- (void)wm_configDefaultSelectedWithBarItemCount:(NSInteger)barItemCount{
+    _currentSelectedIndex = 0;
     if ([self.dataSource respondsToSelector:@selector(defaultSelectedIndexAtScrollPageView:)]){
-        self.defaultSelectedIndex = [self.dataSource defaultSelectedIndexAtScrollPageView:self];
+        _currentSelectedIndex = [self.dataSource defaultSelectedIndexAtScrollPageView:self];
+        if (_currentSelectedIndex >= barItemCount){
+            _currentSelectedIndex = 0;
+        }
     }
     
 }
@@ -142,7 +143,7 @@
 
     self.style = style;
     self.barItem.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, style.segmentHeight);
-    [self.barItem wm_configBarItemsWithCount:count barItemStyle:style];
+    [self.barItem wm_configBarItemsWithCount:count currentIndex:_currentSelectedIndex barItemStyle:style];
     
     /// 刷新
     [self.tableView reloadData];
@@ -204,7 +205,7 @@
     cell.delegate = self;
     
     /// 设置默认选中
-    [self setSelectedIndex:self.defaultSelectedIndex];
+    [self setSelectedIndex:_currentSelectedIndex];
     
     return cell;
 }
@@ -292,7 +293,9 @@
     
     /// 处理barItem切换
     [self.barItem adjustUIWithProgress:progress currentIndex:currentIndex];
-    
+ 
+    /// 更新当前选中的下标
+    _currentSelectedIndex = currentIndex;
 }
 
 - (void)scrollContentView:(WMScrollContentView *)scrollContentView scrollAnimating:(BOOL)scrollAnimating{
@@ -312,10 +315,16 @@
     return title;
 }
 
-
+/// 右边添加按钮点击事件
+- (void)plusButtonClickAtBarItem:(WMScrollBarItem *)barItem{
+    if ([self.delegate respondsToSelector:@selector(plusButtonClickAtScrollPageView:)]){
+        [self.delegate plusButtonClickAtScrollPageView:self];
+    }
+}
 /// 选择了barItem需要切换界面
 - (void)barItem:(WMScrollBarItem *)barItem didSelectIndex:(NSInteger)index{
-    
+    /// 更新当前选中的下标
+    _currentSelectedIndex = index;
     [self.contentCell setSelectIndex:index];
 }
 
@@ -335,7 +344,7 @@
 }
 
 /// 刷新数据
-- (void)reloadScrollBar{
+- (void)reloadScrollPageView{
     [self setDataSource:_dataSource];
 }
 

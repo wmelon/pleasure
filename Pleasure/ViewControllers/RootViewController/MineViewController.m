@@ -75,7 +75,8 @@
 
 
 - (void)productListViewController:(WMProductListViewController *)productListViewController didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WMSettingViewController * vc = [WMSettingViewController new];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (WMScrollBarItemStyle *)scrollBarItemStyleInScrollPageView:(WMScrollPageView *)scrollPageView{
