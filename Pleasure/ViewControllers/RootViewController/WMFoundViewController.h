@@ -6,8 +6,8 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "WMBaseCollectionViewController.h"
 
-@interface WMFoundViewController : BaseCollectionViewController
+@interface WMFoundViewController : WMBaseCollectionViewController
 
 @end

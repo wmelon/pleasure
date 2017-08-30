@@ -210,16 +210,7 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //要减去导航栏 状态栏 以及 sectionheader的高度
-    
-    CGFloat height = self.style.scrollContentViewTableViewHeight - 64 - CGRectGetHeight(self.barItem.frame);
-    if (height <= 0){
-        height = 0;
-    }
-    return height;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    return [self wm_getContentCellHeight];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -230,6 +221,18 @@
     return CGRectGetHeight(self.barItem.frame);
 }
 
+- (CGFloat)wm_getContentCellHeight{
+    //要减去导航栏 状态栏 以及 sectionheader的高度
+    CGFloat naviBarAndTabBArHeight = 0.0;
+    if (self.style.isShowNavigationBar){
+        naviBarAndTabBArHeight = 64 - self.frame.origin.y;
+    }
+    CGFloat height = self.frame.size.height - naviBarAndTabBArHeight - CGRectGetHeight(self.barItem.frame);
+    if (height <= 0){
+        height = 0;
+    }
+    return height;
+}
 
 #pragma mark -- WMScrollContentViewDelegate
 
@@ -380,7 +383,6 @@
     
     return _tableView;
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

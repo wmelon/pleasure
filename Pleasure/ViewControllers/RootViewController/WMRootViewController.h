@@ -1,13 +1,13 @@
 //
-//  RootViewController.h
+//  WMRootViewController.h
 //  Pleasure
 //
-//  Created by Sper on 2017/7/3.
+//  Created by Sper on 2017/8/30.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UITabBarController
+@interface WMRootViewController : UITabBarController
 - (UINavigationController *)currentSelectedNavigationController;
 @end

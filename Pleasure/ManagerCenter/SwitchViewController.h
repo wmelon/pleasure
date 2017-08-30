@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "RootViewController.h"
+#import "WMRootViewController.h"
 
 @interface SwitchViewController : NSObject
 @property (nonatomic , strong , readonly)UINavigationController *topNavigationController;
-@property (nonatomic , strong , readonly)RootViewController *rootShowViewController;
+@property (nonatomic , strong , readonly)WMRootViewController *rootShowViewController;
 
 
 + (instancetype)sharedSVC;

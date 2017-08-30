@@ -1,20 +1,19 @@
 //
-//  MineViewController.m
+//  WMMineViewController.m
 //  Pleasure
 //
-//  Created by Sper on 2017/7/4.
+//  Created by Sper on 2017/8/30.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "MineViewController.h"
+#import "WMMineViewController.h"
 #import "WMUserHeaderView.h"
 #import "WMScrollPageView.h"
-#import "WMProductListViewController.h"
 
 #define kUserHeaderViewHeight kScreenWidth  / 1.5
 #define kTableViewHeight (kScreenHeight - 49)
 
-@interface MineViewController ()<WMScrollPageViewDelegate , WMScrollPageViewDataSource , WMProductListViewControllerDelegate>
+@interface WMMineViewController ()<WMScrollPageViewDelegate , WMScrollPageViewDataSource , WMProductListViewControllerDelegate>
 
 @property (nonatomic , strong) WMScrollPageView * scrollPageView;
 
@@ -24,9 +23,10 @@
 /// 分段标题数组
 @property (nonatomic , strong) NSMutableArray * segmentArray;
 
+
 @end
 
-@implementation MineViewController
+@implementation WMMineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,14 +76,12 @@
 
 - (void)productListViewController:(WMProductListViewController *)productListViewController didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WMSettingViewController * vc = [WMSettingViewController new];
-    [self presentViewController:vc animated:YES completion:nil];
+    [_svc wm_pushViewController:vc];
 }
 
 - (WMScrollBarItemStyle *)scrollBarItemStyleInScrollPageView:(WMScrollPageView *)scrollPageView{
     WMScrollBarItemStyle * style = [WMScrollBarItemStyle new];
-    style.scrollContentViewTableViewHeight = kTableViewHeight;
     style.itemSizeStyle = wm_itemSizeStyle_equal_textSize;
-//    style.scrollLineWidth = 30;
     style.allowStretchableHeader = NO;
     style.scaleTitle = YES;
     return style;
@@ -91,7 +89,7 @@
 
 - (WMUserHeaderView *)userHeaderView{
     if (_userHeaderView == nil){
-
+        
         _userHeaderView = [WMUserHeaderView userHeaderView];
         _userHeaderView.frame = CGRectMake(0, 0, kScreenWidth,  kUserHeaderViewHeight);
     }
@@ -108,9 +106,9 @@
 }
 
 - (WMScrollPageView *)scrollPageView{
-
-    if (_scrollPageView == nil){
     
+    if (_scrollPageView == nil){
+        
         _scrollPageView = [[WMScrollPageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kTableViewHeight)];
         _scrollPageView.dataSource = self;
         _scrollPageView.delegate = self;
@@ -134,13 +132,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

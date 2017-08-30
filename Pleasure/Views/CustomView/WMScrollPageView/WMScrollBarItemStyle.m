@@ -27,9 +27,10 @@
         self.bottomLineHeight = 0.5;
         self.bottomLineColor = [UIColor colorWithRed:225.0 / 255.0 green:225.0 / 255.0 blue:225.0 / 255.0 alpha:1.0];
         self.allowShowBottomLine = YES;
-        self.scrollContentViewTableViewHeight =  [UIScreen mainScreen].bounds.size.height;
         self.allowStretchableHeader = YES;
         self.itemSizeStyle = wm_itemSizeStyle_equal_width;
+        self.segmentBgColor = [UIColor whiteColor];
+        self.showNavigationBar = YES;
     }
     return self;
 }

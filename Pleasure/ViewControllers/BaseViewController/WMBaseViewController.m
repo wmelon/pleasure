@@ -1,18 +1,18 @@
 //
-//  BaseViewController.m
+//  WMBaseViewController.m
 //  Pleasure
 //
-//  Created by Sper on 2017/7/3.
+//  Created by Sper on 2017/8/30.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseViewController.h"
-@interface BaseViewController ()
+#import "WMBaseViewController.h"
+
+@interface WMBaseViewController ()
 
 @end
 
-@implementation BaseViewController
-
+@implementation WMBaseViewController
 
 - (void)dealloc{
     NSLog(@"----------界面销毁了 %@" ,self);
@@ -54,9 +54,9 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor pageBackgroundColor];
     
-//    if ([self shouldShowBackItem]) {
-//        [self showBackItem];
-//    }
+    //    if ([self shouldShowBackItem]) {
+    //        [self showBackItem];
+    //    }
 }
 
 
@@ -160,13 +160,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

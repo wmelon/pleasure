@@ -141,6 +141,8 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 }
 
 - (void)wm_configUI{
+    self.backgroundColor = self.barItemStyle.segmentBgColor;
+    
     /// 添加标题滚动视图
     [self addSubview:self.scrollView];
     self.scrollView.frame = self.bounds;

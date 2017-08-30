@@ -6,8 +6,8 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "WMBaseTableViewController.h"
 
-@interface WMLoginViewController : BaseTableViewController
+@interface WMLoginViewController : WMBaseTableViewController
 
 @end

@@ -14,12 +14,6 @@
 
 @implementation WMProductListViewController
 
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    self.tableView.frame = self.view.bounds;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -40,6 +34,12 @@
     if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
+    if (indexPath.row % 2 == 0){
+        cell.backgroundColor = [UIColor whiteColor];
+    }else {
+        cell.backgroundColor = [UIColor lineColor];
+    }
+    
     cell.textLabel.text = [NSString stringWithFormat:@"%@  %ld Hi" , _titleString , indexPath.row];
     return cell;
 }

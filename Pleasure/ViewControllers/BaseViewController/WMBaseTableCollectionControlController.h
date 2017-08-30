@@ -6,9 +6,9 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "WMBaseViewController.h"
 
-@interface WMBaseTableCollectionControlController : BaseViewController
+@interface WMBaseTableCollectionControlController : WMBaseViewController
 
 /// 显示的数据源
 @property (nonatomic, strong) NSMutableArray *rows;

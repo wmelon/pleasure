@@ -23,9 +23,9 @@
 
 #pragma mark -- getter and setter
 @synthesize rootShowViewController = _rootShowViewController;
-- (RootViewController *)rootShowViewController{
+- (WMRootViewController *)rootShowViewController{
     if (_rootShowViewController == nil){
-        _rootShowViewController = [[RootViewController alloc] init];
+        _rootShowViewController = [[WMRootViewController alloc] init];
     }
     return _rootShowViewController;
 }

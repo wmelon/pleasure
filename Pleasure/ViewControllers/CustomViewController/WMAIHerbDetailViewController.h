@@ -6,9 +6,9 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "WMBaseViewController.h"
 #import "WMAIBeginnerCookViewController.h"
 
-@interface WMAIHerbDetailViewController : BaseViewController
+@interface WMAIHerbDetailViewController : WMBaseViewController
 @property (nonatomic , strong) WMAIHerbModel *herbModel;
 @end

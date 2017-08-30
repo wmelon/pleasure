@@ -1,19 +1,22 @@
 //
-//  BaseTableViewController.m
+//  WMBaseTableViewController.m
 //  Pleasure
 //
-//  Created by Sper on 2017/7/4.
+//  Created by Sper on 2017/8/30.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "WMBaseTableViewController.h"
 
-
-@interface BaseTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface WMBaseTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
-@implementation BaseTableViewController
+@implementation WMBaseTableViewController
+
+- (void)viewWillLayoutSubviews{
+    self.tableView.frame = self.view.bounds;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,7 +24,6 @@
     
     [self.view addSubview:self.tableView];
 }
-
 
 #pragma mark -- UITableViewDelegate and UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -65,13 +67,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

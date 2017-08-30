@@ -6,7 +6,7 @@
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "WMBaseTableViewController.h"
 
 
 @class WMProductListViewController;
@@ -17,7 +17,7 @@
 
 @end
 
-@interface WMProductListViewController : BaseTableViewController
+@interface WMProductListViewController : UITableViewController
 @property (nonatomic , weak) id<WMProductListViewControllerDelegate> delegate;
 
 @property (nonatomic , copy) NSString * titleString;

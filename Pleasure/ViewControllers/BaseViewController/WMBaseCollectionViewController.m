@@ -1,20 +1,24 @@
 //
-//  BaseCollectionViewController.m
+//  WMBaseCollectionViewController.m
 //  Pleasure
 //
-//  Created by Sper on 2017/7/4.
+//  Created by Sper on 2017/8/30.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "BaseCollectionViewController.h"
+#import "WMBaseCollectionViewController.h"
 
-@interface BaseCollectionViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
+@interface WMBaseCollectionViewController ()<UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout>
 
 @end
 
-@implementation BaseCollectionViewController
+@implementation WMBaseCollectionViewController
 
 @synthesize collectionView = _collectionView;
+
+- (void)viewWillLayoutSubviews{
+    self.collectionView.frame = self.view.bounds;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,13 +63,14 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

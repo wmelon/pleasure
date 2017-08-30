@@ -1,25 +1,25 @@
 //
-//  AppNavigationBar.m
+//  WMAppNavigationBar.m
 //  Pleasure
 //
-//  Created by Sper on 2017/7/4.
+//  Created by Sper on 2017/8/30.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "AppNavigationBar.h"
+#import "WMAppNavigationBar.h"
 
-@interface AppNavigationBar()
+@interface WMAppNavigationBar()
 //@property (nonatomic , strong)UIView *barBackgroundView;
 @end
 
-@implementation AppNavigationBar
+@implementation WMAppNavigationBar
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.translucent = YES;
-//        UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor mainColor]];
+        //        UIImage *_storedBackgroundImage = [UIImage buildImageWithColor:[UIColor mainColor]];
         
         /// 设置系统的导航栏背景为空，为的是显示自己定义的背景视图
         [self setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -60,19 +60,12 @@
 //    }
 //}
 
-
-
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end
-
-
-
-
-

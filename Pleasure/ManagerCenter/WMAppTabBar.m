@@ -1,14 +1,14 @@
 //
-//  AppTabBar.m
+//  WMAppTabBar.m
 //  Pleasure
 //
-//  Created by Sper on 2017/7/4.
+//  Created by Sper on 2017/8/30.
 //  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "AppTabBar.h"
+#import "WMAppTabBar.h"
 
-@implementation AppTabBar
+@implementation WMAppTabBar
 
 - (nonnull instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
@@ -17,6 +17,7 @@
     }
     return self;
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
