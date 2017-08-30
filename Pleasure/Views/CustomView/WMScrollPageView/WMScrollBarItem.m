@@ -73,6 +73,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     }];
     
     [self.itemsButtonArray removeAllObjects];
+    [self.scrollLineWidths removeAllObjects];
     
     CGFloat width = 0.0;
     CGFloat height = self.frame.size.height;

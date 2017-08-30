@@ -664,6 +664,7 @@
 		196032461F09E7AB00126AC7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WM;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = WM;
 				TargetAttributes = {
