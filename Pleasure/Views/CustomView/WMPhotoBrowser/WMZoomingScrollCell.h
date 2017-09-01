@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WMPhotoModel.h"
 #import "WMTapDetectingImageView.h"
+#import "WMCaptionView.h"
 
 @class WMZoomingScrollCell;
 
@@ -19,15 +20,17 @@
 @end
 
 @interface WMZoomingScrollCell : UICollectionViewCell
+
 @property (nonatomic ,weak) id<WMZoomingScrollCellDelegate> delegate;
 /// 展示图片的视图
 @property (nonatomic , strong , readonly) WMTapDetectingImageView *imageShowView;
-/// 缩放的视图
-@property (nonatomic , strong , readonly) UIScrollView *zoomScrollView;
 
-@property (nonatomic , strong) WMPhotoModel *photoModel;
+/// 图片最大缩放比例
+@property (nonatomic , assign) CGFloat maximumDoubleTapZoomScale;
 
-@property (nonatomic) CGFloat maximumDoubleTapZoomScale;
+
+/// 显示图片和描述视图
+- (void)wm_setDataPhotoModel:(WMPhotoModel *)photo captionView:(WMCaptionView *)captionView;
 
 /// 开始显示图片
 - (void)wm_displayImageWithIsPresenting:(BOOL)isPresenting tempImage:(UIImage *)tempImage;

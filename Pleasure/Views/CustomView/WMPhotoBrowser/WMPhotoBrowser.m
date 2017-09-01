@@ -32,6 +32,7 @@
 
 /// 手势过度管理器
 @property (nonatomic , strong) WMInteractiveTransition *interactiveTransition;
+
 @end
 
 @implementation WMPhotoBrowser
@@ -218,7 +219,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WMZoomingScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([WMZoomingScrollCell class]) forIndexPath:indexPath];
     cell.delegate = self;
-    [cell setPhotoModel:self.photos[indexPath.row]];
+    /// 设置显示数据
+    [cell wm_setDataPhotoModel:self.photos[indexPath.row] captionView:[self captionViewForPhotoAtIndex:indexPath.row]];
     [cell wm_displayImageWithIsPresenting:_isPresenting tempImage:self.srcImageView.image];
     return cell;
 }
@@ -240,6 +242,38 @@
         self.srcImageView = [self.delegate photoBrowser:self imageViewAtIndex:_currentIndex];
     }
 }
+
+#pragma mark -- Data
+
+- (WMCaptionView *)captionViewForPhotoAtIndex:(NSUInteger)index {
+    WMCaptionView *captionView = nil;
+    if ([_delegate respondsToSelector:@selector(photoBrowser:captionViewForPhotoAtIndex:)]) {
+        captionView = [_delegate photoBrowser:self captionViewForPhotoAtIndex:index];
+    } else {
+        WMPhotoModel *photo = [self photoAtIndex:index];
+        if ([photo respondsToSelector:@selector(caption)]) {
+            if ([photo caption]) captionView = [[WMCaptionView alloc] initWithPhoto:photo];
+        }
+    }
+    return captionView;
+}
+
+- (WMPhotoModel *)photoAtIndex:(NSUInteger)index {
+    WMPhotoModel *photo = nil;
+    if (index < _photos.count) {
+        if ([self.photos objectAtIndex:index]){
+            photo = [_photos objectAtIndex:index];
+        }else{
+            if ([self.delegate respondsToSelector:@selector(photoBrowser:photoAtIndex:)]){
+                photo = [_delegate photoBrowser:self photoAtIndex:index];
+            }
+        }
+    }
+    return photo;
+}
+
+#pragma mark -- control hidden and show
+
 
 #pragma mark - Navigation
 

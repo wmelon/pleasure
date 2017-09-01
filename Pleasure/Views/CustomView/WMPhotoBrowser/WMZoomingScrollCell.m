@@ -20,6 +20,15 @@
 /// 加载失败显示图片
 @property (nonatomic , strong) UIImageView *loadingError;
 
+/// 缩放的视图
+@property (nonatomic , strong , readonly) UIScrollView *zoomScrollView;
+
+/// 图片数据源
+@property (nonatomic , strong) WMPhotoModel *photoModel;
+
+/// 图片说明视图(可以自定制)
+@property (nonatomic , strong) WMCaptionView *captionView;
+
 @end
 
 @implementation WMZoomingScrollCell
@@ -49,7 +58,7 @@
     tapBgView.tapDelegate = self;
     tapBgView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     tapBgView.backgroundColor = [UIColor clearColor];
-    [self.zoomScrollView addSubview:tapBgView];
+    [_zoomScrollView addSubview:tapBgView];
     self.tapBgView = tapBgView;
     
     
@@ -57,7 +66,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.clipsToBounds = YES;
     imageView.tapDelegate = self;
-    [scrollView addSubview:imageView];
+    [_zoomScrollView addSubview:imageView];
     _imageShowView = imageView;
     
     
@@ -72,11 +81,27 @@
     _loadingIndicator.progressTintColor = [UIColor whiteColor];
     _loadingIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin |
     UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.zoomScrollView addSubview:_loadingIndicator];
+    [_zoomScrollView addSubview:_loadingIndicator];
     
+//    /// 图片描述视图
+//    _captionView = [[WMCaptionView alloc] init];
+//    [_zoomScrollView addSubview:_captionView];
 }
 
-- (void)setPhotoModel:(WMPhotoModel *)photoModel{
+/// 设置显示数据源
+
+- (void)wm_setDataPhotoModel:(WMPhotoModel *)photo captionView:(WMCaptionView *)captionView{
+    _photoModel = photo;
+    
+    
+//    captionView.backgroundColor = [UIColor blackColor];
+//    if (_captionView.subviews.count){
+//        [[_captionView.subviews firstObject] removeFromSuperview];
+//    }else {
+//        [_captionView addSubview:captionView];
+//    }
+//    _captionView.frame = [self frameForCaptionView:captionView];
+    
     
     [self hideImageFailure];
     // Cancel any loading on old photo
@@ -85,9 +110,20 @@
             [_photoModel cancelAnyLoading];
         }
     }
-     _photoModel = photoModel;
 }
 
+//- (CGRect)frameForCaptionView:(WMCaptionView *)captionView{
+//    CGRect pageFrame = self.bounds;
+//    CGSize captionSize = [captionView sizeThatFits:CGSizeMake(pageFrame.size.width, 0)];
+//    CGRect captionFrame = CGRectMake(pageFrame.origin.x,
+//                                     pageFrame.size.height - captionSize.height,
+//                                     pageFrame.size.width,
+//                                     captionSize.height);
+//    return CGRectIntegral(captionFrame);
+//}
+
+
+/// 显示图片
 - (void)wm_displayImageWithIsPresenting:(BOOL)isPresenting tempImage:(UIImage *)tempImage{
     
     if (isPresenting == NO){  /// 只有在转场动画结束之后才处理加载图片

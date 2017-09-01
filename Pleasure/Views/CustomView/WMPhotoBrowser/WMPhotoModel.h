@@ -16,6 +16,9 @@ typedef void(^WMLoadImageProgressHandle) (CGFloat progress);
 
 
 @interface WMPhotoModel : NSObject
+
+/// 图片的标题
+@property (nonatomic, strong) NSString *caption;
 /// 加载成功存储图片
 @property (nonatomic, strong , readonly) UIImage *image;
 
