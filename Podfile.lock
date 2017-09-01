@@ -32,7 +32,7 @@ DEPENDENCIES:
   - AVOSCloud (~> 5.0.1)
   - DACircularProgress
   - DZNEmptyDataSet (= 1.8.1)
-  - LCActionSheet
+  - LCActionSheet (~> 3.2.4)
   - Masonry
   - MJRefresh (~> 3.1.0)
   - pop (from `https://github.com/facebook/pop.git`)
@@ -60,6 +60,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TZImagePickerController: 086034156913375cb19c8e4103562f15322c3b36
 
-PODFILE CHECKSUM: 167f9ada987f1892891464e3e9c1ad29ac782028
+PODFILE CHECKSUM: 4c9e79509174a83eaedba7a9d04c781cdd0c438e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
