@@ -30,8 +30,8 @@
 
 @property (nonatomic , weak) id<WMScrollBarItemDelegate> delegate;
 
+/// 初始化导航标题视图
 - (void)wm_configBarItemsWithCount:(NSInteger)count currentIndex:(NSInteger)currentIndex barItemStyle:(WMScrollBarItemStyle *)barItemStyle;
-
 
 /// scrollDidScroll 调用方法
 - (void)adjustUIWithProgress:(CGFloat)progress currentIndex:(NSInteger)currentIndex;

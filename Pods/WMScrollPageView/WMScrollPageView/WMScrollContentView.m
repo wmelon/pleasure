@@ -8,7 +8,7 @@
 
 #import "WMScrollContentView.h"
 
-@interface WMScrollContentView()<UIPageViewControllerDelegate,UIPageViewControllerDataSource , UIScrollViewDelegate>
+@interface WMScrollContentView()<UIPageViewControllerDelegate,UIPageViewControllerDataSource , UIScrollViewDelegate , UIGestureRecognizerDelegate>
 
 /// 显示的控制器数组
 @property (nonatomic , strong) NSArray *showViewControllers;
@@ -52,6 +52,7 @@
     if (cell == nil){
         cell = [[WMScrollContentView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([WMScrollContentView class])];
     }
+    [cell setSelectionStyle:(UITableViewCellSelectionStyleNone)];
     cell.showViewControllers = showViewControllers;
     /// 初始化存储滚动视图的数组
     NSMutableArray<UIScrollView *> * array = [NSMutableArray array];
@@ -90,8 +91,7 @@
                                   forKeyPath:@"panGestureRecognizer.state"
                                      options:NSKeyValueObservingOptionNew
                                      context:nil];
-            
-            /// 监听滚动的contentOffSet 变换
+            /// 监听pageView滚动
             self.pageScrollView.delegate = self;
         }
     }
@@ -124,6 +124,13 @@
                         [controlScrollView addObserver:self forKeyPath:@"contentOffset"
                                                options:NSKeyValueObservingOptionNew
                                                context:nil];
+                        
+                        /// 为滚动视图添加手势代理，但是pan手势不能自己添加代码。所以必须去除
+                        for (UIGestureRecognizer* recognizer in controlScrollView.gestureRecognizers) {
+                            if (![recognizer isKindOfClass:[UIPanGestureRecognizer class]]){
+                                recognizer.delegate = self;
+                            }
+                        }
                     }
                 }
             }];
@@ -137,6 +144,39 @@
         }
     }
 }
+
+#pragma mark -- UIGestureRecognizerDelegate 方法
+//// pageViewController 内部的 tableViewcell 长按高亮之后立即滑动pageView使的tableViewcell 手势失败 无法取消高亮的bug修复代码
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateFailed || gestureRecognizer.state == UIGestureRecognizerStateEnded || gestureRecognizer.state == UIGestureRecognizerStateCancelled){
+        
+        if (_selectIndex < self.controlScrollViewArray.count){
+            
+            UIScrollView *scrollView = self.controlScrollViewArray[_selectIndex];
+            if ([scrollView isKindOfClass:[UITableView class]]){
+                
+                UITableView *tableView = (UITableView *)scrollView;
+                CGPoint point = [otherGestureRecognizer locationInView:tableView];
+                
+                NSIndexPath * indexPath = [tableView indexPathForRowAtPoint:point];
+                
+                if (indexPath){
+                    
+                    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+                    if (cell){   /// 如果手势失败了之后不允许tableViewCell的高亮状态和选中状态
+                        [cell setHighlighted:NO];
+                        [cell setSelected:NO];
+                        [cell setHighlighted:NO animated:YES];
+                        [cell setSelected:NO animated:YES];
+                    }
+                }
+            }
+        }
+    }
+    return YES;
+}
+
 
 //监听拖拽手势的回调
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -170,16 +210,21 @@
     CGFloat offPercent = 0.0;
     
     for (UIViewController * vc in self.showViewControllers) {
-        
-        CGPoint p = [vc.view convertPoint:CGPointZero toView:_pageViewController.view];
+        CGPoint p = CGPointZero;
+        if ([vc isViewLoaded]){
+            p = [vc.view convertPoint:CGPointZero toView:_pageViewController.view];
+        }
         
         if (p.x > 0.0 && p.x < pageWidth){
+            
             NSInteger index = [self.showViewControllers indexOfObject:vc];
+            
             CGFloat stimateOffSetX = index * pageWidth - (p.x);
             
 //            offPercent = (pageWidth - p.x) / pageWidth;
             offPercent = stimateOffSetX / pageWidth;
             _selectIndex = (stimateOffSetX + pageWidth / 2) / pageWidth;
+            
             
             if (stimateOffSetX <= 0) return;
         }

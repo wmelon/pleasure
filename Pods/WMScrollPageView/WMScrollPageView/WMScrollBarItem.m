@@ -141,8 +141,6 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 }
 
 - (void)wm_configUI{
-    self.backgroundColor = self.barItemStyle.segmentBgColor;
-    
     /// 添加标题滚动视图
     [self addSubview:self.scrollView];
     self.scrollView.frame = self.bounds;
@@ -185,6 +183,14 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     //强制转化为整型(比初值偏小)，因为float型size转到view上会有一定的偏移，导致view setBounds时候 错位
     CGSize contentSize =CGSizeMake(ceil(actualsize.width), ceil(actualsize.height));
     return contentSize;
+}
+
+/// 0.0 -- 1.0  或 -0.0 -- -1.0   数字越小越偏向高亮颜色   数值越大越偏向原本颜色
+- (UIColor *)gradientHighLightToNormal:(CGFloat)percent{
+    CGFloat r = self.defaultColors[0].floatValue + (1-ABS(percent))*(self.highLightColors[0].floatValue-self.defaultColors[0].floatValue);
+    CGFloat g = self.defaultColors[1].floatValue + (1-ABS(percent))*(self.highLightColors[1].floatValue-self.defaultColors[1].floatValue);
+    CGFloat b = self.defaultColors[2].floatValue + (1-ABS(percent))*(self.highLightColors[2].floatValue-self.defaultColors[2].floatValue);
+    return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
 
 - (NSArray *)setDefaultRGBColors:(UIColor *)color{
@@ -356,7 +362,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     if (toIndex < self.itemsButtonArray.count){
      
         UIButton *toButton = self.itemsButtonArray[toIndex];
-        CGFloat offX = CGRectGetMidX(toButton.frame) - self.scrollView.size.width/2.0;
+        CGFloat offX = CGRectGetMidX(toButton.frame) - self.scrollView.frame.size.width/2.0;
         if (offX <= 0){
             offX = 0;
         }
@@ -366,14 +372,6 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         [self.scrollView setContentOffset:CGPointMake(offX, 0) animated:YES];
     }
     
-}
-
-/// 0.0 -- 1.0  或 -0.0 -- -1.0   数字越小越偏向高亮颜色   数值越大越偏向原本颜色
-- (UIColor *)gradientHighLightToNormal:(CGFloat)percent{
-    CGFloat r = self.defaultColors[0].floatValue + (1-ABS(percent))*(self.highLightColors[0].floatValue-self.defaultColors[0].floatValue);
-    CGFloat g = self.defaultColors[1].floatValue + (1-ABS(percent))*(self.highLightColors[1].floatValue-self.defaultColors[1].floatValue);
-    CGFloat b = self.defaultColors[2].floatValue + (1-ABS(percent))*(self.highLightColors[2].floatValue-self.defaultColors[2].floatValue);
-    return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
 
 #pragma mark -- 获取按钮显示的文案

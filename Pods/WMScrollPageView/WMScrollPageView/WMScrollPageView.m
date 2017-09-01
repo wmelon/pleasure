@@ -150,11 +150,10 @@
 
 }
 
+/// 切换主滚动视图和子滚动视图之间是否滚动
 - (void)changeMainTableViewAllowScroll:(BOOL)mainAllowScroll{
-    
     self.mainCanScroll = mainAllowScroll;
     self.contentCell.canScroll = !mainAllowScroll;
-
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -210,7 +209,13 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [self wm_getContentCellHeight];
+    //要减去导航栏 状态栏 以及 sectionheader的高度
+    
+    CGFloat height = self.style.scrollContentViewTableViewHeight - 64 - CGRectGetHeight(self.barItem.frame);
+    if (height <= 0){
+        height = 0;
+    }
+    return height;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -221,18 +226,6 @@
     return CGRectGetHeight(self.barItem.frame);
 }
 
-- (CGFloat)wm_getContentCellHeight{
-    //要减去导航栏 状态栏 以及 sectionheader的高度
-    CGFloat naviBarAndTabBArHeight = 0.0;
-    if (self.style.isShowNavigationBar){
-        naviBarAndTabBArHeight = 64 - self.frame.origin.y;
-    }
-    CGFloat height = self.frame.size.height - naviBarAndTabBArHeight - CGRectGetHeight(self.barItem.frame);
-    if (height <= 0){
-        height = 0;
-    }
-    return height;
-}
 
 #pragma mark -- WMScrollContentViewDelegate
 
@@ -346,6 +339,7 @@
     [self.stretchableTableHeaderView resizeView];
 }
 
+#pragma mark -- Getter method
 /// 刷新数据
 - (void)reloadScrollPageView{
     [self setDataSource:_dataSource];
@@ -383,6 +377,7 @@
     
     return _tableView;
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

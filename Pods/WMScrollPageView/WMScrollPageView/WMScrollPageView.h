@@ -26,10 +26,10 @@
 /// 滑块下的每一项对应显示的控制器
 - (UIViewController *)scrollPageView:(WMScrollPageView *)scrollPageView controllerAtIndex:(NSInteger)index;
 
-
+/// tableView的头部是否
 - (UIView *)headerViewInScrollPageView:(WMScrollPageView *)scrollPageView;
 
-
+/// 整个空间的样式设置
 - (WMScrollBarItemStyle *)scrollBarItemStyleInScrollPageView:(WMScrollPageView *)scrollPageView;
 
 /// 默认选中的标签 默认是 0
