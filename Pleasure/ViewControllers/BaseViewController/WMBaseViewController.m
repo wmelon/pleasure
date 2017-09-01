@@ -39,7 +39,15 @@
     }
 }
 
-//子类重写需要调用超类
+/// 布局视图frame
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if (self.fd_prefersNavigationBarHidden == NO){
+        [self setHeaderViewFrame];
+        /// 这里保证头部视图永远在最上层不被覆盖
+        [self.view bringSubviewToFront:_navigationBarBackgroundView];
+    }
+}
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     if (self.fd_prefersNavigationBarHidden == NO){
