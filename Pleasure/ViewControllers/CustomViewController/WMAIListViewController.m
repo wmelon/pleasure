@@ -11,6 +11,9 @@
 #import "WMAIListCell.h"
 #import "WMAIBeginnerCookViewController.h"
 #import "WMDownloadListViewController.h"
+#import "WMPhotoSelectViewController.h"
+#import "WMPhotoBrowserViewController.h"
+#import "WMPhotoCaptionViewController.h"
 
 @interface WMAIListViewController ()
 
@@ -23,42 +26,11 @@
     // Do any additional setup after loading the view.
     
     self.title = @"效果集";
-    NSArray *array = @[[WMAIListModel initWithTitle:@"衰减动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"弹簧动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"跑马灯效果" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"Pop缩放动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"防百度加载提示" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"facebook辉光动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"Gradinent转场动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"scrollViews视差效果" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"wellCome加载动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"多个按钮按照微博九宫格排布" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"模仿qq图片浏览" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"researchKit的lineChart" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"自定义模态转场动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"心电图" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"Cell点击动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"设置页面" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"登录页面" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"天猫Loading" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"多人游戏" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"不规则按钮" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"自适应高度textView" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"模糊效果" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"音乐播放按钮" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"航班信息" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"包裹" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"gradientLayer动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"离散图" andTargetVC:[UIViewController class]],
+    NSArray *array = @[[WMAIListModel initWithTitle:@"选择图片样式" andTargetVC:[WMPhotoSelectViewController class]],
+                       [WMAIListModel initWithTitle:@"放大效果浏览图片样式" andTargetVC:[WMPhotoBrowserViewController class]],
+                       [WMAIListModel initWithTitle:@"带图片描述图片浏览" andTargetVC:[WMPhotoCaptionViewController class]],
                        [WMAIListModel initWithTitle:@"BeginnerCook" andTargetVC:[WMAIBeginnerCookViewController class]],
-                       [WMAIListModel initWithTitle:@"本地闹钟" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"Twitter开场动画" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"画板" andTargetVC:[UIViewController class]],
                        [WMAIListModel initWithTitle:@"下载按钮" andTargetVC:[WMDownloadListViewController class]],
-                       [WMAIListModel initWithTitle:@"officebuddy" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"折叠" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"类似Safari效果" andTargetVC:[UIViewController class]],
-                       [WMAIListModel initWithTitle:@"播放按钮 + loading" andTargetVC:[UIViewController class]]
                        ];
     
 
@@ -95,7 +67,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     WMAIListModel *model = self.rows[indexPath.row];
-    [_svc wm_pushViewController:[model.targetVC new]];
+    UIViewController * vc = [model.targetVC new];
+    vc.title = model.title;
+    [_svc wm_pushViewController:vc];
 }
 
 - (BOOL)shouldShowGetMore{

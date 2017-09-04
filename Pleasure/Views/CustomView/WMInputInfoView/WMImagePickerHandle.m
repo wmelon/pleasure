@@ -102,6 +102,7 @@
         
             photo = [WMPhotoModel photoWithURL:[NSURL URLWithString:wmPhoto.photoUrl]];
         }
+        
 //        photo = [WMPhotoModel photoWithURL:[NSURL URLWithString:@"http://img.pconline.com.cn/images/upload/upc/tx/wallpaper/1212/27/c1/16933645_1356590157539.jpg"]];
     }
     

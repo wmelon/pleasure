@@ -26,9 +26,6 @@
 /// 图片数据源
 @property (nonatomic , strong) WMPhotoModel *photoModel;
 
-/// 图片说明视图(可以自定制)
-@property (nonatomic , strong) WMCaptionView *captionView;
-
 @end
 
 @implementation WMZoomingScrollCell
@@ -82,26 +79,13 @@
     _loadingIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin |
     UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
     [_zoomScrollView addSubview:_loadingIndicator];
-    
-//    /// 图片描述视图
-//    _captionView = [[WMCaptionView alloc] init];
-//    [_zoomScrollView addSubview:_captionView];
+
 }
 
 /// 设置显示数据源
 
-- (void)wm_setDataPhotoModel:(WMPhotoModel *)photo captionView:(WMCaptionView *)captionView{
+- (void)wm_setDataPhotoModel:(WMPhotoModel *)photo{
     _photoModel = photo;
-    
-    
-//    captionView.backgroundColor = [UIColor blackColor];
-//    if (_captionView.subviews.count){
-//        [[_captionView.subviews firstObject] removeFromSuperview];
-//    }else {
-//        [_captionView addSubview:captionView];
-//    }
-//    _captionView.frame = [self frameForCaptionView:captionView];
-    
     
     [self hideImageFailure];
     // Cancel any loading on old photo
@@ -111,17 +95,6 @@
         }
     }
 }
-
-//- (CGRect)frameForCaptionView:(WMCaptionView *)captionView{
-//    CGRect pageFrame = self.bounds;
-//    CGSize captionSize = [captionView sizeThatFits:CGSizeMake(pageFrame.size.width, 0)];
-//    CGRect captionFrame = CGRectMake(pageFrame.origin.x,
-//                                     pageFrame.size.height - captionSize.height,
-//                                     pageFrame.size.width,
-//                                     captionSize.height);
-//    return CGRectIntegral(captionFrame);
-//}
-
 
 /// 显示图片
 - (void)wm_displayImageWithIsPresenting:(BOOL)isPresenting tempImage:(UIImage *)tempImage{

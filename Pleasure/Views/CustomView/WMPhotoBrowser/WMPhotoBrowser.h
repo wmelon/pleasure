@@ -23,9 +23,6 @@
 /// 缩略图
 - (WMPhotoModel *)photoBrowser:(WMPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index;
 
-/// 图片描述视图
-- (WMCaptionView *)photoBrowser:(WMPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index;
-
 /// 右边按钮点击了
 - (void)photoBrowser:(WMPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index;
 
@@ -42,6 +39,8 @@
 
 /// 默认是可以显示的
 @property (nonatomic , assign) BOOL shouldShowRightItem;
+/// 是否显示头部工具栏 默认是不显示的
+@property (nonatomic , assign) BOOL shouldShowTopToolBar;
 
 // Init
 - (instancetype)initWithPhotos:(NSArray<WMPhotoModel *> *)photosArray;

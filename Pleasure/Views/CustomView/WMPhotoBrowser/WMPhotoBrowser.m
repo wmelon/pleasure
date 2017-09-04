@@ -11,6 +11,7 @@
 #import "WMZoomingScrollCell.h"
 #import "WMInteractiveTransition.h"
 #import "WMBaseTransitionAnimator.h"
+#import "WMTopToolBar.h"
 
 #define PADDING                  10
 
@@ -32,6 +33,12 @@
 
 /// 手势过度管理器
 @property (nonatomic , strong) WMInteractiveTransition *interactiveTransition;
+
+/// 显示图片描述的视图
+@property (nonatomic , strong) WMCaptionView *captionView;
+
+/// 头部工具栏
+@property (nonatomic , strong) WMTopToolBar *topTollBar;
 
 @end
 
@@ -80,7 +87,7 @@
     self.view.backgroundColor = [UIColor blackColor];
     self.view.clipsToBounds = YES;
     [self.view addSubview:self.collectionView];
-    
+    [self.view addSubview:self.captionView];
     [self updateNavigation];
 }
 
@@ -144,11 +151,22 @@
         [self showRightItem:nil image:[UIImage imageNamed:@"icon_delete_image_wm"]];
     }
 }
+- (void)setShouldShowTopToolBar:(BOOL)shouldShowTopToolBar{
+    _shouldShowTopToolBar = shouldShowTopToolBar;
+    if (_shouldShowTopToolBar){
+        /// 显示了头部工具栏就不能显示系统的导航栏
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+        if (!self.topTollBar.superview){
+            [self.view addSubview:self.topTollBar];
+        }
+    }
+}
 
 - (void)setCurrentPhotoIndex:(NSUInteger)index{
     _currentIndex = index;
     [self wm_updateSrcImageView];
     [self updateNavigation];
+     [self wm_configCaptionViewAtIndex:index];
 }
 
 - (void)reloadData{
@@ -220,7 +238,7 @@
     WMZoomingScrollCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([WMZoomingScrollCell class]) forIndexPath:indexPath];
     cell.delegate = self;
     /// 设置显示数据
-    [cell wm_setDataPhotoModel:self.photos[indexPath.row] captionView:[self captionViewForPhotoAtIndex:indexPath.row]];
+    [cell wm_setDataPhotoModel:self.photos[indexPath.row]];
     [cell wm_displayImageWithIsPresenting:_isPresenting tempImage:self.srcImageView.image];
     return cell;
 }
@@ -235,6 +253,10 @@
     
     [self wm_updateSrcImageView];
     [self updateNavigation];
+    
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self wm_configCaptionViewAtIndex:_currentIndex];
 }
 
 - (void)wm_updateSrcImageView{
@@ -243,20 +265,12 @@
     }
 }
 
-#pragma mark -- Data
-
-- (WMCaptionView *)captionViewForPhotoAtIndex:(NSUInteger)index {
-    WMCaptionView *captionView = nil;
-    if ([_delegate respondsToSelector:@selector(photoBrowser:captionViewForPhotoAtIndex:)]) {
-        captionView = [_delegate photoBrowser:self captionViewForPhotoAtIndex:index];
-    } else {
-        WMPhotoModel *photo = [self photoAtIndex:index];
-        if ([photo respondsToSelector:@selector(caption)]) {
-            if ([photo caption]) captionView = [[WMCaptionView alloc] initWithPhoto:photo];
-        }
-    }
-    return captionView;
+- (void)wm_configCaptionViewAtIndex:(NSUInteger)index{
+    CGSize size = [self.captionView captionViewSizeWithPhoto:[self photoAtIndex:index] currentIndex:(index + 1) count:_photos.count captionWidth:self.view.bounds.size.width];
+    self.captionView.frame = [self frameForCaptionView:self.captionView size:size];
 }
+
+#pragma mark -- Data
 
 - (WMPhotoModel *)photoAtIndex:(NSUInteger)index {
     WMPhotoModel *photo = nil;
@@ -271,8 +285,20 @@
     }
     return photo;
 }
+#pragma mark - Frame Calculations
+- (CGRect)frameForCaptionView:(WMCaptionView *)captionView size:(CGSize)size{
+    CGRect pageFrame = self.view.bounds;
+    CGRect captionFrame = CGRectMake(pageFrame.origin.x,
+                                     pageFrame.size.height - size.height,
+                                     pageFrame.size.width,
+                                     size.height);
+    return CGRectIntegral(captionFrame);
+}
+
+
 
 #pragma mark -- control hidden and show
+
 
 
 #pragma mark - Navigation
@@ -329,7 +355,18 @@
 }
 
 #pragma mark -- getter
-
+- (WMCaptionView *)captionView{
+    if (_captionView == nil){
+        _captionView = [[WMCaptionView alloc] init];
+    }
+    return _captionView;
+}
+- (WMTopToolBar *)topTollBar{
+    if (_topTollBar == nil){
+        _topTollBar = [[WMTopToolBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+    }
+    return _topTollBar;
+}
 - (UICollectionView *)collectionView{
 
     if (_collectionView == nil){
@@ -342,6 +379,8 @@
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.pagingEnabled = YES;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView registerClass:[WMZoomingScrollCell class] forCellWithReuseIdentifier:NSStringFromClass([WMZoomingScrollCell class])];
         
     }

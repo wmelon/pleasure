@@ -30,7 +30,7 @@
 
 
 /// 显示图片和描述视图
-- (void)wm_setDataPhotoModel:(WMPhotoModel *)photo captionView:(WMCaptionView *)captionView;
+- (void)wm_setDataPhotoModel:(WMPhotoModel *)photo;
 
 /// 开始显示图片
 - (void)wm_displayImageWithIsPresenting:(BOOL)isPresenting tempImage:(UIImage *)tempImage;
