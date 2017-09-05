@@ -15,5 +15,5 @@ target :Pleasure do
     pod 'DACircularProgress'  # 进度条
     pod 'Masonry'                 #自动适配
     pod 'LCActionSheet' , '~>3.2.4'  #底部选择弹框
-    pod 'WMScrollPageView' , '~> 0.0.2'
+    pod 'WMScrollPageView' , '~> 0.0.3'
 end

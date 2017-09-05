@@ -7,6 +7,34 @@
 //
 
 #import "WMScrollBarItem.h"
+#import "WMScrollPageView.h"
+
+@interface UIImage (MyBundle)
++ (UIImage *)imageNamedFromMyBundle:(NSString *)name;
+@end
+
+@implementation UIImage (MyBundle)
+
++ (UIImage *)imageNamedFromMyBundle:(NSString *)name {
+    NSBundle *bundle = [NSBundle bundleForClass:[WMScrollPageView class]];
+    NSURL *url = [bundle URLForResource:@"WMScrollPageView" withExtension:@"bundle"];
+    bundle = [NSBundle bundleWithURL:url];
+    
+    NSBundle *imageBundle = bundle;
+    name = [name stringByAppendingString:@"@2x"];
+    NSString *imagePath = [imageBundle pathForResource:name ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    if (!image) {
+        // 兼容业务方自己设置图片的方式
+        name = [name stringByReplacingOccurrencesOfString:@"@2x" withString:@""];
+        image = [UIImage imageNamed:name];
+    }
+    return image;
+}
+
+@end
+
+
 
 #define fastPercent 0.5
 
@@ -166,7 +194,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     
     /// 是否显示右边添加按钮
     if (self.barItemStyle.isShowExtraButton){
-        self.plusButton.frame = CGRectMake(self.frame.size.width - self.frame.size.height, 0, self.frame.size.height, self.frame.size.height);
+        self.plusButton.frame = CGRectMake(self.frame.size.width - self.frame.size.height, 0, self.frame.size.height, self.frame.size.height - CGRectGetHeight(self.bottomLine.frame));
         [self addSubview:self.plusButton];
     }
 }
@@ -504,7 +532,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 - (UIButton *)plusButton {
     if (!_plusButton) {
         _plusButton = [[UIButton alloc] init];
-        [_plusButton setImage:[UIImage imageNamed:@"add_channel_titlbar_thin_new_16x16_"] forState:UIControlStateNormal];
+        [_plusButton setImage:[UIImage imageNamedFromMyBundle:@"add_channel_titlbar_thin_new_16x16_"] forState:UIControlStateNormal];
         _plusButton.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
         _plusButton.layer.shadowColor = [UIColor grayColor].CGColor;
         _plusButton.layer.shadowOffset = CGSizeMake(-1, 0);
