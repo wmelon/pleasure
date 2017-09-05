@@ -210,8 +210,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     //要减去导航栏 状态栏 以及 sectionheader的高度
-    
-    CGFloat height = self.style.scrollContentViewTableViewHeight - 64 - CGRectGetHeight(self.barItem.frame);
+    CGFloat naviBarAndTabBArHeight = 0.0;
+    if (self.style.isShowNavigationBar){
+        naviBarAndTabBArHeight = 64 - self.frame.origin.y;
+    }
+    CGFloat height = self.frame.size.height - naviBarAndTabBArHeight - CGRectGetHeight(self.barItem.frame);
     if (height <= 0){
         height = 0;
     }

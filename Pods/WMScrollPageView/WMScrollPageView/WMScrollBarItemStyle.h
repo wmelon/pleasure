@@ -56,8 +56,8 @@ typedef NS_ENUM(NSInteger , wm_itemSizeStyle){
 @property (assign, nonatomic) wm_itemSizeStyle itemSizeStyle;
 
 #pragma mark -- 显示内容的样式
-/// 主tableView的内部cell的高度 默认是屏幕的高度
-@property (assign, nonatomic) CGFloat scrollContentViewTableViewHeight;
+/// 外面是否显示导航栏 默认是 YES
+@property (assign, nonatomic , getter=isShowNavigationBar) BOOL showNavigationBar;
 /// 头部是否可以下拉放大 默认是 YES
 @property (assign, nonatomic) BOOL allowStretchableHeader;
 
