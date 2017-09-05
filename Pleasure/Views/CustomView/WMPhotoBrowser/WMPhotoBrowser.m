@@ -112,8 +112,30 @@
 
 #pragma mark -- WMZoomingScrollCellDelegate
 - (void)tapHiddenPhotoBrowserAtZoomingScrollCell:(WMZoomingScrollCell *)zoomingScrollCell{
-    if (_srcImageView){
+    if (_srcImageView){  /// 如果是采用自定义转场动画打开的图片浏览  单击是关闭图片浏览
         [self wm_dismiss];
+    }else if (_shouldShowTopToolBar){   ///  如果是头部有自定制的工具栏图片浏览   单击是隐藏图片描述和头部工具栏
+        [UIView animateWithDuration:0.25 animations:^{
+            if (self.topTollBar.alpha == 0.0){   /// 显示图片描述和头部工具栏
+                self.topTollBar.alpha = 1.0;
+                self.captionView.alpha = 1.0;
+
+            }else {      /// 隐藏图片描述和头部工具栏
+                
+                self.topTollBar.alpha = 0.0;
+                self.captionView.alpha = 0.0;
+            }
+            
+        }];
+    }else {  /// 隐藏导航栏
+
+        [UIView animateWithDuration:0.25 animations:^{
+            if (self.navigationController.navigationBar.alpha == 0.0){
+                self.navigationController.navigationBar.alpha = 1.0;
+            }else {
+                self.navigationController.navigationBar.alpha = 0.0;
+            }
+        }];
     }
 }
 
@@ -285,17 +307,13 @@
     }
     return photo;
 }
+
 #pragma mark - Frame Calculations
 - (CGRect)frameForCaptionView:(WMCaptionView *)captionView size:(CGSize)size{
     CGRect pageFrame = self.view.bounds;
-    CGRect captionFrame = CGRectMake(pageFrame.origin.x,
-                                     pageFrame.size.height - size.height,
-                                     pageFrame.size.width,
-                                     size.height);
+    CGRect captionFrame =  CGRectMake(pageFrame.origin.x,pageFrame.size.height - size.height,pageFrame.size.width,size.height);
     return CGRectIntegral(captionFrame);
 }
-
-
 
 #pragma mark -- control hidden and show
 
@@ -363,7 +381,18 @@
 }
 - (WMTopToolBar *)topTollBar{
     if (_topTollBar == nil){
-        _topTollBar = [[WMTopToolBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+        __weak typeof(self) weakself = self;
+        _topTollBar = [[WMTopToolBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64) buttonClickHandle:^(WMButtonType buttonType) {
+            if (buttonType == WMButtonTypeClose){
+                if (self.navigationController){
+                    [weakself wm_backToPrevious];
+                }else {
+                    [weakself wm_dismiss];
+                }
+            }else {
+                /// 详情按钮点击事件处理
+            }
+        }];
     }
     return _topTollBar;
 }

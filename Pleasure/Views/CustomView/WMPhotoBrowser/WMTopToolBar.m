@@ -13,13 +13,13 @@
 @property (nonatomic , strong) UIButton *closeButton;
 /// 查看其它功能按钮
 @property (nonatomic , strong) UIButton *detailButton;
+@property (nonatomic , copy) WMCloseButtonClickHandle handle;
 @end
 
 @implementation WMTopToolBar
-
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame buttonClickHandle:(WMCloseButtonClickHandle)handle{
     if (self = [super initWithFrame:frame]){
-        
+        _handle = handle;
         CGFloat colorIndex = 0.0;
         //为透明度设置渐变效果
         UIColor *colorOne = [UIColor colorWithRed:(colorIndex/255.0)  green:(colorIndex/255.0)  blue:(colorIndex/255.0)  alpha:0.3];
@@ -33,7 +33,7 @@
         gradient.frame = self.bounds;
         [self.layer insertSublayer:gradient atIndex:0];
         
-
+        
         CGFloat width = 40;
         CGFloat leftPadding = 10;
         CGFloat topPadding = 25;
@@ -46,20 +46,20 @@
         [_detailButton setImage:[UIImage imageNamed:@"icon_detail_more_wm"] forState:UIControlStateNormal];
         [_detailButton addTarget:self action:@selector(detailMoreButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_detailButton];
-
-        
-        
-        
     }
     return self;
 }
 
 - (void)closeButtonClick:(UIButton *)button{
-    
+    if (_handle){
+        _handle(WMButtonTypeClose);
+    }
 }
 
 - (void)detailMoreButtonClick:(UIButton *)button{
-
+    if (_handle){
+        _handle(WMButtonTypeDetailMore);
+    }
 }
 
 /*

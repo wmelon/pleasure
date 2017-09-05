@@ -71,10 +71,7 @@
 }
 
 #pragma mark -- WMPhotoBrowserDelegate
-- (UIImageView *)photoBrowser:(WMPhotoBrowser *)photoBrowser imageViewAtIndex:(NSInteger)index{
-    WMPhotoItemCell * cell = (WMPhotoItemCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    return cell.photoButton.imageView;
-}
+
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(WMPhotoBrowser *)photoBrowser{
     return self.imageUrlArray.count;
 }
