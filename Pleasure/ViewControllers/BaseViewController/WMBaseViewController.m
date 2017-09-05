@@ -66,32 +66,18 @@
     //        [self showBackItem];
     //    }
 }
-
+/// 监听横竖屏切换 更新子视图的frame
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    [self setHeaderViewFrame];
+}
 
 - (void)setHeaderViewFrame{
     if (!_navigationBarBackgroundView || !self.navigationBarBackgroundView.superview){
         return;
     }
-    
-    /// 防止子视图使用autolayout影响到手势返回头部视图消失，这边这个头部视图需要采用autolayout布局。
     UIView *purpleView = _navigationBarBackgroundView;
-    // 禁止将 AutoresizingMask 转换为 Constraints
-    purpleView.translatesAutoresizingMaskIntoConstraints = NO;
-    // 添加 width 约束
-    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:self.view.frame.size.width];
-    [purpleView addConstraint:widthConstraint];
-    // 添加 height 约束
-    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:64];
-    [purpleView addConstraint:heightConstraint];
-    // 添加 left 约束
-    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-    [self.view addConstraint:leftConstraint];
-    // 添加 top 约束
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:purpleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    [self.view addConstraint:topConstraint];
+    purpleView.frame = CGRectMake(0, 0, self.view.frame.size.width, 64);
 }
-
-
 
 //- (void)showBackItem {
 //    UIImage * image = [UIImage imageNamed:@"icon_white_back"];
