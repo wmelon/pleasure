@@ -208,6 +208,8 @@
 
 - (void)layoutSubviews {
     // Update tap view frame
+    // Super
+    [super layoutSubviews];
     self.tapBgView.frame = self.bounds;
     self.zoomScrollView.frame = self.bounds;
     
@@ -222,9 +224,6 @@
                                          floorf((self.bounds.size.height - _loadingError.frame.size.height) / 2),
                                          _loadingError.frame.size.width,
                                          _loadingError.frame.size.height);
-    
-    // Super
-    [super layoutSubviews];
     
     // Center the image as it becomes smaller than the size of the screen
     CGSize boundsSize = self.bounds.size;

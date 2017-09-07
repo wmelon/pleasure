@@ -187,8 +187,9 @@
 - (void)setCurrentPhotoIndex:(NSUInteger)index{
     _currentIndex = index;
     [self wm_updateSrcImageView];
-    [self updateNavigation];
-     [self wm_configCaptionViewAtIndex:index];
+    /// 滚动到默认起始位置
+    [self wm_photoScrollToShow];
+    [self wm_configCaptionViewAtIndex:index];
 }
 
 - (void)reloadData{
@@ -221,17 +222,18 @@
     }
     
 }
-
-/// 滚动到默认起始位置
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    layout.itemSize = self.view.frame.size;
+    self.collectionView.frame = CGRectMake(-PADDING, 0, self.view.frame.size.width + 2 * PADDING, self.view.frame.size.height);
     [self wm_photoScrollToShow];
 }
 
 /// 滚动到显示指定图片
 - (void)wm_photoScrollToShow{
     if (_currentIndex < self.photos.count){
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0] atScrollPosition:(UICollectionViewScrollPositionCenteredHorizontally) animated:NO];
+        [self.collectionView setContentOffset:CGPointMake(_currentIndex * self.collectionView.frame.size.width, 0) animated:NO];
         [self updateNavigation];
     }
 }
@@ -263,10 +265,6 @@
     [cell wm_setDataPhotoModel:self.photos[indexPath.row]];
     [cell wm_displayImageWithIsPresenting:_isPresenting tempImage:self.srcImageView.image];
     return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

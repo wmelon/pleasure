@@ -76,7 +76,7 @@
         return;
     }
     UIView *purpleView = _navigationBarBackgroundView;
-    purpleView.frame = CGRectMake(0, 0, self.view.frame.size.width, 64);
+    purpleView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(self.navigationController.navigationBar.frame));
 }
 
 //- (void)showBackItem {
