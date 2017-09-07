@@ -180,23 +180,21 @@
 }
 
 - (void)wm_configCollectionViewWithShowCount:(NSInteger)showCount{
-
     /// 每一行显示的图片
     NSInteger rowPhotoCount = 3;
     if ([self.delegate respondsToSelector:@selector(eachRowShowPhotoCountAtInputInfoView:)]){
-    
+        
         rowPhotoCount = [self.delegate eachRowShowPhotoCountAtInputInfoView:self];
     }
-    
     if (showCount < self.maxPhotoCount){   /// 显示的图片数量小于最大图片数量 就需要添加一个添加图片的按钮
         
         showCount ++;
-    
+        
     }else {
-    
+        
         showCount = self.maxPhotoCount;
     }
-
+    
     UICollectionViewFlowLayout * layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     CGFloat topPadding = layout.sectionInset.top;
     CGFloat bottomPadding = layout.sectionInset.bottom;
@@ -205,8 +203,6 @@
     
     CGFloat minimumLineSpacing = layout.minimumLineSpacing;
     CGFloat minimumInteritemSpacing = layout.minimumInteritemSpacing;
-    
-    
     self.photoShowWidth = floorf((k_wm_screen_width - (rowPhotoCount - 1) * minimumLineSpacing - leftPadding - rightPadding) / rowPhotoCount);   /// 宽度向下取整
     /// 一共有多少列图片
     NSInteger column = showCount / rowPhotoCount + (showCount % rowPhotoCount == 0 ? 0 : 1);
@@ -217,10 +213,19 @@
     
     self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, k_wm_screen_width, CGRectGetMaxY(self.collectionView.frame));
     
+    if([self.delegate respondsToSelector:@selector(inputInfoViewHeight:)]){
+        [self.delegate inputInfoViewHeight:CGRectGetHeight(self.frame)];
+    }
     /// 视图的高度
     _viewHeight = self.frame.size.height;
     
     [self.collectionView reloadData];
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.textView.frame = CGRectMake(0, 0, k_wm_screen_width, 100);
+    [self wm_configCollectionViewWithShowCount:self.showPhotos.count];
 }
 
 
@@ -382,7 +387,7 @@
     
     if (_textView == nil){
     
-        _textView = [[WMTextView alloc] initWithFrame:CGRectMake(0, 0, k_wm_screen_width, 100)];
+        _textView = [[WMTextView alloc] init];
         _textView.delegate = self;
         [_textView setFont:[UIFont systemFontOfSize:15]];
         _textView.myPlaceHolder = @"这一刻的想法...";

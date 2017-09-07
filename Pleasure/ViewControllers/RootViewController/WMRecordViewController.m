@@ -53,8 +53,14 @@
 
     return self.imageUrlArray[index];
 }
+- (void)inputInfoViewHeight:(CGFloat)height{
+    self.tableView.contentSize = CGSizeMake(0, height);
+}
 
-
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    _inputInfoView.frame = CGRectMake(_inputInfoView.frame.origin.x, _inputInfoView.frame.origin.y, self.view.frame.size.width, _inputInfoView.frame.size.height);
+}
 - (WMInputInfoView *)inputInfoView{
     
     if (_inputInfoView == nil){

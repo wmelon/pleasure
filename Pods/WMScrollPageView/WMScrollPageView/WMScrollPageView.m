@@ -142,7 +142,7 @@
     }
 
     self.style = style;
-    self.barItem.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, style.segmentHeight);
+    
     [self.barItem wm_configBarItemsWithCount:count currentIndex:_currentSelectedIndex barItemStyle:style];
     
     /// 刷新
@@ -214,7 +214,7 @@
     if (self.style.isShowNavigationBar){
         naviBarAndTabBArHeight = 64 - self.frame.origin.y;
     }
-    CGFloat height = self.frame.size.height - naviBarAndTabBArHeight - CGRectGetHeight(self.barItem.frame);
+    CGFloat height = self.frame.size.height - naviBarAndTabBArHeight - self.style.segmentHeight;
     if (height <= 0){
         height = 0;
     }
@@ -226,7 +226,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     //sectionheader的高度，这是要放分段控件的
-    return CGRectGetHeight(self.barItem.frame);
+    return self.style.segmentHeight;
 }
 
 
@@ -381,7 +381,12 @@
     return _tableView;
 }
 
-
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    self.tableView.frame = self.bounds;
+    self.barItem.frame = CGRectMake(0, 0, self.frame.size.width, self.style.segmentHeight);
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

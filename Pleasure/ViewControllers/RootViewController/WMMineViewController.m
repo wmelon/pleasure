@@ -61,7 +61,7 @@
 - (UIViewController *)scrollPageView:(WMScrollPageView *)scrollPageView controllerAtIndex:(NSInteger)index{
     WMProductListViewController * vc = [WMProductListViewController new];
     vc.delegate = self;
-    [vc setTitleString:self.segmentArray[index]];
+    [vc setTitle:self.segmentArray[index]];
     return vc;
 }
 

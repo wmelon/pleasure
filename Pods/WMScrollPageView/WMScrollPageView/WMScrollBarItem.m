@@ -52,7 +52,10 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 @property (nonatomic , strong) WMScrollBarItemStyle *barItemStyle;
 
 /// 存储所有标题按钮
-@property (nonatomic , strong) NSMutableArray<UIButton *> *itemsButtonArray;
+@property (nonatomic , strong) NSArray<UIButton *> *itemsButtonArray;
+
+// 缓存计算出来的每个标题下面线条的宽度
+@property (nonatomic, strong) NSArray *scrollLineWidths;
 
 /// 线条视图
 @property (nonatomic , strong) UIView * moveLine;
@@ -72,8 +75,6 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 
 /// 存储两个相邻标签的距离
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *distances;
-// 缓存计算出来的每个标题下面线条的宽度
-@property (nonatomic, strong) NSMutableArray *scrollLineWidths;
 
 /// 正在手势滚动 不允许点击
 @property (nonatomic, assign) BOOL scrollAnimating;
@@ -100,43 +101,12 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         }
     }];
     
-    [self.itemsButtonArray removeAllObjects];
-    [self.scrollLineWidths removeAllObjects];
-    
-    CGFloat width = 0.0;
-    CGFloat height = self.frame.size.height;
-    
-    CGFloat totleWidth = 0.0;
+    NSMutableArray * buttonsArray = [NSMutableArray arrayWithCapacity:count];
     for (int i = 0 ; i < count ; i++){
         
-        /// barItem  可能不是等分的  也有可能是时根据屏幕宽度等分  也有可能根据文案确定宽度
         NSString *title = [self titleWithColumn:i];
-        
-        if (self.barItemStyle.itemSizeStyle == wm_itemSizeStyle_equal_width){
-            width = self.frame.size.width / count;
-            
-        }else {
-            width = [self getSizeOfContent:title width:MAXFLOAT font:self.barItemStyle.titleFont].width + self.barItemStyle.titleMargin * 2;
-            
-        }
-        if (self.barItemStyle.scrollLineWidth > 0){
-            [self.scrollLineWidths addObject:@(self.barItemStyle.scrollLineWidth)];
-        }else {
-            if (self.barItemStyle.isScaleTitle){ /// 如果文案是可以放大的话就必须设置线条的宽度为文字放大后的宽度
-                [self.scrollLineWidths addObject:@((width - self.barItemStyle.titleMargin * 2) * self.barItemStyle.titleBigScale)];
-            }else {
-                [self.scrollLineWidths addObject:@(width - self.barItemStyle.titleMargin * 2)];
-            }
-            
-        }
-        if (i == 0){  /// 第一个按钮的前面留出空白
-            totleWidth += self.barItemStyle.titleMargin;
-        }
-        
-        UIButton * columnButton = [[UIButton alloc] initWithFrame:CGRectMake(totleWidth, 0, width, height)];
-        
-        totleWidth += width;
-        
+
+        UIButton * columnButton = [UIButton new];
         
         [columnButton setTitleColor:self.barItemStyle.normalTitleColor forState:UIControlStateNormal];
         
@@ -144,7 +114,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         [columnButton addTarget:self action:@selector(titleButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
         columnButton.titleLabel.font = self.barItemStyle.titleFont;
-        [self.itemsButtonArray addObject:columnButton];
+        [buttonsArray addObject:columnButton];
         [self.scrollView addSubview:columnButton];
         
         
@@ -156,14 +126,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
         /// 这一句必须放到最后。因为需要回调返回数据去更改标题颜色
         [columnButton setTitle:title forState:UIControlStateNormal];
     }
-    CGFloat maxContentWidth = totleWidth + self.barItemStyle.titleMargin;
-    if (self.barItemStyle.isShowExtraButton){
-        maxContentWidth += self.frame.size.height;
-    }
-    if (maxContentWidth <= self.frame.size.width){
-        maxContentWidth = self.frame.size.width;
-    }
-    self.scrollView.contentSize = CGSizeMake(maxContentWidth, 0);
+    self.itemsButtonArray = buttonsArray;
     [self wm_configUI];
     
 }
@@ -171,30 +134,22 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 - (void)wm_configUI{
     /// 添加标题滚动视图
     [self addSubview:self.scrollView];
-    self.scrollView.frame = self.bounds;
-    
-    UIButton * button = self.itemsButtonArray[_selectedSegmentIndex];
-    CGFloat width = [self wm_getScrollLineWidthWithIndex:_selectedSegmentIndex];
-    CGFloat height = [self wm_getScrollLineHeight];
     
     /// 显示底部滚动线条
     if (self.barItemStyle.isShowLine){
         //添加滚动条
         [self.scrollView addSubview:self.moveLine];
         self.moveLine.backgroundColor = self.barItemStyle.scrollLineColor;
-        self.moveLine.frame = CGRectMake(button.center.x -  width / 2 , CGRectGetMaxY(self.scrollView.frame) - height, width , height);
     }
     
     /// 显示底部分割线条
     if (self.barItemStyle.isAllowShowBottomLine){
         self.bottomLine.backgroundColor = self.barItemStyle.bottomLineColor;
-        self.bottomLine.frame = CGRectMake(0, self.frame.size.height - self.barItemStyle.bottomLineHeight, self.frame.size.width, self.barItemStyle.bottomLineHeight);
         [self addSubview:self.bottomLine];
     }
     
     /// 是否显示右边添加按钮
     if (self.barItemStyle.isShowExtraButton){
-        self.plusButton.frame = CGRectMake(self.frame.size.width - self.frame.size.height, 0, self.frame.size.height, self.frame.size.height - CGRectGetHeight(self.bottomLine.frame));
         [self addSubview:self.plusButton];
     }
 }
@@ -478,7 +433,73 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     
 }
 
-#pragma mark -- getter and setter 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    
+    __block CGFloat width = 0.0;
+    __block CGFloat height = self.frame.size.height;
+    
+    __block CGFloat totleWidth = 0.0;
+    NSInteger count = self.itemsButtonArray.count;
+    
+    NSMutableArray * linesArray = [NSMutableArray arrayWithCapacity:count];
+    
+    [self.itemsButtonArray enumerateObjectsUsingBlock:^(UIButton * _Nonnull columnButton, NSUInteger i, BOOL * _Nonnull stop) {
+       
+        NSString *title = columnButton.titleLabel.text;
+        
+        /// barItem  可能不是等分的  也有可能是时根据屏幕宽度等分  也有可能根据文案确定宽度
+        if (self.barItemStyle.itemSizeStyle == wm_itemSizeStyle_equal_width){
+            width = self.frame.size.width / count;
+            
+        }else {
+            width = [self getSizeOfContent:title width:MAXFLOAT font:self.barItemStyle.titleFont].width + self.barItemStyle.titleMargin * 2;
+            
+        }
+        if (self.barItemStyle.scrollLineWidth > 0){
+            [linesArray addObject:@(self.barItemStyle.scrollLineWidth)];
+        }else {
+            if (self.barItemStyle.isScaleTitle){ /// 如果文案是可以放大的话就必须设置线条的宽度为文字放大后的宽度
+                [linesArray addObject:@((width - self.barItemStyle.titleMargin * 2) * self.barItemStyle.titleBigScale)];
+            }else {
+                [linesArray addObject:@(width - self.barItemStyle.titleMargin * 2)];
+            }
+            
+        }
+        if (i == 0){  /// 第一个按钮的前面留出空白
+            totleWidth += self.barItemStyle.titleMargin;
+        }
+        columnButton.frame = CGRectMake(totleWidth, 0, width, height);
+        totleWidth += width;
+
+    }];
+    self.scrollLineWidths = linesArray;
+    
+    
+    CGFloat maxContentWidth = totleWidth + self.barItemStyle.titleMargin;
+    if (self.barItemStyle.isShowExtraButton){
+        maxContentWidth += self.frame.size.height;
+    }
+    if (maxContentWidth <= self.frame.size.width){
+        maxContentWidth = self.frame.size.width;
+    }
+    self.scrollView.contentSize = CGSizeMake(maxContentWidth, 0);
+    
+    
+    self.scrollView.frame = self.bounds;
+    
+    if (_selectedSegmentIndex < self.itemsButtonArray.count){
+        UIButton * button = self.itemsButtonArray[_selectedSegmentIndex];
+        
+        CGFloat scrollLineWidth = [self wm_getScrollLineWidthWithIndex:_selectedSegmentIndex];
+        CGFloat scrollLineheight = [self wm_getScrollLineHeight];
+        self.moveLine.frame = CGRectMake(button.center.x -  scrollLineWidth / 2 , CGRectGetMaxY(self.scrollView.frame) - scrollLineheight, scrollLineWidth , scrollLineheight);
+        self.bottomLine.frame = CGRectMake(0, self.frame.size.height - self.barItemStyle.bottomLineHeight, self.frame.size.width, self.barItemStyle.bottomLineHeight);
+        self.plusButton.frame = CGRectMake(self.frame.size.width - self.frame.size.height, 0, self.frame.size.height, self.frame.size.height - CGRectGetHeight(self.bottomLine.frame));
+    }
+}
+
+#pragma mark -- getter and setter
 
 - (CGFloat)wm_getScrollLineWidthWithIndex:(NSInteger)index{
     if (self.barItemStyle.scrollLineWidth > 0){
@@ -493,12 +514,7 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
 - (CGFloat)wm_getScrollLineHeight{
     return self.barItemStyle.scrollLineHeight;
 }
-- (NSMutableArray *)scrollLineWidths{
-    if (_scrollLineWidths == nil){
-        _scrollLineWidths = [NSMutableArray array];
-    }
-    return _scrollLineWidths;
-}
+
 - (NSMutableArray *)distances{
     if (!_distances) {
         __weak typeof(self) weakself = self;
@@ -556,15 +572,6 @@ typedef NS_ENUM(NSInteger , wm_titleColorType) {
     }
     return _scrollView;
 }
-- (NSMutableArray<UIButton *> *)itemsButtonArray{
-    if (_itemsButtonArray == nil){
-        _itemsButtonArray = [NSMutableArray array];
-        
-        
-    }
-    return _itemsButtonArray;
-}
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

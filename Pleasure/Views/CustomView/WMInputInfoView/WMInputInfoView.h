@@ -35,6 +35,9 @@
 /// 添加图片图标
 - (UIImage *)addIconAtAtInputInfoView:(WMInputInfoView *)inputInfoView;
 
+/// 当前视图的高度
+- (void)inputInfoViewHeight:(CGFloat)height;
+
 @end
 
 

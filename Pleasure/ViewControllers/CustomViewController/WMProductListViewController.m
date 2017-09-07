@@ -18,9 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-- (void)setTitleString:(NSString *)titleString{
-    _titleString = titleString;
-}
+
 #pragma mark -- UITableViewDelegate and UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -40,7 +38,7 @@
         cell.backgroundColor = [UIColor lineColor];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@  %ld Hi" , _titleString , indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@  %ld   Hi" , self.title , indexPath.row];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

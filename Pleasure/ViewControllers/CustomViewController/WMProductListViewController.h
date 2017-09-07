@@ -19,6 +19,4 @@
 
 @interface WMProductListViewController : UITableViewController
 @property (nonatomic , weak) id<WMProductListViewControllerDelegate> delegate;
-
-@property (nonatomic , copy) NSString * titleString;
 @end

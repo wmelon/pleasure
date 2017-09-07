@@ -124,13 +124,6 @@
                         [controlScrollView addObserver:self forKeyPath:@"contentOffset"
                                                options:NSKeyValueObservingOptionNew
                                                context:nil];
-                        
-                        /// 为滚动视图添加手势代理，但是pan手势不能自己添加代码。所以必须去除
-                        for (UIGestureRecognizer* recognizer in controlScrollView.gestureRecognizers) {
-                            if (![recognizer isKindOfClass:[UIPanGestureRecognizer class]]){
-                                recognizer.delegate = self;
-                            }
-                        }
                     }
                 }
             }];
@@ -146,15 +139,19 @@
 }
 
 #pragma mark -- UIGestureRecognizerDelegate 方法
+
 //// pageViewController 内部的 tableViewcell 长按高亮之后立即滑动pageView使的tableViewcell 手势失败 无法取消高亮的bug修复代码
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    if (gestureRecognizer.state == UIGestureRecognizerStateFailed || gestureRecognizer.state == UIGestureRecognizerStateEnded || gestureRecognizer.state == UIGestureRecognizerStateCancelled){
+    NSLog(@"第一层走了");
+    if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![otherGestureRecognizer.view isKindOfClass:[UITableView class]]){  /// 如果是滑动手势 并且是滑动pageviewcontroller 就需要取消长按手势
         
         if (_selectIndex < self.controlScrollViewArray.count){
             
             UIScrollView *scrollView = self.controlScrollViewArray[_selectIndex];
             if ([scrollView isKindOfClass:[UITableView class]]){
+                
+                NSLog(@"第二层走了");
                 
                 UITableView *tableView = (UITableView *)scrollView;
                 CGPoint point = [otherGestureRecognizer locationInView:tableView];
@@ -165,14 +162,14 @@
                     
                     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
                     if (cell){   /// 如果手势失败了之后不允许tableViewCell的高亮状态和选中状态
-                        [cell setHighlighted:NO];
-                        [cell setSelected:NO];
-                        [cell setHighlighted:NO animated:YES];
-                        [cell setSelected:NO animated:YES];
+                        
+                        NSLog(@"第三层  %@" , cell);
+                        [tableView reloadData];
                     }
                 }
             }
         }
+
     }
     return YES;
 }
@@ -211,7 +208,9 @@
     
     for (UIViewController * vc in self.showViewControllers) {
         CGPoint p = CGPointZero;
-        if ([vc isViewLoaded]){
+        
+        /// 这个解决了在横竖屏切换的时候标题对不上的bug
+        if ([vc isViewLoaded] && vc.view.frame.size.width == _pageViewController.view.frame.size.width && vc.view.frame.size.height == _pageViewController.view.frame.size.height){
             p = [vc.view convertPoint:CGPointZero toView:_pageViewController.view];
         }
         
@@ -227,12 +226,13 @@
             
             
             if (stimateOffSetX <= 0) return;
+            
+            
+            if ([self.delegate respondsToSelector:@selector(scrollContentView:adjustUIWithProgress:currentIndex:)]){
+                
+                [self.delegate scrollContentView:self adjustUIWithProgress:offPercent currentIndex:_selectIndex];
+            }
         }
-    }
-    
-    if ([self.delegate respondsToSelector:@selector(scrollContentView:adjustUIWithProgress:currentIndex:)]){
-        
-        [self.delegate scrollContentView:self adjustUIWithProgress:offPercent currentIndex:_selectIndex];
     }
 }
 

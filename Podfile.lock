@@ -26,7 +26,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - TZImagePickerController (1.8.1)
-  - WMScrollPageView (0.0.3)
+  - WMScrollPageView (0.0.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -39,7 +39,7 @@ DEPENDENCIES:
   - pop (from `https://github.com/facebook/pop.git`)
   - SDWebImage (~> 3.8.2)
   - TZImagePickerController (= 1.8.1)
-  - WMScrollPageView (~> 0.0.3)
+  - WMScrollPageView (~> 0.0.4)
 
 EXTERNAL SOURCES:
   pop:
@@ -61,8 +61,8 @@ SPEC CHECKSUMS:
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TZImagePickerController: 086034156913375cb19c8e4103562f15322c3b36
-  WMScrollPageView: 60c3e95316e5f64c564c886b6563472139a092d5
+  WMScrollPageView: b4a066deda34fc97b6ca763d77b69001613908dc
 
-PODFILE CHECKSUM: 61314dd8fe2827b7eea7bc0d807396442a521de1
+PODFILE CHECKSUM: 15b73805bc02692e21cd5b2e19c711069999dd59
 
 COCOAPODS: 1.3.1
