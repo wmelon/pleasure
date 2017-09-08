@@ -70,7 +70,6 @@
 - (WMScrollPageView *)pageView{
     if (_pageView == nil){
         _pageView = [[WMScrollPageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49)];
-        _pageView.backgroundColor = [UIColor redColor];
         _pageView.dataSource = self;
         _pageView.delegate = self;
     }
