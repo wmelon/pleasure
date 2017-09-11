@@ -35,6 +35,9 @@
         NSLog(@"多次删除了");
     }
     
+    [self removeScrollViewKVO];
+}
+- (void)removeScrollViewKVO{
     [self.controlScrollViewArray enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         @try {
@@ -46,7 +49,6 @@
         
     }];
 }
-
 + (instancetype)cellForTableView:(UITableView *)tableView showViewControllers:(NSArray *)showViewControllers{
     WMScrollContentView * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([WMScrollContentView class])];
     if (cell == nil){
@@ -61,7 +63,8 @@
         
         [array addObject:[UIScrollView new]];
     }
-    
+    /// 移除之前滚动视图kvo监听 然后为新添加的滚动视图添加kov监听
+    [cell removeScrollViewKVO];
     cell.controlScrollViewArray = array;
     return cell;
 }
@@ -143,7 +146,7 @@
 //// pageViewController 内部的 tableViewcell 长按高亮之后立即滑动pageView使的tableViewcell 手势失败 无法取消高亮的bug修复代码
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    NSLog(@"第一层走了");
+//    NSLog(@"第一层走了");
     if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && ![otherGestureRecognizer.view isKindOfClass:[UITableView class]]){  /// 如果是滑动手势 并且是滑动pageviewcontroller 就需要取消长按手势
         
         if (_selectIndex < self.controlScrollViewArray.count){
@@ -151,7 +154,7 @@
             UIScrollView *scrollView = self.controlScrollViewArray[_selectIndex];
             if ([scrollView isKindOfClass:[UITableView class]]){
                 
-                NSLog(@"第二层走了");
+//                NSLog(@"第二层走了");
                 
                 UITableView *tableView = (UITableView *)scrollView;
                 CGPoint point = [otherGestureRecognizer locationInView:tableView];
@@ -163,7 +166,7 @@
                     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
                     if (cell){   /// 如果手势失败了之后不允许tableViewCell的高亮状态和选中状态
                         
-                        NSLog(@"第三层  %@" , cell);
+//                        NSLog(@"第三层  %@" , cell);
                         [tableView reloadData];
                     }
                 }

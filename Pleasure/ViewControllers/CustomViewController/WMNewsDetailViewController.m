@@ -132,7 +132,7 @@ WKNavigationDelegate ,UIWebViewDelegate>
 //}
 
 - (UITableView *)tableView{
-    if (_tableView == nil){    /// uitbaleView的header高度超过一屏幕的高度时如果用的是plain样式，那这一组下面的cell就会被header覆盖显示不出来。只有设置成grouped就不会出现这种情况
+    if (_tableView == nil){
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         _tableView.dataSource =  self;
         _tableView.delegate = self;

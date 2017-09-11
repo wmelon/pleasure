@@ -19,12 +19,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _titles = [NSMutableArray array];
-    [_titles addObjectsFromArray:@[@"要闻",@"政务",@"时报",@"视频",@"直播",@"生活",@"社区",@"商圈",@"园区",@"图片",@"美丽长宁",@"专题",@"投稿"]];
+    [_titles addObjectsFromArray:@[@"商圈",@"园区",@"图片",@"美丽长宁",@"专题",@"投稿"]];
+    
+    
+//    @"要闻",@"政务",@"时报",@"视频",@"直播",@"生活",@"社区",
     
 //    self.navigationItem.titleView = self.textField;
 //    [UIBarButtonItem cn_addItemPosition:CNNavItemPositionLeft item:[UIBarButtonItem cn_itemWithString:@"CNNews " selectedColor:[UIColor whiteColor] target:nil action:nil] toNavItem:self.navigationItem fixedSpace:-5];
     
     [self.view addSubview:self.pageView];
+    
+    [self showRightItem:@"刷新" image:nil];
+}
+
+- (void)rightAction:(UIButton *)button{
+    [_titles removeAllObjects];
+    [_titles addObjectsFromArray:@[@"要闻",@"政务",@"时报",@"视频",@"直播"]];
+    [self.pageView reloadScrollPageView];
 }
 
 /// 滑动块有多少项  默认是 0
