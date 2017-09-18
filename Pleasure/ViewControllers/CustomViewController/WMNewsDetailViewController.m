@@ -15,8 +15,6 @@ WKNavigationDelegate ,UIWebViewDelegate>
 @property (nonatomic , strong) WKWebView *webView;
 @property (nonatomic , strong) UITableView *tableView;
 
-@property (nonatomic, assign) CGFloat     heightOfContent;
-
 @end
 
 @implementation WMNewsDetailViewController
@@ -45,9 +43,8 @@ WKNavigationDelegate ,UIWebViewDelegate>
     [webView evaluateJavaScript:@"document.body.offsetHeight;" completionHandler:^(id _Nullable any, NSError * _Nullable error) {
         
         NSString *heightStr = [NSString stringWithFormat:@"%@",any];
-        weakself.heightOfContent = heightStr.floatValue;
         
-        weakself.webView.height = _heightOfContent;
+        weakself.webView.height = heightStr.floatValue;
         
         [weakself.tableView reloadData];
     }];
