@@ -35,9 +35,14 @@
 
 - (void)rightAction:(UIButton *)button{
     /// 发布消息
-    [_svc wm_pushViewController:[WMAIListViewController new]];
+//    [_svc wm_pushViewController:[WMAIListViewController new]];
+    
+    /// 上传图片返回图片id
+    [self.inputInfoView uploadSelectedImage:^(NSArray *imageIds) {
+        
+    }];
+    
 }
-
 
 #pragma mark -- WMInputInfoViewDataSource and WMInputInfoViewDelegate
 
@@ -56,7 +61,9 @@
 - (void)inputInfoViewHeight:(CGFloat)height{
     self.tableView.contentSize = CGSizeMake(0, height);
 }
-
+- (BOOL)allowDragItemAtInputInfoView:(WMInputInfoView *)inputInfoView{
+    return YES;
+}
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     _inputInfoView.frame = CGRectMake(_inputInfoView.frame.origin.x, _inputInfoView.frame.origin.y, self.view.frame.size.width, _inputInfoView.frame.size.height);

@@ -9,13 +9,5 @@
 #import "WMPhoto.h"
 
 @implementation WMPhoto
-//- (instancetype)initWithIndex:(NSInteger)index{
-//    if (self = [super init]){
-//        
-//        _index = index;
-//        
-//    }
-//    return self;
-//    
-//}
+
 @end

@@ -19,7 +19,6 @@
 /// 最多显示图片数 默认是 3张
 - (NSInteger)maxPhotoCountAtInputInfoView:(WMInputInfoView *)inputInfoView;
 
-
 /// 每一行显示图片个数 默认是 3张
 - (NSInteger)eachRowShowPhotoCountAtInputInfoView:(WMInputInfoView *)inputInfoView;
 
@@ -38,16 +37,22 @@
 /// 当前视图的高度
 - (void)inputInfoViewHeight:(CGFloat)height;
 
+/// 是否允许拖动显示图片位置  默认是不允许的
+- (BOOL)allowDragItemAtInputInfoView:(WMInputInfoView *)inputInfoView;
+
 @end
 
+/// 上传图片回调
+typedef void(^WMUploadImageHandle)(NSArray *imageIds);
 
 @interface WMInputInfoView : UIView
 
-
 @property (nonatomic , weak) id<WMInputInfoViewDelegate> delegate;
 
-@property (nonatomic , assign , readonly)CGFloat viewHeight;
+/// 上传选中的图片
+- (void)uploadSelectedImage:(WMUploadImageHandle)handle;
 
+/// 刷新数据
 - (void)reloadView;
 
 

@@ -16,6 +16,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"123" requestMethod:(WMRequestMethodGET)];
+    
+    WMRequestAdapter *request1 = [WMRequestAdapter requestWithUrl:@"123w" requestMethod:(WMRequestMethodPOST)];
+    
+    WMRequestAdapter *request2 = [WMRequestAdapter requestWithUrl:@"123wr" requestMethod:(WMRequestMethodGET)];
+    
+    WMRequestAdapter *request3 = [WMRequestAdapter requestWithUrl:@"123rwr" requestMethod:(WMRequestMethodPOST)];
+    
+    [WMRequestManager requestBatchWithSuccessHandler:^(NSArray<WMRequestAdapter *> *requests) {
+        
+    } failureHandler:^(NSArray<WMRequestAdapter *> *requests) {
+        
+    } requestAdapter:request ,request1 ,request2 , request3, nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
