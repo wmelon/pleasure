@@ -11,22 +11,22 @@
 @implementation WMUtility
 /// 通过图片获取base64字符
 + (void)Base64ImageStrWithImages:(NSArray *)images complete:(void(^)(NSArray *imageIds))complete{
+    /// 三张一起上传
+    NSInteger count = 3;
     dispatch_queue_t queue =  dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     /// 将传入的图片转换为字符串
     NSMutableArray<NSString *> *selectedImageStr = [NSMutableArray array];
     dispatch_async(queue, ^{
         NSMutableString * imageMuStr;
         for (int i = 0 ; i < images.count ; i++){
-            /// 三张一起上传
-            if (i % 3 == 0){
+            if (i % count == 0){
                 imageMuStr = [NSMutableString string];
             }
             UIImage * image = images[i];
             if ([image isKindOfClass:[UIImage class]]){
                 [self PhotoshopImageWithImage:image imageStr:imageMuStr];
             }
-            if ((i % 3 == 2) || (i == images.count - 1)){
+            if ((i % count == (count - 1)) || (i == images.count - 1)){
                 [selectedImageStr addObject:imageMuStr];
             }
         }

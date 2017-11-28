@@ -140,16 +140,37 @@
     _uploadImageHandle = handle;
     
     /// 上传选中的图片
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.showPhotos.count];
+    NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:self.showPhotos.count];
+    /// 存储图片id
+    NSMutableArray *uploadImageIds = [NSMutableArray arrayWithCapacity:self.showPhotos.count];
     [self.showPhotos enumerateObjectsUsingBlock:^(WMPhoto * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!obj.photoUrl && obj.photo){
-            [array addObject:obj.photo];
+            [imageArray addObject:obj.photo];
+        }
+        /// 如果图片有地址就存储地址  没有地址就存在当前对象的下标
+        if (obj.photoUrl){
+            [uploadImageIds addObject:obj.photoUrl];
+        }else {
+            [uploadImageIds addObject:@(idx)];
         }
     }];
+    
     __weak typeof(self) weakself = self;
-    [WMUtility Base64ImageStrWithImages:array complete:^(NSArray *imageIds) {
+    [WMUtility Base64ImageStrWithImages:imageArray complete:^(NSArray *imageIds) {
+        [uploadImageIds enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[NSNumber class]]){
+                NSInteger index = [obj integerValue];
+                if (index < imageIds.count){
+                    id imageId = [imageIds objectAtIndex:index];
+                    if (imageId){
+                        /// 获取保存的对象下标把它替换成图片id
+                        [uploadImageIds replaceObjectAtIndex:idx withObject:imageId];
+                    }
+                }
+            }
+        }];
         if (weakself.uploadImageHandle){
-            weakself.uploadImageHandle(imageIds);
+            weakself.uploadImageHandle(uploadImageIds);
         }
     }];
 }
