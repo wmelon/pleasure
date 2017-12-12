@@ -48,7 +48,7 @@
 
 - (void)pushPhotoBrowserAtIndex:(NSInteger)index{
     WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
-    [browser setCurrentPhotoIndex:index];
+//    [browser setCurrentPhotoIndex:index];
     [self.navigationController pushViewController:browser animated:YES];
 }
 

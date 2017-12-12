@@ -9,7 +9,7 @@
 #import "WMAppNavigationBar.h"
 
 @interface WMAppNavigationBar()
-//@property (nonatomic , strong)UIView *barBackgroundView;
+
 @end
 
 @implementation WMAppNavigationBar
@@ -35,6 +35,7 @@
         self.layer.shadowOpacity = 1;
         self.layer.shadowRadius = 0.1;
         self.tintColor = [UIColor whiteColor];
+        self.barStyle = UIBarStyleBlack;
     }
     return self;
 }

@@ -29,6 +29,9 @@
 /// 返回上一页面在当前下标下的图片视图
 - (UIImageView *)photoBrowser:(WMPhotoBrowser *)photoBrowser imageViewAtIndex:(NSInteger)index;
 
+/// 当前显示第几张图片
+- (NSInteger)currentIndexAtPhotoBrowser:(WMPhotoBrowser *)photoBrowser;
+
 @end
 
 @interface WMPhotoBrowser : UIViewController <UIScrollViewDelegate>
@@ -50,7 +53,7 @@
 - (void)reloadData;
 
 // Set page that photo browser starts on
-- (void)setCurrentPhotoIndex:(NSUInteger)index;
+//- (void)setCurrentPhotoIndex:(NSUInteger)index;
 
 /// 显示导航栏右边的按钮
 - (UIButton *)showRightItem:(NSString *)title image:(UIImage *)image;

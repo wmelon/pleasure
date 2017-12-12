@@ -35,12 +35,14 @@
 
 - (void)rightAction:(UIButton *)button{
     /// 发布消息
-//    [_svc wm_pushViewController:[WMAIListViewController new]];
+    WMAIListViewController *vc = [WMAIListViewController new];
+    [vc routerTarget:vc action:@selector(testA:b:c:) params:@"10" , @"4" , @"24" , nil];
+    [_svc wm_pushViewController:vc];
     
     /// 上传图片返回图片id
-    [self.inputInfoView uploadSelectedImage:^(NSArray *imageIds) {
-        
-    }];
+//    [self.inputInfoView uploadSelectedImage:^(NSArray *imageIds) {
+//        
+//    }];
     
 }
 

@@ -9,5 +9,7 @@
 #import "WMBaseTableViewController.h"
 
 @interface WMAIListViewController : WMBaseTableViewController
+- (void)routerTarget:(nullable id)target action:(nonnull SEL)action params:(nonnull id)param,... NS_REQUIRES_NIL_TERMINATION;
+
 
 @end

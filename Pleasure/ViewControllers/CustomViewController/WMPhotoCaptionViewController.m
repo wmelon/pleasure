@@ -64,7 +64,7 @@
 
 - (void)pushPhotoBrowserAtIndex:(NSInteger)index{
     WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
-    [browser setCurrentPhotoIndex:index];
+//    [browser setCurrentPhotoIndex:index];
     browser.shouldShowTopToolBar = YES;
     browser.fd_prefersNavigationBarHidden = YES;
     [self.navigationController pushViewController:browser animated:NO];

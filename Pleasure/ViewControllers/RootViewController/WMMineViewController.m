@@ -36,7 +36,7 @@
 
 - (void)configView{
     self.title = @"我的";
-    self.navigationBarBackgroundView.alpha = 0.0;
+    [self wm_setElementsAlpha:0.0];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.scrollPageView];
     
@@ -70,7 +70,7 @@
 }
 
 - (void)scrollPageView:(WMScrollPageView *)scrollPageView navigationBarAlpha:(CGFloat)alpha{
-    self.navigationBarBackgroundView.alpha = alpha;
+    [self wm_setElementsAlpha:alpha];
 }
 
 

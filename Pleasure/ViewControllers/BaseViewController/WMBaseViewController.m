@@ -7,9 +7,30 @@
 //
 
 #import "WMBaseViewController.h"
+#import "WMAppNavigationBar.h"
+
+@interface WMNaviBarBlurBackView : UIView
+@end
+
+@implementation WMNaviBarBlurBackView
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]){
+        CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
+        gradientLayer.frame = CGRectMake(0, 0, kScreenWidth, kNavBarHeight);
+        gradientLayer.colors = @[(__bridge id)UIColorFromARGB(0x040012, 0.76).CGColor,(__bridge id)UIColorFromARGB(0x040012, 0.28).CGColor];
+        gradientLayer.startPoint = CGPointMake(0, 0);
+        gradientLayer.endPoint = CGPointMake(0, 1.0);
+        [self.layer addSublayer:gradientLayer];
+        self.userInteractionEnabled = NO;
+    }
+    return self;
+}
+@end
+
 
 @interface WMBaseViewController ()
-
+@property (nonatomic , strong) WMNaviBarBlurBackView *blurBackView;
 @end
 
 @implementation WMBaseViewController
@@ -21,39 +42,28 @@
 - (instancetype)init{
     if (self = [super init]){
         _svc = [SwitchViewController sharedSVC];
-        _navigationBarBackgroundView = [[UIImageView alloc] init];
-        _navigationBarBackgroundView.backgroundColor = [UIColor mainColor];
     }
     return self;
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     if (self.fd_prefersNavigationBarHidden == NO && [self.navigationController.viewControllers lastObject] == self){ /// 只有在没有隐藏导航栏的时候才添加视图
-        if (!_navigationBarBackgroundView.superview && _navigationBarBackgroundView){
-            
+        if (!self.blurBackView.superview && self.blurBackView){
             //确保header视图层级，不然会盖住子类在viewDidLoad时添加到view的视图
-            [self.view addSubview:_navigationBarBackgroundView];
-            [self.view bringSubviewToFront:_navigationBarBackgroundView];
+            [self.view addSubview:self.blurBackView];
+            [self.view bringSubviewToFront:self.blurBackView];
         }
     }
 }
 
 /// 布局视图frame
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if (self.fd_prefersNavigationBarHidden == NO){
-        [self setHeaderViewFrame];
-        /// 这里保证头部视图永远在最上层不被覆盖
-        [self.view bringSubviewToFront:_navigationBarBackgroundView];
-    }
-}
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     if (self.fd_prefersNavigationBarHidden == NO){
         [self setHeaderViewFrame];
         /// 这里保证头部视图永远在最上层不被覆盖
-        [self.view bringSubviewToFront:_navigationBarBackgroundView];
+        [self.view bringSubviewToFront:self.blurBackView];
     }
 }
 
@@ -72,10 +82,10 @@
 }
 
 - (void)setHeaderViewFrame{
-    if (!_navigationBarBackgroundView || !self.navigationBarBackgroundView.superview){
+    if (!self.blurBackView || !self.blurBackView.superview){
         return;
     }
-    UIView *purpleView = _navigationBarBackgroundView;
+    UIView *purpleView = self.blurBackView;
     purpleView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(self.navigationController.navigationBar.frame));
 }
 
@@ -142,11 +152,25 @@
         self.navigationItem.rightBarButtonItems = @[space,item];
     }
 }
-
+- (void)wm_setElementsAlpha:(CGFloat)alpha{
+    self.blurBackView.alpha = alpha;
+}
+- (WMNaviBarBlurBackView *)blurBackView{
+    if (_blurBackView == nil){
+        _blurBackView = [[WMNaviBarBlurBackView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavBarHeight)];
+        _blurBackView.userInteractionEnabled = NO;
+        _blurBackView.autoresizingMask = UIViewAutoresizingFlexibleWidth;    // Should not set `UIViewAutoresizingFlexibleHeight`
+        _blurBackView.backgroundColor = [self naviBarBackgroundColor];
+    }
+    return _blurBackView;
+    
+}
 - (void)rightAction:(UIButton *)button{
     NSLog(@"%@ 子类需要重写" , self);
 }
-
+- (UIColor *)naviBarBackgroundColor{
+    return [UIColor mainColor];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

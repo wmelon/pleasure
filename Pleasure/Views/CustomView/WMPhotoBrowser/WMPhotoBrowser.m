@@ -16,7 +16,7 @@
 #define PADDING                  10
 
 @interface WMPhotoBrowser () <UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout ,UIGestureRecognizerDelegate , UIViewControllerTransitioningDelegate , WMBaseTransitionAnimatorDelegate , WMZoomingScrollCellDelegate>{
-    
+    WMZoomingScrollCell *_currentShowcell;
     UIWindow *_applicationWindow;
 }
 /// 原显示图片的视图
@@ -68,19 +68,20 @@
 }
 
 - (void)wm_initialisation{
-    _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
-    [self setShouldShowRightItem:YES];
-    self.transitioningDelegate = self;
-    self.interactiveTransition = [WMInteractiveTransition interactiveTransitionWithTransitionType:(WMInteractiveTransitionTypeDismiss) gestureDirection:(WMInteractiveTransitionGestureDirectionDown)];
-    __weak typeof(self) weakself = self;
-    [self.interactiveTransition addPanGestureForViewController:self gestureConifg:^{
-        [weakself wm_dismiss];
-    }];
+//    _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
+//    [self setShouldShowRightItem:YES];
+//    self.transitioningDelegate = self;
+//    self.interactiveTransition = [WMInteractiveTransition interactiveTransitionWithTransitionType:(WMInteractiveTransitionTypeDismiss) gestureDirection:(WMInteractiveTransitionGestureDirectionDown)];
+//    __weak typeof(self) weakself = self;
+//    [self.interactiveTransition addPanGestureForViewController:self gestureConifg:^{
+//        [weakself wm_dismiss];
+//    }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     
     self.hidesBottomBarWhenPushed = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -89,6 +90,24 @@
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.captionView];
     [self updateNavigation];
+    
+    _applicationWindow = [[[UIApplication sharedApplication] delegate] window];
+    [self setShouldShowRightItem:YES];
+    self.transitioningDelegate = self;
+    self.interactiveTransition = [WMInteractiveTransition interactiveTransitionWithTransitionType:(WMInteractiveTransitionTypeDismiss) gestureDirection:(WMInteractiveTransitionGestureDirectionDown)];
+    __weak typeof(self) weakself = self;
+    [self.interactiveTransition addPanGestureForViewController:self gestureConifg:^{
+        [weakself wm_dismiss];
+    }];
+    
+    
+    if ([self.delegate respondsToSelector:@selector(currentIndexAtPhotoBrowser:)]){
+        _currentIndex = [self.delegate currentIndexAtPhotoBrowser:self];
+        if (_currentIndex >= self.photos.count){
+            _currentIndex = 0;
+        }
+    }
+    [self setCurrentPhotoIndex:_currentIndex];
 }
 
 #pragma mark -- UIViewControllerTransitioningDelegate
@@ -152,14 +171,13 @@
 - (void)animationFinishedAtTransitionAnimator:(WMBaseTransitionAnimator *)transitionAnimator{
     _isPresenting = NO;
     /// 当前正在显示的cell视图
-    WMZoomingScrollCell *cell = (WMZoomingScrollCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+    WMZoomingScrollCell *cell = _currentShowcell;
     [cell wm_displayImageWithIsPresenting:_isPresenting tempImage:self.srcImageView.image];
 }
 
 - (UIImageView *)wm_getDestImageView{
     if (self.collectionView == nil) return nil;
-    WMZoomingScrollCell *cell = (WMZoomingScrollCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
-    cell.delegate = self;
+    WMZoomingScrollCell *cell = _currentShowcell;
     UIImageView * imageView = cell.imageShowView;
     
     return imageView;
@@ -264,9 +282,13 @@
     /// 设置显示数据
     [cell wm_setDataPhotoModel:self.photos[indexPath.row]];
     [cell wm_displayImageWithIsPresenting:_isPresenting tempImage:self.srcImageView.image];
+    /// 记录当前显示cell
+    _currentShowcell = cell;
     return cell;
 }
-
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return self.view.size;
+}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offSetX = scrollView.contentOffset.x;
     _currentIndex = (offSetX  + 0.5 * self.collectionView.frame.size.width) / self.collectionView.frame.size.width;

@@ -21,6 +21,47 @@
 @end
 
 @implementation WMAIListViewController
+- (void)testA:(NSString *)a b:(NSString *)b c:(NSString *)c{
+    NSLog(@"%@   %@   %@" , a , b , c);
+}
+- (void)routerTarget:(nullable id)target action:(nonnull SEL)action params:(nonnull id)param,... NS_REQUIRES_NIL_TERMINATION{
+    
+    NSMethodSignature *signature = [target methodSignatureForSelector:action];
+
+    if (signature.numberOfArguments == 0) {
+        return; //@selector未找到
+    }
+    NSMutableArray *arguments = [NSMutableArray arrayWithObjects:param, nil];
+    // 定义一个指向个数可变的参数列表指针；
+    va_list args;
+    // 用于存放取出的参数
+    id arg;
+    // 初始化变量刚定义的va_list变量，这个宏的第二个参数是第一个可变参数的前一个参数，是一个固定的参数
+    va_start(args, param);
+
+    // 遍历全部参数 va_arg返回可变的参数(a_arg的第二个参数是你要返回的参数的类型)
+    while ((arg = va_arg(args, NSString *))) {
+        [arguments addObject:arg];
+    }
+    // 清空参数列表，并置参数指针args无效
+    va_end(args);
+
+    if (signature.numberOfArguments > [arguments count]+2) {
+        return; //传入arguments参数不足。signature至少有两个参数，self和_cmd
+    }
+
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setTarget:target];
+    [invocation setSelector:action];
+
+    for(int i = 2; i < signature.numberOfArguments; i++)
+    {
+        id arg = [arguments objectAtIndex:i - 2];
+        [invocation setArgument:&arg atIndex:i]; // The first two arguments are the hidden arguments self and _cmd
+    }
+
+    [invocation invoke]; // Invoke the selector
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,7 +85,9 @@
     }
     [self.tableView reloadData];
 }
-
+- (UIColor *)naviBarBackgroundColor{
+    return [UIColor whiteColor];
+}
 #pragma mark -- UITableViewDelegate and UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

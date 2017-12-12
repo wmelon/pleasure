@@ -73,7 +73,7 @@
     _deleteHandle = deleteHandle;
     
     WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
-    [browser setCurrentPhotoIndex:currentIndex];
+//    [browser setCurrentPhotoIndex:currentIndex];
     [self.viewController.navigationController pushViewController:browser animated:YES];
 }
 

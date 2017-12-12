@@ -12,6 +12,7 @@
 
 @interface WMPhotoBrowserViewController ()<WMPhotoBrowserDelegate>
 @property (nonatomic , strong)NSArray *imageUrlArray;
+@property (nonatomic , assign) NSInteger currentIndex;
 @end
 
 @implementation WMPhotoBrowserViewController
@@ -48,13 +49,15 @@
 
 
 - (void)presentWithImageView:(UIImageView *)imageView index:(NSInteger)index{
-    
+    _currentIndex = index;
     WMPhotoBrowser *browser = [[WMPhotoBrowser alloc] initWithDelegate:self];
-    [browser setCurrentPhotoIndex:index];
     [self presentViewController:browser animated:YES completion:nil];
 }
 
 #pragma mark -- WMPhotoBrowserDelegate
+- (NSInteger)currentIndexAtPhotoBrowser:(WMPhotoBrowser *)photoBrowser{
+    return _currentIndex;
+}
 - (UIImageView *)photoBrowser:(WMPhotoBrowser *)photoBrowser imageViewAtIndex:(NSInteger)index{
     WMPhotoItemCell * cell = (WMPhotoItemCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     return cell.photoButton.imageView;

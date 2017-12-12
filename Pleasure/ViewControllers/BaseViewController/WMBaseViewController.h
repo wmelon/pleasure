@@ -13,9 +13,9 @@
     SwitchViewController * _svc;
 }
 
-@property (nonatomic , strong , readonly)UIImageView * navigationBarBackgroundView;
-//- (BOOL)shouldShowBackItem;
-
+- (void)wm_setElementsAlpha:(CGFloat)alpha;
+/// 重置导航栏背景颜色
+- (UIColor *)naviBarBackgroundColor;
 
 - (UIButton *)showRightItem:(NSString *)title image:(UIImage *)image;
 - (void)rightAction:(UIButton *)button;
