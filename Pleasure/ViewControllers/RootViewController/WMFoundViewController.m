@@ -7,8 +7,10 @@
 //
 
 #import "WMFoundViewController.h"
+#import "WMDemoViewController.h"
 
 @interface WMFoundViewController ()
+
 @end
 
 @implementation WMFoundViewController
@@ -18,20 +20,14 @@
     // Do any additional setup after loading the view.
     
     
-    WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"123" requestMethod:(WMRequestMethodGET)];
-    
-    WMRequestAdapter *request1 = [WMRequestAdapter requestWithUrl:@"123w" requestMethod:(WMRequestMethodPOST)];
-    
-    WMRequestAdapter *request2 = [WMRequestAdapter requestWithUrl:@"123wr" requestMethod:(WMRequestMethodGET)];
-    
-    WMRequestAdapter *request3 = [WMRequestAdapter requestWithUrl:@"123rwr" requestMethod:(WMRequestMethodPOST)];
-    
-    [WMRequestManager requestBatchWithSuccessHandler:^(NSArray<WMRequestAdapter *> *requests) {
-        
-    } failureHandler:^(NSArray<WMRequestAdapter *> *requests) {
-        
-    } requestAdapter:request ,request1 ,request2 , request3, nil];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    btn.backgroundColor = [UIColor redColor];
+    [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
 
+- (void)click:(UIButton *)button{
+    [_svc wm_pushViewController:[WMDemoViewController new]];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -22,10 +22,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.delegate = self;
-    
-    UINavigationBar * newNavigationBar = [[WMAppNavigationBar alloc] initWithFrame:self.navigationBar.bounds];
-    
-    [self setValue:newNavigationBar forKey:@"navigationBar"];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{

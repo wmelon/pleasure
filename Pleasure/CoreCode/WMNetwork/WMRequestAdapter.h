@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, WMRequestMethod) {
     WMRequestMethodPATCH,
 };
 
+@class WMRequestAdapter;
 
 @protocol WMRequestAdapterProtocol <NSObject>
 
@@ -28,39 +29,55 @@ typedef NS_ENUM(NSInteger, WMRequestMethod) {
 - (NSString *)getRequestUrl;
 
 /// 请求方式
-- (WMRequestMethod)requestMethod;
+- (WMRequestMethod)getRequestMethod;
 
-/**请求成功初始化方法*/
-- (void)responseAdapterWithResponseObject:(id)responseObject task:(NSURLSessionDataTask *)task;
+///**请求进度初*/
+- (WMRequestAdapter *)responseAdapterWithProgress:(NSProgress *)progress;
 
-/**请求进度初始化方法*/
-- (void)responseAdapterWithProgress:(NSProgress *)progress;
+/// 请求完成之后方法
+- (WMRequestAdapter *)responseAdapterWithResult:(NSURLSessionTask *)task responseObject:(id)responseObject error:(NSError *)error;
 
-/**请求失败初始化方法*/
-- (void)responseAdapterWithError:(NSError *)error task:(NSURLSessionDataTask *)task;
+/// 获取请求队列
+- (NSURLSessionTask *)getRequestTask;
+/// 设置请求队列
+- (void)setRequestTask:(NSURLSessionTask *)task;
 
 @end
 
 
 @interface WMRequestAdapter : NSObject<WMRequestAdapterProtocol>
+/// 当前请求是否失败
+@property (nonatomic , assign , readonly , getter=isRequestFail) BOOL requestFail;
 
 /// 请求完成之后的提示信息
-@property (nonatomic , copy , readonly)NSString * msg;
+@property (nonatomic , copy   , readonly) NSString * msg;
 
 /// 请求成功返回数据
-@property (nonatomic , strong , readonly)id responseObject;
+@property (nonatomic , strong , readonly) id responseObject;
 
 /// 请求成功返回字典结构数据
-@property (nonatomic , strong , readonly)NSDictionary *responseDictionary;
+@property (nonatomic , strong , readonly) NSDictionary *responseDictionary;
+
+/// 请求成功返回二进制数据
+@property (nonatomic , strong , readonly) NSData *responseData;
 
 /// 请求返回状态码
-@property (nonatomic , assign , readonly)NSInteger statusCode;
+@property (nonatomic , assign , readonly) NSInteger statusCode;
+
 /// 请求失败
-@property (nonatomic , strong , readonly)NSError * error;
+@property (nonatomic , strong , readonly) NSError * error;
+
 /// 请求进度
-@property (nonatomic , strong , readonly)NSProgress *progress;
-/// 封装请求数据对象
-@property (nonatomic , strong , readonly)WMRequestAdapter * requestAdapter;
+@property (nonatomic , strong , readonly) NSProgress *progress;
+
+/// 网络请求队列
+@property (nonatomic , strong , readonly) NSURLSessionTask *requestTask;
+
+/// 网络请求地址
+@property (nonatomic , copy   , readonly) NSString *requestUrl;
+
+/// 网络请求参数
+@property (nonatomic , strong , readonly) NSMutableDictionary * parameterDict;
 
 /// 初始化请求对象
 + (instancetype)requestWithUrl:(NSString *)requestUrl requestMethod:(WMRequestMethod)requestMethod;
@@ -73,6 +90,11 @@ typedef NS_ENUM(NSInteger, WMRequestMethod) {
 
 /// 翻页参数设置
 - (void)requestTurnPageParameter:(NSDictionary *)params;
+
+/// 是否已经取消请求
+- (BOOL)isCancelled;
+/// 是否正在请求
+- (BOOL)isExecuting;
 
 
 @end

@@ -68,19 +68,19 @@
         WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"" requestMethod:(WMRequestMethodPOST)];
         [request requestParameterSetValue:imageStr forKey:@"bin"];
         
-        [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
-            NSArray *ids = request.responseDictionary[@"data"][@"imgIds"];
-            if (ids.count){
-                [imageIds addObjectsFromArray:ids];
-            }
-            /// 递归上传图片
-            [self uploadImage:imageStrArray beforeIndex:++index imageIds:imageIds complete:complete];
-
-        } progressHandler:nil failureHandler:^(WMRequestAdapter *request) {
-            if (complete){
-                complete();
-            }
-        } requestAdapter:request];
+//        [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
+//            NSArray *ids = request.responseDictionary[@"data"][@"imgIds"];
+//            if (ids.count){
+//                [imageIds addObjectsFromArray:ids];
+//            }
+//            /// 递归上传图片
+//            [self uploadImage:imageStrArray beforeIndex:++index imageIds:imageIds complete:complete];
+//
+//        } progressHandler:nil failureHandler:^(WMRequestAdapter *request) {
+//            if (complete){
+//                complete();
+//            }
+//        } requestAdapter:request];
         
     }else {
         if (complete){

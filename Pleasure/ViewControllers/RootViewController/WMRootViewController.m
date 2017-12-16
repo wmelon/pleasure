@@ -9,6 +9,7 @@
 #import "WMRootViewController.h"
 #import "WMAppTabBar.h"
 #import "WMBaseNavigationController.h"
+#import "WMAppNavigationBar.h"
 
 @interface WMRootViewController ()<UITabBarControllerDelegate>
 
@@ -59,7 +60,7 @@
     WMBaseViewController * vc = [viewController new];
     vc.title = title;
     vc.tabBarItem.image = [UIImage imageNamed:imageName];
-    WMBaseNavigationController * naviVc = [[WMBaseNavigationController alloc] init];
+    WMBaseNavigationController * naviVc = [[WMBaseNavigationController alloc] initWithNavigationBarClass:[WMAppNavigationBar class] toolbarClass:nil];
 //    [homeNavi setViewControllers:@[homeVc]];
     [naviVc pushViewController:vc animated:NO];
     

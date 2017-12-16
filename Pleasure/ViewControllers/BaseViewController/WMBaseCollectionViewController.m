@@ -16,10 +16,6 @@
 
 @synthesize collectionView = _collectionView;
 
-- (void)viewWillLayoutSubviews{
-    self.collectionView.frame = self.view.bounds;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -47,7 +43,7 @@
 - (UICollectionView *)collectionView{
     if (!_collectionView){
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenWidth, kScreenHeight - kNavBarHeight - kSafeTabInset) collectionViewLayout:layout];
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellID"];
         _collectionView.backgroundColor = [UIColor pageBackgroundColor];
         _collectionView.delegate = self;

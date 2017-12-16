@@ -16,4 +16,5 @@ target :Pleasure do
     pod 'Masonry'                 #自动适配
     pod 'LCActionSheet' , '~>3.2.4'  #底部选择弹框
     pod 'WMScrollPageView' , '~> 0.0.5'
+    pod 'YYCache' ,'~>1.0.4'  #数据缓存
 end

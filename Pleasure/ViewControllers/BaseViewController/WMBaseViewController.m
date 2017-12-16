@@ -61,7 +61,7 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     if (self.fd_prefersNavigationBarHidden == NO){
-        [self setHeaderViewFrame];
+//        [self setHeaderViewFrame];
         /// 这里保证头部视图永远在最上层不被覆盖
         [self.view bringSubviewToFront:self.blurBackView];
     }
@@ -71,23 +71,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor pageBackgroundColor];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //    if ([self shouldShowBackItem]) {
     //        [self showBackItem];
     //    }
 }
 /// 监听横竖屏切换 更新子视图的frame
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
-    [self setHeaderViewFrame];
-}
-
-- (void)setHeaderViewFrame{
-    if (!self.blurBackView || !self.blurBackView.superview){
-        return;
-    }
-    UIView *purpleView = self.blurBackView;
-    purpleView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(self.navigationController.navigationBar.frame));
-}
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+//    [self setHeaderViewFrame];
+//}
+//- (void)setHeaderViewFrame{
+//    if (!self.blurBackView || !self.blurBackView.superview){
+//        return;
+//    }
+//    UIView *purpleView = self.blurBackView;
+//    purpleView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(self.navigationController.navigationBar.frame));
+//}
 
 //- (void)showBackItem {
 //    UIImage * image = [UIImage imageNamed:@"icon_white_back"];

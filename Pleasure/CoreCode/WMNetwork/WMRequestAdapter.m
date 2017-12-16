@@ -44,12 +44,12 @@
 @end
 
 @interface WMRequestAdapter()
-@property (nonatomic , copy) NSString *requestUrl;
 @property (nonatomic , assign) WMRequestMethod requestMethod;
-@property (nonatomic , strong) NSMutableDictionary * parameterDict;
 @end
 
 @implementation WMRequestAdapter
+
+@synthesize parameterDict = _parameterDict;
 
 + (instancetype)requestWithUrl:(NSString *)requestUrl requestMethod:(WMRequestMethod)requestMethod{
     return [[self alloc] initWithRequestUrl:requestUrl requestMethod:requestMethod];
@@ -63,43 +63,6 @@
     return self;
 }
 
-/**请求成功初始化方法*/
-- (void)responseAdapterWithResponseObject:(id)responseObject task:(NSURLSessionDataTask *)task{
-    [self responseAdapterWithTask:task responseObject:responseObject error:nil progress:nil];
-}
-
-/**请求进度初始化方法*/
-- (void)responseAdapterWithProgress:(NSProgress *)progress{
-    [self responseAdapterWithTask:nil responseObject:nil error:nil progress:progress];
-}
-
-/**请求失败初始化方法*/
-- (void)responseAdapterWithError:(NSError *)error task:(NSURLSessionDataTask *)task{
-    [self responseAdapterWithTask:task responseObject:nil error:error progress:nil];
-}
-- (void)responseAdapterWithTask:(NSURLSessionDataTask *)task responseObject:(id)responseObject error:(NSError *)error progress:(NSProgress *)progress{
-    _progress = progress;
-    if (responseObject){
-        _responseObject = responseObject;
-        if ([responseObject isKindOfClass:[NSDictionary class]]){
-            ///  请求返回的数据是字典格式
-            _responseDictionary = responseObject;
-            /// 成功提示信息
-            _msg = [self msgWithDict:_responseDictionary];
-            _statusCode = [self bizCodeWithDict:_responseDictionary];
-        }
-        [self requestSuccessResObj:responseObject task:task];
-    }
-    if (error){
-        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
-        _error = [NSError getError:error resp:resp];
-        _statusCode = resp.statusCode;
-        /// 错误提示信息
-        _msg = [self showErrorMessageWithError:_error withCode:resp.statusCode];
-        [self requestFailureTask:task error:error];
-    }
-}
-
 - (NSString *)msgWithDict:(NSDictionary *)dict{
     NSString * msg;
     if ([[dict objectForKey:@"msg"] isKindOfClass:[NSString class]]){
@@ -107,21 +70,20 @@
     }
     return msg;
 }
-- (NSInteger)bizCodeWithDict:(NSDictionary *)dict {
-    return [[dict objectForKey:@"bizCode"] integerValue];
-}
 
 #pragma mark -- private methods
 
-- (void)requestSuccessResObj:(NSDictionary *)resObj task:(NSURLSessionDataTask *)task {
-    NSLog(@"😄😄😄请求成功%@===>responseObject%@",task.currentRequest.URL.absoluteString, resObj);
-    [self requestSuccessOrFailureWithTask:task];
+- (void)requestSuccessResObj:(NSDictionary *)resObj task:(NSURLSessionTask *)task {
+    if (task){
+        NSLog(@"😄😄😄 %@ 请求成功 %@ ===> responseObject %@",self ,task.currentRequest.URL.absoluteString, resObj);
+    }
 }
 
-- (void)requestFailureTask:(NSURLSessionDataTask *)task error:(NSError *)error{
-    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
-    NSLog(@"😂😂😂请求失败%@===>statusCode:%zd",task.currentRequest.URL.absoluteString,resp.statusCode);
-    [self requestSuccessOrFailureWithTask:task];
+- (void)requestFailureTask:(NSURLSessionTask *)task error:(NSError *)error{
+    if (task){
+        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
+        NSLog(@"😂😂😂 %@ 请求失败 %@ ===> statusCode: %zd",self ,task.currentRequest.URL.absoluteString,resp.statusCode);
+    }
 }
 
 /// 解析请求错误提示文案
@@ -139,21 +101,6 @@
     return [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableContainers) error:nil];
 }
 
-
-#pragma mark - 请求成功或失败后的操作
-- (void)requestSuccessOrFailureWithTask:(NSURLSessionDataTask *)task{
-    /*! 存储服务器当前的时间 */
-    [self saveServerDateWithTask:task];
-}
-
-#pragma mark - 存储当前服务器的日期
-- (void)saveServerDateWithTask:(NSURLSessionDataTask *)task {
-    //    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
-    //    NSString *lastUpdate = resp.allHeaderFields[@"Date"];
-    //    NSDate *date = [NSDate dateFromRFC822String:lastUpdate];
-    //    NSInteger tmp = [date timeIntervalSinceDate:[NSDate date]];
-    //    [NGCAppDataManager defaultManager].timeInterval = tmp;
-}
 #pragma mark -- 请求参数相关
 ///**需要翻页的接口必须采用这种方式创建请求对象*/
 - (void)requestTurnPageParameter:(NSDictionary *)params{
@@ -173,10 +120,83 @@
 }
 
 - (NSString *)getRequestUrl{
-    return @"";
+    return self.requestUrl;
 }
-- (WMRequestMethod)requestMethod{
+- (WMRequestMethod)getRequestMethod{
     return self.requestMethod;
+}
+
+- (WMRequestAdapter *)responseAdapterWithProgress:(NSProgress *)progress{
+    _progress = progress;
+    return self;
+}
+- (NSURLSessionTask *)getRequestTask{
+    return _requestTask;
+}
+- (void)setRequestTask:(NSURLSessionTask *)task{
+    _requestTask = task;
+}
+/// 请求完成之后方法
+- (WMRequestAdapter *)responseAdapterWithResult:(NSURLSessionTask *)task responseObject:(id)responseObject error:(NSError *)error{
+    /// 请求完成之后更新请求队列
+    _requestTask = task;
+
+    NSError * __autoreleasing serializationError = nil;
+
+    NSError *requestError = nil;
+    _responseObject = responseObject;
+
+    if ([_responseObject isKindOfClass:[NSData class]]) {
+        _responseData = responseObject;
+    }else if ([_responseObject isKindOfClass:[NSDictionary class]]){
+        _responseDictionary = _responseObject;
+    }
+    if (error) {  /// 请求数据错误
+        _requestFail = YES;
+        requestError = error;
+    } else if (serializationError) {  /// 解析数据错误
+        _requestFail = YES;
+        requestError = serializationError;
+    } else {
+        _requestFail = NO;
+    }
+    
+    if (requestError){
+        [self parsingErrorWithTask:task error:requestError];
+    }else {
+        /// 成功提示信息
+        _msg = [self msgWithDict:_responseDictionary];
+        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
+        _statusCode = resp.statusCode;
+        [self requestSuccessResObj:responseObject task:task];
+    }
+
+    return self;
+}
+/// 解析请求错误
+- (void)parsingErrorWithTask:(NSURLSessionTask *)task error:(NSError *)error{
+    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)task.response;
+    _error = [NSError getError:error resp:resp];
+    _statusCode = resp.statusCode;
+
+    /// 错误提示信息
+    _msg = [self showErrorMessageWithError:_error withCode:resp.statusCode];
+    [self requestFailureTask:task error:error];
+}
+
+
+- (BOOL)isCancelled {
+    if (!self.requestTask) {
+        return NO;
+    }
+    return self.requestTask.state == NSURLSessionTaskStateCanceling;
+}
+
+- (BOOL)isExecuting {
+    if (!self.requestTask) {
+        return NO;
+    }
+    return self.requestTask.state == NSURLSessionTaskStateRunning;
 }
 
 #pragma mark -- getter
@@ -185,5 +205,11 @@
         _parameterDict = [NSMutableDictionary dictionary];
     }
     return _parameterDict;
+}
+- (void)dealloc{
+    if ([self.requestTask isKindOfClass:[NSURLSessionTask class]]){
+        [self.requestTask cancel];
+    }
+    NSLog(@"请求对象销毁了 ---- %@" , self);
 }
 @end

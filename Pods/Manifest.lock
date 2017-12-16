@@ -27,6 +27,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - TZImagePickerController (1.8.1)
   - WMScrollPageView (0.0.5)
+  - YYCache (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.8.2)
   - TZImagePickerController (= 1.8.1)
   - WMScrollPageView (~> 0.0.5)
+  - YYCache
 
 EXTERNAL SOURCES:
   pop:
@@ -62,7 +64,8 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TZImagePickerController: 086034156913375cb19c8e4103562f15322c3b36
   WMScrollPageView: f2c601e62153557589b31595d8fddca80b9ae228
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
-PODFILE CHECKSUM: 0dc10b9103a63727d6fdfdf00cc80291d0093b8c
+PODFILE CHECKSUM: af9f65c1b86982bf047650201213dbc36e11f47f
 
 COCOAPODS: 1.3.1

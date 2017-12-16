@@ -14,10 +14,6 @@
 
 @implementation WMBaseTableViewController
 
-- (void)viewWillLayoutSubviews{
-    self.tableView.frame = self.view.bounds;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -50,7 +46,7 @@
 @synthesize tableView = _tableView;
 - (UITableView *)tableView{
     if (!_tableView){
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenWidth, kScreenHeight - kNavBarHeight - kSafeTabInset) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor pageBackgroundColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;

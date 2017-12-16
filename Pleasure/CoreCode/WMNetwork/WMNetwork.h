@@ -15,6 +15,8 @@
 #import "WMRequestAdapter.h"
 #import "WMURLManager.h"
 #import "WMRequestManager.h"
+#import "NSObject+WMAutoCancelRequest.h"
+#import "UIView+WMLoadView.h"
 
 //#if __has_include(<YTKNetwork/YTKNetwork.h>)
 //
