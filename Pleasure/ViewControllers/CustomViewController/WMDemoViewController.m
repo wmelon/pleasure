@@ -9,7 +9,6 @@
 #import "WMDemoViewController.h"
 
 @interface WMDemoViewController ()
-
 @end
 
 @implementation WMDemoViewController
@@ -28,42 +27,50 @@
     btn1.backgroundColor = [UIColor redColor];
     [btn1 addTarget:self action:@selector(canael:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
-    
-    [self.view showLoadingType:(WMLoadingType_gifImage)];
-    
-//    [self click:nil];
-//    [self canael:nil];
+
+//    [self.view showLoadingType:(WMLoadingType_indicator)];
+//
+//    [self.view showLoadingType:(WMLoadingType_gifImage)];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////        [self.view showLoadEmptyMessage:@"亲，没有数据咯" image:[UIImage imageNamed:@"icon_error_unkown"] buttonTitle:@"去下单" RetryBlcok:^{
+////            NSLog(@"下单按钮点击了");
+////        }];
+//        [self.view showLoadFailedWithType:(WMLoadFailedStyle_imageFailed) RetryBlcok:^{
+//            NSLog(@"重新加载点击了。。。。。");
+//        }];
+////        [self.view showLoadFailedMessage:@"加载错误，请检查网络是否异常之后回来再试一下" image:[UIImage imageNamed:@"icon_error_unkown"] buttonTitle:@"点击一下之后可以重新加载" RetryBlcok:^{
+////            NSLog(@"重新加载点击了。。。。。");
+////        }];
+//    });
 }
 
 
 - (void)canael:(UIButton *)button{
-//    [self.view showLoading];
-//
-//    WMRequestAdapter *requestAdapter = [WMRequestAdapter requestWithUrl:@"http://www.ecloudtm.com/cnnews/api/getStartAd.do" requestMethod:(WMRequestMethodGET)];
-//
-//    __weak typeof(self) weakself = self;
-//    NSURLSessionTask *task = [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
-////        NSLog(@"请求成功返回数据 %@" , request.responseObject);
-//
-//        /// 这里如果不用weak 就会出现网络请求不回来就无法销毁控制器 这样就无法实现销毁控制器自动停止网络请求
-////        [weakself.view hiddenLoading];
-//        [weakself.view showLoadEmptyWithRetryBlcok:^{
-//           /// 加载数据为空   可以实现空数据点击
-//        }];
-//
-//    } cacheHandler:^(WMRequestAdapter *request) {
-//
-//    } failureHandler:^(WMRequestAdapter *request) {
-//
-//        [weakself.view showLoadFailedWithRetryBlcok:^{
-//            /// 加载失败重新加载
-//            [weakself canael:nil];
-//        }];
-//
-//    } requestAdapter:requestAdapter];
-//
-//    /// 界面销毁自动释放网络请求
-//    [self autoCancelRequestOnDealloc:task];
+    [self.view showLoading];
+
+    WMRequestAdapter *requestAdapter = [WMRequestAdapter requestWithUrl:@"http://www.ecloudtm.com/cnnews/api/getStartAd.do" requestMethod:(WMRequestMethodGET)];
+
+    __weak typeof(self) weakself = self;
+    NSURLSessionTask *task = [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
+        /// 这里如果不用weak 就会出现网络请求不回来就无法销毁控制器 这样就无法实现销毁控制器自动停止网络请求
+//        [weakself.view showLoadEmpty];
+        [weakself.view showLoadFailedWithRetryBlcok:^{
+            [weakself canael:nil];
+        }];
+        
+    } cacheHandler:^(WMRequestAdapter *request) {
+
+    } failureHandler:^(WMRequestAdapter *request) {
+
+        [weakself.view showLoadFailedWithRetryBlcok:^{
+            /// 加载失败重新加载
+            [weakself canael:nil];
+        }];
+
+    } requestAdapter:requestAdapter];
+
+    /// 界面销毁自动释放网络请求
+    [self autoCancelRequestOnDealloc:task];
 }
 
 

@@ -210,6 +210,5 @@
     if ([self.requestTask isKindOfClass:[NSURLSessionTask class]]){
         [self.requestTask cancel];
     }
-    NSLog(@"请求对象销毁了 ---- %@" , self);
 }
 @end
