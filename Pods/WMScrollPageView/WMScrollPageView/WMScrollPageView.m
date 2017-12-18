@@ -385,7 +385,7 @@
     [super layoutSubviews];
     
     self.tableView.frame = self.bounds;
-    self.barItem.frame = CGRectMake(0, 0, self.frame.size.width, self.style.segmentHeight);
+    self.barItem.frame = CGRectMake(0, self.tableViewHeaderViewHeight, self.frame.size.width, self.style.segmentHeight);
 }
 /*
 // Only override drawRect: if you perform custom drawing.

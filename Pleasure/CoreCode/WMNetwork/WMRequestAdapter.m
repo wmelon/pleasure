@@ -184,7 +184,6 @@
     [self requestFailureTask:task error:error];
 }
 
-
 - (BOOL)isCancelled {
     if (!self.requestTask) {
         return NO;

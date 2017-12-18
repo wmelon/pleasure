@@ -11,7 +11,7 @@
 #import "WMLoadFailedEmptyView.h"
 
 @interface UIView (WMLoadView)
-@property (nonatomic , strong , readonly) WMGifLoadingView *gifLoadingView;
+
 /// 默认这种是自定制动画样式
 - (void)showLoading;
 - (void)showLoadingType:(WMLoadingType)type;
@@ -29,6 +29,5 @@
 - (void)showLoadFailedWithRetryBlcok:(WMRetryBlock)retryBlcok;
 - (void)showLoadFailedWithType:(WMLoadFailedStyle)style RetryBlcok:(WMRetryBlock)retryBlcok;
 - (void)showLoadFailedMessage:(NSString *)message image:(UIImage *)image buttonTitle:(NSString *)title style:(WMLoadFailedStyle)style RetryBlcok:(WMRetryBlock)retryBlcok;
-
 
 @end

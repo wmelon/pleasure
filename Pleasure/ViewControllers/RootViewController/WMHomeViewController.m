@@ -75,12 +75,12 @@
 
 /// 监听横竖屏切换 更新子视图的frame
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
-    _pageView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49);
+    _pageView.frame = CGRectMake(0, kNavBarHeight, kScreenWidth, kScreenHeight - kTabBarHeight - kNavBarHeight);
 }
 
 - (WMScrollPageView *)pageView{
     if (_pageView == nil){
-        _pageView = [[WMScrollPageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 49)];
+        _pageView = [[WMScrollPageView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenWidth, kScreenHeight - kTabBarHeight - kNavBarHeight)];
         _pageView.dataSource = self;
         _pageView.delegate = self;
     }

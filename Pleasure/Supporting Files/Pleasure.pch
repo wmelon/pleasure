@@ -36,3 +36,4 @@
 
 #define kNavBarHeight (kScreenHeight == 812.0 ? 88 : 64)
 #define kSafeTabInset (kScreenHeight == 812.0 ? 34 : 0)
+#define kTabBarHeight (kScreenHeight == 812.0 ? 83 : 49)

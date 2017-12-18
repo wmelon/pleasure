@@ -50,23 +50,25 @@
     [[self loadFailedEmptyView] showWithMessage:message image:image buttonTitle:title style:style RetryBlcok:retryBlcok];
 }
 
+#pragma mark -- 隐藏加载loading
 
-/**
- 隐藏加载视图
- */
 - (void)hiddenLoading{
     [self removeLoadingView];
     [self removeLoadFaileEmptyView];
 }
 
 - (void)removeLoadingView{
-    if ([self gifLoadingView].superview){
-        [[self gifLoadingView] removeFromSuperview];
+    WMGifLoadingView *gifView = [self gifLoadingView];
+    [gifView hidden];
+    if (gifView.superview){
+        [gifView removeFromSuperview];
     }
 }
 - (void)removeLoadFaileEmptyView{
-    if ([self loadFailedEmptyView].superview){
-        [[self loadFailedEmptyView] removeFromSuperview];
+    WMLoadFailedEmptyView *failedEmptyView = [self loadFailedEmptyView];
+    [failedEmptyView hidden];
+    if (failedEmptyView.superview){
+        [failedEmptyView removeFromSuperview];
     }
 }
 

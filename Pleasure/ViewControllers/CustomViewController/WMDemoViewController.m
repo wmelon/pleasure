@@ -27,36 +27,20 @@
     btn1.backgroundColor = [UIColor redColor];
     [btn1 addTarget:self action:@selector(canael:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
-
-//    [self.view showLoadingType:(WMLoadingType_indicator)];
-//
-//    [self.view showLoadingType:(WMLoadingType_gifImage)];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////        [self.view showLoadEmptyMessage:@"亲，没有数据咯" image:[UIImage imageNamed:@"icon_error_unkown"] buttonTitle:@"去下单" RetryBlcok:^{
-////            NSLog(@"下单按钮点击了");
-////        }];
-//        [self.view showLoadFailedWithType:(WMLoadFailedStyle_imageFailed) RetryBlcok:^{
-//            NSLog(@"重新加载点击了。。。。。");
-//        }];
-////        [self.view showLoadFailedMessage:@"加载错误，请检查网络是否异常之后回来再试一下" image:[UIImage imageNamed:@"icon_error_unkown"] buttonTitle:@"点击一下之后可以重新加载" RetryBlcok:^{
-////            NSLog(@"重新加载点击了。。。。。");
-////        }];
-//    });
 }
 
 
 - (void)canael:(UIButton *)button{
-    [self.view showLoading];
+    [self.view showLoadingType:(WMLoadingType_indicator)];
 
     WMRequestAdapter *requestAdapter = [WMRequestAdapter requestWithUrl:@"http://www.ecloudtm.com/cnnews/api/getStartAd.do" requestMethod:(WMRequestMethodGET)];
 
     __weak typeof(self) weakself = self;
     NSURLSessionTask *task = [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
-        /// 这里如果不用weak 就会出现网络请求不回来就无法销毁控制器 这样就无法实现销毁控制器自动停止网络请求
-//        [weakself.view showLoadEmpty];
-        [weakself.view showLoadFailedWithRetryBlcok:^{
-            [weakself canael:nil];
-        }];
+//        [weakself.view showLoadFailedWithRetryBlcok:^{
+//            [weakself canael:nil];
+//        }];
+//        [self.view hiddenLoading];
         
     } cacheHandler:^(WMRequestAdapter *request) {
 
@@ -88,12 +72,13 @@
 
 //        NSLog(@"%@" , requests);
     } failureHandler:^(NSArray<WMRequestAdapter *> *requests) {
-        
+
 //        NSLog(@"%@" , requests);
     } requestAdapters:requestsAdapter];
-    
+
     /// 界面销毁之后自动清理当前界面的请求
     [self autoCancelMoreRequestOnDealloc:tasks];
+    
 }
 
 - (void)didReceiveMemoryWarning {
