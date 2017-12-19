@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface WMURLManager : NSObject
-
+extern NSString *const KBaseURL;  //服务器地址
 @end

@@ -11,4 +11,6 @@
 @interface WMUtility : NSObject
 /// 通过图片获取base64字符
 + (void)Base64ImageStrWithImages:(NSArray *)images complete:(void(^)(NSArray *imageIds))complete;
+// 是否是测试bunderId
++ (BOOL)isTestBundleIdentifier;
 @end

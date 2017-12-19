@@ -10,8 +10,6 @@
 		190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */; };
 		1916F5421FE106FD0084BB38 /* WMDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5411FE106FD0084BB38 /* WMDemoViewController.m */; };
 		1916F5451FE116C40084BB38 /* WMNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5441FE116C40084BB38 /* WMNetworkCache.m */; };
-		1916F54B1FE22A4F0084BB38 /* PPNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5481FE22A4F0084BB38 /* PPNetworkCache.m */; };
-		1916F54C1FE22A4F0084BB38 /* PPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F54A1FE22A4F0084BB38 /* PPNetworkHelper.m */; };
 		1916F5521FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5511FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.m */; };
 		1916F74B1FE774BF0084BB38 /* UIView+WMLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F7471FE774BE0084BB38 /* UIView+WMLoadView.m */; };
 		1916F74E1FE774F20084BB38 /* WMGifLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F74D1FE774F20084BB38 /* WMGifLoadingView.m */; };
@@ -25,6 +23,8 @@
 		1916F7681FE77C1B0084BB38 /* JQMusic2Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F7611FE77C1B0084BB38 /* JQMusic2Animation.m */; };
 		1916F7711FE7AA1C0084BB38 /* icon_error_unkown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1916F76F1FE7AA1B0084BB38 /* icon_error_unkown@2x.png */; };
 		1916F7721FE7AA1C0084BB38 /* icon_error_unkown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1916F7701FE7AA1B0084BB38 /* icon_error_unkown@3x.png */; };
+		1916F7751FE8C95D0084BB38 /* SwitchAppRequestUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F7741FE8C95C0084BB38 /* SwitchAppRequestUrl.m */; };
+		1916F77B1FE9196A0084BB38 /* NSError+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F77A1FE9196A0084BB38 /* NSError+Extension.m */; };
 		191BB65E1F615376000BF57F /* WMBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191BB65D1F615376000BF57F /* WMBaseWebViewController.m */; };
 		191BB6611F615443000BF57F /* WMNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 191BB6601F615443000BF57F /* WMNewsDetailViewController.m */; };
 		191D7A691FCBC059003A4ED1 /* UIButton+AppButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 191D7A601FCBC059003A4ED1 /* UIButton+AppButton.m */; };
@@ -109,10 +109,6 @@
 		1916F5411FE106FD0084BB38 /* WMDemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDemoViewController.m; sourceTree = "<group>"; };
 		1916F5431FE116C40084BB38 /* WMNetworkCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNetworkCache.h; sourceTree = "<group>"; };
 		1916F5441FE116C40084BB38 /* WMNetworkCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMNetworkCache.m; sourceTree = "<group>"; };
-		1916F5471FE22A4F0084BB38 /* PPNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPNetworkCache.h; sourceTree = "<group>"; };
-		1916F5481FE22A4F0084BB38 /* PPNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNetworkCache.m; sourceTree = "<group>"; };
-		1916F5491FE22A4F0084BB38 /* PPNetworkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPNetworkHelper.h; sourceTree = "<group>"; };
-		1916F54A1FE22A4F0084BB38 /* PPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNetworkHelper.m; sourceTree = "<group>"; };
 		1916F5501FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+WMAutoCancelRequest.h"; sourceTree = "<group>"; };
 		1916F5511FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WMAutoCancelRequest.m"; sourceTree = "<group>"; };
 		1916F7471FE774BE0084BB38 /* UIView+WMLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WMLoadView.m"; sourceTree = "<group>"; };
@@ -138,6 +134,10 @@
 		1916F7611FE77C1B0084BB38 /* JQMusic2Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQMusic2Animation.m; sourceTree = "<group>"; };
 		1916F76F1FE7AA1B0084BB38 /* icon_error_unkown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_error_unkown@2x.png"; sourceTree = "<group>"; };
 		1916F7701FE7AA1B0084BB38 /* icon_error_unkown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_error_unkown@3x.png"; sourceTree = "<group>"; };
+		1916F7731FE8C95C0084BB38 /* SwitchAppRequestUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchAppRequestUrl.h; sourceTree = "<group>"; };
+		1916F7741FE8C95C0084BB38 /* SwitchAppRequestUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchAppRequestUrl.m; sourceTree = "<group>"; };
+		1916F7791FE9196A0084BB38 /* NSError+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSError+Extension.h"; sourceTree = "<group>"; };
+		1916F77A1FE9196A0084BB38 /* NSError+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSError+Extension.m"; sourceTree = "<group>"; };
 		191BB65C1F615376000BF57F /* WMBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseWebViewController.h; sourceTree = "<group>"; };
 		191BB65D1F615376000BF57F /* WMBaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseWebViewController.m; sourceTree = "<group>"; };
 		191BB65F1F615443000BF57F /* WMNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNewsDetailViewController.h; sourceTree = "<group>"; };
@@ -298,17 +298,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1916F5461FE22A4F0084BB38 /* PPNetworkHelper */ = {
-			isa = PBXGroup;
-			children = (
-				1916F5471FE22A4F0084BB38 /* PPNetworkCache.h */,
-				1916F5481FE22A4F0084BB38 /* PPNetworkCache.m */,
-				1916F5491FE22A4F0084BB38 /* PPNetworkHelper.h */,
-				1916F54A1FE22A4F0084BB38 /* PPNetworkHelper.m */,
-			);
-			path = PPNetworkHelper;
-			sourceTree = "<group>";
-		};
 		1916F7451FE774A30084BB38 /* WMLodingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +351,8 @@
 				191D7A5E1FCBC059003A4ED1 /* OC_Category */,
 				193FA2C51FCD7F9400A0E56B /* WMUtility.h */,
 				193FA2C61FCD7F9400A0E56B /* WMUtility.m */,
+				1916F7731FE8C95C0084BB38 /* SwitchAppRequestUrl.h */,
+				1916F7741FE8C95C0084BB38 /* SwitchAppRequestUrl.m */,
 			);
 			path = CoreCode;
 			sourceTree = "<group>";
@@ -398,6 +389,8 @@
 				1916F5441FE116C40084BB38 /* WMNetworkCache.m */,
 				1916F5501FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.h */,
 				1916F5511FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.m */,
+				1916F7791FE9196A0084BB38 /* NSError+Extension.h */,
+				1916F77A1FE9196A0084BB38 /* NSError+Extension.m */,
 			);
 			path = WMNetwork;
 			sourceTree = "<group>";
@@ -648,7 +641,6 @@
 		19BF991F1F41A63700B2BB35 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				1916F5461FE22A4F0084BB38 /* PPNetworkHelper */,
 				19218E431F53EAD400FEF66A /* UIViewExt */,
 				19BF99201F41A63E00B2BB35 /* StringAttribute */,
 			);
@@ -908,10 +900,11 @@
 			files = (
 				198475E81F5698ED0074E6D2 /* WMBaseNavigationController.m in Sources */,
 				197204E31F46F06300001A83 /* WMDownloadWaveLayer.m in Sources */,
-				1916F54C1FE22A4F0084BB38 /* PPNetworkHelper.m in Sources */,
+				1916F77B1FE9196A0084BB38 /* NSError+Extension.m in Sources */,
 				19E3A3171F569A5F008D2C52 /* WMHomeViewController.m in Sources */,
 				19B312A81F5D54A50096AF65 /* WMPhotoBrowserViewController.m in Sources */,
 				19E3A31A1F569BB6008D2C52 /* WMMineViewController.m in Sources */,
+				1916F7751FE8C95D0084BB38 /* SwitchAppRequestUrl.m in Sources */,
 				191D7A741FCBC205003A4ED1 /* WMRequestAdapter.m in Sources */,
 				198475E21F56979B0074E6D2 /* WMBaseTableViewController.m in Sources */,
 				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
@@ -955,7 +948,6 @@
 				19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */,
 				19B312A51F5D547F0096AF65 /* WMPhotoSelectViewController.m in Sources */,
 				195F620B1F4D79C000BB6CA6 /* WMInteractiveTransition.m in Sources */,
-				1916F54B1FE22A4F0084BB38 /* PPNetworkCache.m in Sources */,
 				19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */,
 				19E3A3371F569F15008D2C52 /* WMSwizzleMethod.m in Sources */,
 				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,

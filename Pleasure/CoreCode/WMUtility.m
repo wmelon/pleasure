@@ -109,4 +109,11 @@
     } while ([imageData length] > length * 1024 && compression > maxCompression);
     return imageData;
 }
++ (BOOL)isTestBundleIdentifier {
+    NSString *bid = [[NSBundle mainBundle] bundleIdentifier];
+    if ([bid isEqualToString:@"com.nanguache.hairdresser"]) {
+        return YES;
+    }
+    return NO;
+}
 @end

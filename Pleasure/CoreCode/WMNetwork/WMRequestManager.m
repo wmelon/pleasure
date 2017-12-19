@@ -10,12 +10,7 @@
 #import "AFHTTPSessionManager.h"
 #import "WMNetworkCache.h"
 
-@interface WMRequestManager()
-@property (nonatomic , strong) NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *requestRecord;
-@end
-
 @implementation WMRequestManager
-
 static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestRecord;
 
 /**

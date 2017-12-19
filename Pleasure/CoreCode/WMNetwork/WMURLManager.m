@@ -9,5 +9,5 @@
 #import "WMURLManager.h"
 
 @implementation WMURLManager
-
+NSString *const KBaseURL                     = @"https://api.nanguache.com/hd";
 @end
