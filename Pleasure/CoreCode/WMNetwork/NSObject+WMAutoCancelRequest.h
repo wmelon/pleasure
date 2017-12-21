@@ -15,14 +15,6 @@
 
  @param request 当前请求
  */
-- (void)autoCancelRequestOnDealloc:(NSURLSessionTask *)request;
-
-
-/**
- 界面销毁之后自动停止当前界面多个网络请求
-
- @param requests 多个请求
- */
-- (void)autoCancelMoreRequestOnDealloc:(NSArray<NSURLSessionTask *> *)requests;
+- (void)autoCancelRequestOnDealloc:(MKRequestTask *)request;
 
 @end

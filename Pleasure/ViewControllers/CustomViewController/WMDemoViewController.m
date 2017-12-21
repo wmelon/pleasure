@@ -36,7 +36,7 @@
     WMRequestAdapter *requestAdapter = [WMRequestAdapter requestWithUrl:@"http://www.ecloudtm.com/cnnews/api/getStartAd.do" requestMethod:(WMRequestMethodGET)];
 
     __weak typeof(self) weakself = self;
-    NSURLSessionTask *task = [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
+    MKRequestTask *task = [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
 //        [weakself.view showLoadFailedWithRetryBlcok:^{
 //            [weakself canael:nil];
 //        }];
@@ -59,25 +59,44 @@
 
 
 - (void)click:(UIButton *)button{
+//    WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" requestMethod:(WMRequestMethodDownload)];
+//    [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
+//
+//        NSLog(@"%@" , request.responseObject);
+//
+//    } ProgressHandler:^(WMRequestAdapter *request) {
+//
+//        NSLog(@"当前请求进度  %@   " , request.progress);
+//
+//    } failureHandler:^(WMRequestAdapter *request) {
+//
+//        NSLog(@"%@" , request.error);
+//
+//    } requestAdapter:request];
+    
 
     NSMutableArray <id<WMRequestAdapterProtocol>> *requestsAdapter = [NSMutableArray array];
     for (int i = 0 ; i < 5 ; i++){
-        WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"http://v.juhe.cn/toutiao/index?type=&key=6759a6e8d853240c6aa92d8314f734f9" requestMethod:(WMRequestMethodGET)];
+//        https://codeload.github.com/EricForGithub/SalesforceReactDemo/zip/master
+//        http://v.juhe.cn/toutiao/index?type=&key=6759a6e8d853240c6aa92d8314f734f9
+        WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"https://codeload.github.com/EricForGithub/SalesforceReactDemo/zip/master" requestMethod:(WMRequestMethodDownload)];
         [requestsAdapter addObject:request];
     }
 
-    NSArray *tasks = [WMRequestManager requestBatchWithSuccessHandler:^(NSArray<WMRequestAdapter *> *requests) {
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"显示哈哈哈" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+    __weak typeof(self) weakself = self;
+    MKRequestTask *task = [WMRequestManager requestBatchWithSuccessHandler:^(NSArray<WMRequestAdapter *> *requests) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"显示哈哈哈" delegate:weakself cancelButtonTitle:@"知道了" otherButtonTitles: nil];
         [av show];
+        NSLog(@"请求成功 回调  %@" ,requests);
 
-//        NSLog(@"%@" , requests);
     } failureHandler:^(NSArray<WMRequestAdapter *> *requests) {
 
-//        NSLog(@"%@" , requests);
+        NSLog(@"%@" , requests);
+
     } requestAdapters:requestsAdapter];
 
     /// 界面销毁之后自动清理当前界面的请求
-    [self autoCancelMoreRequestOnDealloc:tasks];
+    [self autoCancelRequestOnDealloc:task];
     
 }
 

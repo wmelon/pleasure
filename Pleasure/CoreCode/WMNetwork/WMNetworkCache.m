@@ -19,8 +19,14 @@ static YYCache *_dataCache;
 }
 
 + (id)httpCacheForRequest:(id<WMRequestAdapterProtocol>)requestAdapter{
-    NSString *URL = [requestAdapter getRequestUrl];
-    NSDictionary *parameters = [requestAdapter getRequestParameter];
+    NSString *URL;
+    if ([requestAdapter respondsToSelector:@selector(getRequestUrlIsPublicParams:)]){
+        URL = [requestAdapter getRequestUrlIsPublicParams:NO];
+    }
+    NSDictionary *parameters;
+    if ([requestAdapter respondsToSelector:@selector(getRequestParameter)]){
+        parameters = [requestAdapter getRequestParameter];
+    }
     NSString *cacheKey = [self cacheKeyWithURL:URL parameters:parameters];
     return [_dataCache objectForKey:cacheKey];
 }

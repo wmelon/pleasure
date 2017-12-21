@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "WMRequestAdapter.h"
 
+@interface MKRequestTask : NSObject
+- (void)cancel;
+@end
+
+
 typedef void(^RequestCompletionHandle)(WMRequestAdapter *request);
 typedef void(^BatchRequestCompletionHandle)(NSArray<WMRequestAdapter *> *requests);
 
@@ -22,7 +27,7 @@ typedef void(^BatchRequestCompletionHandle)(NSArray<WMRequestAdapter *> *request
  @param failureHandler 请求失败回调
  @param request 请求对象
  */
-+ (NSURLSessionTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
++ (MKRequestTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
                                 ProgressHandler:(RequestCompletionHandle)ProgressHandler
                                  failureHandler:(RequestCompletionHandle)failureHandler
                                  requestAdapter:(id<WMRequestAdapterProtocol>)request;
@@ -35,7 +40,7 @@ typedef void(^BatchRequestCompletionHandle)(NSArray<WMRequestAdapter *> *request
  @param failureHandler 请求失败回调
  @param request 请求对象
  */
-+ (NSURLSessionTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
++ (MKRequestTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
                                  failureHandler:(RequestCompletionHandle)failureHandler
                                  requestAdapter:(id<WMRequestAdapterProtocol>)request;
 
@@ -48,7 +53,7 @@ typedef void(^BatchRequestCompletionHandle)(NSArray<WMRequestAdapter *> *request
  @param failureHandler 请求失败回调
  @param request 请求对象
  */
-+ (NSURLSessionTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
++ (MKRequestTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
                                    cacheHandler:(RequestCompletionHandle)cacheHandler
                                  failureHandler:(RequestCompletionHandle)failureHandler
                                  requestAdapter:(id<WMRequestAdapterProtocol>)request;
@@ -61,7 +66,7 @@ typedef void(^BatchRequestCompletionHandle)(NSArray<WMRequestAdapter *> *request
  @param failureHandler 所有请求失败回调
  @param request 请求对象队列
  */
-+ (NSArray<NSURLSessionTask *> *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
++ (MKRequestTask *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
                                       failureHandler:(BatchRequestCompletionHandle)failureHandler
                                       requestAdapter:(id<WMRequestAdapterProtocol>)request , ... NS_REQUIRES_NIL_TERMINATION ;
 
@@ -73,9 +78,10 @@ typedef void(^BatchRequestCompletionHandle)(NSArray<WMRequestAdapter *> *request
  @param failureHandler 所有请求失败回调
  @param requestAdapters 请求对象数组
  */
-+ (NSArray<NSURLSessionTask *> *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
++ (MKRequestTask *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
                         failureHandler:(BatchRequestCompletionHandle)failureHandler
                         requestAdapters:(NSArray<id<WMRequestAdapterProtocol>> *)requestAdapters;
+
 
 /// 取消网络请求
 + (void)cancelRequest:(WMRequestAdapter *)request;

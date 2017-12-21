@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-///  HTTP Request method.
+///  HTTP 请求方法
 typedef NS_ENUM(NSInteger, WMRequestMethod) {
     WMRequestMethodGET = 0,
     WMRequestMethodPOST,
@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, WMRequestMethod) {
     WMRequestMethodPUT,
     WMRequestMethodDELETE,
     WMRequestMethodPATCH,
+    WMRequestMethodDownload
 };
 
 @class WMRequestAdapter;
@@ -25,8 +26,8 @@ typedef NS_ENUM(NSInteger, WMRequestMethod) {
 /**获取请求参数*/
 - (NSDictionary *)getRequestParameter;
 
-/**获取请求地址*/
-- (NSString *)getRequestUrl;
+/**获取请求地址   请求时需要加入公共参数  缓存数据不需要添加公共参数*/
+- (NSString *)getRequestUrlIsPublicParams:(BOOL)isPublicParams;
 
 /// 请求方式
 - (WMRequestMethod)getRequestMethod;
@@ -88,11 +89,9 @@ typedef NS_ENUM(NSInteger, WMRequestMethod) {
 /// 请求参数
 - (void)requestParameterSetValue:(id)value forKey:(NSString *)key;
 
-/// 翻页参数设置
-- (void)requestTurnPageParameter:(NSDictionary *)params;
-
 /// 是否已经取消请求
 - (BOOL)isCancelled;
+
 /// 是否正在请求
 - (BOOL)isExecuting;
 

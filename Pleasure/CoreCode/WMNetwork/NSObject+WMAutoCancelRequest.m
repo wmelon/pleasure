@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 @interface WMWeakRequestManager : NSObject
-@property (nonatomic , weak) NSURLSessionTask *requestTask;
+@property (nonatomic , strong) MKRequestTask *requestTask;
 @end
 
 @implementation WMWeakRequestManager
@@ -31,7 +31,7 @@
     return self;
 }
 - (void)addRequest:(WMWeakRequestManager *)request{
-    if (!request || !request.requestTask || ![request.requestTask isKindOfClass:[NSURLSessionTask class]]) {
+    if (!request || !request.requestTask) {
         return;
     }
     [_lock lock];
@@ -41,7 +41,7 @@
 
 - (void)dealloc{
     for (WMWeakRequestManager *weakRequest in _weakRequests) {
-        if ([weakRequest.requestTask isKindOfClass:[NSURLSessionTask class]]){
+        if ([weakRequest.requestTask respondsToSelector:@selector(cancel)]){
             [weakRequest.requestTask cancel];
         }
     }
@@ -54,17 +54,12 @@
 
 @implementation NSObject (WMAutoCancelRequest)
 
-- (void)autoCancelRequestOnDealloc:(NSURLSessionTask *)request{
+- (void)autoCancelRequestOnDealloc:(MKRequestTask *)request{
     WMWeakRequestManager *weakRequest = [[WMWeakRequestManager alloc] init];
     weakRequest.requestTask = request;
     [[self deallocRequests] addRequest:weakRequest];
 }
 
-- (void)autoCancelMoreRequestOnDealloc:(NSArray<NSURLSessionTask *> *)requests{
-    for (NSURLSessionTask *task in requests) {
-        [self autoCancelRequestOnDealloc:task];
-    }
-}
 
 - (WMDeallocRequests *)deallocRequests{
     WMDeallocRequests *requests = objc_getAssociatedObject(self, _cmd);

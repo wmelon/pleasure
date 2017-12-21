@@ -10,6 +10,43 @@
 #import "AFHTTPSessionManager.h"
 #import "WMNetworkCache.h"
 
+@interface MKRequestTask()
+@property(strong, nonatomic) NSArray *sessionTaskOrOperationArray;
+@property(strong, nonatomic) id sessionTaskOrOperation;
+@end
+
+@implementation MKRequestTask
+
+- (instancetype)initWithTaskOrOperation:(id)sessionTaskOrOperation{
+    if (self = [super init]){
+        _sessionTaskOrOperation = sessionTaskOrOperation;
+    }
+    return self;
+}
+
+- (instancetype)initWithTaskOrOperationArray:(NSArray *)sessionTaskOrOperationArray{
+    self = [super init];
+    if (self) {
+        _sessionTaskOrOperationArray = sessionTaskOrOperationArray;
+    }
+    return self;
+}
+/// 取消所有当前的网络请求
+- (void)cancel{
+    if (_sessionTaskOrOperation){
+        [self cancelRequestWithObj:_sessionTaskOrOperation];
+    }
+    [_sessionTaskOrOperationArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self cancelRequestWithObj:obj];
+    }];
+}
+- (void)cancelRequestWithObj:(id)obj{
+    if ([obj respondsToSelector:@selector(cancel)]) {
+        [obj cancel];
+    }
+}
+@end
+
 @implementation WMRequestManager
 static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestRecord;
 
@@ -56,7 +93,7 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
  @param failureHandler 请求失败回调
  @param request 请求对象
  */
-+ (NSURLSessionTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
++ (MKRequestTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
                   ProgressHandler:(RequestCompletionHandle)ProgressHandler
                    failureHandler:(RequestCompletionHandle)failureHandler
                    requestAdapter:(id<WMRequestAdapterProtocol>)request{
@@ -71,7 +108,7 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
  @param failureHandler 请求失败回调
  @param request 请求对象
  */
-+ (NSURLSessionTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
++ (MKRequestTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
                    failureHandler:(RequestCompletionHandle)failureHandler
                    requestAdapter:(id<WMRequestAdapterProtocol>)request{
     return [self addRequest:request SuccessHandler:successHandler cacheHandler:nil ProgressHandler:nil failureHandler:failureHandler];
@@ -86,7 +123,7 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
  @param failureHandler 请求失败回调
  @param request 请求对象
  */
-+ (NSURLSessionTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
++ (MKRequestTask *)requestWithSuccessHandler:(RequestCompletionHandle)successHandler
                      cacheHandler:(RequestCompletionHandle)cacheHandler
                    failureHandler:(RequestCompletionHandle)failureHandler
                    requestAdapter:(id<WMRequestAdapterProtocol>)request{
@@ -100,7 +137,7 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
  @param failureHandler 所有请求失败回调
  @param requestAdapters 请求对象数组
  */
-+ (NSArray<NSURLSessionTask *> *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
++ (MKRequestTask *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
                         failureHandler:(BatchRequestCompletionHandle)failureHandler
                        requestAdapters:(NSArray<id<WMRequestAdapterProtocol>> *)requestAdapters{
     return [self addBatchRequests:requestAdapters SuccessHandler:successHandler failureHandler:failureHandler];
@@ -112,7 +149,7 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
  @param failureHandler 所有请求失败回调
  @param request 请求对象队列
  */
-+ (NSArray<NSURLSessionTask *> *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
++ (MKRequestTask *)requestBatchWithSuccessHandler:(BatchRequestCompletionHandle)successHandler
                         failureHandler:(BatchRequestCompletionHandle)failureHandler
                         requestAdapter:(id<WMRequestAdapterProtocol>)request , ... NS_REQUIRES_NIL_TERMINATION {
     /// 获取所有的请求
@@ -129,15 +166,19 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
     }
     return [self addBatchRequests:requestArray SuccessHandler:successHandler failureHandler:failureHandler];
 }
-+ (NSArray<NSURLSessionTask *> *)addBatchRequests:(NSArray<id<WMRequestAdapterProtocol>> *)requestArray SuccessHandler:(BatchRequestCompletionHandle)successHandler failureHandler:(BatchRequestCompletionHandle)failureHandler{
+
++ (MKRequestTask *)addBatchRequests:(NSArray<id<WMRequestAdapterProtocol>> *)requestArray SuccessHandler:(BatchRequestCompletionHandle)successHandler failureHandler:(BatchRequestCompletionHandle)failureHandler{
     /// 存储当前发送出来的请求任务
-    NSMutableArray<NSURLSessionTask *> *requestTasks = [NSMutableArray arrayWithCapacity:requestArray.count];
+    NSMutableArray<MKRequestTask *> *requestTasks = [NSMutableArray arrayWithCapacity:requestArray.count];
     
     /// 是否有请求成功的  (只要有一个请求时成功的就是成功)
     __block BOOL isSuccess = NO;
     dispatch_group_t group = dispatch_group_create();
-    [requestArray enumerateObjectsUsingBlock:^(id<WMRequestAdapterProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSURLSessionTask *task = [self addRequest:obj SuccessHandler:^(WMRequestAdapter *request) {   /// 批量异步下载  同步更新不需要只要请求进度
+    for (id<WMRequestAdapterProtocol> obj in requestArray) {
+        
+        /// 有多少个请求完成标识就得有多少个请求等待
+        dispatch_group_enter(group);
+        MKRequestTask *task = [self addRequest:obj SuccessHandler:^(WMRequestAdapter *request) {   /// 批量异步下载  同步更新不需要只要请求进度
             dispatch_group_leave(group);
             isSuccess = YES;
         } cacheHandler:nil ProgressHandler:nil failureHandler:^(WMRequestAdapter *request) {
@@ -149,14 +190,9 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
                 [requestTasks addObject:task];
             }
         }
-    }];
+    }
     
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        /// 有多少个请求完成标识就得有多少个请求等待
-        for (int i = 0 ; i < requestArray.count ; i++){
-            dispatch_group_enter(group);
-        }
-        
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^(){
         /// 所有请求完成之后的回调 请求对象就是返回对象
         if (isSuccess){
             if (successHandler){
@@ -169,10 +205,10 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
         }
     });
     
-    return requestTasks;
+    return [[MKRequestTask alloc] initWithTaskOrOperationArray:requestTasks];
 }
 /// 添加请求到请求队列
-+ (NSURLSessionTask *)addRequest:(id<WMRequestAdapterProtocol>)requestAdapter SuccessHandler:(RequestCompletionHandle)successHandler cacheHandler:(RequestCompletionHandle)cacheHandler ProgressHandler:(RequestCompletionHandle)ProgressHandler failureHandler:(RequestCompletionHandle)failureHandler{
++ (MKRequestTask *)addRequest:(id<WMRequestAdapterProtocol>)requestAdapter SuccessHandler:(RequestCompletionHandle)successHandler cacheHandler:(RequestCompletionHandle)cacheHandler ProgressHandler:(RequestCompletionHandle)ProgressHandler failureHandler:(RequestCompletionHandle)failureHandler{
     NSParameterAssert(requestAdapter != nil);
 
     /// 获取缓存数据缓存
@@ -210,15 +246,29 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
     /// 开始请求
     [task resume];
     
-    return task;
+    return [[MKRequestTask alloc] initWithTaskOrOperation:task];
 }
 
 /// 开始请求
-+ (NSURLSessionTask *)sessionTaskForRequest:(id<WMRequestAdapterProtocol>)requestAdapter SuccessHandler:(RequestCompletionHandle)successHandler ProgressHandler:(RequestCompletionHandle)ProgressHandler failureHandler:(RequestCompletionHandle)failureHandler{
-    WMRequestMethod method = [requestAdapter getRequestMethod];
-    NSString *requestPath = [requestAdapter getRequestUrl];
-    NSDictionary *paramer = [requestAdapter getRequestParameter];
++ (NSURLSessionTask *)sessionTaskForRequest:(id<WMRequestAdapterProtocol>)requestAdapter
+                             SuccessHandler:(RequestCompletionHandle)successHandler
+                            ProgressHandler:(RequestCompletionHandle)ProgressHandler
+                             failureHandler:(RequestCompletionHandle)failureHandler{
+    WMRequestMethod method = WMRequestMethodGET;
+    if ([requestAdapter respondsToSelector:@selector(getRequestMethod)]){
+        method = [requestAdapter getRequestMethod];
+    }
+    NSString *requestPath = @"";
+    if ([requestAdapter respondsToSelector:@selector(getRequestUrlIsPublicParams:)]){
+        requestPath = [requestAdapter getRequestUrlIsPublicParams:YES];
+    }
+    NSDictionary *paramer;
+    if ([requestAdapter respondsToSelector:@selector(getRequestParameter)]){
+        paramer = [requestAdapter getRequestParameter];
+    }
 
+    AFHTTPRequestSerializer *requestSerializer = [self requestSerializer];
+    
     NSString *requestMethod;
     switch (method) {
         case WMRequestMethodGET:
@@ -238,44 +288,95 @@ static NSMutableDictionary<NSNumber * , id<WMRequestAdapterProtocol>> *_requestR
             break;
         case WMRequestMethodPATCH:
             requestMethod = @"PATCH";
+        case WMRequestMethodDownload:
+            NSLog(@">>>> %@ > %@ -> parameters %@",requestPath, @"download" ,paramer);
+            return [self downloadTaskWithDownloadPath:requestPath requestSerializer:requestSerializer URLString:requestPath parameters:paramer Request:requestAdapter SuccessHandler:successHandler ProgressHandler:ProgressHandler failureHandler:failureHandler];
             break;
     }
-    NSLog(@">>>>%@>%@->parameters%@",requestPath, requestMethod ,paramer);
+    NSLog(@">>>> %@ > %@ -> parameters %@",requestPath, requestMethod ,paramer);
 
-    /*! 发送请求 */
-    AFHTTPRequestSerializer *requestSerializer = [self requestSerializer];
+    return [self dataTaskWithHTTPMethod:requestMethod Request:requestAdapter requestSerializer:requestSerializer URLString:requestPath parameters:paramer SuccessHandler:successHandler ProgressHandler:ProgressHandler failureHandler:failureHandler];
+}
+
+/// 下载请求
++ (NSURLSessionDownloadTask *)downloadTaskWithDownloadPath:(NSString *)downloadPath
+                                         requestSerializer:(AFHTTPRequestSerializer *)requestSerializer
+                                                 URLString:(NSString *)requestPath
+                                                parameters:(id)paramer
+                                                   Request:(id<WMRequestAdapterProtocol>)requestAdapter
+                                            SuccessHandler:(RequestCompletionHandle)successHandler
+                                           ProgressHandler:(RequestCompletionHandle)ProgressHandler
+                                            failureHandler:(RequestCompletionHandle)failureHandler{
+    NSMutableURLRequest *request = [requestSerializer requestWithMethod:@"GET" URLString:requestPath parameters:paramer error:nil];
+    __block NSURLSessionDownloadTask *downloadTask = nil;
+    /// 这里处理断点续传 和 本地视频存储
+    
+    downloadTask = [[WMRequestManager getManager] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+        [self handleRequestProgress:downloadProgress ProgressHandler:ProgressHandler Request:requestAdapter];
+        
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        return nil;
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        [self handleRequestResult:downloadTask responseObject:filePath error:error Request:requestAdapter SuccessHandler:successHandler failureHandler:failureHandler];
+    }];
+    
+    return downloadTask;
+}
+/*! 发送请求 */
++ (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)requestMethod
+                                         Request:(id<WMRequestAdapterProtocol>)requestAdapter
+                               requestSerializer:(AFHTTPRequestSerializer *)requestSerializer
+                                       URLString:(NSString *)requestPath
+                                      parameters:(id)paramer
+                                  SuccessHandler:(RequestCompletionHandle)successHandler
+                                 ProgressHandler:(RequestCompletionHandle)ProgressHandler
+                                  failureHandler:(RequestCompletionHandle)failureHandler{
     NSMutableURLRequest *request = [requestSerializer requestWithMethod:requestMethod URLString:requestPath parameters:paramer error:nil];
-
+    
     __block NSURLSessionDataTask *dataTask = nil;
     dataTask = [[WMRequestManager getManager] dataTaskWithRequest:request uploadProgress:^(NSProgress * _Nonnull uploadProgress) {
-        WMRequestAdapter *resultRequest = [requestAdapter responseAdapterWithProgress:uploadProgress];
-        if (ProgressHandler){
-            ProgressHandler(resultRequest);
-        }
+        [self handleRequestProgress:uploadProgress ProgressHandler:ProgressHandler Request:requestAdapter];
     } downloadProgress:^(NSProgress * _Nonnull downloadProgress) {
-        WMRequestAdapter *resultRequest = [requestAdapter responseAdapterWithProgress:downloadProgress];
-        if (ProgressHandler){
-            ProgressHandler(resultRequest);
-        }
+        [self handleRequestProgress:downloadProgress ProgressHandler:ProgressHandler Request:requestAdapter];
     } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-        /// 解析请求结果数据
-        WMRequestAdapter *resultRequest = [requestAdapter responseAdapterWithResult:dataTask responseObject:responseObject error:error];
-        if (resultRequest.isRequestFail){
-            if (failureHandler){
-                failureHandler(resultRequest);
-            }
-        }else {
-            if (successHandler){
-                successHandler(resultRequest);
-            }
-        }
+        [self handleRequestResult:dataTask responseObject:responseObject error:error Request:requestAdapter SuccessHandler:successHandler failureHandler:failureHandler];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self removeRequestFromRecord:requestAdapter];
         });
     }];
     return dataTask;
 }
-
++ (void)handleRequestProgress:(NSProgress *)progress ProgressHandler:(RequestCompletionHandle)ProgressHandler Request:(id<WMRequestAdapterProtocol>)requestAdapter{
+    WMRequestAdapter *resultRequest;
+    if ([requestAdapter respondsToSelector:@selector(responseAdapterWithProgress:)]){
+        resultRequest = [requestAdapter responseAdapterWithProgress:progress];
+    }
+    if (ProgressHandler){
+        ProgressHandler(resultRequest);
+    }
+}
++ (void)handleRequestResult:(NSURLSessionTask *)task
+             responseObject:(id)responseObject
+                      error:(NSError *)error
+                    Request:(id<WMRequestAdapterProtocol>)requestAdapter
+             SuccessHandler:(RequestCompletionHandle)successHandler
+             failureHandler:(RequestCompletionHandle)failureHandler{
+    /// 解析请求结果数据
+    WMRequestAdapter *resultRequest;
+    if ([requestAdapter respondsToSelector:@selector(responseAdapterWithResult:responseObject:error:)]){
+        resultRequest = [requestAdapter responseAdapterWithResult:task responseObject:responseObject error:error];
+    }
+    if (resultRequest.isRequestFail){
+        if (failureHandler){
+            failureHandler(resultRequest);
+        }
+    }else {
+        if (successHandler){
+            successHandler(resultRequest);
+        }
+    }
+}
 /// 请求开始时添加请求到队列中
 + (void)addRequestToRecord:(id<WMRequestAdapterProtocol>)request{
     @synchronized(self) {  /// 保证临界区内的代码线程安全

@@ -29,11 +29,6 @@
 }
 
 #pragma mark -- 请求参数相关
-///**需要翻页的接口必须采用这种方式创建请求对象*/
-- (void)requestTurnPageParameter:(NSDictionary *)params{
-    /// 添加翻页需要参数
-    [self.parameterDict setValuesForKeysWithDictionary:params];
-}
 - (void)requestParameters:(NSDictionary *)params{
     [self.parameterDict setValuesForKeysWithDictionary:params];
 }
@@ -46,9 +41,12 @@
     return self.parameterDict;
 }
 
-- (NSString *)getRequestUrl{
+- (NSString *)getRequestUrlIsPublicParams:(BOOL)isPublicParams{
     if (self.requestUrl){
-        NSString *requestUrl = [self appendPublicParamsWithUrl:self.requestUrl];
+        NSString *requestUrl = self.requestUrl;
+        if (isPublicParams){
+            requestUrl = [self appendPublicParamsWithUrl:self.requestUrl];
+        }
         if (![self isValidUrl:requestUrl]){
             requestUrl = [self appendRequestProtocolWithUrl:requestUrl];
         }
