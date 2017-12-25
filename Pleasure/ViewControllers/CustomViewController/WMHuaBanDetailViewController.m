@@ -7,9 +7,9 @@
 //
 
 #import "WMHuaBanDetailViewController.h"
-#import "XYTransitionProtocol.h"
+#import "WMTransitionProtocol.h"
 
-@interface WMHuaBanDetailViewController ()<XYTransitionProtocol>
+@interface WMHuaBanDetailViewController ()<WMTransitionProtocol>
 @property (nonatomic, strong) UIImageView *headerImageView;
 @end
 
@@ -31,13 +31,11 @@
     [_headerImageView setImage:_headerImage];
 }
 
-#pragma mark -- XYTransitionProtocol
+#pragma mark -- WMTransitionProtocol
 - (UIView *)targetTransitionView{
     return self.headerImageView;
 }
-- (BOOL)isNeedTransition{
-    return YES;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

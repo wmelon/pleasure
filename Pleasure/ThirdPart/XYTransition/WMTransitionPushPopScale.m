@@ -1,50 +1,24 @@
 //
-//  XYTransition.m
-//  UniversalApp
+//  WMTransitionPushPopScale.m
+//  Pleasure
 //
-//  Created by 徐阳 on 2017/6/30.
-//  Copyright © 2017年 徐阳. All rights reserved.
+//  Created by Sper on 2017/12/25.
+//  Copyright © 2017年 WM. All rights reserved.
 //
 
-#import "XYTransition.h"
-#import "XYTransitionProtocol.h"
+#import "WMTransitionPushPopScale.h"
 
-@interface XYTransition()
-
-@property (nonatomic, assign) CGFloat animationScale;//缩放比例
-
+@interface WMTransitionPushPopScale()
+//缩放比例
+@property (nonatomic, assign) CGFloat animationScale;
 @end
 
-@implementation XYTransition
+@implementation WMTransitionPushPopScale
 
--(instancetype)init{
-    self = [super init];
-    if (self) {
-        self.animationDuration = 0.3;
-    }
-    return self;
-}
-
-- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
-{
-    return self.animationDuration;
-}
-
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
-{
-    if (_isPush) {
-        [self pushAnimateTransition:transitionContext];
-    }else{
-        [self popAnimateTransition:transitionContext];
-    }
-}
-
-#pragma mark ————— push —————
-- (void)pushAnimateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
-{
+- (void)wm_pushAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
     //获取跳转的Controller和目标Controller
-    UIViewController<XYTransitionProtocol> * fromVC = (UIViewController <XYTransitionProtocol> * )[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController<XYTransitionProtocol> * toVC = (UIViewController <XYTransitionProtocol> * )[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController<WMTransitionProtocol> * fromVC = (UIViewController <WMTransitionProtocol> * )[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController<WMTransitionProtocol> * toVC = (UIViewController <WMTransitionProtocol> * )[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     //from和to的两个视图
     __block UIView * fromView = fromVC.view;
     __block UIView * toView = toVC.view;
@@ -101,15 +75,11 @@
             [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
         }
     }];
-    
 }
-
-#pragma mark ————— pop —————
-- (void)popAnimateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
-{
+- (void)wm_popAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
     //获取跳转VC和目标VC
-    UIViewController <XYTransitionProtocol> * fromVC = (UIViewController<XYTransitionProtocol>*)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController <XYTransitionProtocol> * toVC = (UIViewController<XYTransitionProtocol>*)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController <WMTransitionProtocol> * fromVC = (UIViewController<WMTransitionProtocol>*)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController <WMTransitionProtocol> * toVC = (UIViewController<WMTransitionProtocol>*)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UITabBar *tabBar = fromVC.tabBarController.tabBar;
     
@@ -132,7 +102,7 @@
     CGPoint nowViewPoint = [fromCellView convertPoint:CGPointZero toView:nil];
     
     //计算cell偏移量 为了更好的现实动画
-//    CGFloat offsetY = fromVC.navigationController.navigationBarHidden ? 0.0 : 64;
+    //    CGFloat offsetY = fromVC.navigationController.navigationBarHidden ? 0.0 : 64;
     //复制一份截图用于动画过程
     __block UIImageView * snapShot =[[UIImageView alloc] initWithImage:[toCellView snapshotImage]];
     
@@ -188,4 +158,5 @@
         //        }
     }];
 }
+
 @end

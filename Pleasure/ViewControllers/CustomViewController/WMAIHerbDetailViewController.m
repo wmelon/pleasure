@@ -7,8 +7,9 @@
 //
 
 #import "WMAIHerbDetailViewController.h"
+#import "WMTransitionProtocol.h"
 
-@interface WMAIHerbDetailViewController ()
+@interface WMAIHerbDetailViewController ()<WMTransitionProtocol>
 @property (strong, nonatomic) UIImageView *bgImageView;
 @end
 
@@ -21,10 +22,13 @@
     self.bgImageView = imageView;
     [self.view addSubview:self.bgImageView];
     
+    self.fd_prefersNavigationBarHidden = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(actionClLose:)];
     [self.view addGestureRecognizer:tap];
 }
-
+- (UIView *)targetTransitionView{
+    return self.bgImageView;
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.bgImageView.image = [UIImage imageNamed:self.herbModel.image];

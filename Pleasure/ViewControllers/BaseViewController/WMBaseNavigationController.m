@@ -8,12 +8,13 @@
 
 #import "WMBaseNavigationController.h"
 #import "WMAppNavigationBar.h"
-#import "XYTransitionProtocol.h"
-#import "XYTransition.h"
+#import "WMTransitionProtocol.h"
+#import "WMTransitionAnimator.h"
 
 @interface WMBaseNavigationController ()<UINavigationControllerDelegate,UIGestureRecognizerDelegate>
-@property(nonatomic,assign) BOOL isSystemSlidBack;//是否开启系统右滑返回
-/// 手势返回
+//是否开启系统右滑返回
+@property(nonatomic,assign) BOOL isSystemSlidBack;
+/// 手势返回进度
 @property (nonatomic,strong) UIPercentDrivenInteractiveTransition *interactivePopTransition;
 /// 全屏手势动画
 @property (nonatomic,strong) UIScreenEdgePanGestureRecognizer *popRecognizer;
@@ -41,7 +42,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     
     if (self.viewControllers.count > 0) {
-        if ([viewController conformsToProtocol:@protocol(XYTransitionProtocol)] && [self isNeedTransition:viewController]) {
+        if ([viewController conformsToProtocol:@protocol(WMTransitionProtocol)]) {
             viewController.hidesBottomBarWhenPushed = NO;
         }else{
             viewController.hidesBottomBarWhenPushed = YES;
@@ -58,79 +59,51 @@
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (_isSystemSlidBack) {
-//        self.interactivePopGestureRecognizer.enabled = YES;
         self.fd_fullscreenPopGestureRecognizer.enabled = YES;
         [_popRecognizer setEnabled:NO];
     }else{
-//        self.interactivePopGestureRecognizer.enabled = NO;
         self.fd_fullscreenPopGestureRecognizer.enabled = NO;
         [_popRecognizer setEnabled:YES];
     }
 }
 
-#pragma mark ————— 转场动画区 —————
+#pragma mark ————— push 和 pop 转场动画区 —————
 
 //navigation切换是会走这个代理
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
-    NSLog(@"转场动画代理方法");
     self.isSystemSlidBack = YES;
     //如果来源VC和目标VC都实现协议，那么都做动画
-    if ([fromVC conformsToProtocol:@protocol(XYTransitionProtocol)] && [toVC conformsToProtocol:@protocol(XYTransitionProtocol)]) {
+    if ([fromVC conformsToProtocol:@protocol(WMTransitionProtocol)] && [toVC conformsToProtocol:@protocol(WMTransitionProtocol)]) {
+        WMTransitionAnimator *transion = [self transitionAnimatorWithController:(UIViewController<WMTransitionProtocol> *)fromVC];
         
-        BOOL pinterestNedd = [self isNeedTransition:fromVC:toVC];
-        XYTransition *transion = [XYTransition new];
-        if (operation == UINavigationControllerOperationPush && pinterestNedd) {
-            transion.isPush = YES;
-            
+        if (operation == UINavigationControllerOperationPush) {
+            transion.operation = WMControllerOperation_Push;
             //暂时屏蔽带动画的右划返回
             self.isSystemSlidBack = NO;
-            //            self.isSystemSlidBack = YES;
         }
-        else if(operation == UINavigationControllerOperationPop && pinterestNedd)
+        else if(operation == UINavigationControllerOperationPop)
         {
-            //暂时屏蔽带动画的右划返回
-            //            return nil;
-            
-            transion.isPush = NO;
+            transion.operation = WMControllerOperation_Pop;
             self.isSystemSlidBack = NO;
         }
         else{
             return nil;
         }
         return transion;
-    }else if([toVC conformsToProtocol:@protocol(XYTransitionProtocol)]){
-        //如果只有目标VC开启动画，那么isSystemSlidBack也要随之改变
-        BOOL pinterestNedd = [self isNeedTransition:toVC];
-        self.isSystemSlidBack = !pinterestNedd;
-        return nil;
     }
     return nil;
 }
 
-//判断fromVC和toVC是否需要实现pinterest效果
--(BOOL)isNeedTransition:(UIViewController<XYTransitionProtocol> *)fromVC :(UIViewController<XYTransitionProtocol> *)toVC
-{
-    BOOL a = NO;
-    BOOL b = NO;
-    if ([fromVC respondsToSelector:@selector(isNeedTransition)] && [fromVC isNeedTransition]) {
-        a = YES;
+/// 根据动画类型创建不动转场动画
+- (WMTransitionAnimator *)transitionAnimatorWithController:(UIViewController<WMTransitionProtocol> *)viewController{
+    /// 获取动画类型
+    WMTransitionAnimatedType animatedType = WMTransitionAnimatedType_Scale;
+    if ([viewController respondsToSelector:@selector(transitionAnimatedType)]){
+        animatedType = [viewController transitionAnimatedType];
     }
-    if ([toVC respondsToSelector:@selector(isNeedTransition)] && [toVC isNeedTransition]) {
-        b = YES;
-    }
-    return (a && b) ;
-    
-}
-//判断fromVC和toVC是否需要实现pinterest效果
-- (BOOL)isNeedTransition:(UIViewController<XYTransitionProtocol> *)toVC
-{
-    BOOL b = NO;
-    if ([toVC respondsToSelector:@selector(isNeedTransition)] && [toVC isNeedTransition]) {
-        b = YES;
-    }
-    return b;
-    
+    WMTransitionAnimator *transition = [WMTransitionAnimator transitionWithAnimatedType:animatedType];
+    return transition;
 }
 
 #pragma mark -- NavitionContollerDelegate
@@ -147,8 +120,6 @@
 - (void)handleNavigationTransition:(UIScreenEdgePanGestureRecognizer*)recognizer
 {
     CGFloat progress = [recognizer translationInView:self.view].x / (self.view.bounds.size.width);
-    //    progress = MIN(1.0, MAX(0.0, progress));
-    NSLog(@"右划progress %.2f",progress);
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.interactivePopTransition = [[UIPercentDrivenInteractiveTransition alloc] init];

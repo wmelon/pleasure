@@ -11,24 +11,9 @@
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "HuabanModel.h"
 #import "XHWaterCollectionCell.h"
-#import "XYTransitionProtocol.h"
+#import "WMTransitionProtocol.h"
 
-//static void blockCleanup(__strong void(^*block)(void)){
-//    (*block)();
-//}
-//static void xcodeCleanUp(__strong NSObject **xcode){
-//    NSLog(@"cleanUp call %@",*xcode);
-//}
-//    NSObject *xcode __attribute__((cleanup(xcodeCleanUp))) = [NSObject new];
-//    NSLog(@"%@",xcode);
-//
-//    __strong void(^block)() __attribute__((cleanup(blockCleanup))) = ^{
-//        NSLog(@"Call Block");
-//    };
-//    NSLog(@"%@" , block);
-
-
-@interface WMFoundViewController ()<CHTCollectionViewDelegateWaterfallLayout , XYTransitionProtocol>
+@interface WMFoundViewController ()<CHTCollectionViewDelegateWaterfallLayout , WMTransitionProtocol>
 @property (nonatomic , strong) NSIndexPath *selectIndexPath;
 @end
 
@@ -102,13 +87,10 @@
     detailVc.headerImage = cell.photoImageView.image;
     [_svc wm_pushViewController:detailVc];
 }
-#pragma mark -- XYTransitionProtocol
+#pragma mark -- WMTransitionProtocol
 - (UIView *)targetTransitionView{
     XHWaterCollectionCell * cell =(XHWaterCollectionCell *)[self.collectionView cellForItemAtIndexPath:self.selectIndexPath];
     return cell.photoImageView;
-}
-- (BOOL)isNeedTransition{
-    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
