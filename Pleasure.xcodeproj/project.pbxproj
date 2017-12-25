@@ -48,9 +48,9 @@
 		19312D0A1FED0208004F6649 /* XHWaterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19312D071FED0208004F6649 /* XHWaterCollectionCell.xib */; };
 		19312D121FED0B70004F6649 /* UIView+WMAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D111FED0B70004F6649 /* UIView+WMAppView.m */; };
 		19312D151FED0C70004F6649 /* WMHuaBanDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D141FED0C70004F6649 /* WMHuaBanDetailViewController.m */; };
-		19312D181FF0DAC0004F6649 /* WMTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D171FF0DAC0004F6649 /* WMTransitionAnimator.m */; };
-		19312D1B1FF0DF86004F6649 /* WMTransitionPushPopScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D1A1FF0DF86004F6649 /* WMTransitionPushPopScale.m */; };
-		19312D1F1FF0F9FB004F6649 /* WMPresentAIAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D1E1FF0F9FB004F6649 /* WMPresentAIAnimator.m */; };
+		19312D331FF10B43004F6649 /* WMPresentAIAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D2D1FF10B43004F6649 /* WMPresentAIAnimator.m */; };
+		19312D341FF10B43004F6649 /* WMTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D2F1FF10B43004F6649 /* WMTransitionAnimator.m */; };
+		19312D351FF10B43004F6649 /* WMTransitionPushPopScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D321FF10B43004F6649 /* WMTransitionPushPopScale.m */; };
 		19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19382EB31F396BA60029AAA3 /* WMInputInfoView.m */; };
 		19382EBB1F39B43F0029AAA3 /* addphoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EB91F39B43F0029AAA3 /* addphoto@2x.png */; };
 		19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EBA1F39B43F0029AAA3 /* addphoto@3x.png */; };
@@ -193,13 +193,13 @@
 		19312D111FED0B70004F6649 /* UIView+WMAppView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+WMAppView.m"; sourceTree = "<group>"; };
 		19312D131FED0C70004F6649 /* WMHuaBanDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMHuaBanDetailViewController.h; sourceTree = "<group>"; };
 		19312D141FED0C70004F6649 /* WMHuaBanDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMHuaBanDetailViewController.m; sourceTree = "<group>"; };
-		19312D161FF0DAC0004F6649 /* WMTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMTransitionAnimator.h; sourceTree = "<group>"; };
-		19312D171FF0DAC0004F6649 /* WMTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMTransitionAnimator.m; sourceTree = "<group>"; };
-		19312D191FF0DF86004F6649 /* WMTransitionPushPopScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMTransitionPushPopScale.h; sourceTree = "<group>"; };
-		19312D1A1FF0DF86004F6649 /* WMTransitionPushPopScale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMTransitionPushPopScale.m; sourceTree = "<group>"; };
-		19312D1C1FF0F5C3004F6649 /* WMTransitionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMTransitionProtocol.h; sourceTree = "<group>"; };
-		19312D1D1FF0F9FB004F6649 /* WMPresentAIAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMPresentAIAnimator.h; sourceTree = "<group>"; };
-		19312D1E1FF0F9FB004F6649 /* WMPresentAIAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMPresentAIAnimator.m; sourceTree = "<group>"; };
+		19312D2C1FF10B43004F6649 /* WMPresentAIAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPresentAIAnimator.h; sourceTree = "<group>"; };
+		19312D2D1FF10B43004F6649 /* WMPresentAIAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPresentAIAnimator.m; sourceTree = "<group>"; };
+		19312D2E1FF10B43004F6649 /* WMTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTransitionAnimator.h; sourceTree = "<group>"; };
+		19312D2F1FF10B43004F6649 /* WMTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTransitionAnimator.m; sourceTree = "<group>"; };
+		19312D301FF10B43004F6649 /* WMTransitionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTransitionProtocol.h; sourceTree = "<group>"; };
+		19312D311FF10B43004F6649 /* WMTransitionPushPopScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTransitionPushPopScale.h; sourceTree = "<group>"; };
+		19312D321FF10B43004F6649 /* WMTransitionPushPopScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTransitionPushPopScale.m; sourceTree = "<group>"; };
 		19382EB21F396BA60029AAA3 /* WMInputInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInputInfoView.h; sourceTree = "<group>"; };
 		19382EB31F396BA60029AAA3 /* WMInputInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInputInfoView.m; sourceTree = "<group>"; };
 		19382EB91F39B43F0029AAA3 /* addphoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addphoto@2x.png"; sourceTree = "<group>"; };
@@ -378,6 +378,7 @@
 		191D7A5D1FCBC004003A4ED1 /* CoreCode */ = {
 			isa = PBXGroup;
 			children = (
+				19312D2B1FF10B43004F6649 /* WMTransition */,
 				191D7A6E1FCBC070003A4ED1 /* WMNetwork */,
 				191D7A5E1FCBC059003A4ED1 /* OC_Category */,
 				193FA2C51FCD7F9400A0E56B /* WMUtility.h */,
@@ -513,18 +514,18 @@
 			path = WMFoundControllerView;
 			sourceTree = "<group>";
 		};
-		19312D0B1FED0A58004F6649 /* XYTransition */ = {
+		19312D2B1FF10B43004F6649 /* WMTransition */ = {
 			isa = PBXGroup;
 			children = (
-				19312D1C1FF0F5C3004F6649 /* WMTransitionProtocol.h */,
-				19312D161FF0DAC0004F6649 /* WMTransitionAnimator.h */,
-				19312D171FF0DAC0004F6649 /* WMTransitionAnimator.m */,
-				19312D191FF0DF86004F6649 /* WMTransitionPushPopScale.h */,
-				19312D1A1FF0DF86004F6649 /* WMTransitionPushPopScale.m */,
-				19312D1D1FF0F9FB004F6649 /* WMPresentAIAnimator.h */,
-				19312D1E1FF0F9FB004F6649 /* WMPresentAIAnimator.m */,
+				19312D2C1FF10B43004F6649 /* WMPresentAIAnimator.h */,
+				19312D2D1FF10B43004F6649 /* WMPresentAIAnimator.m */,
+				19312D2E1FF10B43004F6649 /* WMTransitionAnimator.h */,
+				19312D2F1FF10B43004F6649 /* WMTransitionAnimator.m */,
+				19312D301FF10B43004F6649 /* WMTransitionProtocol.h */,
+				19312D311FF10B43004F6649 /* WMTransitionPushPopScale.h */,
+				19312D321FF10B43004F6649 /* WMTransitionPushPopScale.m */,
 			);
-			path = XYTransition;
+			path = WMTransition;
 			sourceTree = "<group>";
 		};
 		19382EB11F396B9A0029AAA3 /* WMInputInfoView */ = {
@@ -714,7 +715,6 @@
 		19BF991F1F41A63700B2BB35 /* ThirdPart */ = {
 			isa = PBXGroup;
 			children = (
-				19312D0B1FED0A58004F6649 /* XYTransition */,
 				19218E431F53EAD400FEF66A /* UIViewExt */,
 				19BF99201F41A63E00B2BB35 /* StringAttribute */,
 			);
@@ -994,7 +994,7 @@
 				19312CF31FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				19312CF61FECF573004F6649 /* HuabanModel.m in Sources */,
 				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
-				19312D1B1FF0DF86004F6649 /* WMTransitionPushPopScale.m in Sources */,
+				19312D351FF10B43004F6649 /* WMTransitionPushPopScale.m in Sources */,
 				1916F5421FE106FD0084BB38 /* WMDemoViewController.m in Sources */,
 				19BF99191F41A14200B2BB35 /* WMAIListModel.m in Sources */,
 				1916F7671FE77C1B0084BB38 /* JQMusic1Animation.m in Sources */,
@@ -1033,7 +1033,6 @@
 				19E3A3371F569F15008D2C52 /* WMSwizzleMethod.m in Sources */,
 				19312D121FED0B70004F6649 /* UIView+WMAppView.m in Sources */,
 				19312CFC1FECF867004F6649 /* UIImageView+WMWebCache.m in Sources */,
-				19312D1F1FF0F9FB004F6649 /* WMPresentAIAnimator.m in Sources */,
 				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,
 				191D7A6D1FCBC059003A4ED1 /* UITextView+LLDebugOnly.m in Sources */,
 				1916F7641FE77C1B0084BB38 /* JQCyclingCycleAnimation.m in Sources */,
@@ -1041,6 +1040,7 @@
 				19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */,
 				191D7A6B1FCBC059003A4ED1 /* UIImage+AppImage.m in Sources */,
 				19BF990D1F41460500B2BB35 /* WMTextView.m in Sources */,
+				19312D331FF10B43004F6649 /* WMPresentAIAnimator.m in Sources */,
 				196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */,
 				19B312AB1F5D54B40096AF65 /* WMPhotoCaptionViewController.m in Sources */,
 				19B312B11F5D5E9B0096AF65 /* WMTopToolBar.m in Sources */,
@@ -1057,7 +1057,7 @@
 				19D1D2411F42D397001DFC0D /* WMDownloadButton.m in Sources */,
 				1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */,
 				1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */,
-				19312D181FF0DAC0004F6649 /* WMTransitionAnimator.m in Sources */,
+				19312D341FF10B43004F6649 /* WMTransitionAnimator.m in Sources */,
 				191D7A6A1FCBC059003A4ED1 /* UIColor+AppColor.m in Sources */,
 				193FA2C71FCD7F9400A0E56B /* WMUtility.m in Sources */,
 				1916F7511FE775300084BB38 /* WMLoadFailedEmptyView.m in Sources */,
