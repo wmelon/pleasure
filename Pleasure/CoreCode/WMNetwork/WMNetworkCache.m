@@ -51,7 +51,6 @@ static YYCache *_dataCache;
     return [NSString stringWithFormat:@"%ld",cacheKey.hash];
 }
 
-
 + (NSInteger)getAllHttpCacheSize {
     return [_dataCache.diskCache totalCost];
 }
@@ -59,6 +58,5 @@ static YYCache *_dataCache;
 + (void)removeAllHttpCache {
     [_dataCache.diskCache removeAllObjects];
 }
-
 
 @end

@@ -8,10 +8,10 @@
 
 #import "WMBaseTableCollectionControlController.h"
 #import "UIScrollView+AppScrollView.h"
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface WMBaseTableCollectionControlController ()<DZNEmptyDataSetSource , DZNEmptyDataSetDelegate , UIScrollViewDelegate>
-@property (nonatomic , strong)UIScrollView * scrollerView;
+@interface WMBaseTableCollectionControlController ()<UIScrollViewDelegate>
+@property (nonatomic , strong) UIScrollView * scrollerView;
+@property (nonatomic , strong) NSNumber *page;
 @end
 
 @implementation WMBaseTableCollectionControlController
@@ -52,45 +52,49 @@
     [_scrollerView wm_endRefreshing];
 }
 
-- (void)realodEmptyView{
-    _scrollerView.emptyDataSetSource = self;
-    _scrollerView.emptyDataSetDelegate = self;
-}
-
-#pragma mark -- DZNEmptyDataSetSource and DZNEmptyDataSetDelegate
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    NSAttributedString * title = [[NSAttributedString alloc] initWithString:@"数据为空"];
-    return title;
-}
-
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView{
-    return YES;
-}
-
-- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView{
-    return 64; /// 偏移导航栏的高度
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
 }
 
 #pragma mark - overridable
--(void)requestRefresh{
+- (void)requestRefresh{
+    [self configStartTurnPageParams];
+    [self requestDataWithIsRefresh:YES];
+}
+
+- (void)requestGetMore{
+    self.page = @([self.page integerValue] + 1);
+    [self requestDataWithIsRefresh:NO];
+}
+
+- (void)requestDataWithIsRefresh:(BOOL)isRefresh{
+    _isRefresh = isRefresh;
+    [self requestDataWithTurnPage:self.turnPageParams];
+}
+/// 初始化翻页参数
+- (void)configStartTurnPageParams{
+    /// 下拉刷新初始化翻页参数
+    self.page = @1;
+}
+- (NSDictionary *)startPageParams{
+    [self configStartTurnPageParams];
+    return self.turnPageParams;
+}
+- (NSDictionary *)turnPageParams{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:self.page forKey:@"page"];
+    return dict;
+}
+- (void)requestDataWithTurnPage:(NSDictionary *)turnPage{
     NSLog(@"%s 需要重写",__FUNCTION__);
     [self finishRequest];
 }
 
--(void)requestGetMore{
-    NSLog(@"%s 需要重写",__FUNCTION__);
-    [self finishRequest];
-}
-
--(BOOL)shouldShowRefresh{
+- (BOOL)shouldShowRefresh{
     return YES;
 }
 
--(BOOL)shouldShowGetMore{
+- (BOOL)shouldShowGetMore{
     return YES;
 }
 

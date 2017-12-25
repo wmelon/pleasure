@@ -79,7 +79,7 @@
     for (int i = 0 ; i < 5 ; i++){
 //        https://codeload.github.com/EricForGithub/SalesforceReactDemo/zip/master
 //        http://v.juhe.cn/toutiao/index?type=&key=6759a6e8d853240c6aa92d8314f734f9
-        WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"https://codeload.github.com/EricForGithub/SalesforceReactDemo/zip/master" requestMethod:(WMRequestMethodDownload)];
+        WMRequestAdapter *request = [WMRequestAdapter requestWithUrl:@"http://v.juhe.cn/toutiao/index?type=&key=6759a6e8d853240c6aa92d8314f734f9" requestMethod:(WMRequestMethodGET)];
         [requestsAdapter addObject:request];
     }
 

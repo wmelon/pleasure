@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^GestureConifg)();
+typedef void(^GestureConifg)(void);
 
 typedef NS_ENUM(NSInteger , WMInteractiveTransitionGestureDirection) {
     WMInteractiveTransitionGestureDirectionLeft = 0,

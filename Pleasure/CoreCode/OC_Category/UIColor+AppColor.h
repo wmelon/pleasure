@@ -14,5 +14,5 @@
 + (UIColor *)mainColor;
 + (UIColor *)textColor;
 + (UIColor *)detailTextColor;
-
++ (UIColor *)colorWithHexString:(NSString *)color;
 @end

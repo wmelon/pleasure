@@ -17,4 +17,6 @@ target :Pleasure do
     pod 'LCActionSheet' , '~>3.2.4'  #底部选择弹框
     pod 'WMScrollPageView' , '~> 0.0.5'
     pod 'YYCache' ,'~>1.0.4'  #数据缓存
+    pod 'YYModel', '~>1.0.1'
+#    pod 'YYKit' , '~>1.0.9'
 end

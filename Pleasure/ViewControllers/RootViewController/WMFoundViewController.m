@@ -8,9 +8,28 @@
 
 #import "WMFoundViewController.h"
 #import "WMDemoViewController.h"
+#import "CHTCollectionViewWaterfallLayout.h"
+#import "HuabanModel.h"
+#import "XHWaterCollectionCell.h"
+#import "XYTransitionProtocol.h"
 
-@interface WMFoundViewController ()
+//static void blockCleanup(__strong void(^*block)(void)){
+//    (*block)();
+//}
+//static void xcodeCleanUp(__strong NSObject **xcode){
+//    NSLog(@"cleanUp call %@",*xcode);
+//}
+//    NSObject *xcode __attribute__((cleanup(xcodeCleanUp))) = [NSObject new];
+//    NSLog(@"%@",xcode);
+//
+//    __strong void(^block)() __attribute__((cleanup(blockCleanup))) = ^{
+//        NSLog(@"Call Block");
+//    };
+//    NSLog(@"%@" , block);
 
+
+@interface WMFoundViewController ()<CHTCollectionViewDelegateWaterfallLayout , XYTransitionProtocol>
+@property (nonatomic , strong) NSIndexPath *selectIndexPath;
 @end
 
 @implementation WMFoundViewController
@@ -18,16 +37,78 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    btn.backgroundColor = [UIColor redColor];
-    [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
+    [self configCollectionView];
+    /// 开始加载数据
+    [self beginRefresh];
 }
 
-- (void)click:(UIButton *)button{
-    [_svc wm_pushViewController:[WMDemoViewController new]];
+- (void)configCollectionView{
+    CHTCollectionViewWaterfallLayout * layout = [[CHTCollectionViewWaterfallLayout alloc] init];
+    layout.columnCount = 2;
+    // Change individual layout attributes for the spacing between cells
+    layout.minimumColumnSpacing = 10.0;
+    layout.minimumInteritemSpacing = 10.0;
+    //  设置collectionView的 四周的内边距
+    layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.collectionView.frame = CGRectMake(0, kNavBarHeight, kScreenWidth, kScreenHeight - kNavBarHeight - kTabBarHeight);
+    self.collectionView.collectionViewLayout = layout;
+    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([XHWaterCollectionCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([XHWaterCollectionCell class])];
+}
+
+- (void)requestDataWithTurnPage:(NSDictionary *)turnPage{
+    WMWeakself
+    WMRequestAdapter *adapter = [WMRequestAdapter requestWithUrl:@"http://api.huaban.com/popular" requestMethod:(WMRequestMethodGET)];
+    [adapter requestParameters:turnPage];
+    [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
+        [weakself parseDataWithRequest:request];
+    } cacheHandler:^(WMRequestAdapter *request) {
+        [weakself parseDataWithRequest:request];
+    } failureHandler:^(WMRequestAdapter *request) {
+        [weakself finishRequest];
+    } requestAdapter:adapter];
+}
+- (void)parseDataWithRequest:(WMRequestAdapter *)request{
+    NSDictionary *responseObject = request.responseDictionary;
+    NSArray *array = [HuabanModel pc_modelListWithArray:responseObject[@"pins"]];
+    if (self.isRefresh) {
+        [self.rows setArray:array];
+    }else {
+        [self.rows addObjectsFromArray:array];
+    }
+    [self.collectionView reloadData];
+    [self finishRequest];
+}
+#pragma mark -- UICollectionViewDelegate and UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.rows.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    XHWaterCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([XHWaterCollectionCell class]) forIndexPath:indexPath];
+    HuabanModel *model = [self.rows objectAtIndex:indexPath.row];
+    [cell setModel:model];
+    return cell;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    HuabanModel *model = [self.rows objectAtIndex:indexPath.row];
+    return [XHWaterCollectionCell getSize:model];
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectIndexPath = indexPath;
+    XHWaterCollectionCell * cell =(XHWaterCollectionCell *)[self.collectionView cellForItemAtIndexPath:self.selectIndexPath];
+    WMHuaBanDetailViewController *detailVc = [WMHuaBanDetailViewController new];
+    detailVc.headerImage = cell.photoImageView.image;
+    [_svc wm_pushViewController:detailVc];
+}
+#pragma mark -- XYTransitionProtocol
+- (UIView *)targetTransitionView{
+    XHWaterCollectionCell * cell =(XHWaterCollectionCell *)[self.collectionView cellForItemAtIndexPath:self.selectIndexPath];
+    return cell.photoImageView;
+}
+- (BOOL)isNeedTransition{
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

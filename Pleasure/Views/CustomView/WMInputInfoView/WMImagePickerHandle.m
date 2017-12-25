@@ -206,7 +206,7 @@
 /// User click cancel button
 /// 用户点击了取消
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker {
-    // NSLog(@"cancel");
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 // The picker should dismiss itself; when it dismissed these handle will be called.

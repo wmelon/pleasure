@@ -48,7 +48,7 @@
     if (number){
         return [number boolValue];
     }
-    return YES;
+    return NO;
 }
 
 #pragma mark -- api请求地址切换处理
@@ -115,7 +115,7 @@
 
 - (NSString *)realUrlWithUrlString:(NSString *)urlString{
     /// 处理地址中包含中文编码
-    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    urlString = [self UTF8StringWithString:urlString];
     if ([self isValidUrl:urlString]){
         return [self httpOrHttpsUrlString:urlString];
     }else {
@@ -123,6 +123,18 @@
         NSString * baseUrl = [self httpOrHttpsUrlString:KBaseURL];
         return [NSString stringWithFormat:@"%@%@%@",baseUrl,@"/api/pub/img/",urlString];
     }
+}
+/**
+ * 字符串UTF8编码
+ */
+- (NSString *)UTF8StringWithString:(NSString *)string {
+    /// 已经经过编码的地址不再二次编码
+    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                                                                    (CFStringRef)string,
+                                                                                                    (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]",
+                                                                                                    NULL,
+                                                                                                    kCFStringEncodingUTF8));
+    return encodedString;
 }
 /// 判断字符串是否是url
 - (BOOL)isValidUrl:(NSString *)urlString{

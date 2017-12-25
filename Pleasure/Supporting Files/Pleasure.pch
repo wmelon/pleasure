@@ -25,6 +25,8 @@
 #import "WMNetwork.h"
 #import "WMUtility.h"
 #import "SwitchAppRequestUrl.h"
+#import "UIImageView+WMWebCache.h"
+#import "UIView+WMAppView.h"
 #endif /* Pleasure_pch */
 
 
@@ -32,6 +34,13 @@
 #define UIColorFromARGB(rgbValue,a)[UIColor colorWithRed:((float)((rgbValue&0xFF0000)>>16))/255.0 green:((float)((rgbValue&0xFF00)>>8))/255.0 blue:((float)(rgbValue&0xFF))/255.0 alpha:a]
 
 #define AppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+// 创建颜色
+#define PCColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0];
+// 随机颜色
+#define PCRandomColor PCColor(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+
+#define WMWeakself __weak typeof(self) weakself = self;
 
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height

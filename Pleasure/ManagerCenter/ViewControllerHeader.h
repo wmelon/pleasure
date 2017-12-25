@@ -18,5 +18,6 @@
 #import "WMProductListViewController.h"
 #import "WMAIListViewController.h"
 #import "WMSettingViewController.h"
+#import "WMHuaBanDetailViewController.h"
 
 #endif /* ViewControllerHeader_h */

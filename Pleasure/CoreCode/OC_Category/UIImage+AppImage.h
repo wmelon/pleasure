@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (AppImage)
-+ (nullable UIImage *)imageWithColor:(UIColor *_Nullable)color;
++ (UIImage *)imageWithColor:(UIColor *_Nullable)color;
 /// 根据传入值裁剪图片 （图片最大宽度或者是高度）
 + (UIImage *)scaleAndRotateImage:(UIImage *)image resolution:(int)kMaxResolution;
+/// 展位图片
++ (UIImage *)placeholderImage;
+
 @end

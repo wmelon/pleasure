@@ -109,4 +109,7 @@
     UIGraphicsEndImageContext();
     return imageCopy;
 }
++ (UIImage *)placeholderImage{
+    return [UIImage imageWithColor:[UIColor darkGrayColor]];
+}
 @end
