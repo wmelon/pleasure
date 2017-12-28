@@ -7,7 +7,6 @@
 //
 
 #import "WMFoundViewController.h"
-#import "WMDemoViewController.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "HuabanModel.h"
 #import "XHWaterCollectionCell.h"

@@ -51,6 +51,7 @@
 		19312D331FF10B43004F6649 /* WMPresentAIAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D2D1FF10B43004F6649 /* WMPresentAIAnimator.m */; };
 		19312D341FF10B43004F6649 /* WMTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D2F1FF10B43004F6649 /* WMTransitionAnimator.m */; };
 		19312D351FF10B43004F6649 /* WMTransitionPushPopScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D321FF10B43004F6649 /* WMTransitionPushPopScale.m */; };
+		19312D3C1FF34596004F6649 /* WMLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312D3B1FF34596004F6649 /* WMLoginManager.m */; };
 		19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19382EB31F396BA60029AAA3 /* WMInputInfoView.m */; };
 		19382EBB1F39B43F0029AAA3 /* addphoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EB91F39B43F0029AAA3 /* addphoto@2x.png */; };
 		19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19382EBA1F39B43F0029AAA3 /* addphoto@3x.png */; };
@@ -200,6 +201,8 @@
 		19312D301FF10B43004F6649 /* WMTransitionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTransitionProtocol.h; sourceTree = "<group>"; };
 		19312D311FF10B43004F6649 /* WMTransitionPushPopScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTransitionPushPopScale.h; sourceTree = "<group>"; };
 		19312D321FF10B43004F6649 /* WMTransitionPushPopScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTransitionPushPopScale.m; sourceTree = "<group>"; };
+		19312D3A1FF34596004F6649 /* WMLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMLoginManager.h; sourceTree = "<group>"; };
+		19312D3B1FF34596004F6649 /* WMLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMLoginManager.m; sourceTree = "<group>"; };
 		19382EB21F396BA60029AAA3 /* WMInputInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMInputInfoView.h; sourceTree = "<group>"; };
 		19382EB31F396BA60029AAA3 /* WMInputInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMInputInfoView.m; sourceTree = "<group>"; };
 		19382EB91F39B43F0029AAA3 /* addphoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addphoto@2x.png"; sourceTree = "<group>"; };
@@ -528,6 +531,15 @@
 			path = WMTransition;
 			sourceTree = "<group>";
 		};
+		19312D391FF34575004F6649 /* FunctionAbstract */ = {
+			isa = PBXGroup;
+			children = (
+				19312D3A1FF34596004F6649 /* WMLoginManager.h */,
+				19312D3B1FF34596004F6649 /* WMLoginManager.m */,
+			);
+			path = FunctionAbstract;
+			sourceTree = "<group>";
+		};
 		19382EB11F396B9A0029AAA3 /* WMInputInfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +586,7 @@
 		196032501F09E7AB00126AC7 /* Pleasure */ = {
 			isa = PBXGroup;
 			children = (
+				19312D391FF34575004F6649 /* FunctionAbstract */,
 				191D7A5D1FCBC004003A4ED1 /* CoreCode */,
 				19E3A3271F569F15008D2C52 /* ManagerCenter */,
 				19BF991F1F41A63700B2BB35 /* ThirdPart */,
@@ -983,6 +996,7 @@
 				19E3A31A1F569BB6008D2C52 /* WMMineViewController.m in Sources */,
 				1916F7751FE8C95D0084BB38 /* SwitchAppRequestUrl.m in Sources */,
 				191D7A741FCBC205003A4ED1 /* WMRequestAdapter.m in Sources */,
+				19312D3C1FF34596004F6649 /* WMLoginManager.m in Sources */,
 				198475E21F56979B0074E6D2 /* WMBaseTableViewController.m in Sources */,
 				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
 				19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */,

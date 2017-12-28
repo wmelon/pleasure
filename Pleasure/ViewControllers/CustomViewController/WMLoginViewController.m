@@ -7,6 +7,7 @@
 //
 
 #import "WMLoginViewController.h"
+#import "WMLoginManager.h"
 
 @interface WMLoginViewController ()
 
@@ -17,9 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    btn.backgroundColor = [UIColor redColor];
+    [btn setTitle:@"登录" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
+- (void)login{
+    [WMLoginOperation loginWithUsername:@"陈西瓜" password:@"123456" complete:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -11,6 +11,7 @@
 #import <AVUser.h>
 #import <AVFile.h>
 #import <AVQuery.h>
+#import "WMDemoViewController.h"
 
 @interface WMRecordViewController ()<WMInputInfoViewDelegate>
 @property (nonatomic , strong) WMInputInfoView *inputInfoView;
@@ -35,9 +36,11 @@
 
 - (void)rightAction:(UIButton *)button{
     /// 发布消息
-    WMAIListViewController *vc = [WMAIListViewController new];
-    [vc routerTarget:vc action:@selector(testA:b:c:) params:@"10" , @"4" , @"24" , nil];
-    [_svc wm_pushViewController:vc];
+    [_svc wm_pushViewController:[WMDemoViewController new]];
+    
+//    WMAIListViewController *vc = [WMAIListViewController new];
+//    [vc routerTarget:vc action:@selector(testA:b:c:) params:@"10" , @"4" , @"24" , nil];
+//    [_svc wm_pushViewController:vc];
     
     /// 上传图片返回图片id
 //    [self.inputInfoView uploadSelectedImage:^(NSArray *imageIds) {

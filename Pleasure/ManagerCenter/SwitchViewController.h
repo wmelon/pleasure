@@ -19,6 +19,7 @@
 
 //#pragma mark -- 根据类名进行页面跳转
 - (void)wm_pushViewController:(UIViewController *)viewcontroller;
+- (void)wm_presentViewControllerClass:(UIViewController *)viewcontroller;
 
 //- (void)pushViewControllerClass:(Class)class_object;
 //- (void)pushViewControllerClass:(Class)class_object withObjects:(NSDictionary *)intentDic animated:(BOOL)animated;
@@ -27,7 +28,7 @@
 //- (void)presentViewControllerClass:(Class)class_object withObjects:(NSDictionary*)intentDic;
 //
 //#pragma mark -- 销毁界面
-//- (void)dismissTopViewControllerCompletion:(void (^)(void))completion;
+- (void)wm_dismissTopViewControllerCompletion:(void (^)(void))completion;
 - (UIViewController*)wm_popViewControllerAnimated:(BOOL)animated;
 //- (void)popToViewController:(UIViewController *)vc;
 - (void)wm_popToRootViewControllerAnimated:(BOOL)animated;

@@ -7,6 +7,7 @@
 //
 
 #import "SwitchViewController.h"
+#import "WMAppNavigationBar.h"
 
 @interface SwitchViewController()
 @end
@@ -39,12 +40,21 @@
     return navi;
 }
 
+/// 创建带导航控制器的控制器
+- (UINavigationController *)createNavigationController:(UIViewController *)viewcontroller{
+    UINavigationController* navi = [[WMBaseNavigationController alloc] initWithNavigationBarClass:[WMAppNavigationBar class] toolbarClass:nil];
+    [navi pushViewController:viewcontroller animated:NO];
+    _topNavigationController = navi;
+    return navi;
+}
 
-
-
-
+#pragma mark -- 界面跳转
 - (void)wm_pushViewController:(UIViewController *)viewcontroller{
     [self.topNavigationController pushViewController:viewcontroller animated:YES];
+}
+- (void)wm_presentViewControllerClass:(UIViewController *)viewcontroller{
+    UINavigationController* navi = [self createNavigationController:viewcontroller];
+    [self.topNavigationController presentViewController:navi animated:YES completion:NULL];
 }
 
 - (UIViewController*)wm_popViewControllerAnimated:(BOOL)animated{
@@ -52,6 +62,16 @@
 }
 - (void)wm_popToRootViewControllerAnimated:(BOOL)animated{
     [self.topNavigationController popToRootViewControllerAnimated:animated];
+}
+
+- (void)wm_dismissTopViewControllerCompletion:(void (^)(void))completion{
+    UINavigationController* navi = (UINavigationController*)self.topNavigationController.presentingViewController;
+    [self.topNavigationController dismissViewControllerAnimated:YES completion:^{
+        _topNavigationController = navi;
+        if (completion) {
+            completion();
+        }
+    }];
 }
 
 @end
