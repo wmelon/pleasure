@@ -15,6 +15,8 @@
 #import "WMPhotoBrowserViewController.h"
 #import "WMPhotoCaptionViewController.h"
 #import "WMNewsDetailViewController.h"
+#import "WMNewGuideViewController.h"
+#import "WMDemoViewController.h"
 
 @interface WMAIListViewController ()
 
@@ -73,7 +75,9 @@
                        [WMAIListModel initWithTitle:@"带图片描述图片浏览" andTargetVC:[WMPhotoCaptionViewController class]],
                        [WMAIListModel initWithTitle:@"BeginnerCook" andTargetVC:[WMAIBeginnerCookViewController class]],
                        [WMAIListModel initWithTitle:@"下载按钮" andTargetVC:[WMDownloadListViewController class]],
-                       [WMAIListModel initWithTitle:@"新闻详情" andTargetVC:[WMNewsDetailViewController class]]
+                       [WMAIListModel initWithTitle:@"新闻详情" andTargetVC:[WMNewsDetailViewController class]],
+                       [WMAIListModel initWithTitle:@"新手引导页" andTargetVC:[WMNewGuideViewController class]],
+                       [WMAIListModel initWithTitle:@"测试界面" andTargetVC:[WMDemoViewController class]]
                        ];
     
 

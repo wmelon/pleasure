@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190117BE1FF4DAE6001953E5 /* ZWMGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 190117BD1FF4DAE6001953E5 /* ZWMGuideView.m */; };
+		190117C11FF4DB26001953E5 /* WMNewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190117C01FF4DB26001953E5 /* WMNewGuideViewController.m */; };
+		190117C71FF4E1C9001953E5 /* WMTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190117C61FF4E1C9001953E5 /* WMTestView.xib */; };
 		190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */; };
 		1916F5421FE106FD0084BB38 /* WMDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5411FE106FD0084BB38 /* WMDemoViewController.m */; };
 		1916F5451FE116C40084BB38 /* WMNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5441FE116C40084BB38 /* WMNetworkCache.m */; };
@@ -114,6 +117,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190117BC1FF4DAE6001953E5 /* ZWMGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWMGuideView.h; sourceTree = "<group>"; };
+		190117BD1FF4DAE6001953E5 /* ZWMGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWMGuideView.m; sourceTree = "<group>"; };
+		190117BF1FF4DB26001953E5 /* WMNewGuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNewGuideViewController.h; sourceTree = "<group>"; };
+		190117C01FF4DB26001953E5 /* WMNewGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMNewGuideViewController.m; sourceTree = "<group>"; };
+		190117C61FF4E1C9001953E5 /* WMTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMTestView.xib; sourceTree = "<group>"; };
 		190ECA0A1F3BFCDE00E4128C /* WMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhoto.h; sourceTree = "<group>"; };
 		190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhoto.m; sourceTree = "<group>"; };
 		1916F5401FE106FD0084BB38 /* WMDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDemoViewController.h; sourceTree = "<group>"; };
@@ -332,6 +340,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		190117BB1FF4DAE6001953E5 /* ZWMGuideView */ = {
+			isa = PBXGroup;
+			children = (
+				190117BC1FF4DAE6001953E5 /* ZWMGuideView.h */,
+				190117BD1FF4DAE6001953E5 /* ZWMGuideView.m */,
+			);
+			path = ZWMGuideView;
+			sourceTree = "<group>";
+		};
 		1916F7451FE774A30084BB38 /* WMLodingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +512,8 @@
 				1916F5411FE106FD0084BB38 /* WMDemoViewController.m */,
 				19312D131FED0C70004F6649 /* WMHuaBanDetailViewController.h */,
 				19312D141FED0C70004F6649 /* WMHuaBanDetailViewController.m */,
+				190117BF1FF4DB26001953E5 /* WMNewGuideViewController.h */,
+				190117C01FF4DB26001953E5 /* WMNewGuideViewController.m */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -503,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				19312CF01FECEC49004F6649 /* WMFoundControllerView */,
+				190117C61FF4E1C9001953E5 /* WMTestView.xib */,
 			);
 			path = ControllerView;
 			sourceTree = "<group>";
@@ -809,6 +829,7 @@
 		19F0118C1F2987AE00F30BC9 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				190117BB1FF4DAE6001953E5 /* ZWMGuideView */,
 				19312CF21FECED60004F6649 /* CHTCollectionViewWaterfallLayout.h */,
 				19312CF11FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m */,
 				19D1D23B1F42D370001DFC0D /* WMCustomView */,
@@ -920,6 +941,7 @@
 				19B312BA1F5D64740096AF65 /* icon_close_more_wm@2x.png in Resources */,
 				1916F7711FE7AA1C0084BB38 /* icon_error_unkown@2x.png in Resources */,
 				19B312BE1F5D65510096AF65 /* icon_detail_more_wm@2x.png in Resources */,
+				190117C71FF4E1C9001953E5 /* WMTestView.xib in Resources */,
 				19312D0A1FED0208004F6649 /* XHWaterCollectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -996,6 +1018,7 @@
 				19E3A31A1F569BB6008D2C52 /* WMMineViewController.m in Sources */,
 				1916F7751FE8C95D0084BB38 /* SwitchAppRequestUrl.m in Sources */,
 				191D7A741FCBC205003A4ED1 /* WMRequestAdapter.m in Sources */,
+				190117BE1FF4DAE6001953E5 /* ZWMGuideView.m in Sources */,
 				19312D3C1FF34596004F6649 /* WMLoginManager.m in Sources */,
 				198475E21F56979B0074E6D2 /* WMBaseTableViewController.m in Sources */,
 				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
@@ -1046,6 +1069,7 @@
 				19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */,
 				19E3A3371F569F15008D2C52 /* WMSwizzleMethod.m in Sources */,
 				19312D121FED0B70004F6649 /* UIView+WMAppView.m in Sources */,
+				190117C11FF4DB26001953E5 /* WMNewGuideViewController.m in Sources */,
 				19312CFC1FECF867004F6649 /* UIImageView+WMWebCache.m in Sources */,
 				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,
 				191D7A6D1FCBC059003A4ED1 /* UITextView+LLDebugOnly.m in Sources */,
