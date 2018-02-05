@@ -52,13 +52,13 @@
 - (NSInteger)numberOfCountInScrollPageView:(WMScrollPageView *)scrollPageView{
     return self.segmentArray.count;
 }
-
-- (NSString *)scrollPageView:(WMScrollPageView *)scrollPageView titleForBarItemAtIndex:(NSInteger)index{
+/// 每一项显示的标题
+- (NSString *)scrollPageView:(WMScrollPageView *)scrollPageView titleForSegmentAtIndex:(NSInteger)index{
     return self.segmentArray[index];
 }
 
-/// 滑块下的每一项对应显示的控制器
-- (UIViewController *)scrollPageView:(WMScrollPageView *)scrollPageView controllerAtIndex:(NSInteger)index{
+/// 每一项下面显示的视图控制器
+- (UIViewController *)scrollPageView:(WMScrollPageView *)scrollPageView viewControllerAtIndex:(NSInteger)index{
     WMProductListViewController * vc = [WMProductListViewController new];
     vc.delegate = self;
     [vc setTitle:self.segmentArray[index]];
@@ -73,18 +73,9 @@
     [self wm_setElementsAlpha:alpha];
 }
 
-
 - (void)productListViewController:(WMProductListViewController *)productListViewController didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WMSettingViewController * vc = [WMSettingViewController new];
     [_svc wm_pushViewController:vc];
-}
-
-- (WMScrollBarItemStyle *)scrollBarItemStyleInScrollPageView:(WMScrollPageView *)scrollPageView{
-    WMScrollBarItemStyle * style = [WMScrollBarItemStyle new];
-    style.itemSizeStyle = wm_itemSizeStyle_equal_textSize;
-    style.allowStretchableHeader = NO;
-    style.scaleTitle = YES;
-    return style;
 }
 
 - (WMUserHeaderView *)userHeaderView{
@@ -108,8 +99,12 @@
 - (WMScrollPageView *)scrollPageView{
     
     if (_scrollPageView == nil){
-        
-        _scrollPageView = [[WMScrollPageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kTableViewHeight)];
+        WMSegmentStyle * style = [WMSegmentStyle new];
+        style.itemSizeStyle = wm_itemSizeStyle_equal_textSize;
+        style.allowStretchableHeader = NO;
+        style.scaleTitle = YES;
+        _scrollPageView = [[WMScrollPageView alloc] initWithSegmentStyle:style parentVC:self];
+        _scrollPageView.frame = CGRectMake(0, 0, self.view.frame.size.width, kTableViewHeight);
         _scrollPageView.dataSource = self;
         _scrollPageView.delegate = self;
         

@@ -1,25 +1,25 @@
 //
-//  WMScrollBarItemStyle.m
-//  Pleasure
+//  WMSegmentStyle.m
+//  WMScrollPageView
 //
-//  Created by Sper on 2017/8/4.
-//  Copyright © 2017年 WM. All rights reserved.
+//  Created by Sper on 2018/1/20.
+//  Copyright © 2018年 WM. All rights reserved.
 //
 
-#import "WMScrollBarItemStyle.h"
+#import "WMSegmentStyle.h"
 
-@implementation WMScrollBarItemStyle
+@implementation WMSegmentStyle
 - (instancetype)init {
     if(self = [super init]) {
-        self.showLine = NO;
+        self.showMoveLine = YES;
         self.scaleTitle = NO;
-        self.scrollTitle = YES;
-        self.gradualChangeTitleColor = NO;
+        self.changeTitleColor = NO;
         self.showExtraButton = NO;
         self.scrollLineHeight = 2.0;
+        self.scrollLineWidth = 0.0;
         self.titleMargin = 10.0;
         self.titleFont = [UIFont systemFontOfSize:17.0];
-        self.titleBigScale = 1.05;
+        self.titleBigScale = 1.2;
         self.normalTitleColor = [UIColor colorWithRed:51.0/255.0 green:53.0/255.0 blue:75/255.0 alpha:1.0];
         self.selectedTitleColor = [UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:121/255.0 alpha:1.0];
         self.scrollLineColor = self.selectedTitleColor;

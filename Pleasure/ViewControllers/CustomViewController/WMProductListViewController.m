@@ -57,7 +57,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dealloc{
+    NSLog(@"%@ 当前界面销毁了" , self);
+}
 /*
 #pragma mark - Navigation
 
