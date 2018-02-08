@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SwitchViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "WMMonitor.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,8 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [AVOSCloud setApplicationId:@"277O51p30kOOJ5SUy9C7x2bs-gzGzoHsz" clientKey:@"FhxSVmiqkN9CjIPdA9xppdlk"];
+    /// 开启app监控
+    [WMMonitor startMonitor];
     return YES;
 }
 

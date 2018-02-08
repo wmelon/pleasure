@@ -49,6 +49,12 @@
 		19296C3A2028371600CE1FFA /* WMSegmentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C322028371500CE1FFA /* WMSegmentStyle.m */; };
 		19296C3B2028371600CE1FFA /* WMSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C342028371500CE1FFA /* WMSegmentView.m */; };
 		19296C3C2028371600CE1FFA /* WMStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C362028371500CE1FFA /* WMStretchableTableHeaderView.m */; };
+		19296C402029A56D00CE1FFA /* WMMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C3F2029A56D00CE1FFA /* WMMonitor.m */; };
+		19296C442029A5FF00CE1FFA /* WMURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C432029A5FF00CE1FFA /* WMURLProtocol.m */; };
+		19296C472029B31700CE1FFA /* WMAppMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C462029B31700CE1FFA /* WMAppMonitorViewController.m */; };
+		19296C4A2029BE7B00CE1FFA /* NSURLSessionConfiguration+WMURLSessionConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C492029BE7B00CE1FFA /* NSURLSessionConfiguration+WMURLSessionConfig.m */; };
+		19296C50202C1FC400CE1FFA /* WMMonitorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C4F202C1FC400CE1FFA /* WMMonitorView.m */; };
+		19296C54202C370D00CE1FFA /* WMDeviceUsageMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C53202C370D00CE1FFA /* WMDeviceUsageMonitor.m */; };
 		192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C13371F0B9B3200759221 /* NotificationConfig.m */; };
 		19312CF31FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312CF11FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m */; };
 		19312CF61FECF573004F6649 /* HuabanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312CF51FECF572004F6649 /* HuabanModel.m */; };
@@ -203,6 +209,18 @@
 		19296C342028371500CE1FFA /* WMSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMSegmentView.m; sourceTree = "<group>"; };
 		19296C352028371500CE1FFA /* WMStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMStretchableTableHeaderView.h; sourceTree = "<group>"; };
 		19296C362028371500CE1FFA /* WMStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMStretchableTableHeaderView.m; sourceTree = "<group>"; };
+		19296C3E2029A56D00CE1FFA /* WMMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMMonitor.h; sourceTree = "<group>"; };
+		19296C3F2029A56D00CE1FFA /* WMMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMonitor.m; sourceTree = "<group>"; };
+		19296C422029A5FF00CE1FFA /* WMURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMURLProtocol.h; sourceTree = "<group>"; };
+		19296C432029A5FF00CE1FFA /* WMURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMURLProtocol.m; sourceTree = "<group>"; };
+		19296C452029B31700CE1FFA /* WMAppMonitorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppMonitorViewController.h; sourceTree = "<group>"; };
+		19296C462029B31700CE1FFA /* WMAppMonitorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppMonitorViewController.m; sourceTree = "<group>"; };
+		19296C482029BE7B00CE1FFA /* NSURLSessionConfiguration+WMURLSessionConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+WMURLSessionConfig.h"; sourceTree = "<group>"; };
+		19296C492029BE7B00CE1FFA /* NSURLSessionConfiguration+WMURLSessionConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+WMURLSessionConfig.m"; sourceTree = "<group>"; };
+		19296C4E202C1FC400CE1FFA /* WMMonitorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMMonitorView.h; sourceTree = "<group>"; };
+		19296C4F202C1FC400CE1FFA /* WMMonitorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMonitorView.m; sourceTree = "<group>"; };
+		19296C52202C370D00CE1FFA /* WMDeviceUsageMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDeviceUsageMonitor.h; sourceTree = "<group>"; };
+		19296C53202C370D00CE1FFA /* WMDeviceUsageMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDeviceUsageMonitor.m; sourceTree = "<group>"; };
 		192C13361F0B9B3200759221 /* NotificationConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationConfig.h; sourceTree = "<group>"; };
 		192C13371F0B9B3200759221 /* NotificationConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationConfig.m; sourceTree = "<group>"; };
 		19312CF11FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
@@ -415,6 +433,7 @@
 		191D7A5D1FCBC004003A4ED1 /* CoreCode */ = {
 			isa = PBXGroup;
 			children = (
+				19296C3D2029A54500CE1FFA /* WMAppMonitor */,
 				19296C2B2028371500CE1FFA /* WMScrollPageView */,
 				19312D2B1FF10B43004F6649 /* WMTransition */,
 				191D7A6E1FCBC070003A4ED1 /* WMNetwork */,
@@ -510,6 +529,39 @@
 			path = WMScrollPageView;
 			sourceTree = "<group>";
 		};
+		19296C3D2029A54500CE1FFA /* WMAppMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				19296C51202C36D100CE1FFA /* WMDeviceUsageMonitor */,
+				19296C412029A57700CE1FFA /* WMRequestMonitor */,
+				19296C3E2029A56D00CE1FFA /* WMMonitor.h */,
+				19296C3F2029A56D00CE1FFA /* WMMonitor.m */,
+				19296C4E202C1FC400CE1FFA /* WMMonitorView.h */,
+				19296C4F202C1FC400CE1FFA /* WMMonitorView.m */,
+			);
+			path = WMAppMonitor;
+			sourceTree = "<group>";
+		};
+		19296C412029A57700CE1FFA /* WMRequestMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				19296C422029A5FF00CE1FFA /* WMURLProtocol.h */,
+				19296C432029A5FF00CE1FFA /* WMURLProtocol.m */,
+				19296C482029BE7B00CE1FFA /* NSURLSessionConfiguration+WMURLSessionConfig.h */,
+				19296C492029BE7B00CE1FFA /* NSURLSessionConfiguration+WMURLSessionConfig.m */,
+			);
+			path = WMRequestMonitor;
+			sourceTree = "<group>";
+		};
+		19296C51202C36D100CE1FFA /* WMDeviceUsageMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				19296C52202C370D00CE1FFA /* WMDeviceUsageMonitor.h */,
+				19296C53202C370D00CE1FFA /* WMDeviceUsageMonitor.m */,
+			);
+			path = WMDeviceUsageMonitor;
+			sourceTree = "<group>";
+		};
 		192C13351F0B9B2100759221 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +602,8 @@
 				19312D141FED0C70004F6649 /* WMHuaBanDetailViewController.m */,
 				190117BF1FF4DB26001953E5 /* WMNewGuideViewController.h */,
 				190117C01FF4DB26001953E5 /* WMNewGuideViewController.m */,
+				19296C452029B31700CE1FFA /* WMAppMonitorViewController.h */,
+				19296C462029B31700CE1FFA /* WMAppMonitorViewController.m */,
 			);
 			path = CustomViewController;
 			sourceTree = "<group>";
@@ -1055,10 +1109,12 @@
 				1916F7751FE8C95D0084BB38 /* SwitchAppRequestUrl.m in Sources */,
 				191D7A741FCBC205003A4ED1 /* WMRequestAdapter.m in Sources */,
 				19296C392028371600CE1FFA /* WMScrollPageView.m in Sources */,
+				19296C50202C1FC400CE1FFA /* WMMonitorView.m in Sources */,
 				190117BE1FF4DAE6001953E5 /* ZWMGuideView.m in Sources */,
 				19312D3C1FF34596004F6649 /* WMLoginManager.m in Sources */,
 				198475E21F56979B0074E6D2 /* WMBaseTableViewController.m in Sources */,
 				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
+				19296C442029A5FF00CE1FFA /* WMURLProtocol.m in Sources */,
 				19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */,
 				19BF99101F415A1200B2BB35 /* WMLoginViewController.m in Sources */,
 				19BF991E1F41A3A500B2BB35 /* WMAIListCell.m in Sources */,
@@ -1066,6 +1122,7 @@
 				19296C372028371600CE1FFA /* WMContentView.m in Sources */,
 				19312D151FED0C70004F6649 /* WMHuaBanDetailViewController.m in Sources */,
 				19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */,
+				19296C54202C370D00CE1FFA /* WMDeviceUsageMonitor.m in Sources */,
 				19312CF31FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				19312CF61FECF573004F6649 /* HuabanModel.m in Sources */,
 				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
@@ -1114,6 +1171,7 @@
 				19312CFC1FECF867004F6649 /* UIImageView+WMWebCache.m in Sources */,
 				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,
 				191D7A6D1FCBC059003A4ED1 /* UITextView+LLDebugOnly.m in Sources */,
+				19296C4A2029BE7B00CE1FFA /* NSURLSessionConfiguration+WMURLSessionConfig.m in Sources */,
 				1916F7641FE77C1B0084BB38 /* JQCyclingCycleAnimation.m in Sources */,
 				1916F7631FE77C1B0084BB38 /* JQBounceSpot2Animation.m in Sources */,
 				19F011A31F298FAE00F30BC9 /* WMProductListViewController.m in Sources */,
@@ -1126,7 +1184,9 @@
 				1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */,
 				1916F5521FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.m in Sources */,
 				19218E461F53EAD400FEF66A /* UIViewExt.m in Sources */,
+				19296C472029B31700CE1FFA /* WMAppMonitorViewController.m in Sources */,
 				1995F8011F3C3B9C0036CFBA /* WMPhotoBrowser.m in Sources */,
+				19296C402029A56D00CE1FFA /* WMMonitor.m in Sources */,
 				191D7A771FCBC59D003A4ED1 /* WMRequestManager.m in Sources */,
 				198475E51F5698210074E6D2 /* WMBaseCollectionViewController.m in Sources */,
 				198475DF1F5696870074E6D2 /* WMBaseViewController.m in Sources */,

@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, WMControllerOperation) {
 @property (nonatomic , assign) NSTimeInterval animationDuration;//动画时长
 
 + (instancetype)transitionWithAnimatedType:(WMTransitionAnimatedType)animatedType;
++ (instancetype)transitionAnimatorWithController:(UIViewController<WMTransitionProtocol> *)viewController;
 
 #pragma mark -- 子类实现动画
 - (void)wm_pushAnimation:(id <UIViewControllerContextTransitioning>)transitionContext;

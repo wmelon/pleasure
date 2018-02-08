@@ -20,6 +20,7 @@
 }
 
 + (instancetype)transitionWithAnimatedType:(WMTransitionAnimatedType)animatedType{
+    /// 根据动画类型创建不动转场动画
     switch (animatedType) {
         case WMTransitionAnimatedType_Scale:
             return [[WMTransitionPushPopScale alloc] init];
@@ -29,7 +30,15 @@
             break;
     }
 }
-
++ (instancetype)transitionAnimatorWithController:(UIViewController<WMTransitionProtocol> *)viewController{
+    /// 获取动画类型
+    WMTransitionAnimatedType animatedType = WMTransitionAnimatedType_Scale;
+    if ([viewController respondsToSelector:@selector(transitionAnimatedType)]){
+        animatedType = [viewController transitionAnimatedType];
+    }
+    WMTransitionAnimator *transition = [WMTransitionAnimator transitionWithAnimatedType:animatedType];
+    return transition;
+}
 #pragma mark -- UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
     return self.animationDuration;
@@ -50,12 +59,10 @@
 
 //实现push动画逻辑代码
 - (void)wm_pushAnimation:(id <UIViewControllerContextTransitioning>)transitionContext{
-    
 }
 
 //实现pop动画逻辑代码
 - (void)wm_popAnimation:(id <UIViewControllerContextTransitioning>)transitionContext{
-    
 }
 
 @end

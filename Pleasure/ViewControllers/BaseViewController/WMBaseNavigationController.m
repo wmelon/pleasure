@@ -58,62 +58,38 @@
 //解决手势失效问题
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (_isSystemSlidBack) {
-        self.fd_fullscreenPopGestureRecognizer.enabled = YES;
-        [_popRecognizer setEnabled:NO];
-    }else{
-        self.fd_fullscreenPopGestureRecognizer.enabled = NO;
-        [_popRecognizer setEnabled:YES];
-    }
+    self.fd_fullscreenPopGestureRecognizer.enabled = _isSystemSlidBack;
+    [_popRecognizer setEnabled:!_isSystemSlidBack];
 }
-
-#pragma mark ————— push 和 pop 转场动画区 —————
-
+#pragma mark -- NavitionContollerDelegate  push 和 pop 转场动画区
 //navigation切换是会走这个代理
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
     self.isSystemSlidBack = YES;
     //如果来源VC和目标VC都实现协议，那么都做动画
     if ([fromVC conformsToProtocol:@protocol(WMTransitionProtocol)] && [toVC conformsToProtocol:@protocol(WMTransitionProtocol)]) {
-        WMTransitionAnimator *transion = [self transitionAnimatorWithController:(UIViewController<WMTransitionProtocol> *)fromVC];
-        
+        WMTransitionAnimator *transion = [WMTransitionAnimator transitionAnimatorWithController:(UIViewController<WMTransitionProtocol> *)fromVC];
         if (operation == UINavigationControllerOperationPush) {
             transion.operation = WMControllerOperation_Push;
-            //暂时屏蔽带动画的右划返回
-            self.isSystemSlidBack = NO;
         }
-        else if(operation == UINavigationControllerOperationPop)
-        {
+        else if(operation == UINavigationControllerOperationPop){
             transion.operation = WMControllerOperation_Pop;
-            self.isSystemSlidBack = NO;
         }
         else{
             return nil;
         }
+        //暂时屏蔽系统带动画的右划返回
+        self.isSystemSlidBack = NO;
         return transion;
     }
     return nil;
 }
-
-/// 根据动画类型创建不动转场动画
-- (WMTransitionAnimator *)transitionAnimatorWithController:(UIViewController<WMTransitionProtocol> *)viewController{
-    /// 获取动画类型
-    WMTransitionAnimatedType animatedType = WMTransitionAnimatedType_Scale;
-    if ([viewController respondsToSelector:@selector(transitionAnimatedType)]){
-        animatedType = [viewController transitionAnimatedType];
-    }
-    WMTransitionAnimator *transition = [WMTransitionAnimator transitionWithAnimatedType:animatedType];
-    return transition;
-}
-
-#pragma mark -- NavitionContollerDelegate
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
                          interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController
 {
     if (!self.interactivePopTransition) { return nil; }
     return self.interactivePopTransition;
 }
-
 
 #pragma mark UIGestureRecognizer handlers
 

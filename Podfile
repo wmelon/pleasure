@@ -18,5 +18,6 @@ target :Pleasure do
 #    pod 'WMScrollPageView' , '~> 0.0.5'
     pod 'YYCache' ,'~>1.0.4'  #数据缓存
     pod 'YYModel', '~>1.0.1'
+#    pod 'CocoaLumberjack'   日志收集
 #    pod 'YYKit' , '~>1.0.9'
 end
