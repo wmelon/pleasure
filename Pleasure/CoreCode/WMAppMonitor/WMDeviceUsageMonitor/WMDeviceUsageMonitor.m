@@ -49,6 +49,7 @@
         self.averageScreenUpdatesTime = 0.017f;
         self.screenUpdatesCount = 0;
         [self setupDisplayLink];
+        
     }
     return self;
 }
