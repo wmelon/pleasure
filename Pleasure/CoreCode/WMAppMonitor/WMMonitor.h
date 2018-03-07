@@ -8,20 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol WMMonitorDelegate <NSObject>
-@end
-
 @interface WMMonitor : NSObject
+
 /**
- *  不添加observer，启动 监听
+ 开启app监控
+
+ @param isTest 是否是测试环境，在测试环境下才显示debug视图
  */
-+ (void)startMonitor;
-/**
- *  添加observer 并 启动监听
- *
- *  @param delegate 监听者
- */
-+ (void)startMonitorWithDelegate:(id<WMMonitorDelegate>)delegate;
++ (void)startMonitorAtTest:(BOOL)isTest;
+
 /// 停止监听
 + (void)stopMonitoring;
+
 @end

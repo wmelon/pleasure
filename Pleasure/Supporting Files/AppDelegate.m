@@ -26,8 +26,12 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [AVOSCloud setApplicationId:@"277O51p30kOOJ5SUy9C7x2bs-gzGzoHsz" clientKey:@"FhxSVmiqkN9CjIPdA9xppdlk"];
+#if DEBUG
     /// 开启app监控
-    [WMMonitor startMonitor];
+    [WMMonitor startMonitorAtTest:YES];
+#else
+    [WMMonitor startMonitorAtTest:NO];
+#endif
     return YES;
 }
 

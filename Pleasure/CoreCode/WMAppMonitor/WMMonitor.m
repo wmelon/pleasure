@@ -7,11 +7,13 @@
 //
 
 #import "WMMonitor.h"
-#import "NSURLSessionConfiguration+WMURLSessionConfig.h"
-#import "WMMonitorView.h"
+#import "WMDebugView.h"
+
+#import "WMRequestMonitor.h"
+#import "WMCrashMonitor.h"
 
 @interface WMMonitor()
-@property (nonatomic , weak  ) id<WMMonitorDelegate> delegate;
+@property (nonatomic , assign) BOOL isTest;
 @end
 
 @implementation WMMonitor
@@ -24,23 +26,21 @@
     });
     return instance;
 }
-- (instancetype)init{
-    if (self = [super init]){
-        
++ (void)startMonitorAtTest:(BOOL)isTest{
+    [WMMonitor shareInstance].isTest = isTest;
+    if (isTest){
+        /// 显示debug界面
+        [WMDebugView showDebugView];
     }
-    return self;
-}
-+ (void)startMonitor{
-    [NSURLProtocol registerClass:[WMURLProtocol class]];
-    [WMMonitorView showMonitorView];
-}
-
-+ (void)startMonitorWithDelegate:(id<WMMonitorDelegate>)delegate{
-    [WMMonitor startMonitor];
-    [[WMMonitor shareInstance] setDelegate:delegate];
+    [WMRequestMonitor startRequestMonitor];
+    [WMCrashMonitor startCrashMonitor];
 }
 + (void)stopMonitoring{
-    [NSURLProtocol unregisterClass:[WMURLProtocol class]];
-    [WMMonitorView hiddenMonitorView];
+    if ([WMMonitor shareInstance].isTest){
+        [WMDebugView hiddenDebugView];
+    }
+    [WMRequestMonitor startRequestMonitor];
+    [WMCrashMonitor stopCrashMonitor];
 }
+
 @end

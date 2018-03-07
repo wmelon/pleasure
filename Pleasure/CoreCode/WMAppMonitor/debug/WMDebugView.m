@@ -1,13 +1,15 @@
 //
-//  WMMonitorView.m
+//  WMDebugView.m
 //  Pleasure
 //
-//  Created by Sper on 2018/2/8.
+//  Created by Sper on 2018/3/6.
 //  Copyright © 2018年 WM. All rights reserved.
 //
 
-#import "WMMonitorView.h"
-#import "WMDeviceUsageMonitor.h"
+#import "WMDebugView.h"
+#import "WMCpuMonitor.h"
+#import "WMMemoryMonitor.h"
+#import "WMFpsMonitor.h"
 
 @interface WMTextLabel : UILabel
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
@@ -22,46 +24,48 @@
 - (void)drawTextInRect:(CGRect)rect {
     [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.edgeInsets)];
 }
-- (CGSize)intrinsicContentSize {
-    CGSize size = [super intrinsicContentSize];
-    size.width += self.edgeInsets.left + self.edgeInsets.right;
-    size.height += self.edgeInsets.top + self.edgeInsets.bottom;
-    return size;
-}
-
+//- (CGSize)intrinsicContentSize {
+//    CGSize size = [super intrinsicContentSize];
+//    size.width += self.edgeInsets.left + self.edgeInsets.right;
+//    size.height += self.edgeInsets.top + self.edgeInsets.bottom;
+//    return size;
+//}
+//
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize sizeThatFits = [super sizeThatFits:size];
     sizeThatFits.width += self.edgeInsets.left + self.edgeInsets.right;
     sizeThatFits.height += self.edgeInsets.top + self.edgeInsets.bottom;
     return sizeThatFits;
 }
-
 @end
 
-
-static WMMonitorView *monitorView = nil;
-@interface WMMonitorView()
+static WMDebugView *debugView;
+@interface WMDebugView()
 /// 显示监控数据的文本
 @property (nonatomic, strong) WMTextLabel *monitoringTextLabel;
+@property (nonatomic, assign) double cpuUsage;
+@property (nonatomic, assign) double memoryUsage;
+@property (nonatomic, assign) int fpsUsage;
 @end
-@implementation WMMonitorView
+@implementation WMDebugView
 
-+ (void)showMonitorView{
-    if (monitorView == nil){
++ (void)showDebugView{
+    if (debugView == nil){
         CGFloat offY = 150;
         CGFloat maxWidth = 100;
         CGFloat maxHeight = 44;
-        monitorView = [[WMMonitorView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - maxWidth, offY, maxWidth, maxHeight)];
+        debugView = [[WMDebugView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - maxWidth, offY, maxWidth, maxHeight)];
+        debugView.windowLevel = CGFLOAT_MAX;
+        debugView.backgroundColor = [UIColor clearColor];
     }
-    monitorView.hidden = NO;
+    debugView.hidden = NO;
 }
-+ (void)hiddenMonitorView{
-    if (monitorView){
-        monitorView.hidden = YES;
-        [monitorView stopDeviceUsage];
++ (void)hiddenDebugView{
+    if (debugView){
+        debugView.hidden = YES;
+        [debugView stopDeviceUsage];
     }
 }
-
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
         [self setupWindowAndDefaultVariables];
@@ -70,15 +74,18 @@ static WMMonitorView *monitorView = nil;
     }
     return self;
 }
-#pragma mark - Private Methods
-- (void)startDeviceUsage{
-    __weak typeof(self) weakself = self;
-    [[WMDeviceUsageMonitor shareDeviceUsage] startDeviceUsage:^(WMDeviceInfo *deviceInfo) {
-        [weakself updateMonitoringLabelWithDeviceInfo:deviceInfo];
-    }];
-}
-- (void)stopDeviceUsage{
-    [[WMDeviceUsageMonitor shareDeviceUsage] stopDeviceUsage];
+- (void)setupWindowAndDefaultVariables{
+    UIViewController *rootViewController = [[UIViewController alloc] init];
+    [self setRootViewController:rootViewController];
+    [self setBackgroundColor:[UIColor clearColor]];
+    [self setClipsToBounds:YES];
+    [self setHidden:YES];
+    
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(doHandlePanAction:)];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doHandleTapAction:)];
+    
+    [self addGestureRecognizer:tapGestureRecognizer];
+    [self addGestureRecognizer:panGestureRecognizer];
 }
 - (void)setupTextLayers {
     self.monitoringTextLabel = [[WMTextLabel alloc] init];
@@ -94,21 +101,6 @@ static WMMonitorView *monitorView = nil;
     [self.monitoringTextLabel.layer setCornerRadius:5.0f];
     [self addSubview:self.monitoringTextLabel];
 }
-- (void)setupWindowAndDefaultVariables{
-    UIViewController *rootViewController = [[UIViewController alloc] init];
-    [self setRootViewController:rootViewController];
-    [self setWindowLevel:(UIWindowLevelStatusBar + 1.0f)];
-    [self setBackgroundColor:[UIColor clearColor]];
-    [self setClipsToBounds:YES];
-    [self setHidden:YES];
-    
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(doHandlePanAction:)];
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doHandleTapAction:)];
-    
-    [self addGestureRecognizer:tapGestureRecognizer];
-    [self addGestureRecognizer:panGestureRecognizer];
-}
-
 - (void)doHandleTapAction:(UIGestureRecognizer *)tapAction{
     /// 展开更多监控信息
 }
@@ -142,11 +134,32 @@ static WMMonitorView *monitorView = nil;
         }];
     }
 }
-
-- (void)updateMonitoringLabelWithDeviceInfo:(WMDeviceInfo *)info{
-    NSString *monitoringString = [NSString stringWithFormat:@"FPS:%ld cpu:%.1f%% mem:%.1fMB  :%.1fMB", info.fps,info.cpu ,info.curMemUsage ,info.freeMemory];
-    [self.monitoringTextLabel setText:monitoringString];
+/// 开启资源监控
+- (void)startDeviceUsage{
+    __weak typeof(self) weakself = self;
+    [WMCpuMonitor startCpuMonitor:^(double cpuUsage) {
+        weakself.cpuUsage = cpuUsage;
+        [weakself showResouseInfo];
+    }];
+    [WMMemoryMonitor startMemoryMonitor:^(double memoryUsage) {
+        weakself.memoryUsage = memoryUsage;
+        [weakself showResouseInfo];
+    }];
+    [WMFpsMonitor startFpsMonitor:^(int fpsUsage) {
+        weakself.fpsUsage = fpsUsage;
+        [weakself showResouseInfo];
+    }];
+}
+- (void)showResouseInfo{
+    NSString *text = [NSString stringWithFormat:@"FPS:%d  CPU:%d  Me:%.1fMB" , self.fpsUsage , (int)self.cpuUsage , self.memoryUsage];
+    [self.monitoringTextLabel setText:text];
     [self setNeedsLayout];
+}
+/// 停止资源监控
+- (void)stopDeviceUsage{
+    [WMCpuMonitor stopCpuMonitor];
+    [WMMemoryMonitor stopMemoryMonitor];
+    [WMFpsMonitor stopFpsMonitor];
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -157,9 +170,11 @@ static WMMonitorView *monitorView = nil;
         CGSize labelSize = [self.monitoringTextLabel sizeThatFits:CGSizeMake(maxWidth, maxHeight)];
         if (labelSize.height < minHeight){
             labelSize = CGSizeMake(labelSize.width, minHeight);
+        }else if (labelSize.height > maxHeight){
+            labelSize = CGSizeMake(labelSize.width, maxHeight);
         }
-        self.size = labelSize;
-        [self.monitoringTextLabel setFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
+        self.size = CGSizeMake(maxWidth, labelSize.height);
+        [self.monitoringTextLabel setFrame:CGRectMake(0, 0, self.size.width, self.size.height)];
     }
 }
 
