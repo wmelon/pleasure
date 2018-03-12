@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef struct WMAppMemoryUsage{
+    double usage;   ///< 已用内存(MB)
+    double total;   ///< 总内存(MB)
+    double ratio;   ///< 占用比率
+}WMAppMemoryUsage;
 @interface WMAppMemory : NSObject
-
++ (WMAppMemoryUsage)usageMemory;
 @end

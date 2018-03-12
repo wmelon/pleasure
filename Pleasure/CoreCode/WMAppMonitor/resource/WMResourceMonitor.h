@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^WMResourceMonitorHandle)(double cpuUsage , double memoryUsage);
 @interface WMResourceMonitor : NSObject
-
++ (void)startResourceMonitor:(WMResourceMonitorHandle)resouceHandle;
++ (void)stopResourceMonitor;
 @end

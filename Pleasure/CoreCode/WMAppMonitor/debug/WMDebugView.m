@@ -7,9 +7,8 @@
 //
 
 #import "WMDebugView.h"
-#import "WMCpuMonitor.h"
-#import "WMMemoryMonitor.h"
 #import "WMFpsMonitor.h"
+#import "WMResourceMonitor.h"
 
 @interface WMTextLabel : UILabel
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
@@ -30,7 +29,6 @@
 //    size.height += self.edgeInsets.top + self.edgeInsets.bottom;
 //    return size;
 //}
-//
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize sizeThatFits = [super sizeThatFits:size];
     sizeThatFits.width += self.edgeInsets.left + self.edgeInsets.right;
@@ -137,11 +135,8 @@ static WMDebugView *debugView;
 /// 开启资源监控
 - (void)startDeviceUsage{
     __weak typeof(self) weakself = self;
-    [WMCpuMonitor startCpuMonitor:^(double cpuUsage) {
+    [WMResourceMonitor startResourceMonitor:^(double cpuUsage, double memoryUsage) {
         weakself.cpuUsage = cpuUsage;
-        [weakself showResouseInfo];
-    }];
-    [WMMemoryMonitor startMemoryMonitor:^(double memoryUsage) {
         weakself.memoryUsage = memoryUsage;
         [weakself showResouseInfo];
     }];
@@ -151,14 +146,13 @@ static WMDebugView *debugView;
     }];
 }
 - (void)showResouseInfo{
-    NSString *text = [NSString stringWithFormat:@"FPS:%d  CPU:%d  Me:%.1fMB" , self.fpsUsage , (int)self.cpuUsage , self.memoryUsage];
+    NSString *text = [NSString stringWithFormat:@"FPS:%d  CPU:%d%%  Me:%.1fMB" , self.fpsUsage , (int)self.cpuUsage , self.memoryUsage];
     [self.monitoringTextLabel setText:text];
     [self setNeedsLayout];
 }
 /// 停止资源监控
 - (void)stopDeviceUsage{
-    [WMCpuMonitor stopCpuMonitor];
-    [WMMemoryMonitor stopMemoryMonitor];
+    [WMResourceMonitor stopResourceMonitor];
     [WMFpsMonitor stopFpsMonitor];
 }
 - (void)layoutSubviews{

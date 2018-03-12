@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface WMAppCpu : NSObject
-
++ (double)usageCpu;
 @end
