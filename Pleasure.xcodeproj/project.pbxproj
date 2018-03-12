@@ -96,14 +96,16 @@
 		19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B9BB3D1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m */; };
 		19BDF226204E98B100DFB56E /* WMRequestMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF225204E98B100DFB56E /* WMRequestMonitor.m */; };
 		19BDF22A204E991200DFB56E /* WMDebugView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF229204E991200DFB56E /* WMDebugView.m */; };
-		19BDF230204E9A2100DFB56E /* WMCpuMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF22F204E9A2100DFB56E /* WMCpuMonitor.m */; };
 		19BDF233204E9A4100DFB56E /* WMFpsMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF232204E9A4100DFB56E /* WMFpsMonitor.m */; };
-		19BDF236204E9A4F00DFB56E /* WMMemoryMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF235204E9A4F00DFB56E /* WMMemoryMonitor.m */; };
 		19BDF23A204F9CD100DFB56E /* WMCrashMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF239204F9CD100DFB56E /* WMCrashMonitor.m */; };
 		19BDF23D204F9CF100DFB56E /* WMCrashLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF23C204F9CF100DFB56E /* WMCrashLogger.m */; };
 		19BDF242204F9EE600DFB56E /* NSURLSessionConfiguration+WMURLSessionConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF23E204F9EE500DFB56E /* NSURLSessionConfiguration+WMURLSessionConfig.m */; };
 		19BDF243204F9EE600DFB56E /* WMURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF23F204F9EE500DFB56E /* WMURLProtocol.m */; };
 		19BDF246204FE5F800DFB56E /* WMWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF245204FE5F800DFB56E /* WMWeakProxy.m */; };
+		19BDF24A205114D500DFB56E /* WMGlobalTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF249205114D500DFB56E /* WMGlobalTimer.m */; };
+		19BDF24E205147C900DFB56E /* WMResourceMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF24D205147C900DFB56E /* WMResourceMonitor.m */; };
+		19BDF25120514BF800DFB56E /* WMAppCpu.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF25020514BF800DFB56E /* WMAppCpu.m */; };
+		19BDF25420514C2D00DFB56E /* WMAppMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BDF25320514C2D00DFB56E /* WMAppMemory.m */; };
 		19BF990D1F41460500B2BB35 /* WMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF990C1F41460500B2BB35 /* WMTextView.m */; };
 		19BF99101F415A1200B2BB35 /* WMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF990F1F415A1200B2BB35 /* WMLoginViewController.m */; };
 		19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BF99121F41A0FF00B2BB35 /* WMAIListViewController.m */; };
@@ -305,12 +307,8 @@
 		19BDF225204E98B100DFB56E /* WMRequestMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMRequestMonitor.m; sourceTree = "<group>"; };
 		19BDF228204E991200DFB56E /* WMDebugView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDebugView.h; sourceTree = "<group>"; };
 		19BDF229204E991200DFB56E /* WMDebugView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDebugView.m; sourceTree = "<group>"; };
-		19BDF22E204E9A2100DFB56E /* WMCpuMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMCpuMonitor.h; sourceTree = "<group>"; };
-		19BDF22F204E9A2100DFB56E /* WMCpuMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMCpuMonitor.m; sourceTree = "<group>"; };
 		19BDF231204E9A4100DFB56E /* WMFpsMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMFpsMonitor.h; sourceTree = "<group>"; };
 		19BDF232204E9A4100DFB56E /* WMFpsMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMFpsMonitor.m; sourceTree = "<group>"; };
-		19BDF234204E9A4F00DFB56E /* WMMemoryMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMMemoryMonitor.h; sourceTree = "<group>"; };
-		19BDF235204E9A4F00DFB56E /* WMMemoryMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMemoryMonitor.m; sourceTree = "<group>"; };
 		19BDF238204F9CD100DFB56E /* WMCrashMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMCrashMonitor.h; sourceTree = "<group>"; };
 		19BDF239204F9CD100DFB56E /* WMCrashMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMCrashMonitor.m; sourceTree = "<group>"; };
 		19BDF23B204F9CF100DFB56E /* WMCrashLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMCrashLogger.h; sourceTree = "<group>"; };
@@ -321,6 +319,14 @@
 		19BDF241204F9EE500DFB56E /* NSURLSessionConfiguration+WMURLSessionConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+WMURLSessionConfig.h"; sourceTree = "<group>"; };
 		19BDF244204FE5F800DFB56E /* WMWeakProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMWeakProxy.h; sourceTree = "<group>"; };
 		19BDF245204FE5F800DFB56E /* WMWeakProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMWeakProxy.m; sourceTree = "<group>"; };
+		19BDF248205114D500DFB56E /* WMGlobalTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMGlobalTimer.h; sourceTree = "<group>"; };
+		19BDF249205114D500DFB56E /* WMGlobalTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMGlobalTimer.m; sourceTree = "<group>"; };
+		19BDF24C205147C800DFB56E /* WMResourceMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMResourceMonitor.h; sourceTree = "<group>"; };
+		19BDF24D205147C900DFB56E /* WMResourceMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMResourceMonitor.m; sourceTree = "<group>"; };
+		19BDF24F20514BF800DFB56E /* WMAppCpu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppCpu.h; sourceTree = "<group>"; };
+		19BDF25020514BF800DFB56E /* WMAppCpu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppCpu.m; sourceTree = "<group>"; };
+		19BDF25220514C2D00DFB56E /* WMAppMemory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppMemory.h; sourceTree = "<group>"; };
+		19BDF25320514C2D00DFB56E /* WMAppMemory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppMemory.m; sourceTree = "<group>"; };
 		19BF990B1F41460500B2BB35 /* WMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTextView.h; sourceTree = "<group>"; };
 		19BF990C1F41460500B2BB35 /* WMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTextView.m; sourceTree = "<group>"; };
 		19BF990E1F415A1200B2BB35 /* WMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLoginViewController.h; sourceTree = "<group>"; };
@@ -553,10 +559,10 @@
 		19296C3D2029A54500CE1FFA /* WMAppMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				19BDF24B205147A600DFB56E /* resource */,
+				19BDF2472051149000DFB56E /* tools */,
 				19BDF237204EA25300DFB56E /* crash */,
-				19BDF22D204E9A0500DFB56E /* cpu */,
 				19BDF22C204E99F100DFB56E /* fps */,
-				19BDF22B204E99DC00DFB56E /* memory */,
 				19BDF227204E98D700DFB56E /* debug */,
 				19BDF223204E988B00DFB56E /* network */,
 				19296C51202C36D100CE1FFA /* WMDeviceUsageMonitor */,
@@ -851,15 +857,6 @@
 			path = debug;
 			sourceTree = "<group>";
 		};
-		19BDF22B204E99DC00DFB56E /* memory */ = {
-			isa = PBXGroup;
-			children = (
-				19BDF234204E9A4F00DFB56E /* WMMemoryMonitor.h */,
-				19BDF235204E9A4F00DFB56E /* WMMemoryMonitor.m */,
-			);
-			path = memory;
-			sourceTree = "<group>";
-		};
 		19BDF22C204E99F100DFB56E /* fps */ = {
 			isa = PBXGroup;
 			children = (
@@ -871,15 +868,6 @@
 			path = fps;
 			sourceTree = "<group>";
 		};
-		19BDF22D204E9A0500DFB56E /* cpu */ = {
-			isa = PBXGroup;
-			children = (
-				19BDF22E204E9A2100DFB56E /* WMCpuMonitor.h */,
-				19BDF22F204E9A2100DFB56E /* WMCpuMonitor.m */,
-			);
-			path = cpu;
-			sourceTree = "<group>";
-		};
 		19BDF237204EA25300DFB56E /* crash */ = {
 			isa = PBXGroup;
 			children = (
@@ -889,6 +877,28 @@
 				19BDF23C204F9CF100DFB56E /* WMCrashLogger.m */,
 			);
 			path = crash;
+			sourceTree = "<group>";
+		};
+		19BDF2472051149000DFB56E /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				19BDF248205114D500DFB56E /* WMGlobalTimer.h */,
+				19BDF249205114D500DFB56E /* WMGlobalTimer.m */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		19BDF24B205147A600DFB56E /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				19BDF24C205147C800DFB56E /* WMResourceMonitor.h */,
+				19BDF24D205147C900DFB56E /* WMResourceMonitor.m */,
+				19BDF24F20514BF800DFB56E /* WMAppCpu.h */,
+				19BDF25020514BF800DFB56E /* WMAppCpu.m */,
+				19BDF25220514C2D00DFB56E /* WMAppMemory.h */,
+				19BDF25320514C2D00DFB56E /* WMAppMemory.m */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		19BF991A1F41A37200B2BB35 /* Cells */ = {
@@ -1193,18 +1203,17 @@
 				19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */,
 				19BF99101F415A1200B2BB35 /* WMLoginViewController.m in Sources */,
 				19BF991E1F41A3A500B2BB35 /* WMAIListCell.m in Sources */,
+				19BDF25120514BF800DFB56E /* WMAppCpu.m in Sources */,
 				1922AE281F501D5800E66E46 /* WMSettingViewController.m in Sources */,
 				19296C372028371600CE1FFA /* WMContentView.m in Sources */,
 				19312D151FED0C70004F6649 /* WMHuaBanDetailViewController.m in Sources */,
 				19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */,
-				19BDF236204E9A4F00DFB56E /* WMMemoryMonitor.m in Sources */,
 				19296C54202C370D00CE1FFA /* WMDeviceUsageMonitor.m in Sources */,
 				19312CF31FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				19312CF61FECF573004F6649 /* HuabanModel.m in Sources */,
 				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
 				19312D351FF10B43004F6649 /* WMTransitionPushPopScale.m in Sources */,
 				19BDF246204FE5F800DFB56E /* WMWeakProxy.m in Sources */,
-				19BDF230204E9A2100DFB56E /* WMCpuMonitor.m in Sources */,
 				1916F5421FE106FD0084BB38 /* WMDemoViewController.m in Sources */,
 				19BF99191F41A14200B2BB35 /* WMAIListModel.m in Sources */,
 				19296C3C2028371600CE1FFA /* WMStretchableTableHeaderView.m in Sources */,
@@ -1215,6 +1224,7 @@
 				19296C3B2028371600CE1FFA /* WMSegmentView.m in Sources */,
 				191D7A6C1FCBC059003A4ED1 /* UIScrollView+AppScrollView.m in Sources */,
 				19E3A3351F569F15008D2C52 /* WMAppNavigationBar.m in Sources */,
+				19BDF24A205114D500DFB56E /* WMGlobalTimer.m in Sources */,
 				19BF99371F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m in Sources */,
 				19BF99331F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m in Sources */,
 				1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */,
@@ -1245,6 +1255,7 @@
 				19B312A51F5D547F0096AF65 /* WMPhotoSelectViewController.m in Sources */,
 				195F620B1F4D79C000BB6CA6 /* WMInteractiveTransition.m in Sources */,
 				19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */,
+				19BDF24E205147C900DFB56E /* WMResourceMonitor.m in Sources */,
 				19E3A3371F569F15008D2C52 /* WMSwizzleMethod.m in Sources */,
 				19312D121FED0B70004F6649 /* UIView+WMAppView.m in Sources */,
 				190117C11FF4DB26001953E5 /* WMNewGuideViewController.m in Sources */,
@@ -1259,6 +1270,7 @@
 				19312D331FF10B43004F6649 /* WMPresentAIAnimator.m in Sources */,
 				196032531F09E7AB00126AC7 /* AppDelegate.m in Sources */,
 				19B312AB1F5D54B40096AF65 /* WMPhotoCaptionViewController.m in Sources */,
+				19BDF25420514C2D00DFB56E /* WMAppMemory.m in Sources */,
 				19B312B11F5D5E9B0096AF65 /* WMTopToolBar.m in Sources */,
 				1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */,
 				1916F5521FE26AC60084BB38 /* NSObject+WMAutoCancelRequest.m in Sources */,
