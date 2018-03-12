@@ -8,7 +8,7 @@
 
 #import "WMMonitor.h"
 #import "WMDebugView.h"
-#import "WMRequestMonitor.h"
+//#import "WMRequestMonitor.h"
 #import "WMCrashMonitor.h"
 
 @interface WMMonitor()
@@ -31,14 +31,14 @@
         /// 显示debug界面
         [WMDebugView showDebugView];
     }
-    [WMRequestMonitor startRequestMonitor];
+//    [WMRequestMonitor startRequestMonitor];
     [WMCrashMonitor startCrashMonitor];
 }
 + (void)stopMonitoring{
     if ([WMMonitor shareInstance].isTest){
         [WMDebugView hiddenDebugView];
     }
-    [WMRequestMonitor startRequestMonitor];
+//    [WMRequestMonitor startRequestMonitor];
     [WMCrashMonitor stopCrashMonitor];
 }
 

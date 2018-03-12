@@ -8,6 +8,8 @@
 
 #import "WMFpsMonitor.h"
 #import "WMWeakProxy.h"
+#import "WMAppCpu.h"
+#import "WMAppMemory.h"
 
 static WMFpsMonitor *fpsMonitor;
 
@@ -27,7 +29,9 @@ static WMFpsMonitor *fpsMonitor;
         [self.displayLink addToRunLoop:runloop forMode:NSRunLoopCommonModes];
         self.lastTime = self.displayLink.timestamp;
         if ([self.displayLink respondsToSelector:@selector(setPreferredFramesPerSecond:)]){
-            self.displayLink.preferredFramesPerSecond = 60;
+            if (@available(iOS 10.0, *)){
+                self.displayLink.preferredFramesPerSecond = 60;
+            }
         }else {
             /// 标识间隔多少帧调用一次selector 方法，默认值是1，即每帧都调用一次
             self.displayLink.frameInterval = 1;
@@ -63,8 +67,14 @@ static WMFpsMonitor *fpsMonitor;
     self.lastTime = link.timestamp;
     double fps = _count / interval;
     _count = 0;
+    double usageCpu = [WMAppCpu usageCpu];
+    WMAppMemoryUsage usageMemory = [WMAppMemory usageMemory];
     if (self.fpsHandle){
-        self.fpsHandle((int)round(fps));
+        self.fpsHandle((int)round(fps),usageCpu,usageMemory.usage);
     }
+    
+//    if (resouceHandle){
+//        resouceHandle(usageCpu , usageMemory.usage);
+//    }
 }
 @end

@@ -135,20 +135,28 @@ static WMDebugView *debugView;
 /// 开启资源监控
 - (void)startDeviceUsage{
     __weak typeof(self) weakself = self;
-    [WMResourceMonitor startResourceMonitor:^(double cpuUsage, double memoryUsage) {
+//    [WMResourceMonitor startResourceMonitor:^(double cpuUsage, double memoryUsage) {
+//        weakself.cpuUsage = cpuUsage;
+//        weakself.memoryUsage = memoryUsage;
+//        [weakself showResouseInfo];
+//    }];
+//    [WMFpsMonitor startFpsMonitor:^(int fpsUsage) {
+//        weakself.fpsUsage = fpsUsage;
+//        [weakself showResouseInfo];
+//    }];
+    [WMFpsMonitor startFpsMonitor:^(int fpsUsage, double cpuUsage, double memoryUsage) {
         weakself.cpuUsage = cpuUsage;
-        weakself.memoryUsage = memoryUsage;
-        [weakself showResouseInfo];
-    }];
-    [WMFpsMonitor startFpsMonitor:^(int fpsUsage) {
+        weakself.memoryUsage = memoryUsage - 46;
         weakself.fpsUsage = fpsUsage;
         [weakself showResouseInfo];
     }];
 }
 - (void)showResouseInfo{
-    NSString *text = [NSString stringWithFormat:@"FPS:%d  CPU:%d%%  Me:%.1fMB" , self.fpsUsage , (int)self.cpuUsage , self.memoryUsage];
-    [self.monitoringTextLabel setText:text];
-    [self setNeedsLayout];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *text = [NSString stringWithFormat:@"FPS:%d  CPU:%d%%  Me:%.1fMB" , self.fpsUsage , (int)self.cpuUsage , self.memoryUsage];
+        [self.monitoringTextLabel setText:text];
+        [self setNeedsLayout];
+    });
 }
 /// 停止资源监控
 - (void)stopDeviceUsage{

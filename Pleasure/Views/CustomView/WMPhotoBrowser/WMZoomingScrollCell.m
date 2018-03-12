@@ -116,28 +116,21 @@
     if (_photoModel.image){
         [self wm_displayImageSuccessWithImage:_photoModel.image];
     }else {
+        __weak typeof(self) weakself = self;
         [_photoModel loadUnderlyingImageAndNotify:^(CGFloat progress) {
-            
             /// 显示进度条
-            [self showLoadingIndicator];
-            _loadingIndicator.progress = MAX(MIN(1, progress), 0);
-            
+            [weakself showLoadingIndicator];
+            weakself.loadingIndicator.progress = MAX(MIN(1, progress), 0);
         } complete:^(UIImage *image) {
-            
-            self.imageShowView.hidden = !image;
+            weakself.imageShowView.hidden = !image;
             /// 隐藏进度条
-            [self hideLoadingIndicator];
-            
+            [weakself hideLoadingIndicator];
             if (image){
-                
-                [self wm_displayImageSuccessWithImage:image];
-                
+                [weakself wm_displayImageSuccessWithImage:image];
             } else {
-                
-                [self wm_displayImageFailure];
+                [weakself wm_displayImageFailure];
             }
-            [self setNeedsLayout];
-            
+            [weakself setNeedsLayout];
         }];
     }
 }
