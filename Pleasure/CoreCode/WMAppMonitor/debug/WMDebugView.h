@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WMDebugView : UIWindow
+@interface WMDebugView : UIView
+
 + (void)showDebugView;
 + (void)hiddenDebugView;
 @end

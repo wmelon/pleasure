@@ -8,8 +8,6 @@
 
 #import "WMFpsMonitor.h"
 #import "WMWeakProxy.h"
-#import "WMAppCpu.h"
-#import "WMAppMemory.h"
 
 static WMFpsMonitor *fpsMonitor;
 
@@ -67,14 +65,8 @@ static WMFpsMonitor *fpsMonitor;
     self.lastTime = link.timestamp;
     double fps = _count / interval;
     _count = 0;
-    double usageCpu = [WMAppCpu usageCpu];
-    WMAppMemoryUsage usageMemory = [WMAppMemory usageMemory];
     if (self.fpsHandle){
-        self.fpsHandle((int)round(fps),usageCpu,usageMemory.usage);
+        self.fpsHandle((int)round(fps));
     }
-    
-//    if (resouceHandle){
-//        resouceHandle(usageCpu , usageMemory.usage);
-//    }
 }
 @end

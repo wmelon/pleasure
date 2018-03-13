@@ -10,6 +10,24 @@
 		190117BE1FF4DAE6001953E5 /* ZWMGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 190117BD1FF4DAE6001953E5 /* ZWMGuideView.m */; };
 		190117C11FF4DB26001953E5 /* WMNewGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190117C01FF4DB26001953E5 /* WMNewGuideViewController.m */; };
 		190117C71FF4E1C9001953E5 /* WMTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 190117C61FF4E1C9001953E5 /* WMTestView.xib */; };
+		190AA98E2057714300DB074D /* GT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA98B2057714300DB074D /* GT.framework */; };
+		190AA98F2057714300DB074D /* GT.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 190AA98D2057714300DB074D /* GT.bundle */; };
+		190AA991205771A400DB074D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA990205771A400DB074D /* libz.tbd */; };
+		190AA993205771AF00DB074D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA992205771AF00DB074D /* libsqlite3.tbd */; };
+		190AA995205771BB00DB074D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA994205771BB00DB074D /* Security.framework */; };
+		190AA997205771C600DB074D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA996205771C600DB074D /* CoreTelephony.framework */; };
+		190AA999205771D100DB074D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA998205771D100DB074D /* AdSupport.framework */; };
+		190AA99B205771DF00DB074D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA99A205771DE00DB074D /* AudioToolbox.framework */; };
+		190AA99D205771E900DB074D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA99C205771E900DB074D /* SystemConfiguration.framework */; };
+		190AA99F205771F400DB074D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA99E205771F400DB074D /* QuartzCore.framework */; };
+		190AA9A12057720100DB074D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA9A02057720100DB074D /* CoreGraphics.framework */; };
+		190AA9A32057721500DB074D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA9A22057721500DB074D /* UIKit.framework */; };
+		190AA9A62057A70800DB074D /* WMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9A52057A70800DB074D /* WMDebugViewController.m */; };
+		190AA9A92057C29A00DB074D /* WMNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9A82057C29A00DB074D /* WMNetworkViewController.m */; };
+		190AA9AC2057C2A800DB074D /* WMCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9AB2057C2A800DB074D /* WMCrashViewController.m */; };
+		190AA9AF2057DA5300DB074D /* WMBaseMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9AE2057DA5300DB074D /* WMBaseMonitorViewController.m */; };
+		190AA9B22057DAA400DB074D /* WMMonitorNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9B12057DAA400DB074D /* WMMonitorNavigationController.m */; };
+		190AA9B52057ED5A00DB074D /* WMDebugManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9B42057ED5A00DB074D /* WMDebugManager.m */; };
 		190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */; };
 		1916F5421FE106FD0084BB38 /* WMDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5411FE106FD0084BB38 /* WMDemoViewController.m */; };
 		1916F5451FE116C40084BB38 /* WMNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1916F5441FE116C40084BB38 /* WMNetworkCache.m */; };
@@ -51,7 +69,6 @@
 		19296C3C2028371600CE1FFA /* WMStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C362028371500CE1FFA /* WMStretchableTableHeaderView.m */; };
 		19296C402029A56D00CE1FFA /* WMMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C3F2029A56D00CE1FFA /* WMMonitor.m */; };
 		19296C472029B31700CE1FFA /* WMAppMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C462029B31700CE1FFA /* WMAppMonitorViewController.m */; };
-		19296C54202C370D00CE1FFA /* WMDeviceUsageMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19296C53202C370D00CE1FFA /* WMDeviceUsageMonitor.m */; };
 		192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 192C13371F0B9B3200759221 /* NotificationConfig.m */; };
 		19312CF31FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312CF11FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m */; };
 		19312CF61FECF573004F6649 /* HuabanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19312CF51FECF572004F6649 /* HuabanModel.m */; };
@@ -140,6 +157,30 @@
 		190117BF1FF4DB26001953E5 /* WMNewGuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNewGuideViewController.h; sourceTree = "<group>"; };
 		190117C01FF4DB26001953E5 /* WMNewGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMNewGuideViewController.m; sourceTree = "<group>"; };
 		190117C61FF4E1C9001953E5 /* WMTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMTestView.xib; sourceTree = "<group>"; };
+		190AA98B2057714300DB074D /* GT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GT.framework; sourceTree = "<group>"; };
+		190AA98D2057714300DB074D /* GT.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GT.bundle; sourceTree = "<group>"; };
+		190AA990205771A400DB074D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		190AA992205771AF00DB074D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		190AA994205771BB00DB074D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		190AA996205771C600DB074D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		190AA998205771D100DB074D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		190AA99A205771DE00DB074D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		190AA99C205771E900DB074D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		190AA99E205771F400DB074D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		190AA9A02057720100DB074D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		190AA9A22057721500DB074D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		190AA9A42057A70800DB074D /* WMDebugViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDebugViewController.h; sourceTree = "<group>"; };
+		190AA9A52057A70800DB074D /* WMDebugViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDebugViewController.m; sourceTree = "<group>"; };
+		190AA9A72057C29A00DB074D /* WMNetworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNetworkViewController.h; sourceTree = "<group>"; };
+		190AA9A82057C29A00DB074D /* WMNetworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMNetworkViewController.m; sourceTree = "<group>"; };
+		190AA9AA2057C2A800DB074D /* WMCrashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMCrashViewController.h; sourceTree = "<group>"; };
+		190AA9AB2057C2A800DB074D /* WMCrashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMCrashViewController.m; sourceTree = "<group>"; };
+		190AA9AD2057DA5300DB074D /* WMBaseMonitorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMBaseMonitorViewController.h; sourceTree = "<group>"; };
+		190AA9AE2057DA5300DB074D /* WMBaseMonitorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMBaseMonitorViewController.m; sourceTree = "<group>"; };
+		190AA9B02057DAA400DB074D /* WMMonitorNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMMonitorNavigationController.h; sourceTree = "<group>"; };
+		190AA9B12057DAA400DB074D /* WMMonitorNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMonitorNavigationController.m; sourceTree = "<group>"; };
+		190AA9B32057ED5A00DB074D /* WMDebugManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDebugManager.h; sourceTree = "<group>"; };
+		190AA9B42057ED5A00DB074D /* WMDebugManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDebugManager.m; sourceTree = "<group>"; };
 		190ECA0A1F3BFCDE00E4128C /* WMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhoto.h; sourceTree = "<group>"; };
 		190ECA0B1F3BFCDE00E4128C /* WMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhoto.m; sourceTree = "<group>"; };
 		1916F5401FE106FD0084BB38 /* WMDemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDemoViewController.h; sourceTree = "<group>"; };
@@ -219,8 +260,6 @@
 		19296C3F2029A56D00CE1FFA /* WMMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMonitor.m; sourceTree = "<group>"; };
 		19296C452029B31700CE1FFA /* WMAppMonitorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppMonitorViewController.h; sourceTree = "<group>"; };
 		19296C462029B31700CE1FFA /* WMAppMonitorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppMonitorViewController.m; sourceTree = "<group>"; };
-		19296C52202C370D00CE1FFA /* WMDeviceUsageMonitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDeviceUsageMonitor.h; sourceTree = "<group>"; };
-		19296C53202C370D00CE1FFA /* WMDeviceUsageMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDeviceUsageMonitor.m; sourceTree = "<group>"; };
 		192C13361F0B9B3200759221 /* NotificationConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationConfig.h; sourceTree = "<group>"; };
 		192C13371F0B9B3200759221 /* NotificationConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationConfig.m; sourceTree = "<group>"; };
 		19312CF11FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
@@ -386,7 +425,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190AA9A32057721500DB074D /* UIKit.framework in Frameworks */,
+				190AA9A12057720100DB074D /* CoreGraphics.framework in Frameworks */,
+				190AA99F205771F400DB074D /* QuartzCore.framework in Frameworks */,
+				190AA99D205771E900DB074D /* SystemConfiguration.framework in Frameworks */,
+				190AA99B205771DF00DB074D /* AudioToolbox.framework in Frameworks */,
+				190AA999205771D100DB074D /* AdSupport.framework in Frameworks */,
+				190AA997205771C600DB074D /* CoreTelephony.framework in Frameworks */,
+				190AA995205771BB00DB074D /* Security.framework in Frameworks */,
+				190AA993205771AF00DB074D /* libsqlite3.tbd in Frameworks */,
+				190AA991205771A400DB074D /* libz.tbd in Frameworks */,
 				B3D621B69DF5654B3394EE3A /* libPods-Pleasure.a in Frameworks */,
+				190AA98E2057714300DB074D /* GT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +450,31 @@
 				190117BD1FF4DAE6001953E5 /* ZWMGuideView.m */,
 			);
 			path = ZWMGuideView;
+			sourceTree = "<group>";
+		};
+		190AA9892057714300DB074D /* GT.embeddedframework_v2.2.3 */ = {
+			isa = PBXGroup;
+			children = (
+				190AA98A2057714300DB074D /* GT.embeddedframework */,
+			);
+			path = GT.embeddedframework_v2.2.3;
+			sourceTree = "<group>";
+		};
+		190AA98A2057714300DB074D /* GT.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				190AA98B2057714300DB074D /* GT.framework */,
+				190AA98C2057714300DB074D /* Resources */,
+			);
+			path = GT.embeddedframework;
+			sourceTree = "<group>";
+		};
+		190AA98C2057714300DB074D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				190AA98D2057714300DB074D /* GT.bundle */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		1916F7451FE774A30084BB38 /* WMLodingView */ = {
@@ -556,20 +631,10 @@
 				19BDF22C204E99F100DFB56E /* fps */,
 				19BDF227204E98D700DFB56E /* debug */,
 				19BDF223204E988B00DFB56E /* network */,
-				19296C51202C36D100CE1FFA /* WMDeviceUsageMonitor */,
 				19296C3E2029A56D00CE1FFA /* WMMonitor.h */,
 				19296C3F2029A56D00CE1FFA /* WMMonitor.m */,
 			);
 			path = WMAppMonitor;
-			sourceTree = "<group>";
-		};
-		19296C51202C36D100CE1FFA /* WMDeviceUsageMonitor */ = {
-			isa = PBXGroup;
-			children = (
-				19296C52202C370D00CE1FFA /* WMDeviceUsageMonitor.h */,
-				19296C53202C370D00CE1FFA /* WMDeviceUsageMonitor.m */,
-			);
-			path = WMDeviceUsageMonitor;
 			sourceTree = "<group>";
 		};
 		192C13351F0B9B2100759221 /* Config */ = {
@@ -838,6 +903,18 @@
 			children = (
 				19BDF228204E991200DFB56E /* WMDebugView.h */,
 				19BDF229204E991200DFB56E /* WMDebugView.m */,
+				190AA9A42057A70800DB074D /* WMDebugViewController.h */,
+				190AA9A52057A70800DB074D /* WMDebugViewController.m */,
+				190AA9A72057C29A00DB074D /* WMNetworkViewController.h */,
+				190AA9A82057C29A00DB074D /* WMNetworkViewController.m */,
+				190AA9AA2057C2A800DB074D /* WMCrashViewController.h */,
+				190AA9AB2057C2A800DB074D /* WMCrashViewController.m */,
+				190AA9AD2057DA5300DB074D /* WMBaseMonitorViewController.h */,
+				190AA9AE2057DA5300DB074D /* WMBaseMonitorViewController.m */,
+				190AA9B02057DAA400DB074D /* WMMonitorNavigationController.h */,
+				190AA9B12057DAA400DB074D /* WMMonitorNavigationController.m */,
+				190AA9B32057ED5A00DB074D /* WMDebugManager.h */,
+				190AA9B42057ED5A00DB074D /* WMDebugManager.m */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -1022,6 +1099,17 @@
 		E79A4222413A90F381CDC7C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				190AA9A22057721500DB074D /* UIKit.framework */,
+				190AA9A02057720100DB074D /* CoreGraphics.framework */,
+				190AA99E205771F400DB074D /* QuartzCore.framework */,
+				190AA99C205771E900DB074D /* SystemConfiguration.framework */,
+				190AA99A205771DE00DB074D /* AudioToolbox.framework */,
+				190AA998205771D100DB074D /* AdSupport.framework */,
+				190AA996205771C600DB074D /* CoreTelephony.framework */,
+				190AA994205771BB00DB074D /* Security.framework */,
+				190AA992205771AF00DB074D /* libsqlite3.tbd */,
+				190AA990205771A400DB074D /* libz.tbd */,
+				190AA9892057714300DB074D /* GT.embeddedframework_v2.2.3 */,
 				426EAAA1A6278F9D34392767 /* libPods-Pleasure.a */,
 			);
 			name = Frameworks;
@@ -1089,6 +1177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1922AE241F50173500E66E46 /* icon_delete_image_wm@2x.png in Resources */,
+				190AA98F2057714300DB074D /* GT.bundle in Resources */,
 				19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */,
 				19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */,
 				1922AE251F50173500E66E46 /* icon_delete_image_wm@3x.png in Resources */,
@@ -1173,6 +1262,7 @@
 				198475E81F5698ED0074E6D2 /* WMBaseNavigationController.m in Sources */,
 				197204E31F46F06300001A83 /* WMDownloadWaveLayer.m in Sources */,
 				1916F77B1FE9196A0084BB38 /* NSError+Extension.m in Sources */,
+				190AA9A92057C29A00DB074D /* WMNetworkViewController.m in Sources */,
 				19E3A3171F569A5F008D2C52 /* WMHomeViewController.m in Sources */,
 				19B312A81F5D54A50096AF65 /* WMPhotoBrowserViewController.m in Sources */,
 				19E3A31A1F569BB6008D2C52 /* WMMineViewController.m in Sources */,
@@ -1182,6 +1272,7 @@
 				19296C392028371600CE1FFA /* WMScrollPageView.m in Sources */,
 				190117BE1FF4DAE6001953E5 /* ZWMGuideView.m in Sources */,
 				19312D3C1FF34596004F6649 /* WMLoginManager.m in Sources */,
+				190AA9A62057A70800DB074D /* WMDebugViewController.m in Sources */,
 				198475E21F56979B0074E6D2 /* WMBaseTableViewController.m in Sources */,
 				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
 				19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */,
@@ -1192,7 +1283,6 @@
 				19296C372028371600CE1FFA /* WMContentView.m in Sources */,
 				19312D151FED0C70004F6649 /* WMHuaBanDetailViewController.m in Sources */,
 				19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */,
-				19296C54202C370D00CE1FFA /* WMDeviceUsageMonitor.m in Sources */,
 				19312CF31FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				19312CF61FECF573004F6649 /* HuabanModel.m in Sources */,
 				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
@@ -1201,6 +1291,7 @@
 				1916F5421FE106FD0084BB38 /* WMDemoViewController.m in Sources */,
 				19BF99191F41A14200B2BB35 /* WMAIListModel.m in Sources */,
 				19296C3C2028371600CE1FFA /* WMStretchableTableHeaderView.m in Sources */,
+				190AA9B52057ED5A00DB074D /* WMDebugManager.m in Sources */,
 				1916F7671FE77C1B0084BB38 /* JQMusic1Animation.m in Sources */,
 				191BB6611F615443000BF57F /* WMNewsDetailViewController.m in Sources */,
 				196032611F09E7AB00126AC7 /* main.m in Sources */,
@@ -1211,8 +1302,10 @@
 				19BDF24A205114D500DFB56E /* WMGlobalTimer.m in Sources */,
 				19BF99371F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m in Sources */,
 				19BF99331F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m in Sources */,
+				190AA9B22057DAA400DB074D /* WMMonitorNavigationController.m in Sources */,
 				1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */,
 				190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */,
+				190AA9AC2057C2A800DB074D /* WMCrashViewController.m in Sources */,
 				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
 				19BDF23D204F9CF100DFB56E /* WMCrashLogger.m in Sources */,
 				1916F7651FE77C1B0084BB38 /* JQCyclingLineAnimation.m in Sources */,
@@ -1272,6 +1365,7 @@
 				1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */,
 				1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */,
 				19312D341FF10B43004F6649 /* WMTransitionAnimator.m in Sources */,
+				190AA9AF2057DA5300DB074D /* WMBaseMonitorViewController.m in Sources */,
 				191D7A6A1FCBC059003A4ED1 /* UIColor+AppColor.m in Sources */,
 				193FA2C71FCD7F9400A0E56B /* WMUtility.m in Sources */,
 				19BDF23A204F9CD100DFB56E /* WMCrashMonitor.m in Sources */,
@@ -1405,6 +1499,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WZCA99V8R2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GT.embeddedframework_v2.2.3/GT.embeddedframework",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Pleasure/Supporting Files/Pleasure.pch";
 				INFOPLIST_FILE = "Pleasure/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1421,6 +1519,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WZCA99V8R2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GT.embeddedframework_v2.2.3/GT.embeddedframework",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Pleasure/Supporting Files/Pleasure.pch";
 				INFOPLIST_FILE = "Pleasure/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

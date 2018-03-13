@@ -10,6 +10,7 @@
 #import "SwitchViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "WMMonitor.h"
+#include <GT/GT.h>
 
 @interface AppDelegate ()
 
@@ -32,6 +33,8 @@
 #else
     [WMMonitor startMonitorAtTest:NO];
 #endif
+    // GT Usage(合入) 初始化
+//    GT_DEBUG_INIT;
     return YES;
 }
 

@@ -13,6 +13,7 @@
 
 @interface WMMonitor()
 @property (nonatomic , assign) BOOL isTest;
+//@property (nonatomic , strong) WMDebugView *debugView;
 @end
 
 @implementation WMMonitor

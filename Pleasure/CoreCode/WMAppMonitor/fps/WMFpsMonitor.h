@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^WMFpsMonitorHandle)(int fpsUsage ,double cpuUsage , double memoryUsage);
+typedef void(^WMFpsMonitorHandle)(int fpsUsage);
 @interface WMFpsMonitor : NSObject
 + (void)startFpsMonitor:(WMFpsMonitorHandle)fpsHanele;
 + (void)stopFpsMonitor;
