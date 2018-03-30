@@ -84,6 +84,7 @@ static WMDebugView *debugView;
         debugView.window.hidden = YES;
         debugView.window.rootViewController = nil;
         [debugView stopDeviceUsage];
+        debugView = nil;
     }
 }
 - (instancetype)initWithFrame:(CGRect)frame{
