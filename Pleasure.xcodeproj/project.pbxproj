@@ -22,11 +22,6 @@
 		190AA99F205771F400DB074D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA99E205771F400DB074D /* QuartzCore.framework */; };
 		190AA9A12057720100DB074D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA9A02057720100DB074D /* CoreGraphics.framework */; };
 		190AA9A32057721500DB074D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 190AA9A22057721500DB074D /* UIKit.framework */; };
-		190AA9A62057A70800DB074D /* WMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9A52057A70800DB074D /* WMDebugViewController.m */; };
-		190AA9A92057C29A00DB074D /* WMNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9A82057C29A00DB074D /* WMNetworkViewController.m */; };
-		190AA9AC2057C2A800DB074D /* WMCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9AB2057C2A800DB074D /* WMCrashViewController.m */; };
-		190AA9AF2057DA5300DB074D /* WMBaseMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9AE2057DA5300DB074D /* WMBaseMonitorViewController.m */; };
-		190AA9B22057DAA400DB074D /* WMMonitorNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9B12057DAA400DB074D /* WMMonitorNavigationController.m */; };
 		190AA9B52057ED5A00DB074D /* WMDebugManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9B42057ED5A00DB074D /* WMDebugManager.m */; };
 		190AA9B82058CF7300DB074D /* WMURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9B72058CF7300DB074D /* WMURLProtocol.m */; };
 		190AA9BB2058D1B700DB074D /* WMRequestMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 190AA9BA2058D1B700DB074D /* WMRequestMonitor.m */; };
@@ -103,6 +98,16 @@
 		1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8031F3C3BE80036CFBA /* WMPhotoModel.m */; };
 		1995F8071F3C3CF60036CFBA /* WMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F8061F3C3CF60036CFBA /* WMCaptionView.m */; };
 		1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */; };
+		19AC0FCD208448A10014A1C2 /* WMDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FC6208448A00014A1C2 /* WMDebugViewController.m */; };
+		19AC0FCE208448A10014A1C2 /* WMCrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FC7208448A00014A1C2 /* WMCrashViewController.m */; };
+		19AC0FCF208448A10014A1C2 /* WMBaseMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FC8208448A00014A1C2 /* WMBaseMonitorViewController.m */; };
+		19AC0FD0208448A10014A1C2 /* WMNetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FCA208448A00014A1C2 /* WMNetworkViewController.m */; };
+		19AC0FD1208448A10014A1C2 /* WMMonitorNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FCB208448A00014A1C2 /* WMMonitorNavigationController.m */; };
+		19AC0FD4208486FA0014A1C2 /* WMHttpDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FD3208486FA0014A1C2 /* WMHttpDatasource.m */; };
+		19AC0FD720848BF30014A1C2 /* WMAPMHttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FD620848BF30014A1C2 /* WMAPMHttpModel.m */; };
+		19AC0FDC20849F9F0014A1C2 /* WMHttpRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FDA20849F9F0014A1C2 /* WMHttpRequestCell.m */; };
+		19AC0FDD20849F9F0014A1C2 /* WMHttpRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19AC0FDB20849F9F0014A1C2 /* WMHttpRequestCell.xib */; };
+		19AC0FE02084A9E70014A1C2 /* WMNetworkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FDF2084A9E70014A1C2 /* WMNetworkDetailViewController.m */; };
 		19B312A51F5D547F0096AF65 /* WMPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312A41F5D547F0096AF65 /* WMPhotoSelectViewController.m */; };
 		19B312A81F5D54A50096AF65 /* WMPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312A71F5D54A50096AF65 /* WMPhotoBrowserViewController.m */; };
 		19B312AB1F5D54B40096AF65 /* WMPhotoCaptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312AA1F5D54B40096AF65 /* WMPhotoCaptionViewController.m */; };
@@ -172,16 +177,6 @@
 		190AA99E205771F400DB074D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		190AA9A02057720100DB074D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		190AA9A22057721500DB074D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		190AA9A42057A70800DB074D /* WMDebugViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDebugViewController.h; sourceTree = "<group>"; };
-		190AA9A52057A70800DB074D /* WMDebugViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDebugViewController.m; sourceTree = "<group>"; };
-		190AA9A72057C29A00DB074D /* WMNetworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNetworkViewController.h; sourceTree = "<group>"; };
-		190AA9A82057C29A00DB074D /* WMNetworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMNetworkViewController.m; sourceTree = "<group>"; };
-		190AA9AA2057C2A800DB074D /* WMCrashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMCrashViewController.h; sourceTree = "<group>"; };
-		190AA9AB2057C2A800DB074D /* WMCrashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMCrashViewController.m; sourceTree = "<group>"; };
-		190AA9AD2057DA5300DB074D /* WMBaseMonitorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMBaseMonitorViewController.h; sourceTree = "<group>"; };
-		190AA9AE2057DA5300DB074D /* WMBaseMonitorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMBaseMonitorViewController.m; sourceTree = "<group>"; };
-		190AA9B02057DAA400DB074D /* WMMonitorNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMMonitorNavigationController.h; sourceTree = "<group>"; };
-		190AA9B12057DAA400DB074D /* WMMonitorNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMMonitorNavigationController.m; sourceTree = "<group>"; };
 		190AA9B32057ED5A00DB074D /* WMDebugManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMDebugManager.h; sourceTree = "<group>"; };
 		190AA9B42057ED5A00DB074D /* WMDebugManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMDebugManager.m; sourceTree = "<group>"; };
 		190AA9B62058CF7300DB074D /* WMURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMURLProtocol.h; sourceTree = "<group>"; };
@@ -330,6 +325,25 @@
 		1995F8061F3C3CF60036CFBA /* WMCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCaptionView.m; sourceTree = "<group>"; };
 		1995F80A1F3C57F60036CFBA /* WMZoomingScrollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMZoomingScrollCell.h; sourceTree = "<group>"; };
 		1995F80B1F3C57F60036CFBA /* WMZoomingScrollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMZoomingScrollCell.m; sourceTree = "<group>"; };
+		19AC0FC3208448A00014A1C2 /* WMNetworkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNetworkViewController.h; sourceTree = "<group>"; };
+		19AC0FC4208448A00014A1C2 /* WMCrashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCrashViewController.h; sourceTree = "<group>"; };
+		19AC0FC5208448A00014A1C2 /* WMBaseMonitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMBaseMonitorViewController.h; sourceTree = "<group>"; };
+		19AC0FC6208448A00014A1C2 /* WMDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDebugViewController.m; sourceTree = "<group>"; };
+		19AC0FC7208448A00014A1C2 /* WMCrashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCrashViewController.m; sourceTree = "<group>"; };
+		19AC0FC8208448A00014A1C2 /* WMBaseMonitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMBaseMonitorViewController.m; sourceTree = "<group>"; };
+		19AC0FC9208448A00014A1C2 /* WMMonitorNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMonitorNavigationController.h; sourceTree = "<group>"; };
+		19AC0FCA208448A00014A1C2 /* WMNetworkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNetworkViewController.m; sourceTree = "<group>"; };
+		19AC0FCB208448A00014A1C2 /* WMMonitorNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMonitorNavigationController.m; sourceTree = "<group>"; };
+		19AC0FCC208448A00014A1C2 /* WMDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDebugViewController.h; sourceTree = "<group>"; };
+		19AC0FD2208486FA0014A1C2 /* WMHttpDatasource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMHttpDatasource.h; sourceTree = "<group>"; };
+		19AC0FD3208486FA0014A1C2 /* WMHttpDatasource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMHttpDatasource.m; sourceTree = "<group>"; };
+		19AC0FD520848BF30014A1C2 /* WMAPMHttpModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAPMHttpModel.h; sourceTree = "<group>"; };
+		19AC0FD620848BF30014A1C2 /* WMAPMHttpModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAPMHttpModel.m; sourceTree = "<group>"; };
+		19AC0FD920849F9F0014A1C2 /* WMHttpRequestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMHttpRequestCell.h; sourceTree = "<group>"; };
+		19AC0FDA20849F9F0014A1C2 /* WMHttpRequestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMHttpRequestCell.m; sourceTree = "<group>"; };
+		19AC0FDB20849F9F0014A1C2 /* WMHttpRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMHttpRequestCell.xib; sourceTree = "<group>"; };
+		19AC0FDE2084A9E70014A1C2 /* WMNetworkDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNetworkDetailViewController.h; sourceTree = "<group>"; };
+		19AC0FDF2084A9E70014A1C2 /* WMNetworkDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMNetworkDetailViewController.m; sourceTree = "<group>"; };
 		19B312A31F5D547F0096AF65 /* WMPhotoSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoSelectViewController.h; sourceTree = "<group>"; };
 		19B312A41F5D547F0096AF65 /* WMPhotoSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoSelectViewController.m; sourceTree = "<group>"; };
 		19B312A61F5D54A50096AF65 /* WMPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoBrowserViewController.h; sourceTree = "<group>"; };
@@ -634,12 +648,14 @@
 		19296C3D2029A54500CE1FFA /* WMAppMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				19AC0FD820849F250014A1C2 /* cells */,
+				19AC0FC2208448280014A1C2 /* controllers */,
+				19BDF223204E988B00DFB56E /* network */,
 				19BDF24B205147A600DFB56E /* resource */,
 				19BDF2472051149000DFB56E /* tools */,
 				19BDF237204EA25300DFB56E /* crash */,
 				19BDF22C204E99F100DFB56E /* fps */,
 				19BDF227204E98D700DFB56E /* debug */,
-				19BDF223204E988B00DFB56E /* network */,
 				19296C3E2029A56D00CE1FFA /* WMMonitor.h */,
 				19296C3F2029A56D00CE1FFA /* WMMonitor.m */,
 			);
@@ -900,6 +916,35 @@
 			path = WMPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		19AC0FC2208448280014A1C2 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				19AC0FC5208448A00014A1C2 /* WMBaseMonitorViewController.h */,
+				19AC0FC8208448A00014A1C2 /* WMBaseMonitorViewController.m */,
+				19AC0FC4208448A00014A1C2 /* WMCrashViewController.h */,
+				19AC0FC7208448A00014A1C2 /* WMCrashViewController.m */,
+				19AC0FCC208448A00014A1C2 /* WMDebugViewController.h */,
+				19AC0FC6208448A00014A1C2 /* WMDebugViewController.m */,
+				19AC0FC9208448A00014A1C2 /* WMMonitorNavigationController.h */,
+				19AC0FCB208448A00014A1C2 /* WMMonitorNavigationController.m */,
+				19AC0FC3208448A00014A1C2 /* WMNetworkViewController.h */,
+				19AC0FCA208448A00014A1C2 /* WMNetworkViewController.m */,
+				19AC0FDE2084A9E70014A1C2 /* WMNetworkDetailViewController.h */,
+				19AC0FDF2084A9E70014A1C2 /* WMNetworkDetailViewController.m */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		19AC0FD820849F250014A1C2 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				19AC0FD920849F9F0014A1C2 /* WMHttpRequestCell.h */,
+				19AC0FDA20849F9F0014A1C2 /* WMHttpRequestCell.m */,
+				19AC0FDB20849F9F0014A1C2 /* WMHttpRequestCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
 		19BDF223204E988B00DFB56E /* network */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +952,10 @@
 				190AA9B72058CF7300DB074D /* WMURLProtocol.m */,
 				190AA9B92058D1B700DB074D /* WMRequestMonitor.h */,
 				190AA9BA2058D1B700DB074D /* WMRequestMonitor.m */,
+				19AC0FD2208486FA0014A1C2 /* WMHttpDatasource.h */,
+				19AC0FD3208486FA0014A1C2 /* WMHttpDatasource.m */,
+				19AC0FD520848BF30014A1C2 /* WMAPMHttpModel.h */,
+				19AC0FD620848BF30014A1C2 /* WMAPMHttpModel.m */,
 			);
 			path = network;
 			sourceTree = "<group>";
@@ -916,16 +965,6 @@
 			children = (
 				19BDF228204E991200DFB56E /* WMDebugView.h */,
 				19BDF229204E991200DFB56E /* WMDebugView.m */,
-				190AA9A42057A70800DB074D /* WMDebugViewController.h */,
-				190AA9A52057A70800DB074D /* WMDebugViewController.m */,
-				190AA9A72057C29A00DB074D /* WMNetworkViewController.h */,
-				190AA9A82057C29A00DB074D /* WMNetworkViewController.m */,
-				190AA9AA2057C2A800DB074D /* WMCrashViewController.h */,
-				190AA9AB2057C2A800DB074D /* WMCrashViewController.m */,
-				190AA9AD2057DA5300DB074D /* WMBaseMonitorViewController.h */,
-				190AA9AE2057DA5300DB074D /* WMBaseMonitorViewController.m */,
-				190AA9B02057DAA400DB074D /* WMMonitorNavigationController.h */,
-				190AA9B12057DAA400DB074D /* WMMonitorNavigationController.m */,
 				190AA9B32057ED5A00DB074D /* WMDebugManager.h */,
 				190AA9B42057ED5A00DB074D /* WMDebugManager.m */,
 			);
@@ -1198,6 +1237,7 @@
 				1922AE251F50173500E66E46 /* icon_delete_image_wm@3x.png in Resources */,
 				1960325E1F09E7AB00126AC7 /* LaunchScreen.storyboard in Resources */,
 				19B312BF1F5D65510096AF65 /* icon_detail_more_wm@3x.png in Resources */,
+				19AC0FDD20849F9F0014A1C2 /* WMHttpRequestCell.xib in Resources */,
 				1960325B1F09E7AB00126AC7 /* Assets.xcassets in Resources */,
 				19382EBB1F39B43F0029AAA3 /* addphoto@2x.png in Resources */,
 				1916F7721FE7AA1C0084BB38 /* icon_error_unkown@3x.png in Resources */,
@@ -1277,7 +1317,6 @@
 				198475E81F5698ED0074E6D2 /* WMBaseNavigationController.m in Sources */,
 				197204E31F46F06300001A83 /* WMDownloadWaveLayer.m in Sources */,
 				1916F77B1FE9196A0084BB38 /* NSError+Extension.m in Sources */,
-				190AA9A92057C29A00DB074D /* WMNetworkViewController.m in Sources */,
 				19E3A3171F569A5F008D2C52 /* WMHomeViewController.m in Sources */,
 				190AA9C8205A7B5800DB074D /* UIWindow+WMMotion.m in Sources */,
 				19B312A81F5D54A50096AF65 /* WMPhotoBrowserViewController.m in Sources */,
@@ -1288,7 +1327,6 @@
 				19296C392028371600CE1FFA /* WMScrollPageView.m in Sources */,
 				190117BE1FF4DAE6001953E5 /* ZWMGuideView.m in Sources */,
 				19312D3C1FF34596004F6649 /* WMLoginManager.m in Sources */,
-				190AA9A62057A70800DB074D /* WMDebugViewController.m in Sources */,
 				198475E21F56979B0074E6D2 /* WMBaseTableViewController.m in Sources */,
 				19BF99311F41A63E00B2BB35 /* FontAttribute.m in Sources */,
 				19BF993A1F41B15600B2BB35 /* WMAIHerbDetailViewController.m in Sources */,
@@ -1309,6 +1347,8 @@
 				19296C3C2028371600CE1FFA /* WMStretchableTableHeaderView.m in Sources */,
 				190AA9B52057ED5A00DB074D /* WMDebugManager.m in Sources */,
 				1916F7671FE77C1B0084BB38 /* JQMusic1Animation.m in Sources */,
+				19AC0FD0208448A10014A1C2 /* WMNetworkViewController.m in Sources */,
+				19AC0FE02084A9E70014A1C2 /* WMNetworkDetailViewController.m in Sources */,
 				191BB6611F615443000BF57F /* WMNewsDetailViewController.m in Sources */,
 				196032611F09E7AB00126AC7 /* main.m in Sources */,
 				19E3A3261F569F0A008D2C52 /* WMRootViewController.m in Sources */,
@@ -1316,12 +1356,14 @@
 				191D7A6C1FCBC059003A4ED1 /* UIScrollView+AppScrollView.m in Sources */,
 				19E3A3351F569F15008D2C52 /* WMAppNavigationBar.m in Sources */,
 				19BDF24A205114D500DFB56E /* WMGlobalTimer.m in Sources */,
+				19AC0FCE208448A10014A1C2 /* WMCrashViewController.m in Sources */,
 				19BF99371F41ABD200B2BB35 /* WMAIBeginnerCookViewController.m in Sources */,
+				19AC0FD4208486FA0014A1C2 /* WMHttpDatasource.m in Sources */,
 				19BF99331F41A63E00B2BB35 /* NSMutableAttributedString+StringAttribute.m in Sources */,
-				190AA9B22057DAA400DB074D /* WMMonitorNavigationController.m in Sources */,
+				19AC0FDC20849F9F0014A1C2 /* WMHttpRequestCell.m in Sources */,
 				1995F80C1F3C57F60036CFBA /* WMZoomingScrollCell.m in Sources */,
 				190ECA0C1F3BFCDE00E4128C /* WMPhoto.m in Sources */,
-				190AA9AC2057C2A800DB074D /* WMCrashViewController.m in Sources */,
+				19AC0FD1208448A10014A1C2 /* WMMonitorNavigationController.m in Sources */,
 				19382EB41F396BA60029AAA3 /* WMInputInfoView.m in Sources */,
 				19BDF23D204F9CF100DFB56E /* WMCrashLogger.m in Sources */,
 				1916F7651FE77C1B0084BB38 /* JQCyclingLineAnimation.m in Sources */,
@@ -1333,6 +1375,7 @@
 				1916F74E1FE774F20084BB38 /* WMGifLoadingView.m in Sources */,
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
 				1916F7661FE77C1B0084BB38 /* JQIndicatorView.m in Sources */,
+				19AC0FCF208448A10014A1C2 /* WMBaseMonitorViewController.m in Sources */,
 				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,
 				191BB65E1F615376000BF57F /* WMBaseWebViewController.m in Sources */,
 				19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */,
@@ -1347,6 +1390,7 @@
 				19CEF9E71F271E9000D56386 /* WMRecordViewController.m in Sources */,
 				19B312A51F5D547F0096AF65 /* WMPhotoSelectViewController.m in Sources */,
 				195F620B1F4D79C000BB6CA6 /* WMInteractiveTransition.m in Sources */,
+				19AC0FD720848BF30014A1C2 /* WMAPMHttpModel.m in Sources */,
 				19BF99161F41A13200B2BB35 /* WMBaseModel.m in Sources */,
 				19BDF24E205147C900DFB56E /* WMResourceMonitor.m in Sources */,
 				19E3A3371F569F15008D2C52 /* WMSwizzleMethod.m in Sources */,
@@ -1354,6 +1398,7 @@
 				190117C11FF4DB26001953E5 /* WMNewGuideViewController.m in Sources */,
 				19312CFC1FECF867004F6649 /* UIImageView+WMWebCache.m in Sources */,
 				19BF99301F41A63E00B2BB35 /* StringAttribute.m in Sources */,
+				19AC0FCD208448A10014A1C2 /* WMDebugViewController.m in Sources */,
 				191D7A6D1FCBC059003A4ED1 /* UITextView+LLDebugOnly.m in Sources */,
 				1916F7641FE77C1B0084BB38 /* JQCyclingCycleAnimation.m in Sources */,
 				1916F7631FE77C1B0084BB38 /* JQBounceSpot2Animation.m in Sources */,
@@ -1382,7 +1427,6 @@
 				1920F10A1F3D619900087326 /* WMTapDetectingImageView.m in Sources */,
 				1995F8041F3C3BE80036CFBA /* WMPhotoModel.m in Sources */,
 				19312D341FF10B43004F6649 /* WMTransitionAnimator.m in Sources */,
-				190AA9AF2057DA5300DB074D /* WMBaseMonitorViewController.m in Sources */,
 				191D7A6A1FCBC059003A4ED1 /* UIColor+AppColor.m in Sources */,
 				193FA2C71FCD7F9400A0E56B /* WMUtility.m in Sources */,
 				19BDF23A204F9CD100DFB56E /* WMCrashMonitor.m in Sources */,
