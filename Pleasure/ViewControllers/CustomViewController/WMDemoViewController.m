@@ -8,8 +8,10 @@
 
 #import "WMDemoViewController.h"
 #import "WMLoginManager.h"
+#import "WMLocationManager.h"
 
 @interface WMDemoViewController ()
+@property (nonatomic , strong) WMLocationManager *locationManager;
 @end
 
 @implementation WMDemoViewController
@@ -29,10 +31,40 @@
     btn1.backgroundColor = [UIColor redColor];
     [btn1 addTarget:self action:@selector(canael:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
+    
+    _locationManager = [[WMLocationManager alloc] init];
+    _locationManager.openTipType = WMLocationOpenTipType_always;
+    _locationManager.distanceFilter = 500;
 }
 
 
 - (void)canael:(UIButton *)button{
+//    WMLocationInfo *locationInfo = [[WMLocationSession shareLocationSession] locationInfo];
+//    if (locationInfo.lat && locationInfo.lng){
+//        NSLog(@"%f  %f" , locationInfo.lat , locationInfo.lng);
+//    }else {
+        [_locationManager startLocationForLocationResult:^(CLLocationDegrees latitude, CLLocationDegrees longtitud) {
+            NSLog(@"这里是执行了定位成功");
+        } locationFailedHandle:^(NSError *error) {
+            NSLog(@"这里是定位失败的");
+        }];
+        
+//        [_locationManager requestLocationForCompletionBlock:^(CLLocation *location, AMapAddressComponent *addressCom, NSError *error) {
+//            if (error){
+//                NSLog(@"%@" , error);
+//            }else {
+//                NSLog(@"%@  %@" , location , addressCom);
+//            }
+//        }];
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
     
 //    [self.view showLoadingType:(WMLoadingType_indicator)];
 //

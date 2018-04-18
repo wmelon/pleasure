@@ -11,6 +11,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "WMMonitor.h"
 #include <GT/GT.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface AppDelegate ()
 
@@ -24,6 +25,9 @@
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [SwitchViewController sharedSVC].rootShowViewController;
+    
+    [[AMapServices sharedServices] setEnableHTTPS:YES];
+    [AMapServices sharedServices].apiKey = @"8f63582ab419a896308138336c5d315a";
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [AVOSCloud setApplicationId:@"277O51p30kOOJ5SUy9C7x2bs-gzGzoHsz" clientKey:@"FhxSVmiqkN9CjIPdA9xppdlk"];
@@ -47,6 +51,24 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    UIApplication*   app = [UIApplication sharedApplication];
+    __block    UIBackgroundTaskIdentifier bgTask;
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid)
+            {
+                bgTask = UIBackgroundTaskInvalid;
+            }
+        });
+    });
 }
 
 
@@ -63,6 +85,5 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

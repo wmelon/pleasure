@@ -108,6 +108,11 @@
 		19AC0FDC20849F9F0014A1C2 /* WMHttpRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FDA20849F9F0014A1C2 /* WMHttpRequestCell.m */; };
 		19AC0FDD20849F9F0014A1C2 /* WMHttpRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19AC0FDB20849F9F0014A1C2 /* WMHttpRequestCell.xib */; };
 		19AC0FE02084A9E70014A1C2 /* WMNetworkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FDF2084A9E70014A1C2 /* WMNetworkDetailViewController.m */; };
+		19AC0FE72085FB320014A1C2 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AC0FE42085FB2F0014A1C2 /* AMapFoundationKit.framework */; };
+		19AC0FE82085FB320014A1C2 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AC0FE52085FB310014A1C2 /* MAMapKit.framework */; };
+		19AC0FE92085FB320014A1C2 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AC0FE62085FB320014A1C2 /* AMapSearchKit.framework */; };
+		19AC0FFF2086E25E0014A1C2 /* WMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FFD2086E25E0014A1C2 /* WMLocationManager.m */; };
+		19AC10022086E2890014A1C2 /* CLLocation+WMTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC10012086E2890014A1C2 /* CLLocation+WMTransform.m */; };
 		19B312A51F5D547F0096AF65 /* WMPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312A41F5D547F0096AF65 /* WMPhotoSelectViewController.m */; };
 		19B312A81F5D54A50096AF65 /* WMPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312A71F5D54A50096AF65 /* WMPhotoBrowserViewController.m */; };
 		19B312AB1F5D54B40096AF65 /* WMPhotoCaptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312AA1F5D54B40096AF65 /* WMPhotoCaptionViewController.m */; };
@@ -344,6 +349,13 @@
 		19AC0FDB20849F9F0014A1C2 /* WMHttpRequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMHttpRequestCell.xib; sourceTree = "<group>"; };
 		19AC0FDE2084A9E70014A1C2 /* WMNetworkDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMNetworkDetailViewController.h; sourceTree = "<group>"; };
 		19AC0FDF2084A9E70014A1C2 /* WMNetworkDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMNetworkDetailViewController.m; sourceTree = "<group>"; };
+		19AC0FE42085FB2F0014A1C2 /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
+		19AC0FE52085FB310014A1C2 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
+		19AC0FE62085FB320014A1C2 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
+		19AC0FFD2086E25E0014A1C2 /* WMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMLocationManager.m; sourceTree = "<group>"; };
+		19AC0FFE2086E25E0014A1C2 /* WMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLocationManager.h; sourceTree = "<group>"; };
+		19AC10002086E2890014A1C2 /* CLLocation+WMTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+WMTransform.h"; sourceTree = "<group>"; };
+		19AC10012086E2890014A1C2 /* CLLocation+WMTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+WMTransform.m"; sourceTree = "<group>"; };
 		19B312A31F5D547F0096AF65 /* WMPhotoSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoSelectViewController.h; sourceTree = "<group>"; };
 		19B312A41F5D547F0096AF65 /* WMPhotoSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoSelectViewController.m; sourceTree = "<group>"; };
 		19B312A61F5D54A50096AF65 /* WMPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoBrowserViewController.h; sourceTree = "<group>"; };
@@ -450,13 +462,16 @@
 			files = (
 				190AA9A32057721500DB074D /* UIKit.framework in Frameworks */,
 				190AA9A12057720100DB074D /* CoreGraphics.framework in Frameworks */,
+				19AC0FE82085FB320014A1C2 /* MAMapKit.framework in Frameworks */,
 				190AA99F205771F400DB074D /* QuartzCore.framework in Frameworks */,
 				190AA99D205771E900DB074D /* SystemConfiguration.framework in Frameworks */,
+				19AC0FE72085FB320014A1C2 /* AMapFoundationKit.framework in Frameworks */,
 				190AA99B205771DF00DB074D /* AudioToolbox.framework in Frameworks */,
 				190AA999205771D100DB074D /* AdSupport.framework in Frameworks */,
 				190AA997205771C600DB074D /* CoreTelephony.framework in Frameworks */,
 				190AA995205771BB00DB074D /* Security.framework in Frameworks */,
 				190AA993205771AF00DB074D /* libsqlite3.tbd in Frameworks */,
+				19AC0FE92085FB320014A1C2 /* AMapSearchKit.framework in Frameworks */,
 				190AA991205771A400DB074D /* libz.tbd in Frameworks */,
 				B3D621B69DF5654B3394EE3A /* libPods-Pleasure.a in Frameworks */,
 				190AA98E2057714300DB074D /* GT.framework in Frameworks */,
@@ -549,6 +564,7 @@
 		191D7A5D1FCBC004003A4ED1 /* CoreCode */ = {
 			isa = PBXGroup;
 			children = (
+				19AC0FFC2086E22C0014A1C2 /* WMLocation */,
 				19296C3D2029A54500CE1FFA /* WMAppMonitor */,
 				19296C2B2028371500CE1FFA /* WMScrollPageView */,
 				19312D2B1FF10B43004F6649 /* WMTransition */,
@@ -945,6 +961,17 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		19AC0FFC2086E22C0014A1C2 /* WMLocation */ = {
+			isa = PBXGroup;
+			children = (
+				19AC0FFE2086E25E0014A1C2 /* WMLocationManager.h */,
+				19AC0FFD2086E25E0014A1C2 /* WMLocationManager.m */,
+				19AC10002086E2890014A1C2 /* CLLocation+WMTransform.h */,
+				19AC10012086E2890014A1C2 /* CLLocation+WMTransform.m */,
+			);
+			path = WMLocation;
+			sourceTree = "<group>";
+		};
 		19BDF223204E988B00DFB56E /* network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,6 +1180,9 @@
 		E79A4222413A90F381CDC7C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				19AC0FE42085FB2F0014A1C2 /* AMapFoundationKit.framework */,
+				19AC0FE62085FB320014A1C2 /* AMapSearchKit.framework */,
+				19AC0FE52085FB310014A1C2 /* MAMapKit.framework */,
 				190AA9A22057721500DB074D /* UIKit.framework */,
 				190AA9A02057720100DB074D /* CoreGraphics.framework */,
 				190AA99E205771F400DB074D /* QuartzCore.framework */,
@@ -1204,6 +1234,11 @@
 				TargetAttributes = {
 					1960324D1F09E7AB00126AC7 = {
 						CreatedOnToolsVersion = 9.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -1376,6 +1411,7 @@
 				192C13381F0B9B3200759221 /* NotificationConfig.m in Sources */,
 				1916F7661FE77C1B0084BB38 /* JQIndicatorView.m in Sources */,
 				19AC0FCF208448A10014A1C2 /* WMBaseMonitorViewController.m in Sources */,
+				19AC10022086E2890014A1C2 /* CLLocation+WMTransform.m in Sources */,
 				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,
 				191BB65E1F615376000BF57F /* WMBaseWebViewController.m in Sources */,
 				19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */,
@@ -1420,6 +1456,7 @@
 				198475E51F5698210074E6D2 /* WMBaseCollectionViewController.m in Sources */,
 				198475DF1F5696870074E6D2 /* WMBaseViewController.m in Sources */,
 				19312D091FED0208004F6649 /* XHWaterCollectionCell.m in Sources */,
+				19AC0FFF2086E25E0014A1C2 /* WMLocationManager.m in Sources */,
 				19B312AE1F5D55DE0096AF65 /* WMPhotoItemCell.m in Sources */,
 				195F620E1F4D7CFE00BB6CA6 /* WMBaseTransitionAnimator.m in Sources */,
 				19BDF22A204E991200DFB56E /* WMDebugView.m in Sources */,
@@ -1574,7 +1611,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pleasure/CoreCode/module_face_mobile",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xigua.pleasure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xigua.ins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1599,7 +1636,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pleasure/CoreCode/module_face_mobile",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xigua.pleasure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xigua.ins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
