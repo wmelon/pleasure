@@ -13,6 +13,9 @@
 
 @implementation WMBaseMonitorViewController
 
+/// 子类实现
+- (void)setIntentDic:(NSDictionary *)dic{}
+
 - (void)dealloc{
     NSLog(@"deall ---- >>> %@" , self);
 }

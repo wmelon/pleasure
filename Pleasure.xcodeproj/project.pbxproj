@@ -113,6 +113,10 @@
 		19AC0FE92085FB320014A1C2 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AC0FE62085FB320014A1C2 /* AMapSearchKit.framework */; };
 		19AC0FFF2086E25E0014A1C2 /* WMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC0FFD2086E25E0014A1C2 /* WMLocationManager.m */; };
 		19AC10022086E2890014A1C2 /* CLLocation+WMTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC10012086E2890014A1C2 /* CLLocation+WMTransform.m */; };
+		19AC10062087389C0014A1C2 /* WMAPMContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC10052087389C0014A1C2 /* WMAPMContentViewController.m */; };
+		19AC1030208873270014A1C2 /* WMJsonParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC102F208873260014A1C2 /* WMJsonParse.m */; };
+		19AC1034208880360014A1C2 /* WMAPMJsonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AC1032208880360014A1C2 /* WMAPMJsonCell.m */; };
+		19AC1035208880360014A1C2 /* WMAPMJsonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19AC1033208880360014A1C2 /* WMAPMJsonCell.xib */; };
 		19B312A51F5D547F0096AF65 /* WMPhotoSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312A41F5D547F0096AF65 /* WMPhotoSelectViewController.m */; };
 		19B312A81F5D54A50096AF65 /* WMPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312A71F5D54A50096AF65 /* WMPhotoBrowserViewController.m */; };
 		19B312AB1F5D54B40096AF65 /* WMPhotoCaptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B312AA1F5D54B40096AF65 /* WMPhotoCaptionViewController.m */; };
@@ -356,6 +360,13 @@
 		19AC0FFE2086E25E0014A1C2 /* WMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMLocationManager.h; sourceTree = "<group>"; };
 		19AC10002086E2890014A1C2 /* CLLocation+WMTransform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CLLocation+WMTransform.h"; sourceTree = "<group>"; };
 		19AC10012086E2890014A1C2 /* CLLocation+WMTransform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+WMTransform.m"; sourceTree = "<group>"; };
+		19AC10042087389C0014A1C2 /* WMAPMContentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAPMContentViewController.h; sourceTree = "<group>"; };
+		19AC10052087389C0014A1C2 /* WMAPMContentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAPMContentViewController.m; sourceTree = "<group>"; };
+		19AC102E208873260014A1C2 /* WMJsonParse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMJsonParse.h; sourceTree = "<group>"; };
+		19AC102F208873260014A1C2 /* WMJsonParse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMJsonParse.m; sourceTree = "<group>"; };
+		19AC1031208880360014A1C2 /* WMAPMJsonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAPMJsonCell.h; sourceTree = "<group>"; };
+		19AC1032208880360014A1C2 /* WMAPMJsonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAPMJsonCell.m; sourceTree = "<group>"; };
+		19AC1033208880360014A1C2 /* WMAPMJsonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WMAPMJsonCell.xib; sourceTree = "<group>"; };
 		19B312A31F5D547F0096AF65 /* WMPhotoSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoSelectViewController.h; sourceTree = "<group>"; };
 		19B312A41F5D547F0096AF65 /* WMPhotoSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPhotoSelectViewController.m; sourceTree = "<group>"; };
 		19B312A61F5D54A50096AF65 /* WMPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPhotoBrowserViewController.h; sourceTree = "<group>"; };
@@ -664,6 +675,7 @@
 		19296C3D2029A54500CE1FFA /* WMAppMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				19AC1003208730570014A1C2 /* models */,
 				19AC0FD820849F250014A1C2 /* cells */,
 				19AC0FC2208448280014A1C2 /* controllers */,
 				19BDF223204E988B00DFB56E /* network */,
@@ -947,6 +959,8 @@
 				19AC0FCA208448A00014A1C2 /* WMNetworkViewController.m */,
 				19AC0FDE2084A9E70014A1C2 /* WMNetworkDetailViewController.h */,
 				19AC0FDF2084A9E70014A1C2 /* WMNetworkDetailViewController.m */,
+				19AC10042087389C0014A1C2 /* WMAPMContentViewController.h */,
+				19AC10052087389C0014A1C2 /* WMAPMContentViewController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -957,6 +971,9 @@
 				19AC0FD920849F9F0014A1C2 /* WMHttpRequestCell.h */,
 				19AC0FDA20849F9F0014A1C2 /* WMHttpRequestCell.m */,
 				19AC0FDB20849F9F0014A1C2 /* WMHttpRequestCell.xib */,
+				19AC1031208880360014A1C2 /* WMAPMJsonCell.h */,
+				19AC1032208880360014A1C2 /* WMAPMJsonCell.m */,
+				19AC1033208880360014A1C2 /* WMAPMJsonCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -970,6 +987,13 @@
 				19AC10012086E2890014A1C2 /* CLLocation+WMTransform.m */,
 			);
 			path = WMLocation;
+			sourceTree = "<group>";
+		};
+		19AC1003208730570014A1C2 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		19BDF223204E988B00DFB56E /* network */ = {
@@ -1027,6 +1051,8 @@
 				19BDF249205114D500DFB56E /* WMGlobalTimer.m */,
 				190AA9C6205A7B5800DB074D /* UIWindow+WMMotion.h */,
 				190AA9C7205A7B5800DB074D /* UIWindow+WMMotion.m */,
+				19AC102E208873260014A1C2 /* WMJsonParse.h */,
+				19AC102F208873260014A1C2 /* WMJsonParse.m */,
 			);
 			path = tools;
 			sourceTree = "<group>";
@@ -1266,6 +1292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1922AE241F50173500E66E46 /* icon_delete_image_wm@2x.png in Resources */,
+				19AC1035208880360014A1C2 /* WMAPMJsonCell.xib in Resources */,
 				190AA98F2057714300DB074D /* GT.bundle in Resources */,
 				19382EBC1F39B43F0029AAA3 /* addphoto@3x.png in Resources */,
 				19F011A01F298DA700F30BC9 /* WMUserHeaderView.xib in Resources */,
@@ -1372,7 +1399,9 @@
 				19296C372028371600CE1FFA /* WMContentView.m in Sources */,
 				19312D151FED0C70004F6649 /* WMHuaBanDetailViewController.m in Sources */,
 				19BF99131F41A0FF00B2BB35 /* WMAIListViewController.m in Sources */,
+				19AC10062087389C0014A1C2 /* WMAPMContentViewController.m in Sources */,
 				19312CF31FECED60004F6649 /* CHTCollectionViewWaterfallLayout.m in Sources */,
+				19AC1030208873270014A1C2 /* WMJsonParse.m in Sources */,
 				19312CF61FECF573004F6649 /* HuabanModel.m in Sources */,
 				19BF99321F41A63E00B2BB35 /* ForegroundColorAttribute.m in Sources */,
 				19312D351FF10B43004F6649 /* WMTransitionPushPopScale.m in Sources */,
@@ -1412,6 +1441,7 @@
 				1916F7661FE77C1B0084BB38 /* JQIndicatorView.m in Sources */,
 				19AC0FCF208448A10014A1C2 /* WMBaseMonitorViewController.m in Sources */,
 				19AC10022086E2890014A1C2 /* CLLocation+WMTransform.m in Sources */,
+				19AC1034208880360014A1C2 /* WMAPMJsonCell.m in Sources */,
 				19F0119F1F298DA700F30BC9 /* WMUserHeaderView.m in Sources */,
 				191BB65E1F615376000BF57F /* WMBaseWebViewController.m in Sources */,
 				19B9BB3E1F161AEB00BD0938 /* WMBaseTableCollectionControlController.m in Sources */,

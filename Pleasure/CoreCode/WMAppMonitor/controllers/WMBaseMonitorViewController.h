@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WMBaseMonitorViewController : UIViewController
-
+- (void)setIntentDic:(NSDictionary *)dic;
 @end
