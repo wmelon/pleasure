@@ -31,9 +31,9 @@
     self.openCloseBtn.hidden = !_jsonModel.canOpen;
     self.btnLeftPadding.constant = _jsonModel.leftPadding;
     if (_jsonModel.isOpen){
-        [self.openCloseBtn setTitle:@"-" forState:UIControlStateNormal];
+        [self.openCloseBtn setTitle:@"－" forState:UIControlStateNormal];
     }else {
-        [self.openCloseBtn setTitle:@"+" forState:UIControlStateNormal];
+        [self.openCloseBtn setTitle:@"＋" forState:UIControlStateNormal];
     }
     self.valueHeight.constant = _jsonModel.valueHeight;
 }

@@ -25,7 +25,8 @@
                             <constraint firstAttribute="height" constant="15" id="6kg-G1-Wd3"/>
                             <constraint firstAttribute="width" constant="15" id="xiq-o6-jF9"/>
                         </constraints>
-                        <state key="normal" title="+">
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="＋">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
