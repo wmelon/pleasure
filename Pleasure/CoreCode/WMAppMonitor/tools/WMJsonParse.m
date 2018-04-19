@@ -52,7 +52,7 @@
     /// 每一行上下间距
     CGFloat topBottomPadding = 5;
     /// 展开按钮宽度
-    CGFloat openCloseBtnWidth = 15;
+    CGFloat openCloseBtnWidth = 30;
     CGFloat valueHeight = 0;
     jsonModel.key = [NSString stringWithFormat:@"😈 %@ :" , key];
     /// 10是展开按钮距离左边距离  18 是每一层级展开按钮缩进 18

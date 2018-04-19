@@ -45,7 +45,14 @@
     
     NSData *data = [_content dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *tempDictQueryDiamond = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    self.dataArray = [NSMutableArray arrayWithArray:[WMJsonParse parseJsonWithData:tempDictQueryDiamond]];
+    if (tempDictQueryDiamond){
+        self.dataArray = [NSMutableArray arrayWithArray:[WMJsonParse parseJsonWithData:tempDictQueryDiamond]];
+    }else {
+        WMJsonModel *jsonModel = [[WMJsonModel alloc] init];
+        jsonModel.value = _content;
+        jsonModel.valueHeight = 44;
+        self.dataArray = [NSMutableArray arrayWithObject:jsonModel];
+    }
     [self.tableView reloadData];
 }
 
