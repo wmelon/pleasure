@@ -16,7 +16,7 @@
     if (self = [super init]){
         _url = urlRequest.URL;
         _method = urlRequest.HTTPMethod;
-//        _requestBody = urlRequest.HTTPBody;
+        _requestBody = urlRequest.HTTPBody;
         _mineType = urlResponse.MIMEType;
         _statusCode = urlResponse.statusCode;
         _responseData = responseData;

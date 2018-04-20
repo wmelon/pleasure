@@ -13,6 +13,7 @@
 @property (nonatomic , copy  ) NSString *content;
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
+
 @end
 
 @implementation WMAPMContentViewController

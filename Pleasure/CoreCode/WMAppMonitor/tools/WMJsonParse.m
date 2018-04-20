@@ -52,7 +52,9 @@
     /// 每一行上下间距
     CGFloat topBottomPadding = 5;
     /// 展开按钮宽度
-    CGFloat openCloseBtnWidth = 24;
+    CGFloat openCloseBtnWidth = 40;
+    /// 展开按钮的宽度
+    CGFloat openCloseBtnheight = 20;
     CGFloat valueHeight = 0;
     jsonModel.key = [NSString stringWithFormat:@"😈 %@ :" , key];
     /// 10是展开按钮距离左边距离  18 是每一层级展开按钮缩进 18
@@ -60,7 +62,7 @@
     UIFont *font = [UIFont systemFontOfSize:12];
     CGSize keySize = [self sizeWithConstrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) font:font text:jsonModel.key];
     if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]]){
-        CGFloat valueMaxWidth = kWMS_Width - jsonModel.leftPadding - openCloseBtnWidth - keySize.width  - keyValuePadding - leftRightPadding;
+        CGFloat valueMaxWidth = kWMS_Width - jsonModel.leftPadding - openCloseBtnWidth - keyValuePadding - keySize.width - keyValuePadding - leftRightPadding;
         jsonModel.value = [NSString stringWithFormat:@"%@" , obj];
         valueHeight = [self sizeWithConstrainedToSize:CGSizeMake(valueMaxWidth, CGFLOAT_MAX) font:font text:jsonModel.value].height;
     }else if ([obj isKindOfClass:[NSArray class]]){
@@ -79,26 +81,29 @@
         jsonModel.subList = subList;
     }
     if (jsonModel.canOpen){
-        valueHeight = openCloseBtnWidth;
+        valueHeight = openCloseBtnheight;
         jsonModel.btnHeight = valueHeight;
     }else {
-        if (valueHeight > openCloseBtnWidth){
-            jsonModel.btnHeight = openCloseBtnWidth;
-        }else if (valueHeight > 0 && valueHeight < openCloseBtnWidth){
+        if (valueHeight > openCloseBtnheight){
+            jsonModel.btnHeight = keySize.height;
+        }else if (valueHeight > 0 && valueHeight < openCloseBtnheight){
             jsonModel.btnHeight = valueHeight;
         }else {
             valueHeight = keySize.height;
             jsonModel.btnHeight = valueHeight;
         }
     }
+    jsonModel.btnWidth = openCloseBtnWidth;
     jsonModel.cellHeight = valueHeight + 2 * topBottomPadding;
 }
 
+
 + (CGSize)sizeWithConstrainedToSize:(CGSize)size font:(UIFont *)font text:(NSString *)text{
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.lineBreakMode = NSLineBreakByCharWrapping;
-    style.alignment = NSTextAlignmentLeft;
-    CGSize textSize = [text boundingRectWithSize:size options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: font,NSParagraphStyleAttributeName:style} context:nil].size;
-    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+    NSDictionary * tdic = [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil];
+    CGSize  actualsize = CGSizeZero;
+    actualsize =[text boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin  attributes:tdic context:nil].size;
+    //强制转化为整型(比初值偏小)，因为float型size转到view上会有一定的偏移，导致view setBounds时候 错位
+    CGSize contentSize =CGSizeMake(ceil(actualsize.width), ceil(actualsize.height));
+    return contentSize;
 }
 @end

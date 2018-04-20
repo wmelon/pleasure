@@ -26,7 +26,7 @@
     if (self = [super init]){
         _title = title;
         _subTitle = subTitle;
-        if (_subTitle){
+        if (_subTitle && ![_subTitle isEqualToString:@""]){
             _targetClass = targetClass;
         }
     }
@@ -44,6 +44,7 @@
 - (void)setHttpModel:(WMAPMHttpModel *)httpModel{
     _httpModel = httpModel;
     NSString *response = [[NSString alloc] initWithData:self.httpModel.responseData encoding:NSUTF8StringEncoding];
+    NSString *request = [[NSString alloc] initWithData:self.httpModel.requestBody encoding:NSUTF8StringEncoding];
     
     self.dataArray = @[[WMCellItem cellItemWithTitle:@"Request URL" subTitle:self.httpModel.url.absoluteString targetClass:[WMAPMContentViewController class]],
                        [WMCellItem cellItemWithTitle:@"Method" subTitle:self.httpModel.method],
@@ -51,7 +52,7 @@
                        [WMCellItem cellItemWithTitle:@"Mine Type" subTitle:self.httpModel.mineType],
                        [WMCellItem cellItemWithTitle:@"Start Time" subTitle:self.httpModel.startTime],
                        [WMCellItem cellItemWithTitle:@"Total Duration" subTitle:self.httpModel.totalDuration],
-                       [WMCellItem cellItemWithTitle:@"Request Body" subTitle:self.httpModel.requestBody targetClass:[WMAPMContentViewController class]],
+                       [WMCellItem cellItemWithTitle:@"Request Body" subTitle:request targetClass:[WMAPMContentViewController class]],
                        [WMCellItem cellItemWithTitle:@"Response Body" subTitle:response targetClass:[WMAPMContentViewController class]]
                        ];
 }

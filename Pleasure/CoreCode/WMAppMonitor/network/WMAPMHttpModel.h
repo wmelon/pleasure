@@ -11,8 +11,8 @@
 @interface WMAPMHttpModel : NSObject
 @property (nonatomic,copy  ,readonly) NSURL     *url;
 @property (nonatomic,copy  ,readonly) NSString  *method;
-@property (nonatomic,copy  ,readonly) NSString  *requestBody;
 @property (nonatomic,assign,readonly) NSInteger statusCode;
+@property (nonatomic,strong,readonly) NSData    *requestBody;
 @property (nonatomic,copy  ,readonly) NSData    *responseData;
 @property (nonatomic,assign,readonly) BOOL      isImage;
 @property (nonatomic,copy  ,readonly) NSString  *mineType;

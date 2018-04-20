@@ -27,6 +27,7 @@
 @property (nonatomic , assign) CGFloat leftPadding;
 /// 展开和关闭按钮高度
 @property (nonatomic , assign) CGFloat btnHeight;
+@property (nonatomic , assign) CGFloat btnWidth;
 @end
 
 @interface WMJsonParse : NSObject
