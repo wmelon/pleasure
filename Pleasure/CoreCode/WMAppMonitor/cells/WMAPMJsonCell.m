@@ -13,7 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *openCloseBtn;
 @property (weak, nonatomic) IBOutlet UILabel *key;
 @property (weak, nonatomic) IBOutlet UILabel *value;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *valueHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnWidth;
+
 @property (nonatomic , strong) WMJsonModel *jsonModel;
 @property (nonatomic , copy  ) WMButtonClickHandle clickHandle;
 @end
@@ -35,7 +37,9 @@
     }else {
         [self.openCloseBtn setTitle:@"＋" forState:UIControlStateNormal];
     }
-    self.valueHeight.constant = _jsonModel.valueHeight;
+    self.btnHeight.constant = jsonModel.btnHeight;
+    self.btnWidth.constant = jsonModel.btnHeight;
+    self.openCloseBtn.layer.cornerRadius = jsonModel.btnHeight / 2;
 }
 - (IBAction)openOrClose:(id)sender {
     if (_clickHandle){

@@ -23,10 +23,10 @@
 @property (nonatomic , assign , getter=isOpen) BOOL open;
 /// cell的高度
 @property (nonatomic , assign) CGFloat cellHeight;
-/// 内容的高度
-@property (nonatomic , assign) CGFloat valueHeight;
 /// 不同层级缩进距离
 @property (nonatomic , assign) CGFloat leftPadding;
+/// 展开和关闭按钮高度
+@property (nonatomic , assign) CGFloat btnHeight;
 @end
 
 @interface WMJsonParse : NSObject

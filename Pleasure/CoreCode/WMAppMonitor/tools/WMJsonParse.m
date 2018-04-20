@@ -52,15 +52,15 @@
     /// 每一行上下间距
     CGFloat topBottomPadding = 5;
     /// 展开按钮宽度
-    CGFloat openCloseBtnWidth = 30;
+    CGFloat openCloseBtnWidth = 24;
     CGFloat valueHeight = 0;
     jsonModel.key = [NSString stringWithFormat:@"😈 %@ :" , key];
     /// 10是展开按钮距离左边距离  18 是每一层级展开按钮缩进 18
     jsonModel.leftPadding = degree * 18 + leftRightPadding;
+    UIFont *font = [UIFont systemFontOfSize:12];
+    CGSize keySize = [self sizeWithConstrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) font:font text:jsonModel.key];
     if ([obj isKindOfClass:[NSString class]] || [obj isKindOfClass:[NSNumber class]]){
-        UIFont *font = [UIFont systemFontOfSize:12];
-        CGFloat keyWidth = [self sizeWithConstrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) font:font text:jsonModel.key].width;
-        CGFloat valueMaxWidth = kWMS_Width - jsonModel.leftPadding - openCloseBtnWidth - keyWidth  - keyValuePadding - leftRightPadding;
+        CGFloat valueMaxWidth = kWMS_Width - jsonModel.leftPadding - openCloseBtnWidth - keySize.width  - keyValuePadding - leftRightPadding;
         jsonModel.value = [NSString stringWithFormat:@"%@" , obj];
         valueHeight = [self sizeWithConstrainedToSize:CGSizeMake(valueMaxWidth, CGFLOAT_MAX) font:font text:jsonModel.value].height;
     }else if ([obj isKindOfClass:[NSArray class]]){
@@ -78,8 +78,20 @@
         jsonModel.key = [NSString stringWithFormat:@"{ } %@" , key];
         jsonModel.subList = subList;
     }
-    jsonModel.valueHeight = (valueHeight > openCloseBtnWidth) ? valueHeight : openCloseBtnWidth;
-    jsonModel.cellHeight = (jsonModel.valueHeight + 2 * topBottomPadding);
+    if (jsonModel.canOpen){
+        valueHeight = openCloseBtnWidth;
+        jsonModel.btnHeight = valueHeight;
+    }else {
+        if (valueHeight > openCloseBtnWidth){
+            jsonModel.btnHeight = openCloseBtnWidth;
+        }else if (valueHeight > 0 && valueHeight < openCloseBtnWidth){
+            jsonModel.btnHeight = valueHeight;
+        }else {
+            valueHeight = keySize.height;
+            jsonModel.btnHeight = valueHeight;
+        }
+    }
+    jsonModel.cellHeight = valueHeight + 2 * topBottomPadding;
 }
 
 + (CGSize)sizeWithConstrainedToSize:(CGSize)size font:(UIFont *)font text:(NSString *)text{

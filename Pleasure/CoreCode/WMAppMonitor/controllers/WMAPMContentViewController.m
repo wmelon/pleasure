@@ -50,7 +50,7 @@
     }else {
         WMJsonModel *jsonModel = [[WMJsonModel alloc] init];
         jsonModel.value = _content;
-        jsonModel.valueHeight = 44;
+        jsonModel.cellHeight = 44;
         self.dataArray = [NSMutableArray arrayWithObject:jsonModel];
     }
     [self.tableView reloadData];
