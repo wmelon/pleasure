@@ -27,6 +27,10 @@
 }
 
 - (void)configCollectionView{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenHeight, 100)];
+    view.backgroundColor = [UIColor redColor];
+    [self.view addSubview:view];
+    
     CHTCollectionViewWaterfallLayout * layout = [[CHTCollectionViewWaterfallLayout alloc] init];
     layout.columnCount = 2;
     // Change individual layout attributes for the spacing between cells
@@ -34,14 +38,14 @@
     layout.minimumInteritemSpacing = 10.0;
     //  设置collectionView的 四周的内边距
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    self.collectionView.frame = CGRectMake(0, kNavBarHeight, kScreenWidth, kScreenHeight - kNavBarHeight - kTabBarHeight);
+    self.collectionView.frame = CGRectMake(0, CGRectGetMaxY(view.frame), kScreenWidth, kScreenHeight - kTabBarHeight - CGRectGetMaxY(view.frame));
     self.collectionView.collectionViewLayout = layout;
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([XHWaterCollectionCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([XHWaterCollectionCell class])];
 }
 
 - (void)requestDataWithTurnPage:(NSDictionary *)turnPage{
     WMWeakself
-    WMRequestAdapter *adapter = [WMRequestAdapter requestWithUrl:@"http://api.huaban.com/popular" requestMethod:(WMRequestMethodGET)];
+    WMRequestAdapter *adapter = [WMRequestAdapter requestWithUrl:@"https://test.api.nanguache.com/salon/api/productv2/mainList?ver=2.22.0&platform=iPhone7,2&cityid=1&apptype=pumpkin_iOS&sysVersion=iOS9.3&nid=68f36e3227efbd21dee2ac09bb1864a2&channel=AppStore&secureKey=b7e633738061d1394d6ea02ae139c75f&token=266acc3656ac700ca8f5b8b6ee833a76&signature=e9a95c04a23edbf9a9212606c47aa79d&customerLng=121.417&customerLat=31.2044&nextIndex=0&prevEndIndex=" requestMethod:(WMRequestMethodGET)];
     [adapter requestParameters:turnPage];
     [WMRequestManager requestWithSuccessHandler:^(WMRequestAdapter *request) {
         [weakself parseDataWithRequest:request];
@@ -82,6 +86,17 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.selectIndexPath = indexPath;
     XHWaterCollectionCell * cell =(XHWaterCollectionCell *)[self.collectionView cellForItemAtIndexPath:self.selectIndexPath];
+    
+    /**这段代码是控制上下移动位置*/
+    CGRect frrr = [self.view convertRect:cell.frame fromView:collectionView];
+    CGPoint point = self.collectionView.contentOffset;
+    point.y -= (self.collectionView.frame.size.height*0.5 - ((frrr.origin.y - CGRectGetMinY(collectionView.frame)) + frrr.size.height*0.5));
+    if (point.y < -35) {
+        point.y = -kNavBarHeight;
+    }
+    [self.collectionView setContentOffset:point animated:YES];
+    
+    
     WMHuaBanDetailViewController *detailVc = [WMHuaBanDetailViewController new];
     detailVc.headerImage = cell.photoImageView.image;
     [_svc wm_pushViewController:detailVc];

@@ -45,10 +45,9 @@
     vc.title = self.titles[index];
     return vc;
 }
-
 - (void)plusButtonClickAtScrollPageView:(WMScrollPageView *)scrollPageView{
     //// 这里处理点击
-    [_svc wm_pushViewController:[WMHomeViewController new]];
+//    [_svc wm_pushViewController:[WMHomeViewController new]];
 }
 
 /// 监听横竖屏切换 更新子视图的frame

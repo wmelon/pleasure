@@ -14,6 +14,8 @@
 @property (nonatomic, strong , readonly) NSMutableArray *rows;
 /// 是否是下拉刷新
 @property (nonatomic, assign , readonly) BOOL isRefresh;
+/// 是否显示loading
+@property (nonatomic, assign , readonly) BOOL shouldShowLoading;
 /// 翻页参数
 @property (nonatomic, strong , readonly) NSDictionary *turnPageParams;
 /// 初始翻页参数
@@ -25,7 +27,13 @@
 - (BOOL)shouldShowGetMore;
 
 /// 下拉和上拉加载数据  翻页参数
-- (void)requestDataWithTurnPage:(NSDictionary *)turnPage;
+//- (void)requestDataWithTurnPage:(NSDictionary *)turnPage;
+
+/// 下拉刷新数据
+- (void)requestNewData;
+
+/// 翻页加载更多
+- (void)requestMoreData;
 
 /// 开始刷新和结束刷新
 - (void)beginRefresh;

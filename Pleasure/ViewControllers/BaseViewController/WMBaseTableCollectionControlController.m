@@ -55,22 +55,29 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
 }
-
-#pragma mark - overridable
 - (void)requestRefresh{
     [self configStartTurnPageParams];
-    [self requestDataWithIsRefresh:YES];
+    [self requestNewData];
 }
 
 - (void)requestGetMore{
     self.page = @([self.page integerValue] + 1);
+    [self requestMoreData];
+}
+
+#pragma mark - overridable
+- (void)requestNewData{
+    [self requestDataWithIsRefresh:YES];
+}
+- (void)requestMoreData{
     [self requestDataWithIsRefresh:NO];
 }
 
 - (void)requestDataWithIsRefresh:(BOOL)isRefresh{
     _isRefresh = isRefresh;
-    [self requestDataWithTurnPage:self.turnPageParams];
+    //    [self requestDataWithTurnPage:self.turnPageParams];
 }
+
 /// 初始化翻页参数
 - (void)configStartTurnPageParams{
     /// 下拉刷新初始化翻页参数
@@ -85,10 +92,10 @@
     [dict setValue:self.page forKey:@"page"];
     return dict;
 }
-- (void)requestDataWithTurnPage:(NSDictionary *)turnPage{
-    NSLog(@"%s 需要重写",__FUNCTION__);
-    [self finishRequest];
-}
+//- (void)requestDataWithTurnPage:(NSDictionary *)turnPage{
+//    NSLog(@"%s 需要重写",__FUNCTION__);
+//    [self finishRequest];
+//}
 
 - (BOOL)shouldShowRefresh{
     return YES;

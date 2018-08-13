@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "SwitchViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
-#import "WMMonitor.h"
 #include <GT/GT.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
@@ -31,12 +30,12 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [AVOSCloud setApplicationId:@"277O51p30kOOJ5SUy9C7x2bs-gzGzoHsz" clientKey:@"FhxSVmiqkN9CjIPdA9xppdlk"];
-#if DEBUG
-    /// 开启app监控
-    [WMMonitor startMonitorAtTest:YES];
-#else
-    [WMMonitor startMonitorAtTest:NO];
-#endif
+//#if DEBUG
+//    /// 开启app监控
+//    [WMMonitor startMonitorAtTest:YES];
+//#else
+//    [WMMonitor startMonitorAtTest:NO];
+//#endif
     // GT Usage(合入) 初始化
 //    GT_DEBUG_INIT;
     return YES;

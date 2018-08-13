@@ -18,6 +18,7 @@
 #import "WMNewGuideViewController.h"
 #import "WMDemoViewController.h"
 #import "WMAppMonitorViewController.h"
+#import "WMTestTableViewController.h"
 
 @interface WMAIListViewController ()
 
@@ -79,7 +80,8 @@
                        [WMAIListModel initWithTitle:@"新闻详情" andTargetVC:[WMNewsDetailViewController class]],
                        [WMAIListModel initWithTitle:@"新手引导页" andTargetVC:[WMNewGuideViewController class]],
                        [WMAIListModel initWithTitle:@"测试界面" andTargetVC:[WMDemoViewController class]],
-                       [WMAIListModel initWithTitle:@"监控" andTargetVC:[WMAppMonitorViewController class]]
+                       [WMAIListModel initWithTitle:@"监控" andTargetVC:[WMAppMonitorViewController class]],
+                       [WMAIListModel initWithTitle:@"测试tableView" andTargetVC:[WMTestTableViewController class]]
                        ];
     
 
